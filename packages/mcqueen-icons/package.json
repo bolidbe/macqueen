@@ -1,0 +1,41 @@
+{
+  "name": "@bolid/mcqueen-icons",
+  "version": "0.0.1",
+  "description": "A scalable set of icons handcrafted with <3 by bolid.",
+  "homepage": "https://github.com/bolidbe/mcqueen/packages/mcqueen-icons",
+  "author": "bolid",
+  "license": "Apache-2.0",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "sideEffects": false,
+  "types": "dist/index.d.ts",
+  "repository": "bolid/mcqueen",
+  "scripts": {
+    "build": "npm run build:svgs && npm run build:react && npm run build:types",
+    "build:svgs": "scripts/svgs.js --input icons/**/*.svg --output dist/data.json",
+    "build:types": "scripts/types.js",
+    "build:react": "scripts/build.js"
+  },
+  "keywords": [
+    "bolid",
+    "icons",
+    "svg",
+    "mcqueen",
+    "react"
+  ],
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "fs-extra": "^6.0.1",
+    "globby": "^11.0.0",
+    "lodash.merge": "^4.6.2",
+    "trim-newlines": "^3.0.0",
+    "typescript": "^3.7.5",
+    "yargs": "^15.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=15"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}
