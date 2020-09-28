@@ -29,13 +29,17 @@
   "scripts": {
     "build": "npm run build:svgs && npm run build:react",
     "build:svgs": "scripts/svgs.js --input icons/**/*.svg --output dist/data.json",
-    "build:react": "scripts/react.js"
+    "build:react": "scripts/react.js",
+    "prepublish": "yarn build",
+    "test": "echo \"No test specified\""
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^6.0.1",
     "globby": "^11.0.0",
     "lodash.merge": "^4.6.2",
+    "np": "^6.5.0",
+    "react": "^16.4.0",
     "trim-newlines": "^3.0.0",
     "typescript": "^3.7.5",
     "yargs": "^15.1.0"
