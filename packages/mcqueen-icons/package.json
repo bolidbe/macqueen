@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-icons",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A scalable set of icons handcrafted with <3 by bolid.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-icons",
   "repository": {
@@ -30,7 +30,7 @@
     "build": "npm run build:svgs && npm run build:react",
     "build:svgs": "scripts/svgs.js --input icons/**/*.svg --output dist/data.json",
     "build:react": "scripts/react.js",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "test": "echo \"No test specified\""
   },
   "devDependencies": {
