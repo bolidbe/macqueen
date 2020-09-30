@@ -41,6 +41,7 @@ ul, ol{
 }
 
 .wrap{
+  width: 100%;
   max-width: $wrapMaxWidth;
   margin-left: auto;
   margin-right: auto;
@@ -49,14 +50,14 @@ ul, ol{
 }
 
 @media screen and (min-width: theme('screens.small')){
-  .wrapper{
+  .wrap{
     padding-left: 32px;
     padding-right: 32px;
   }
 }
 
 @media screen and (min-width: theme('screens.large')){
-  .wrapper{
+  .wrap{
     padding-left: 0;
     padding-right: 0;
   }
