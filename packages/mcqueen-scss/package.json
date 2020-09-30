@@ -1,0 +1,40 @@
+{
+  "name": "@bolid/mcqueen-scss",
+  "version": "0.0.1",
+  "description": "SCSS files for building bolid UI.",
+  "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-scss",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolidbe/mcqueen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bolidbe/mcqueen/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "author": "Gabriel Sebag <gabriel@bolid.be>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "bolid",
+    "icons",
+    "svg",
+    "mcqueen",
+    "react"
+  ],
+  "main": "dist/styles.scss",
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:svgs && npm run build:react",
+    "build:svgs": "scripts/svgs.js --input icons/**/*.svg --output dist/data.json",
+    "build:react": "scripts/react.js",
+    "prepublishOnly": "yarn build",
+    "test": "echo \"No test specified\""
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}
