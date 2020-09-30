@@ -1,0 +1,62 @@
+{
+  "transparent": "transparent",
+  "white": "#fff",
+  "black": {
+    "default": "#2D3E50",
+    "300": "#425B76",
+    "200": "#7C98B6"
+  },
+  "gray": {
+    "default": "#DFE3EB",
+    "300": "#EAF0F6",
+    "200": "#F5F8FA"
+  },
+  "orange": {
+    "500": "#E66E50",
+    "default": "#FF7A59",
+    "300": "#FFBCAC",
+    "200": "#FFF1EE"
+  },
+  "blue": {
+    "500": "#0091AE",
+    "default": "#00A4BD",
+    "300": "#7FD1DE",
+    "200": "#E5F5F8"
+  },
+  "green": {
+    "500": "#00A38D",
+    "default": "#00BDA5",
+    "300": "#7FDED2",
+    "200": "#E5F8F6"
+  },
+  "purple": {
+    "500": "#5E6AB8",
+    "default": "#6A78D1",
+    "300": "#B4BBE8",
+    "200": "#F0F1FA"
+  },
+  "red": {
+    "500": "#D94C53",
+    "default": "#F2545B",
+    "300": "#F8A9AD",
+    "200": "#FDEDEE"
+  },
+  "pink": {
+    "500": "#D94C71",
+    "default": "#F2547D",
+    "300": "#F9AABE",
+    "200": "#FDEDF2"
+  },
+  "sorbet": {
+    "500": "#E68250",
+    "default": "#FF8F59",
+    "300": "#FFC7AC",
+    "200": "#FFF3EE"
+  },
+  "yellow": {
+    "500": "#DBAE60",
+    "default": "#F5C26B",
+    "300": "#FAE0B5",
+    "200": "#FEF8F0"
+  }
+}

@@ -18,21 +18,24 @@
   "license": "Apache-2.0",
   "keywords": [
     "bolid",
-    "icons",
-    "svg",
-    "mcqueen",
-    "react"
+    "scss",
+    "css",
+    "sass",
+    "mcqueen"
   ],
   "main": "dist/styles.scss",
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:svgs && npm run build:react",
-    "build:svgs": "scripts/svgs.js --input icons/**/*.svg --output dist/data.json",
-    "build:react": "scripts/react.js",
+    "build": "mkdir -p dist && node-sass -q src/index.scss dist/index.css && postcss dist/index.css --map --replace",
     "prepublishOnly": "yarn build",
     "test": "echo \"No test specified\""
   },
   "devDependencies": {
+    "autoprefixer": "^9.0.1",
+    "cssnano": "^4.1.0",
+    "node-sass": "^4.9.2",
+    "postcss-cli": "^6.1.1",
+    "tailwindcss": "^1.1.3"
   },
   "engines": {
     "node": ">=8"
