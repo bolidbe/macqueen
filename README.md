@@ -1,7 +1,7 @@
 # McQueen
 
-<p align="center">
-  <img width="800" src="https://i.ibb.co/CnzLSQB/mcqueen.jpg" alt="McQueen cover" />
+<p align="left">
+  <img width="300" src="https://i.ibb.co/vBfN3nn/mcqueen.png" alt="McQueen cover" />
 </p>
 
 McQueen is the design system at bolid. Though its primary purpose to support bolid projects, we have open-sourced it for those interested in how we build and manage our design system.
