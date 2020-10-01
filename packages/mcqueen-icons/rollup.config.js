@@ -19,6 +19,6 @@ export default {
   output: formats.map(format => ({
     file: `dist/index.${format}.js`,
     format,
-    name: 'reocticons'
+    name: 'mcqueenicons'
   }))
 }
