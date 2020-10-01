@@ -14,7 +14,7 @@ const keywords = require('../keywords.json')
 
 const {argv} = yargs
   .usage('Usage: $0 --input <input filepaths> --output <output filepath>')
-  .example('$0 --input icons/**/*.svg --output build/data.json')
+  .example('$0 --input icons/**/*.svg --output src/__generated__/data.json')
   .option('input', {
     alias: 'i',
     type: 'array',

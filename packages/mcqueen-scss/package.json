@@ -23,7 +23,7 @@
     "sass",
     "mcqueen"
   ],
-  "main": "dist/styles.scss",
+  "main": "dist/styles.css",
   "sideEffects": false,
   "scripts": {
     "build": "rm -rf dist mkdir -p dist && node-sass -q src/index.scss dist/styles.css && postcss dist/styles.css --map --replace",

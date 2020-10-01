@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-const mcQueenIcons = require('../dist/data.json')
 const fse = require('fs-extra')
 const {join, resolve} = require('path')
 
-const srcDir = resolve(__dirname, '../dist')
-const iconsFile = join(srcDir, 'index.js')
-const typesFile = join(srcDir, 'index.d.ts')
+const srcDir = resolve(__dirname, '../src/__generated__')
+const distDir = resolve(__dirname, '../dist')
+const dataFile = join(srcDir, 'data.json')
+const iconsFile = join(srcDir, 'icons.js')
+const typesFile = join(distDir, 'index.d.ts')
 
 const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
 
@@ -13,7 +14,7 @@ function pascalCase(str) {
   return str.replace(/(^|-)([a-z])/g, (_, __, c) => c.toUpperCase())
 }
 
-const icons = Object.entries(mcQueenIcons)
+const icons = Object.entries(require(dataFile))
   .map(([key, octicon]) => {
     const name = `${pascalCase(key)}Icon`
     const code = `
@@ -123,6 +124,13 @@ export {
 fse
   .mkdirs(srcDir)
   .then(() => writeIcons(iconsFile))
+  .catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
+
+fse
+  .mkdirs(distDir)
   .then(() => writeTypes(typesFile))
   .catch(error => {
     console.error(error)

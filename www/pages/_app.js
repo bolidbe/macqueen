@@ -1,4 +1,4 @@
-import '@bolid/mcqueen-scss/dist/styles.css'
+import '@bolid/mcqueen-scss'
 
 const App = ({ Component, pageProps }) => {
   return <Component {...pageProps} />

@@ -1,3 +1,5 @@
+import { ChevronDownIcon } from '@bolid/mcqueen-icons'
+
 const Card = ({ children }) => (
   <div className="max-w-5 rounded-big mx-auto bg-white shadow-1 p-5">
     { children }
