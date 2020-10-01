@@ -26,8 +26,11 @@
   "main": "dist/styles.css",
   "sideEffects": false,
   "scripts": {
-    "build": "rm -rf dist mkdir -p dist && node-sass -q src/index.scss dist/styles.css && postcss dist/styles.css --map --replace",
-    "prepublishOnly": "yarn build",
+    "clear": "rm -rf dist",
+    "init": "mkdir -p dist",
+    "build:css": "node-sass -q src/index.scss dist/styles.css && postcss dist/styles.css --map --replace",
+    "build": "npm run clear && npm run init && npm run build:css",
+    "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\""
   },
   "devDependencies": {

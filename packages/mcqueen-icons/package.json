@@ -28,11 +28,11 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:svgs && npm run build:react && npm run build:rollup",
     "build:svgs": "scripts/svgs.js --input icons/**/*.svg --output src/__generated__/data.json",
     "build:react": "scripts/react.js",
-    "build:rollup": "rollup -c",
-    "prepublishOnly": "yarn build",
+    "build:js": "rollup -c",
+    "build": "npm run build:svgs && npm run build:react && npm run build:js",
+    "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\""
   },
   "devDependencies": {
