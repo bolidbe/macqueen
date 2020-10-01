@@ -1,4 +1,3 @@
-import { Children, cloneElement } from "react"
 import {
   ChevronUpIcon,
   ChevronRightIcon,
@@ -31,7 +30,7 @@ const Card = ({ children }) => (
 export default function Home() {
   return (
     <div className="h-screen bg-gray-200 py-5">
-      <div className="wrap text-red">
+      <div className="wrap">
         <Card>
         {
           [
