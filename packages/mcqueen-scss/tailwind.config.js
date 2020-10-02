@@ -1,7 +1,9 @@
+const path = require('path');
+
 module.exports = {
   purge: false,
   theme: {
-    screens: require('./config/screens.json'),
+    screens: require(path.join(__dirname, './config/screens.json')),
     fontFamily: {
       default: [
         "Avenir",
@@ -14,7 +16,7 @@ module.exports = {
         "sans-serif"
       ]
     },
-    colors: require('./config/colors.json'),
+    colors: require(path.join(__dirname, './config/colors.json')),
     spacing: {
       '0': '0',
       '1': '4px',

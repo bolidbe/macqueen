@@ -11,17 +11,19 @@ interface IProps {
   id?: string
 }
 
+console.log(styles)
+
 export default function Title({
     children,
-    size,
+    id,
+    size=1,
     className,
     heading,
-    id,
 }: IProps): JSX.Element {
     const elementName = heading ? `h${heading}` : 'div';
 
     const props = {
-        className: classNames(styles[`title${size}`], className),
+        className: classNames(styles[`title-${size}`], "font-700", className),
         id,
     };
 
