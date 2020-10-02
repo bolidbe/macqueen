@@ -21,6 +21,10 @@ import {
   LinkIcon,
 } from '@bolid/mcqueen-icons'
 
+import {
+  Title
+} from "@bolid/mcqueen-react"
+
 const Card = ({ children }) => (
   <div className="max-w-5 rounded-big mx-auto bg-white shadow-1 p-5">
     { children }
@@ -54,7 +58,7 @@ export default function Home() {
             StarIcon,
             PhoneIcon,
             LinkIcon
-          ].map(icon => icon({ size: 40 }))
+          ].map((icon, i) => <span key={i}>{ icon({ size: 40 }) }</span>)
         }
         </Card>
       </div>
