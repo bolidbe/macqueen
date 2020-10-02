@@ -37,9 +37,8 @@
     "test": "echo \"No test specified\""
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "^0.1.0",
-    "@bolid/mcqueen-scss": "^0.0.2",
-    "@types/react": "^16.9.49",
+    "@bolid/mcqueen-icons": "^0.1.1",
+    "@bolid/mcqueen-scss": "^0.1.2",
     "classnames": "^2.2.6",
     "intersection-observer": "^0.6.0",
     "lodash": "^4.17.11",
@@ -57,7 +56,7 @@
     "@rollup/plugin-commonjs": "^15.1.0",
     "@types/classnames": "^2.2.9",
     "@types/lodash": "^4.14.138",
-    "@types/react": "^16.9.2",
+    "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.0",
     "autoprefixer": "^9.0.1",
     "cssnano": "^4.1.0",
