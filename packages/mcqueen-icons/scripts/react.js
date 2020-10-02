@@ -18,14 +18,14 @@ const icons = Object.entries(require(dataFile))
   .map(([key, octicon]) => {
     const name = `${pascalCase(key)}Icon`
     const code = `
-function ${name}(props) {
-  const svgDataByHeight = ${JSON.stringify(octicon.heights)}
-  return <svg {...getSvgProps({...props, svgDataByHeight})} />
-}
-${name}.defaultProps = {
-  size: 16,
-  verticalAlign: 'text-bottom'
-}
+      function ${name}(props) {
+        const svgDataByHeight = ${JSON.stringify(octicon.heights)}
+        return <svg {...getSvgProps({...props, svgDataByHeight})} />
+      }
+      ${name}.defaultProps = {
+        size: 16,
+        verticalAlign: 'text-bottom'
+      }
     `
 
     return {
@@ -40,49 +40,69 @@ ${name}.defaultProps = {
 function writeIcons(file) {
   const count = icons.length
   const code = `
-${GENERATED_HEADER}
-import React from 'react'
+    ${GENERATED_HEADER}
+    import React from 'react'
 
-const sizeMap = {
-  tiny: 12,
-  small: 16,
-  medium: 24
-}
+    const sizeMap = {
+      tiny: 12,
+      small: 16,
+      medium: 24
+    }
 
-function closestNaturalHeight(naturalHeights, height) {
-  return naturalHeights
-    .map(naturalHeight => parseInt(naturalHeight, 10))
-    .reduce((acc, naturalHeight) => (naturalHeight <= height ? naturalHeight : acc), naturalHeights[0])
-}
+    function closestNaturalHeight(naturalHeights, height) {
+      return naturalHeights
+        .map(naturalHeight => parseInt(naturalHeight, 10))
+        .reduce((acc, naturalHeight) => (naturalHeight <= height ? naturalHeight : acc), naturalHeights[0])
+    }
 
-function getSvgProps({'aria-label': ariaLabel, className, size, verticalAlign, svgDataByHeight}) {
-  const height = sizeMap[size] || size
-  const naturalHeight = closestNaturalHeight(Object.keys(svgDataByHeight), height)
-  const naturalWidth = svgDataByHeight[naturalHeight].width
-  const width = height * (naturalWidth / naturalHeight)
-  const path = svgDataByHeight[naturalHeight].path
+    function getSvgProps({'aria-label': ariaLabel, className, size, verticalAlign, svgDataByHeight}) {
+      const height = sizeMap[size] || size
+      const naturalHeight = closestNaturalHeight(Object.keys(svgDataByHeight), height)
+      const naturalWidth = svgDataByHeight[naturalHeight].width
+      const width = height * (naturalWidth / naturalHeight)
+      const path = svgDataByHeight[naturalHeight].path
 
-  return {
-    'aria-hidden': ariaLabel ? 'false' : 'true',
-    'aria-label': ariaLabel,
-    role: 'img',
-    className,
-    viewBox: \`0 0 \${naturalWidth} \${naturalHeight}\`,
-    width,
-    height,
-    fill: 'currentColor',
-    style: {
-      display: 'inline-block',
-      userSelect: 'none',
-      verticalAlign
-    },
-    dangerouslySetInnerHTML: {__html: path}
-  }
-}
-${icons.map(({code}) => code).join('\n')}
-export {
-  ${icons.map(({name}) => name).join(',\n  ')}
-}
+      return {
+        'aria-hidden': ariaLabel ? 'false' : 'true',
+        'aria-label': ariaLabel,
+        role: 'img',
+        className,
+        viewBox: \`0 0 \${naturalWidth} \${naturalHeight}\`,
+        width,
+        height,
+        fill: 'currentColor',
+        style: {
+          display: 'inline-block',
+          userSelect: 'none',
+          verticalAlign
+        },
+        dangerouslySetInnerHTML: {__html: path}
+      }
+    }
+    ${icons.map(({code}) => code).join('\n')}
+
+    function Icon(props) {
+      switch(props.name){
+        ${icons.map(({ key, name }) => (
+        `
+          case "${ key }":
+            return <${name} {...props} />
+            break;
+        `
+        )).join("")}
+        default:
+          return none;
+      }
+    }
+    Icon.defaultProps = {
+      size: 16,
+      verticalAlign: 'text-bottom'
+    }
+
+    export {
+      Icon,
+      ${icons.map(({name}) => name).join(',\n  ')},
+    }
   `
   return fse.writeFile(file, code, 'utf8').then(() => {
     console.warn('wrote %s with %d exports', file, count)
@@ -102,16 +122,19 @@ interface IconProps {
   'aria-label'?: string
   className?: string
   size?: number | Size
-  verticalAlign?: 'middle' | 'text-bottom' | 'text-top' | 'top' | 'unset'
+  verticalAlign?: 'middle' | 'text-bottom' | 'text-top' | 'top' | 'unset',
+  name?: string
 }
 
-type Icon = React.FC<IconProps>
+type IconType = React.FC<IconProps>
 
-${icons.map(({name}) => `declare const ${name}: Icon`).join('\n')}
+${icons.map(({name}) => `declare const ${name}: IconType`).join('\n')}
+declare const Icon: IconType
 
 export {
-  Icon,
+  IconType,
   IconProps,
+  Icon,
   ${icons.map(({name}) => name).join(',\n  ')}
 }
   `

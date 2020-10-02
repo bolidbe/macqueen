@@ -1,46 +1,46 @@
-.title-1{
+.title1{
   font-size: theme('fontSize.title-1m');
   line-height: theme('lineHeight.title-1m');
 }
-.title-2{
+.title2{
   font-size: theme('fontSize.title-2m');
   line-height: theme('lineHeight.title-2m');
 }
-.title-3{
+.title3{
   font-size: theme('fontSize.title-3m');
   line-height: theme('lineHeight.title-3m');
 }
-.title-4{
+.title4{
   font-size: theme('fontSize.title-4');
   line-height: theme('lineHeight.title-4');
 }
-.title-5{
+.title5{
   font-size: theme('fontSize.title-5');
   line-height: theme('lineHeight.title-5');
 }
-.title-6{
+.title6{
   font-size: theme('fontSize.title-6');
   line-height: theme('lineHeight.title-6');
 }
-.title-7{
+.title7{
   font-size: theme('fontSize.title-7');
   line-height: theme('lineHeight.title-7');
 }
-.title-8{
+.title8{
   font-size: theme('fontSize.title-8');
   line-height: theme('lineHeight.title-8');
 }
 
 @media screen and (min-width: theme("screens.medium")){
-  .title-1{
+  .title1{
     font-size: theme('fontSize.title-1');
     line-height: theme('lineHeight.title-1');
   }
-  .title-2{
+  .title2{
     font-size: theme('fontSize.title-2');
     line-height: theme('lineHeight.title-2');
   }
-  .title-3{
+  .title3{
     font-size: theme('fontSize.title-3');
     line-height: theme('lineHeight.title-3');
   }

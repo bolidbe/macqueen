@@ -1,31 +1,31 @@
-import React, { ReactNode } from 'react';
+import React, { createElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import styles from './Title.module.scss';
 
-interface IProps {
+interface ITitleProps {
   children: ReactNode,
-  size: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+  size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
   className?: string,
   heading?: 1 | 2 | 3 | 4 | 5 | 6,
   id?: string
 }
 
-console.log(styles)
+const Title = ({
+  children,
+  id,
+  size = 1,
+  className,
+  heading
+}: ITitleProps): JSX.Element => {
+  const elementName = heading ? `h${heading}` : 'div';
 
-export default function Title({
-    children,
+  const props = {
+    className: classNames(styles[`title${size}`], "font-700", className),
     id,
-    size=1,
-    className,
-    heading,
-}: IProps): JSX.Element {
-    const elementName = heading ? `h${heading}` : 'div';
+  };
 
-    const props = {
-        className: classNames(styles[`title-${size}`], "font-700", className),
-        id,
-    };
-
-    return React.createElement(elementName, props, children);
+  return createElement(elementName, props, children);
 }
+
+export default Title
