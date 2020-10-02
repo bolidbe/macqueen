@@ -28,10 +28,12 @@ export default {
     name: 'mcqueenreact',
     globals: {
       'react': 'React',
-      'classnames': 'classNames'
+      'classnames': 'classNames',
+      'lodash': 'lodash',
+      '@bolid/mcqueen-icons': 'mcQueenIcons'
     }
   })),
   external: [
-    ...Object.keys(peerDependencies || {}),
+    ...Object.keys(peerDependencies || {})
   ]
 }

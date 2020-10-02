@@ -156,7 +156,7 @@ export default function Home() {
           </div>
           <Title className="my-3" size={4}>With icon</Title>
           <div className="flex items-end">
-            <Button iconLeft="calendar">Large button</Button>
+            <Button iconLeft="calendar" size="large">Large button</Button>
             <Button className="ml-3" size="small" iconLeft="calendar">Small button</Button>
           </div>
         </Card>

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './LoaderDots.module.scss';
 
-interface IProps {
+interface ILoaderDotsProps {
   assistiveText?: string,
   size?: 'small' | 'medium',
   theme?: 'brand' | 'inverse' | 'muted'
@@ -13,7 +13,7 @@ const LoaderDots = ({
   assistiveText = 'Loading',
   size = 'medium',
   theme = 'brand'
-}: IProps): JSX.Element => {
+}: ILoaderDotsProps): JSX.Element => {
   const dotClassName = classNames({
     [styles.dot]: true,
     [styles.dotThemeBrand]: theme === 'brand',
