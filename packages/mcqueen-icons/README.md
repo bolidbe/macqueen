@@ -18,7 +18,7 @@ yarn add @bolid/mcqueen-icons
 
 ## Usage
 
-McQueenIcons exports each component as ES6 modules :
+McQueenIcons exports each component as ES6 modules:
 
 ```js
 import { ChevronDownIcon } from '@bolid/mcqueen-icons';
