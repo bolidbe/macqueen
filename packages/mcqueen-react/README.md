@@ -18,7 +18,7 @@ yarn add @bolid/mcqueen-react
 
 ## Usage
 
-McQueenIcons exports each component as ES6 modules:
+McQueenReact exports each component as ES6 modules:
 
 ```js
 import { Title, Button } from '@bolid/mcqueen-react';
