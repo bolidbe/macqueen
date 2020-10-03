@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   ChevronUpIcon,
   ChevronRightIcon,
@@ -43,6 +44,7 @@ const ColorCard = ({ hex, name }) => (
 )
 
 export default function Home() {
+  const [textInput, setTextInput] = useState("")
   return (
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
       <div className="wrap">
@@ -163,7 +165,68 @@ export default function Home() {
           </div>
         </Card>
         <Card title="Text Input">
-          <TextInput/>
+          <Title className="mb-3" size={4}>With or without icon</Title>
+          <div className="flex">
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              iconLeft="search"
+              className="w-full"
+            />
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              className="ml-3 w-full"
+            />
+          </div>
+          <Title className="my-3" size={4}>Sizes</Title>
+          <div className="flex items-end">
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              iconLeft="search"
+              size="large"
+              className="w-full"
+            />
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              className="ml-3 w-full"
+              iconLeft="search"
+              size="small"
+            />
+          </div>
+          <Title className="my-3" size={4}>States</Title>
+          <div className="flex items-end">
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              iconLeft="search"
+              size="large"
+              isDisabled
+            />
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              className="ml-3"
+              iconLeft="search"
+              isReadOnly
+            />
+            <TextInput
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              className="ml-3"
+              iconLeft="search"
+              hasError
+            />
+          </div>
         </Card>
         <Card title="Text Area">
         </Card>

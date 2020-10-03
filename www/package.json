@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@bolid/mcqueen-icons": "^0.1.3",
-    "@bolid/mcqueen-react": "^0.0.2",
+    "@bolid/mcqueen-react": "^0.0.3",
     "@bolid/mcqueen-scss": "^0.1.2",
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",

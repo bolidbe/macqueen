@@ -1,7 +1,7 @@
 $border-width: 1px;
 $icon-padding: 16px;
 
-.textInput {
+.inputContainer{
   position: relative;
   display: inline-flex;
   width: 100%;
@@ -9,24 +9,39 @@ $icon-padding: 16px;
   // Prevents the z-indices used within this component from bubbling up and affecting the rest of
   // the page. https://github.com/thumbtack/thumbprint-archive/issues/954
   z-index: 0;
+}
 
-  &UiState {
-    &Default {
-      color: theme('colors.black.default');
-    }
+.icon {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  z-index: 2;
+  position: relative;
+  cursor: text;
 
-    &Readonly {
-      color: theme('colors.black.default');
-    }
-
-    &Disabled {
-      color: theme('colors.gray.default');
-    }
-
-    &Error {
-      color: theme('colors.red.default');
+  &Position {
+    &Left {
+      padding-left: $icon-padding;
     }
   }
+}
+
+.inputStyles {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // background-color: ${props => backgroundColor[props.uiState]};
+  border: $border-width solid;
+  border-radius: theme('borderRadius.default');
+}
+
+.label{
+  font-size: theme('fontSize.body-2');
+  line-height: theme('lineHeight.body-2');
+  font-weight: 700;
 }
 
 // The '.input.input.input' element is used to increase specificity so that the selector takes
@@ -47,10 +62,6 @@ $icon-padding: 16px;
   z-index: 2;
   position: relative;
   width: 100%;
-
-  &:focus ~ .inputStyles {
-    border-color: theme('colors.blue.default');
-  }
 
   &:focus {
     // Focus styles are added to another element, not the actual input element.
@@ -93,82 +104,80 @@ $icon-padding: 16px;
     }
   }
 
-  &Error {
-    // This must be three separate rules, not a comma-separated list, to avoid the different
-    // vendor prefixes conflicting.
-    &::-webkit-input-placeholder {
-      color: theme('colors.red.default');
-    }
-
-    &::-moz-placeholder {
-      color: theme('colors.red.default');
-    }
-
-    &:-ms-input-placeholder {
-      color: theme('colors.red.default');
-    }
-  }
-
   // These two padding values prevent an overlap of the `innerLeft`/`innerRight` icon and the
   // input itself which can happen when the autofill functionality adds a backgroun-color to
   // the input.
-  &.inputInnerLeft {
+  &.inputWithIconLeft {
     padding-left: 12px;
-  }
-
-  &.inputInnerRight {
-    padding-right: 12px;
   }
 }
 
-.inputStyles {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  // background-color: ${props => backgroundColor[props.uiState]};
-  border: $border-width solid;
-  border-radius: theme('borderRadius.default');
-
+.textInput {
   &UiState {
     &Default {
-      background-color: theme('colors.white');;
-      border-color: theme('colors.gray.default');;
+      color: theme('colors.black.default');
+
+      .inputStyles {
+        background-color: theme('colors.white');
+        border-color: theme('colors.gray.default');
+      }
     }
 
     &Readonly {
-      background-color: theme('colors.white');;
-      border-color: theme('colors.gray.default');;
+      color: theme('colors.black.default');
+
+      .inputStyles {
+        background-color: theme('colors.white');
+        border-color: theme('colors.gray.default');
+      }
     }
 
     &Disabled {
-      background-color: theme('colors.gray.200');;
-      border-color: theme('colors.gray.default');;
+      color: theme('colors.gray.default');
+
+      .inputStyles {
+        background-color: theme('colors.gray.200');
+        border-color: theme('colors.gray.default');
+      }
     }
 
     &Error {
-      background-color: theme('colors.white');;
-      border-color: theme('colors.red.default');;
+      color: theme('colors.red.default');
+
+      .inputStyles {
+        background-color: theme('colors.white');
+        border-color: theme('colors.red.default');
+      }
+
+      .input:not(:focus){
+        // This must be three separate rules, not a comma-separated list, to avoid the different
+        // vendor prefixes conflicting.
+        &::-webkit-input-placeholder {
+          color: theme('colors.red.default');
+        }
+
+        &::-moz-placeholder {
+          color: theme('colors.red.default');
+        }
+
+        &:-ms-input-placeholder {
+          color: theme('colors.red.default');
+        }
+      }
     }
-  }
-}
 
-.inputInnerElement {
-  z-index: 2;
-  position: relative;
-  cursor: text;
-}
+    &Default, &Error{
+      .input:focus {
+        & ~ .inputStyles {
+          border-color: theme('colors.blue.default');
+        }
+      }
+    }
 
-.inputIconContainer {
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  &Position {
-    &Left {
-      padding-left: $icon-padding;
+    &Readonly, &Disabled, .icon{
+      .input, .icon{
+        cursor: default;
+      }
     }
   }
 }
