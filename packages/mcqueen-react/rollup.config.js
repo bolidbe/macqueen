@@ -2,6 +2,7 @@ import babel from '@rollup/plugin-babel'
 import typescript from 'rollup-plugin-typescript2'
 import commonjs from "@rollup/plugin-commonjs"
 import postcss from "rollup-plugin-postcss"
+import json from '@rollup/plugin-json';
 
 import { peerDependencies } from './package.json'
 
@@ -14,6 +15,7 @@ export default {
       useTsconfigDeclarationDir: true,
       typescript: require('typescript')
     }),
+    json(),
     babel(),
     postcss({
       extract: false,

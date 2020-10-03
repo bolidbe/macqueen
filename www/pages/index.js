@@ -26,7 +26,8 @@ import {
   Text,
   Button,
   TextInput,
-  TextArea
+  TextArea,
+  Select
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -313,6 +314,34 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Select">
+          <Section title="Sizes">
+            <div className="flex items-end">
+              <Select label="Label" note="Note" className="w-full">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </Select>
+              <Select label="Label" note="Note" size="small" className="w-full ml-3">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </Select>
+            </div>
+          </Section>
+          <Section title="States">
+            <div className="flex items-end">
+              <Select label="Label" note="Note" hasError className="w-full">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </Select>
+              <Select label="Label" note="Note" isDisabled className="w-full ml-3">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </Select>
+            </div>
+          </Section>
         </Card>
         <Card title="Checkbox">
         </Card>
