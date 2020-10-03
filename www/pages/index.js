@@ -28,7 +28,8 @@ import {
   TextInput,
   TextArea,
   Select,
-  Radio
+  Radio,
+  Checkbox
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -345,7 +346,19 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Checkbox">
-
+          <Section title="Checked and not checked">
+            <div className="flex items-end">
+              <Checkbox isChecked>This is a checkbox</Checkbox>
+              <Checkbox className="ml-3">This is a checkbox</Checkbox>
+            </div>
+          </Section>
+          <Section title="States">
+            <div className="flex items-end">
+              <Checkbox isDisabled>This is a checkbox</Checkbox>
+              <Checkbox hasError className="ml-3">This is a checkbox</Checkbox>
+              <Checkbox isIndeterminate className="ml-3">This is a checkbox</Checkbox>
+            </div>
+          </Section>
         </Card>
         <Card title="Radio">
           <Section title="Checked and not checked">

@@ -143,7 +143,7 @@ $icon-padding: 16px;
         border-color: theme('colors.red.default');
       }
 
-      .input:not(:focus){
+      .input{
         // This must be three separate rules, not a comma-separated list, to avoid the different
         // vendor prefixes conflicting.
         &::-webkit-input-placeholder {
@@ -160,7 +160,7 @@ $icon-padding: 16px;
       }
     }
 
-    &Default, &Error{
+    &Default{
       .input:focus {
         & ~ .inputStyles {
           border-color: theme('colors.blue.default');

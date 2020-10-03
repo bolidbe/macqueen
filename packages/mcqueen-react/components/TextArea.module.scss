@@ -11,46 +11,48 @@
   height: 152px;
   min-height: 104px;
 
-  &:focus {
-    color: theme('colors.black.default');
-    border-color: theme('colors.blue.default');
-  }
-
   ::-webkit-input-placeholder,
   ::-moz-placeholder,
   :-ms-input-placeholder {
     color: theme('colors.black.200');
   }
 
-  &StateDefault {
-    border-color: theme('colors.gray.default');
-    color: theme('colors.black.default');
-    background-color: theme('colors.white');
-  }
-
-  &StateDisabled {
-    border-color: theme('colors.gray.default');
-    color: theme('colors.gray.default');
-    background-color: theme('colors.gray.200');
-  }
-
-  &StateError {
-    border-color: theme('colors.red.default');
-    color: theme('colors.red.default');
-    background-color: theme('colors.white');
-
-    // This must be three separate rules, not a comma-separated list, to avoid the different
-    // vendor prefixes conflicting.
-    &::-webkit-input-placeholder {
-        color: theme('colors.red.default');
+  &State{
+    &Default {
+      border-color: theme('colors.gray.default');
+      color: theme('colors.black.default');
+      background-color: theme('colors.white');
+      
+      &:focus {
+        color: theme('colors.black.default');
+        border-color: theme('colors.blue.default');
+      }
     }
 
-    &::-moz-placeholder {
-        color: theme('colors.red.default');
+    &Disabled {
+      border-color: theme('colors.gray.default');
+      color: theme('colors.gray.default');
+      background-color: theme('colors.gray.200');
     }
 
-    &:-ms-input-placeholder {
-        color: theme('colors.red.default');
+    &Error {
+      border-color: theme('colors.red.default');
+      color: theme('colors.red.default');
+      background-color: theme('colors.white');
+
+      // This must be three separate rules, not a comma-separated list, to avoid the different
+      // vendor prefixes conflicting.
+      &::-webkit-input-placeholder {
+          color: theme('colors.red.default');
+      }
+
+      &::-moz-placeholder {
+          color: theme('colors.red.default');
+      }
+
+      &:-ms-input-placeholder {
+          color: theme('colors.red.default');
+      }
     }
   }
 }
