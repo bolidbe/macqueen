@@ -29,7 +29,8 @@ import {
   TextArea,
   Select,
   Radio,
-  Checkbox
+  Checkbox,
+  StarRating
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -377,6 +378,13 @@ export default function Home() {
         <Card title="Avatar">
         </Card>
         <Card title="Star Rating">
+          <Section title="Sizes">
+            <div className="flex items-end">
+              <StarRating rating={0}/>
+              <StarRating className="ml-3" size="medium" rating={2.5}/>
+              <StarRating className="ml-3" size="large" rating={5}/>
+            </div>
+          </Section>
         </Card>
         <Card title="Alert">
         </Card>
