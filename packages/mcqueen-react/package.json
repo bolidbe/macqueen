@@ -73,7 +73,8 @@
     "@bolid/mcqueen-scss": ">=0",
     "classnames": ">=2",
     "lodash": ">=4",
-    "react": ">=16"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "engines": {
     "node": ">=8"

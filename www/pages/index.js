@@ -23,7 +23,8 @@ import {
 import {
   Title,
   Text,
-  Button
+  Button,
+  TextInput
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -154,6 +155,7 @@ export default function Home() {
               <Button theme="solid" isDisabled>Solid</Button>
             </div>
           </div>
+
           <Title className="my-3" size={4}>With icon</Title>
           <div className="flex items-end">
             <Button iconLeft="calendar" size="large">Large button</Button>
@@ -161,6 +163,7 @@ export default function Home() {
           </div>
         </Card>
         <Card title="Text Input">
+          <TextInput/>
         </Card>
         <Card title="Text Area">
         </Card>
