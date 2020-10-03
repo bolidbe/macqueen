@@ -1,0 +1,56 @@
+.textArea {
+  font-size: theme('fontSize.body-2');
+  line-height: theme('lineHeight.body-2');
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: theme('borderRadius.default');
+  padding: 10px 14px;
+  vertical-align: middle;
+  resize: vertical;
+  height: 152px;
+  min-height: 104px;
+
+  &:focus {
+    color: theme('colors.black.default');
+    border-color: theme('colors.blue.default');
+  }
+
+  ::-webkit-input-placeholder,
+  ::-moz-placeholder,
+  :-ms-input-placeholder {
+    color: theme('colors.black.200');
+  }
+
+  &StateDefault {
+    border-color: theme('colors.gray.default');
+    color: theme('colors.black.default');
+    background-color: theme('colors.white');
+  }
+
+  &StateDisabled {
+    border-color: theme('colors.gray.default');
+    color: theme('colors.gray.default');
+    background-color: theme('colors.gray.200');
+  }
+
+  &StateError {
+    border-color: theme('colors.red.default');
+    color: theme('colors.red.default');
+    background-color: theme('colors.white');
+
+    // This must be three separate rules, not a comma-separated list, to avoid the different
+    // vendor prefixes conflicting.
+    &::-webkit-input-placeholder {
+        color: theme('colors.red.default');
+    }
+
+    &::-moz-placeholder {
+        color: theme('colors.red.default');
+    }
+
+    &:-ms-input-placeholder {
+        color: theme('colors.red.default');
+    }
+  }
+}

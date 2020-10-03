@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from "@bolid/mcqueen-icons";
+import Label from "./subcomponents/Label"
+import InputNote from "./subcomponents/InputNote"
 
 import styles from './TextInput.module.scss';
 
@@ -64,7 +66,9 @@ interface ITextInputProps {
   onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   autoComplete?: React.InputHTMLAttributes<HTMLInputElement>['autoComplete'],
-  className?: string
+  className?: string,
+  label?: React.ReactNode | string,
+  note?: React.ReactNode | string,
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
@@ -92,7 +96,9 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
       pattern,
       maxLength,
       autoComplete,
-      className
+      className,
+      label,
+      note
     }: ITextInputProps,
     outerRef,
   ): JSX.Element => {
@@ -114,13 +120,17 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
     return (
       <div
         className={classNames({
-          [styles.textInputUiStateDefault]: uiState === 'default',
-          [styles.textInputUiStateReadonly]: uiState === 'readonly',
-          [styles.textInputUiStateDisabled]: uiState === 'disabled',
-          [styles.textInputUiStateError]: uiState === 'error',
+          [styles.textInputStateDefault]: uiState === 'default',
+          [styles.textInputStateReadonly]: uiState === 'readonly',
+          [styles.textInputStateDisabled]: uiState === 'disabled',
+          [styles.textInputStateError]: uiState === 'error',
         }, className)}
       >
-        <div className={classNames(styles.label, "mb-1")}>Label</div>
+        {
+          label && (
+            <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
+          )
+        }
         <div className={styles.inputContainer}>
           {
             iconLeft && (
@@ -177,6 +187,11 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
 
           <div className={styles.inputStyles}/>
         </div>
+        {
+          note && (
+            <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
+          )
+        }
       </div>
     );
   },

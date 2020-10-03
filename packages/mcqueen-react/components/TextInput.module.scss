@@ -38,12 +38,6 @@ $icon-padding: 16px;
   border-radius: theme('borderRadius.default');
 }
 
-.label{
-  font-size: theme('fontSize.body-2');
-  line-height: theme('lineHeight.body-2');
-  font-weight: 700;
-}
-
 // The '.input.input.input' element is used to increase specificity so that the selector takes
 // precedence over a highly specific selector in Thumbtack's website.
 // https://github.com/thumbtack/thumbprint-archive/issues/244
@@ -113,7 +107,7 @@ $icon-padding: 16px;
 }
 
 .textInput {
-  &UiState {
+  &State {
     &Default {
       color: theme('colors.black.default');
 

@@ -25,13 +25,28 @@ import {
   Title,
   Text,
   Button,
-  TextInput
+  TextInput,
+  TextArea
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
 const Card = ({ children, title }) => (
   <div className="max-w-6 rounded-big mx-auto bg-white shadow-1 p-5 mb-5">
     <Title heading={2} size={2} className="mb-5">{ title }</Title>
+    { children }
+  </div>
+)
+
+const Section = ({ children, title }) => (
+  <div className="mb-5">
+    <Title heading={2} size={3} className="mb-3">{ title }</Title>
+    { children }
+  </div>
+)
+
+const SubSection = ({ children, title }) => (
+  <div className="my-3">
+    <Title heading={2} size={4} className="mb-2">{ title }</Title>
     { children }
   </div>
 )
@@ -75,6 +90,8 @@ export default function Home() {
             ].map((icon, i) => <span key={i}>{ icon({ size: 40 }) }</span>)
           }
         </Card>
+
+
         <Card title="Typography">
           <div className="flex">
             <div className="w-1/2">
@@ -98,6 +115,8 @@ export default function Home() {
             </div>
           </div>
         </Card>
+
+
         <Card title="Color">
         {
           Object.keys(colors).filter(c => c !== "transparent" && c !== "white").map((color, i) => (
@@ -116,119 +135,182 @@ export default function Home() {
           ))
         }
         </Card>
+
+
         <Card title="Image">
         </Card>
+
+
         <Card title="Button">
-          <Title className="mb-3" size={3}>Sizes</Title>
-          <div className="flex items-end">
-            <Button>Large button</Button>
-            <Button className="ml-3" size="small">Small button</Button>
-          </div>
-
-          <Title className="mb-3 mt-6" size={3}>Themes</Title>
-          <div className="flex flex-wrap">
-            {
-              ['primary', 'secondary', 'tertiary', 'caution'].map((theme, i) => (
-                <Button key={i} className="mr-3 mb-3" theme={theme}>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
-              ))
-            }
-            <div className="bg-purple p-3">
-              <Button theme="solid">Solid</Button>
+          <Section title="Sizes">
+            <div className="flex items-end">
+              <Button>Large button</Button>
+              <Button className="ml-3" size="small">Small button</Button>
             </div>
-          </div>
+          </Section>
 
-          <Title className="mb-3 mt-6" size={3}>Variants</Title>
-          <Title className="mb-3" size={4}>Loading</Title>
-          <div className="flex flex-wrap">
-            {
-              ['primary', 'secondary', 'tertiary'].map((theme, i) => (
-                <Button key={i} className="mr-3 mb-3" theme={theme} isLoading>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
-              ))
-            }
-          </div>
-          <Title className="my-3" size={4}>Disabled</Title>
-          <div className="flex flex-wrap">
-            {
-              ['primary', 'secondary', 'tertiary', 'caution'].map((theme, i) => (
-                <Button key={i} className="mr-3 mb-3" theme={theme} isDisabled>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
-              ))
-            }
-            <div className="bg-purple p-3">
-              <Button theme="solid" isDisabled>Solid</Button>
+          <Section title="Themes">
+            <div className="flex flex-wrap">
+              {
+                ['primary', 'secondary', 'tertiary', 'caution'].map((theme, i) => (
+                  <Button key={i} className="mr-3 mb-3" theme={theme}>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
+                ))
+              }
+              <div className="bg-purple p-3">
+                <Button theme="solid">Solid</Button>
+              </div>
             </div>
-          </div>
+          </Section>
 
-          <Title className="my-3" size={4}>With icon</Title>
-          <div className="flex items-end">
-            <Button iconLeft="calendar" size="large">Large button</Button>
-            <Button className="ml-3" size="small" iconLeft="calendar">Small button</Button>
-          </div>
+          <Section title="Variants">
+            <SubSection title="Loading">
+              <div className="flex flex-wrap">
+                {
+                  ['primary', 'secondary', 'tertiary'].map((theme, i) => (
+                    <Button key={i} className="mr-3 mb-3" theme={theme} isLoading>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
+                  ))
+                }
+              </div>
+            </SubSection>
+            <SubSection title="States">
+              <div className="flex flex-wrap">
+                {
+                  ['primary', 'secondary', 'tertiary', 'caution'].map((theme, i) => (
+                    <Button key={i} className="mr-3 mb-3" theme={theme} isDisabled>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
+                  ))
+                }
+                <div className="bg-purple p-3">
+                  <Button theme="solid" isDisabled>Solid</Button>
+                </div>
+              </div>
+            </SubSection>
+            <SubSection title="With icon">
+              <div className="flex items-end">
+                <Button iconLeft="calendar" size="large">Large button</Button>
+                <Button className="ml-3" size="small" iconLeft="calendar">Small button</Button>
+              </div>
+            </SubSection>
+          </Section>
         </Card>
+
+
         <Card title="Text Input">
-          <Title className="mb-3" size={4}>With or without icon</Title>
-          <div className="flex">
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              iconLeft="search"
-              className="w-full"
-            />
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              className="ml-3 w-full"
-            />
-          </div>
-          <Title className="my-3" size={4}>Sizes</Title>
-          <div className="flex items-end">
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              iconLeft="search"
-              size="large"
-              className="w-full"
-            />
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              className="ml-3 w-full"
-              iconLeft="search"
-              size="small"
-            />
-          </div>
-          <Title className="my-3" size={4}>States</Title>
-          <div className="flex items-end">
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              iconLeft="search"
-              size="large"
-              isDisabled
-            />
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              className="ml-3"
-              iconLeft="search"
-              isReadOnly
-            />
-            <TextInput
-              value={textInput}
-              onChange={setTextInput}
-              placeholder="example@example.com"
-              className="ml-3"
-              iconLeft="search"
-              hasError
-            />
-          </div>
+          <Section title="With or without icon">
+            <div className="flex">
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                iconLeft="search"
+                className="w-full"
+              />
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3 w-full"
+              />
+            </div>
+          </Section>
+          <Section title="Sizes">
+            <div className="flex items-end">
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                iconLeft="search"
+                size="large"
+                className="w-full"
+              />
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3 w-full"
+                iconLeft="search"
+                size="small"
+              />
+            </div>
+          </Section>
+          <Section title="States">
+            <div className="flex items-end">
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                iconLeft="search"
+                size="large"
+                isDisabled
+              />
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3"
+                iconLeft="search"
+                isReadOnly
+              />
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3"
+                iconLeft="search"
+                hasError
+              />
+            </div>
+          </Section>
+          <Section title="Label & Note">
+            <div className="flex items-end">
+              <TextInput
+                label="Label"
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="w-full"
+                size="large"
+                note="This field should contain @"
+              />
+              <TextInput
+                label="Label"
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3 w-full"
+                size="small"
+                note="This field should contain @"
+              />
+            </div>
+          </Section>
         </Card>
         <Card title="Text Area">
+          <Section title="States">
+            <TextArea
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              label="Label"
+              note="This is a note"
+            />
+            <TextArea
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              label="Label"
+              note="This is a note"
+              isDisabled
+              className="mt-3"
+            />
+            <TextArea
+              value={textInput}
+              onChange={setTextInput}
+              placeholder="example@example.com"
+              label="Label"
+              note="This is a note"
+              hasError
+              className="mt-3"
+            />
+          </Section>
         </Card>
         <Card title="Select">
         </Card>
