@@ -30,7 +30,7 @@ const getUIState = ({
   return 'default';
 };
 
-interface PropTypes {
+interface ISelectProps {
   children?: React.ReactNode,
   id?: string,
   isDisabled?: boolean,
@@ -64,7 +64,7 @@ const Dropdown = ({
   className,
   label,
   note
-}: PropTypes): JSX.Element => {
+}: ISelectProps): JSX.Element => {
   const uiState = getUIState({ isDisabled, hasError });
 
   return (
