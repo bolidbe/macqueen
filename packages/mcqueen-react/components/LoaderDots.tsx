@@ -9,11 +9,11 @@ interface ILoaderDotsProps {
   theme?: 'brand' | 'inverse' | 'muted'
 }
 
-const LoaderDots = ({
+export default function LoaderDots({
   assistiveText = 'Loading',
   size = 'medium',
   theme = 'brand'
-}: ILoaderDotsProps): JSX.Element => {
+}: ILoaderDotsProps): JSX.Element {
   const dotClassName = classNames({
     [styles.dot]: true,
     [styles.dotThemeBrand]: theme === 'brand',
@@ -32,5 +32,3 @@ const LoaderDots = ({
     </ul>
   );
 }
-
-export default LoaderDots

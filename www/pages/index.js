@@ -30,7 +30,9 @@ import {
   Select,
   Radio,
   Checkbox,
-  StarRating
+  StarRating,
+  BannerAlert,
+  Alert
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -387,8 +389,19 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Alert">
+          <Section title="Themes">
+            <Alert className="mb-3" theme="success">Alert Success</Alert>
+            <Alert className="mb-3" theme="info">Alert Info</Alert>
+            <Alert className="mb-3" theme="warning">Alert Warning</Alert>
+            <Alert theme="caution">Alert Caution</Alert>
+          </Section>
         </Card>
         <Card title="Banner Alert">
+          <Section title="Themes">
+            <BannerAlert className="mb-3" theme="info">Banner Info</BannerAlert>
+            <BannerAlert className="mb-3" theme="warning">Banner Warning</BannerAlert>
+            <BannerAlert theme="caution">Banner Caution</BannerAlert>
+          </Section>
         </Card>
       </div>
     </div>

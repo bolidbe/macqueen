@@ -48,7 +48,7 @@ interface ISelectProps {
   note?: React.ReactNode | string,
 }
 
-const Dropdown = ({
+export default function Select({
   children,
   hasError = false,
   id,
@@ -64,7 +64,7 @@ const Dropdown = ({
   className,
   label,
   note
-}: ISelectProps): JSX.Element => {
+}: ISelectProps): JSX.Element {
   const uiState = getUIState({ isDisabled, hasError });
 
   return (
@@ -120,5 +120,3 @@ const Dropdown = ({
     </div>
   );
 };
-
-export default Dropdown;

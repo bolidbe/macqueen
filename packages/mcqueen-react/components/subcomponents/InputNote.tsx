@@ -9,15 +9,15 @@ interface IInputNoteProps {
   className?: string,
 }
 
-const InputNote = ({
+export default function InputNote({
   children,
   hasError = false,
   className
-}: IInputNoteProps): JSX.Element => (
-  <div className={classNames({
-    [styles.inputNote]: true,
-    [styles.inputNoteStateError]: hasError
-  }, className)}>{ children }</div>
-)
-
-export default InputNote
+}: IInputNoteProps): JSX.Element {
+  return (
+    <div className={classNames({
+      [styles.inputNote]: true,
+      [styles.inputNoteStateError]: hasError
+    }, className)}>{ children }</div>
+  )
+}

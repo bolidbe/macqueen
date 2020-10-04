@@ -11,13 +11,13 @@ interface ITitleProps {
   id?: string
 }
 
-const Title = ({
+export default function Title({
   children,
   id,
   size = 1,
   className,
   heading
-}: ITitleProps): JSX.Element => {
+}: ITitleProps): JSX.Element {
   const elementName = heading ? `h${heading}` : 'div';
 
   const props = {
@@ -27,5 +27,3 @@ const Title = ({
 
   return createElement(elementName, props, children);
 }
-
-export default Title

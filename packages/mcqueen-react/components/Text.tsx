@@ -9,13 +9,13 @@ interface ITextProps {
   isBold?: boolean
 }
 
-const Text = ({
+export default function Text({
   children,
   size = 2,
   className='',
   elementName = 'p',
   isBold = false
-}: ITextProps): JSX.Element => {
+}: ITextProps): JSX.Element {
   const props = {
     className: classNames(
       `text-body-${size} heading-body-${size}`,
@@ -28,6 +28,3 @@ const Text = ({
 
   return createElement(elementName, props, children);
 }
-
-
-export default Text

@@ -41,7 +41,7 @@ interface ITextAreaProps {
   note?: React.ReactNode | string,
 }
 
-const TextArea = ({
+export default function TextArea ({
   hasError = false,
   id,
   isDisabled = false,
@@ -57,7 +57,7 @@ const TextArea = ({
   className,
   label,
   note
-}: ITextAreaProps): JSX.Element => {
+}: ITextAreaProps): JSX.Element {
   const uiState = getUIState({ hasError, isDisabled });
 
   return (
@@ -94,5 +94,3 @@ const TextArea = ({
     </div>
   );
 };
-
-export default TextArea;

@@ -10,17 +10,17 @@ interface ILabelProps {
   className?: string,
 }
 
-const Label = ({
+export default function Label({
   children,
   hasError = false,
   isDisabled = false,
   className
-}: ILabelProps): JSX.Element => (
-  <div className={classNames({
-    [styles.label]: true,
-    [styles.labelStateError]: hasError,
-    [styles.labelStateDisabled]: isDisabled
-  }, className)}>{ children }</div>
-)
-
-export default Label
+}: ILabelProps): JSX.Element {
+  return (
+    <div className={classNames({
+      [styles.label]: true,
+      [styles.labelStateError]: hasError,
+      [styles.labelStateDisabled]: isDisabled
+    }, className)}>{ children }</div>
+  )
+}
