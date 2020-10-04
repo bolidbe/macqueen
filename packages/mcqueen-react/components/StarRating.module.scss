@@ -19,99 +19,65 @@ $large-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iNDg
   position: relative;
   background-repeat: repeat-x;
   display: inline-block;
-}
 
-// This pseudo element will have yellow stars. Because of the source order it will appear over the
-// top of the gray stars. The width is determined by the `data-star` value.
-.starRating:after {
-  content: '';
-  background-position: bottom left;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-}
+  // This pseudo element will have yellow stars. Because of the source order it will appear over the
+  // top of the gray stars. The width is determined by the `data-star` value.
+  &:after {
+    content: '';
+    background-position: bottom left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
 
-.starRating[data-star='0']:after {
-  width: 0%;
-}
+  &[data-star='0']:after {
+    width: 0%;
+  }
 
-.starRating[data-star='0.5']:after {
-  width: 10%;
-}
+  &[data-star='0.5']:after {
+    width: 10%;
+  }
 
-.starRating[data-star='1']:after {
-  width: 20%;
-}
+  &[data-star='1']:after {
+    width: 20%;
+  }
 
-.starRating[data-star='1.5']:after {
-  width: 30%;
-}
+  &[data-star='1.5']:after {
+    width: 30%;
+  }
 
-.starRating[data-star='2']:after {
-  width: 40%;
-}
+  &[data-star='2']:after {
+    width: 40%;
+  }
 
-.starRating[data-star='2.5']:after {
-  width: 50%;
-}
+  &[data-star='2.5']:after {
+    width: 50%;
+  }
 
-.starRating[data-star='3']:after {
-  width: 60%;
-}
+  &[data-star='3']:after {
+    width: 60%;
+  }
 
-.starRating[data-star='3.5']:after {
-  width: 70%;
-}
+  &[data-star='3.5']:after {
+    width: 70%;
+  }
 
-.starRating[data-star='4']:after {
-  width: 80%;
-}
+  &[data-star='4']:after {
+    width: 80%;
+  }
 
-.starRating[data-star='4.5']:after {
-  width: 90%;
-}
+  &[data-star='4.5']:after {
+    width: 90%;
+  }
 
-.starRating[data-star='5']:after {
-  width: 100%;
-}
-
-// Star sizes. We use different background images for each size for precice spacing and rendering.
-.small {
-  margin: 0 $small-spacing-adjustment;
-  height: $small-height;
-  width: $small-width;
-}
-
-.small,
-.small:after {
-  background-image: $small-image;
-}
-
-.medium {
-  margin: 0 $medium-spacing-adjustment;
-  height: $medium-height;
-  width: $medium-width;
-}
-
-.medium,
-.medium:after {
-  background-image: $medium-image;
-}
-
-.large {
-  margin: 0 $large-spacing-adjustment;
-  height: $large-height;
-  width: $large-width;
-}
-
-.large,
-.large:after {
-  background-image: $large-image;
+  &[data-star='5']:after {
+    width: 100%;
+  }
 }
 
 // Interactive rating.
-.rateInputsWrap {
+.inputWrap {
   position: absolute;
   display: flex;
   width: 100%;
@@ -121,14 +87,85 @@ $large-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iNDg
   z-index: 1;
 }
 
-.rateInput {
+.input {
   visibility: hidden;
 }
 
-.rateLabel {
+.label {
   flex: 1;
   cursor: pointer;
   // Pushes label text out of view
   text-indent: 100%;
   overflow: hidden;
+}
+
+.text{
+  &Position{
+    &Left{
+      margin-right: 4px;
+      color: theme("colors.yellow.default");
+      font-weight: 700;
+    }
+    &Right{
+      margin-left: 4px;
+      color: theme("colors.black.300");
+      font-weight: 600;
+    }
+  }
+}
+
+.starRatingContainer{
+  display: flex;
+  align-items: center;
+
+  &Size{
+    &Small {
+      .starRating {
+        margin: 0 $small-spacing-adjustment;
+        height: $small-height;
+        width: $small-width;
+
+        &, &:after {
+          background-image: $small-image;
+        }
+      }
+
+      .text{
+        font-size: theme('fontSize.body-4');
+      }
+    }
+
+    &Medium {
+      .starRating {
+        margin: 0 $medium-spacing-adjustment;
+        height: $medium-height;
+        width: $medium-width;
+
+        &, &:after {
+          background-image: $medium-image;
+        }
+      }
+
+      .text{
+        font-size: theme('fontSize.body-2');
+      }
+    }
+
+    &Large {
+      .starRating {
+        margin: 0 $large-spacing-adjustment;
+        height: $large-height;
+        width: $large-width;
+
+        &, &:after {
+          background-image: $large-image;
+        }
+      }
+
+      .text{
+        font-size: theme('fontSize.body-1');
+        line-height: theme('fontSize.body-1');
+      }
+    }
+  }
 }

@@ -444,9 +444,9 @@ export default function Home() {
         <Card title="Star Rating">
           <Section title="Sizes">
             <div className="flex items-end">
-              <StarRating rating={0}/>
-              <StarRating className="ml-3" size="medium" rating={2.5}/>
-              <StarRating className="ml-3" size="large" rating={5}/>
+              <StarRating rating={0} reviewsCount={5} showRating/>
+              <StarRating className="ml-3" size="medium" rating={2.5} reviewsCount={5} showRating/>
+              <StarRating className="ml-3" size="large" rating={5} reviewsCount={5} showRating/>
             </div>
           </Section>
         </Card>

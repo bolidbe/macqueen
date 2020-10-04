@@ -1,6 +1,8 @@
 import React from 'react';
 import { clamp, times, noop } from 'lodash';
 import classNames from 'classnames';
+import Text from "./Text";
+
 import styles from './StarRating.module.scss';
 
 // Total number of stars
@@ -11,21 +13,25 @@ const PRECISION = 0.5;
 
 interface StarRatingPropsType {
   rating: number,
+  reviewsCount?: number,
   hoverRating?: 0 | 1 | 2 | 3 | 4 | 5,
   size?: 'small' | 'medium' | 'large',
   onStarClick?: (value: number) => void,
   onStarHover?: (value: number) => void,
   onMouseLeave?: () => void,
+  showRating?: boolean,
   className?: string
 }
 
 export default function StarRating({
   rating,
+  reviewsCount,
   hoverRating = 0,
   size = 'small',
   onStarClick = noop,
   onStarHover = noop,
   onMouseLeave = noop,
+  showRating = false,
   className
 }: StarRatingPropsType): JSX.Element {
   // Determine if instance is interactive.
@@ -45,29 +51,36 @@ export default function StarRating({
   const ariaLabel = `${ratingValue} ${ariaStarText} out of ${MAX_NUM_STARS} star rating`;
 
   return (
-    <div className={className}>
+    <div className={classNames({
+      [styles.starRatingContainer]: true,
+      [styles.starRatingContainerSizeSmall]: size === 'small',
+      [styles.starRatingContainerSizeMedium]: size === 'medium',
+      [styles.starRatingContainerSizeLarge]: size === 'large',
+    }, className)}>
+      {showRating && (
+        <div className={classNames({
+          [styles.text]: true,
+          [styles.textPositionLeft]: true
+        })}>{ rating }</div>
+      )}
       <div
-        className={classNames(styles.starRating, {
-          [styles.small]: size === 'small',
-          [styles.medium]: size === 'medium',
-          [styles.large]: size === 'large',
-        })}
+        className={styles.starRating}
         data-star={ratingValue}
         aria-label={ariaLabel}
         onMouseLeave={onMouseLeave}
         role={isInteractive ? undefined : 'img'}
       >
         {isInteractive && (
-          <div className={styles.rateInputsWrap}>
+          <div className={styles.inputWrap}>
             {times(MAX_NUM_STARS, index => (
               // eslint-disable-next-line jsx-a11y/label-has-for, jsx-a11y/label-has-associated-control
               <label
-                className={styles.rateLabel}
+                className={styles.label}
                 key={index}
                 onMouseEnter={(): void => onStarHover(index + 1)}
               >
                 <input
-                  className={styles.rateInput}
+                  className={styles.input}
                   type="radio"
                   name="rating"
                   value={index + 1}
@@ -79,6 +92,12 @@ export default function StarRating({
           </div>
         )}
       </div>
+      {reviewsCount && (
+        <div className={classNames({
+          [styles.text]: true,
+          [styles.textPositionRight]: true
+        })}>({ reviewsCount } Avis)</div>
+      )}
     </div>
   );
 }
