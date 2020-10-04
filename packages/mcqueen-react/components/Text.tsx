@@ -1,7 +1,7 @@
 import React, { createElement, ReactNode, ReactHTML } from 'react';
 import classNames from 'classnames';
 
-interface ITextProps {
+interface TextPropsType {
   children?: ReactNode | string,
   size?: 1 | 2 | 3 | 4,
   className?: string,
@@ -15,7 +15,7 @@ export default function Text({
   className='',
   elementName = 'p',
   isBold = false
-}: ITextProps): JSX.Element {
+}: TextPropsType): JSX.Element {
   const props = {
     className: classNames(
       `text-body-${size} heading-body-${size}`,

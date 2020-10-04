@@ -9,7 +9,7 @@ const MAX_NUM_STARS = 5;
 // Smallest increment we render
 const PRECISION = 0.5;
 
-interface IStarRatingProps {
+interface StarRatingPropsType {
   rating: number,
   hoverRating?: 0 | 1 | 2 | 3 | 4 | 5,
   size?: 'small' | 'medium' | 'large',
@@ -27,7 +27,7 @@ export default function StarRating({
   onStarHover = noop,
   onMouseLeave = noop,
   className
-}: IStarRatingProps): JSX.Element {
+}: StarRatingPropsType): JSX.Element {
   // Determine if instance is interactive.
   const isInteractive = onStarClick !== noop || onStarHover !== noop;
 

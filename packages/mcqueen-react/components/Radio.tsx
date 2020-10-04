@@ -53,7 +53,7 @@ const getUIState = ({
   isChecked,
   isDisabled,
   hasError,
-}: Pick<IRadioProps, 'isDisabled' | 'hasError' | 'isChecked'>): UiState => {
+}: Pick<RadioPropsType, 'isDisabled' | 'hasError' | 'isChecked'>): UiState => {
   if (isDisabled) {
     return 'disabled';
   }
@@ -69,7 +69,7 @@ const getUIState = ({
   return 'unchecked';
 };
 
-interface IRadioProps {
+interface RadioPropsType {
   isDisabled?: boolean,
   children?: React.ReactNode,
   id?: string,
@@ -95,7 +95,7 @@ export default function Radio({
   onChange,
   radioVerticalAlign = 'center',
   className
-}: IRadioProps): JSX.Element {
+}: RadioPropsType): JSX.Element {
   const uiState = getUIState({ isChecked, isDisabled, hasError });
 
   return (

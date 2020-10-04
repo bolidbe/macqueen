@@ -9,7 +9,7 @@ const ALERT_ICONS = {
   warning: <WarningFillIcon size="medium" className={styles.icon} />,
 };
 
-interface IBannerAlertProps {
+interface BannerAlertPropsType {
   children: React.ReactNode | string,
   theme: 'info' | 'warning' | 'caution',
   className?: string
@@ -19,7 +19,7 @@ export default function AlertBanner({
   children,
   theme,
   className
-}: IBannerAlertProps): JSX.Element {
+}: BannerAlertPropsType): JSX.Element {
   return (
     <div
       className={classNames({

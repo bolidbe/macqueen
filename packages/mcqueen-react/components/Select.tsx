@@ -30,7 +30,7 @@ const getUIState = ({
   return 'default';
 };
 
-interface ISelectProps {
+interface SelectPropsType {
   children?: React.ReactNode,
   id?: string,
   isDisabled?: boolean,
@@ -64,7 +64,7 @@ export default function Select({
   className,
   label,
   note
-}: ISelectProps): JSX.Element {
+}: SelectPropsType): JSX.Element {
   const uiState = getUIState({ isDisabled, hasError });
 
   return (

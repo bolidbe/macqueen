@@ -32,7 +32,7 @@ import {
   Checkbox,
   StarRating,
   BannerAlert,
-  Alert
+  Alert,
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -142,8 +142,8 @@ export default function Home() {
         }
         </Card>
 
-
         <Card title="Image">
+
         </Card>
 
 

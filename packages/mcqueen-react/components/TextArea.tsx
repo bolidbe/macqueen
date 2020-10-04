@@ -23,7 +23,7 @@ const getUIState = ({
   return 'default';
 };
 
-interface ITextAreaProps {
+interface TextAreaPropsType {
   id?: string,
   isDisabled?: boolean,
   isReadOnly?: boolean,
@@ -57,7 +57,7 @@ export default function TextArea ({
   className,
   label,
   note
-}: ITextAreaProps): JSX.Element {
+}: TextAreaPropsType): JSX.Element {
   const uiState = getUIState({ hasError, isDisabled });
 
   return (

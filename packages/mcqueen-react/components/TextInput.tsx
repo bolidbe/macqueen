@@ -15,7 +15,7 @@ const getUIState = ({
   isDisabled,
   isReadOnly,
   hasError,
-}: Pick<ITextInputProps, 'isDisabled' | 'isReadOnly' | 'hasError'>): UiState => {
+}: Pick<TextInputPropsType, 'isDisabled' | 'isReadOnly' | 'hasError'>): UiState => {
   if (isDisabled) {
     return 'disabled';
   }
@@ -34,7 +34,7 @@ const getUIState = ({
 /**
  * Component that helps position icons within inputs.
  */
-interface ITextInputProps {
+interface TextInputPropsType {
   id?: string,
   isDisabled?: boolean,
   isReadOnly?: boolean,
@@ -71,7 +71,7 @@ interface ITextInputProps {
   note?: React.ReactNode | string,
 }
 
-const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
+const TextInput = React.forwardRef<HTMLInputElement, TextInputPropsType>(
   (
     {
       id,
@@ -99,7 +99,7 @@ const TextInput = React.forwardRef<HTMLInputElement, ITextInputProps>(
       className,
       label,
       note
-    }: ITextInputProps,
+    }: TextInputPropsType,
     outerRef,
   ): JSX.Element => {
     const uiState = getUIState({ isDisabled, isReadOnly, hasError });

@@ -4,7 +4,7 @@ import { CheckIcon, WarningOutlineIcon, InfoOutlineIcon } from '@bolid/mcqueen-i
 
 import styles from './Alert.module.scss';
 
-interface IAlertProps {
+interface AlertPropsType {
   children?: React.ReactNode | string,
   theme?: 'success' | 'caution' | 'warning' | 'info',
   className?: string
@@ -21,7 +21,7 @@ export default function Alert({
   children,
   theme = 'info',
   className,
-}: IAlertProps): JSX.Element {
+}: AlertPropsType): JSX.Element {
   return (
     <div
       className={classNames({

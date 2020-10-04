@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './Title.module.scss';
 
-interface ITitleProps {
+interface TitlePropsType {
   children: ReactNode,
   size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
   className?: string,
@@ -17,7 +17,7 @@ export default function Title({
   size = 1,
   className,
   heading
-}: ITitleProps): JSX.Element {
+}: TitlePropsType): JSX.Element {
   const elementName = heading ? `h${heading}` : 'div';
 
   const props = {

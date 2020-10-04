@@ -33,7 +33,7 @@ const getRel = (href?: string, shouldOpenInNewTab = false): string | undefined =
   return undefined;
 };
 
-interface IAnchorProps {
+interface AnchorPropsType {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
   target: string,
   rel?: string,
@@ -50,14 +50,14 @@ const getAnchorProps = ({
   shouldOpenInNewTab?: boolean,
   onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
   href?: string
-}): IAnchorProps => ({
+}): AnchorPropsType => ({
   onClick: isDisabled ? undefined : onClick,
   target: shouldOpenInNewTab ? '_blank' : '_self',
   rel: getRel(href, shouldOpenInNewTab),
   href: isDisabled ? undefined : href
 });
 
-interface IButtonProps {
+interface ButtonPropsType {
   children?: ReactNode | string,
   iconLeft?: string,
   iconRight?: string,
@@ -72,7 +72,7 @@ interface IButtonProps {
   className?: string
 }
 
-const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, IButtonProps>(
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType>(
   ({
     children,
     iconLeft,
@@ -86,7 +86,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, IButtonProps>(
     size = 'large',
     type = 'button',
     className
-  }: IButtonProps, ref): JSX.Element => {
+  }: ButtonPropsType, ref): JSX.Element => {
     const commonProps = {
       disabled: isLoading || isDisabled,
       className: classNames({

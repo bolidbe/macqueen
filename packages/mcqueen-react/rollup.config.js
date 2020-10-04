@@ -35,6 +35,7 @@ export default {
       '@bolid/mcqueen-icons': 'mcQueenIcons'
     }
   })),
+  inlineDynamicImports: true,
   external: [
     ...Object.keys(peerDependencies || {})
   ]

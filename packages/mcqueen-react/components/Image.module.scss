@@ -1,0 +1,17 @@
+.picture {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.image{
+  &Start {
+    display: block;
+    width: 100%;
+    opacity: 0;
+  }
+
+  &End {
+    opacity: 1;
+  }
+}
