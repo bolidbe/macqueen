@@ -3,10 +3,11 @@ import typescript from 'rollup-plugin-typescript2'
 import commonjs from "@rollup/plugin-commonjs"
 import postcss from "rollup-plugin-postcss"
 import json from '@rollup/plugin-json';
+import path from 'path'
 
 import { peerDependencies } from './package.json'
 
-const formats = ['esm', 'umd']
+const formats = ['es', 'cjs']
 
 export default {
   input: './index.tsx',
@@ -25,7 +26,7 @@ export default {
     commonjs()
   ],
   output: formats.map(format => ({
-    file: `dist/index.${format}.js`,
+    dir: path.join('dist', format),
     format,
     name: 'mcqueenreact',
     globals: {
@@ -35,7 +36,6 @@ export default {
       '@bolid/mcqueen-icons': 'mcQueenIcons'
     }
   })),
-  inlineDynamicImports: true,
   external: [
     ...Object.keys(peerDependencies || {})
   ]

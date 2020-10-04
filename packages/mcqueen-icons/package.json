@@ -38,9 +38,6 @@
     "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\""
   },
-  "dependencies": {
-    "react": "16.13.1"
-  },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.11.5",
@@ -57,7 +54,8 @@
     "yargs": "^15.1.0"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "react-dom": ">=16"
   },
   "engines": {
     "node": ">=8"
