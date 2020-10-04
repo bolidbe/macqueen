@@ -33,7 +33,9 @@ import {
   StarRating,
   BannerAlert,
   Alert,
-  Image
+  Image,
+  UserAvatar,
+  EntityAvatar
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -419,6 +421,12 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Avatar">
+          <Section title="Variants">
+            <div>
+              <EntityAvatar className="mr-3" imageUrl="https://www.placecage.com/640/480" size="xlarge" />
+            </div>
+          </Section>
+
         </Card>
         <Card title="Star Rating">
           <Section title="Sizes">

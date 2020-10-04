@@ -10,3 +10,4 @@ export { default as StarRating } from "./components/StarRating";
 export { default as BannerAlert } from "./components/BannerAlert";
 export { default as Alert } from "./components/Alert";
 export { default as Image } from "./components/Image";
+export * from "./components/Avatar";
