@@ -422,11 +422,24 @@ export default function Home() {
         </Card>
         <Card title="Avatar">
           <Section title="Variants">
-            <div>
+            <div className="flex">
               <EntityAvatar className="mr-3" imageUrl="https://www.placecage.com/640/480" size="xlarge" />
+              <UserAvatar imageUrl="https://www.placecage.com/640/480" size="xlarge" />
             </div>
           </Section>
-
+          <Section title="Sizes">
+            <div className="flex items-end">
+              {["xlarge", "large", "medium", "small", "xsmall"].map((size, i) => (
+                <EntityAvatar key={i} className="mr-3" imageUrl="https://www.placecage.com/640/480" size={size} />
+              ))}
+            </div>
+          </Section>
+          <Section title="Without image">
+            <div className="flex items-end">
+              <EntityAvatar className="mr-3" initial="A" size="xlarge" />
+              <UserAvatar initials="BB" size="xlarge" />
+            </div>
+          </Section>
         </Card>
         <Card title="Star Rating">
           <Section title="Sizes">

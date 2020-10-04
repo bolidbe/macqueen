@@ -379,6 +379,7 @@ const Image = forwardRef<HTMLElement, ImagePropsTypes>((props: ImagePropsTypes, 
             setIsError(true);
           }}
           className={classNames({
+            [styles.image]: true,
             // Opacity to 0, prevents flash of alt text when `height` prop used
             [styles.imageStart]: true,
             // Opacity to 1 to reveal image or show alt text on error
