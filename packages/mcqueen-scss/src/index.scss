@@ -1,6 +1,5 @@
 @import "_fonts.scss";
 @import "_variables.scss";
-@import "_components.scss";
 
 @tailwind base;
 @tailwind components;
@@ -24,7 +23,7 @@ html, body, code{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
-  color: theme('colors.black.default');
+  color: theme('colors.black.300');
   font-size: theme('fontSize.body-2');
 }
 

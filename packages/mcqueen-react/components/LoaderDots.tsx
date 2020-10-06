@@ -6,13 +6,15 @@ import styles from './LoaderDots.module.scss';
 interface LoaderDotsPropsType {
   assistiveText?: string,
   size?: 'small' | 'medium',
-  theme?: 'brand' | 'inverse' | 'muted'
+  theme?: 'brand' | 'inverse' | 'muted',
+  className?: string
 }
 
 export default function LoaderDots({
   assistiveText = 'Loading',
   size = 'medium',
-  theme = 'brand'
+  theme = 'brand',
+  className
 }: LoaderDotsPropsType): JSX.Element {
   const dotClassName = classNames({
     [styles.dot]: true,
@@ -24,7 +26,7 @@ export default function LoaderDots({
   });
 
   return (
-    <ul className={styles.loader} role="status">
+    <ul className={classNames(styles.loader, className)} role="status">
       <li className={dotClassName} />
       <li className={dotClassName} />
       <li className={dotClassName} />

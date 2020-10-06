@@ -184,10 +184,10 @@ module.exports = {
       full: '100%',
       screen: '100vh',
     },
-    minWidth: {
+    minWidth: theme => ({
       '0': '0',
-      full: '100%',
-    },
+      ...theme('width'),
+    }),
     objectPosition: {
       bottom: 'bottom',
       center: 'center',
@@ -234,6 +234,9 @@ module.exports = {
       '1/2': '50%',
       '1/3': '33.333333%',
       '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
       '1/6': '16.666667%',
       '2/6': '33.333333%',
       '3/6': '50%',

@@ -152,7 +152,10 @@ interface ImagePropsTypes {
   forceEarlyRender?: React.ImgHTMLAttributes<HTMLImageElement>['sizes'],
   objectFit?: 'cover' | 'contain',
   objectPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right',
-  className?: string
+  className?: string,
+  style?: {
+    [key: string]: any
+  }
 }
 
 type ObjectFitPropsType = {
@@ -183,7 +186,8 @@ const Image = forwardRef<HTMLElement, ImagePropsTypes>((props: ImagePropsTypes, 
     objectPosition = 'center',
     alt = '',
     className,
-    forceEarlyRender = null
+    forceEarlyRender = null,
+    style
   } = props;
 
   // The outermost DOM node that this component references. We use `useState` instead of
@@ -343,7 +347,7 @@ const Image = forwardRef<HTMLElement, ImagePropsTypes>((props: ImagePropsTypes, 
 
   return (
     <>
-      <picture className={classNames(styles.picture, className)} ref={setRefs}>
+      <picture className={classNames(styles.picture, className)} ref={setRefs} style={style}>
         {webpSource && (
           <source
             type={webpSource.type}
