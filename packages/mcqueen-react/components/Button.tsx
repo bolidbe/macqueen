@@ -72,6 +72,22 @@ interface ButtonPropsType {
   className?: string
 }
 
+const FlexWrapper = ({
+  children,
+  size
+}: {
+  children: ReactNode | string,
+  size: 'small' | 'large'
+}) => (
+  <div className={classNames({
+    [styles.flexWrapper]: true,
+    [styles.flexWrapperSizeSmall]: size === 'small',
+    [styles.flexWrapperSizeLarge]: size === 'large'
+  })}>
+    { children }
+  </div>
+)
+
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType>(
   ({
     children,
@@ -95,9 +111,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
         [styles.buttonThemeTertiary]: theme === 'tertiary',
         [styles.buttonThemeSecondary]: theme === 'secondary',
         [styles.buttonThemeCaution]: theme === 'caution',
-        [styles.buttonThemeSolid]: theme === 'solid',
-        [styles.buttonSizeSmall]: size === 'small',
-        [styles.buttonSizeLarge]: size === 'large'
+        [styles.buttonThemeSolid]: theme === 'solid'
       }, className)
     }
 
@@ -110,14 +124,16 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
 
     const newChildren = isLoading
     ? (
-      <span className={styles.loaderContainer}>
-        <span className={styles.absoluteCenter}>
-          <LoaderDots theme={loaderDotsTheme[restrictedTheme]} size="small" />
+      <FlexWrapper size={size}>
+        <span className={styles.loaderContainer}>
+          <span className={styles.absoluteCenter}>
+            <LoaderDots theme={loaderDotsTheme[restrictedTheme]} size="small" />
+          </span>
+          <span className="invisible">{children}</span>
         </span>
-        <span className="invisible">{children}</span>
-      </span>
+      </FlexWrapper>
     ) : (
-      <>
+      <FlexWrapper size={size}>
         {
           iconLeft && (
             <span
@@ -143,8 +159,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
             </span>
           )
         }
-
-      </>
+      </FlexWrapper>
     )
 
     const isAnchor = !!href

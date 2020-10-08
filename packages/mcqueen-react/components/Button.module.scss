@@ -29,11 +29,38 @@ $button-border-width: 2px;
   }
 }
 
-.button {
-  box-sizing: border-box;
+.flexWrapper {
+  // This wraps the content since `button`s are not able to use `display: flex`.
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &Size{
+    &Large {
+      min-height: $button-height-large - ($button-border-width * 2);
+      line-height: theme('lineHeight.body-2');
+      font-size: theme('fontSize.body-2');
+    }
+    &Small {
+      min-height: $button-height-small - ($button-border-width * 2);
+      line-height: theme('lineHeight.body-3');
+      font-size: theme('fontSize.body-3');
+    }
+  }
+
+  &::after {
+    // Fix bug in IE 11 with `align-items: center` and `min-height`.
+    // https://github.com/philipwalton/flexbugs/issues/231
+    content: '';
+    display: block;
+    min-height: inherit;
+    font-size: 0;
+  }
+}
+
+.button {
+  box-sizing: border-box;
+  display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
   font-family: inherit;
@@ -121,19 +148,6 @@ $button-border-width: 2px;
     }
   }
 
-  &Size{
-    &Large {
-      min-height: $button-height-large - ($button-border-width * 2);
-      line-height: theme('lineHeight.body-2');
-      font-size: theme('fontSize.body-2');
-    }
-    &Small {
-      min-height: $button-height-small - ($button-border-width * 2);
-      line-height: theme('lineHeight.body-3');
-      font-size: theme('fontSize.body-3');
-    }
-  }
-
   &:focus {
     outline: none;
   }
@@ -148,14 +162,5 @@ $button-border-width: 2px;
 
   &[disabled] {
     cursor: default;
-  }
-
-  &::after {
-    // Fix bug in IE 11 with `align-items: center` and `min-height`.
-    // https://github.com/philipwalton/flexbugs/issues/231
-    content: '';
-    display: block;
-    min-height: inherit;
-    font-size: 0;
   }
 }
