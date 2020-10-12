@@ -146,7 +146,7 @@ type ImageSource = {
 interface ImagePropsTypes {
   src: string,
   sources?: ImageSource[],
-  alt?: string,
+  alt: string,
   height?: string,
   containerAspectRatio?: number,
   forceEarlyRender?: React.ImgHTMLAttributes<HTMLImageElement>['sizes'],
