@@ -62,8 +62,9 @@ module.exports = {
       "body-3": '20px',
       "body-4": '18px'
     },
-    maxWidth: {
+    maxWidth: theme => ({
       none: 'none',
+      ...theme('width'),
       '1': '18rem',
       '2': '24rem',
       '3': '28rem',
@@ -75,7 +76,7 @@ module.exports = {
       '9': '64rem',
       '10': '72rem',
       full: '100%'
-    },
+    }),
     minHeight: {
       none: '0',
       full: '100%',
