@@ -38,7 +38,8 @@ import {
   UserAvatar,
   EntityAvatar,
   FilterChip,
-  ToggleChip
+  ToggleChip,
+  Modal
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -483,6 +484,11 @@ export default function Home() {
           <Section title="With Icon">
             <ToggleChip isSelected={true} iconRight="plus">Toggle Chip</ToggleChip>
           </Section>
+        </Card>
+        <Card title="Modal">
+          <Modal isOpen={true}>
+            Test
+          </Modal>
         </Card>
       </div>
     </div>
