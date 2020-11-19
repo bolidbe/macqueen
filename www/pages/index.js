@@ -16,7 +16,8 @@ import {
   SearchIcon,
   CalendarIcon,
   CoinIcon,
-  MapMarkerIcon,
+  MapMarkerFillIcon,
+  MapMarkerOutlineIcon,
   StarIcon,
   PhoneIcon,
   LinkIcon,
@@ -35,7 +36,9 @@ import {
   Alert,
   Image,
   UserAvatar,
-  EntityAvatar
+  EntityAvatar,
+  FilterChip,
+  ToggleChip
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -92,7 +95,8 @@ export default function Home() {
               SearchIcon,
               CalendarIcon,
               CoinIcon,
-              MapMarkerIcon,
+              MapMarkerFillIcon,
+              MapMarkerOutlineIcon,
               StarIcon,
               PhoneIcon,
               LinkIcon
@@ -463,6 +467,21 @@ export default function Home() {
             <BannerAlert className="mb-3" theme="info">Banner Info</BannerAlert>
             <BannerAlert className="mb-3" theme="warning">Banner Warning</BannerAlert>
             <BannerAlert theme="caution">Banner Caution</BannerAlert>
+          </Section>
+        </Card>
+        <Card title="Chip">
+          <Section title="Themes">
+            <div className="mb-3">
+              <FilterChip className="mr-3">Filter Chip</FilterChip>
+              <FilterChip isSelected={true}>Filter Chip</FilterChip>
+            </div>
+            <div>
+              <ToggleChip className="mr-3">Toggle Chip</ToggleChip>
+              <ToggleChip isSelected={true}>Toggle Chip</ToggleChip>
+            </div>
+          </Section>
+          <Section title="With Icon">
+            <ToggleChip isSelected={true} iconRight="plus">Toggle Chip</ToggleChip>
           </Section>
         </Card>
       </div>
