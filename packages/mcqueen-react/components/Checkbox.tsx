@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
 import styles from './Checkbox.module.scss';
@@ -107,7 +107,7 @@ interface CheckboxPropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
   hasError?: boolean,
-  children?: React.ReactNode,
+  children?: ReactNode,
   id?: string,
   isRequired?: boolean,
   name?: string,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import styles from './BannerAlert.module.scss';
 import { WarningFillIcon, InfoFillIcon, StopFillIcon } from '@bolid/mcqueen-icons';
@@ -10,7 +10,7 @@ const ALERT_ICONS = {
 };
 
 interface BannerAlertPropsType {
-  children: React.ReactNode | string,
+  children: ReactNode,
   theme: 'info' | 'warning' | 'caution',
   className?: string
 }

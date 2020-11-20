@@ -1,4 +1,4 @@
-import React, { createElement, ReactNode, ReactHTML } from 'react';
+import { createElement, ReactNode, ReactHTML } from 'react';
 import classNames from 'classnames';
 
 interface TextPropsType {

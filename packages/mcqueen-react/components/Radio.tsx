@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
 import styles from './Radio.module.scss';
@@ -71,7 +71,7 @@ const getUIState = ({
 
 interface RadioPropsType {
   isDisabled?: boolean,
-  children?: React.ReactNode,
+  children?: ReactNode,
   id?: string,
   isChecked?: boolean,
   isRequired?: boolean,

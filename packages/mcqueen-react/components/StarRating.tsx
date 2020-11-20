@@ -1,7 +1,6 @@
 import React from 'react';
 import { clamp, times, noop } from 'lodash';
 import classNames from 'classnames';
-import Text from "./Text";
 
 import styles from './StarRating.module.scss';
 

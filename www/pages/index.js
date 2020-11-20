@@ -520,9 +520,27 @@ export default function Home() {
         </Card>
         <Card title="Tooltip">
           <Section title="Position">
-            <Tooltip text="Bloblobloblo">
-              <InfoOutlineIcon/>
-            </Tooltip>
+            <div className="flex">
+              <Tooltip className="mr-3" text="This is a tooltip">
+                <div className="flex items-center">
+                  <InfoOutlineIcon size="medium"/>
+                  <Title className="ml-2" size={5}>Top</Title>
+                </div>
+              </Tooltip>
+              <Tooltip position="bottom" className="mr-3" text="This is a tooltip">
+                <div className="flex items-center">
+                  <InfoOutlineIcon size="medium"/>
+                  <Title className="ml-2" size={5}>Bottom</Title>
+                </div>
+              </Tooltip>
+            </div>
+          </Section>
+          <Section title="Theme">
+            <div className="bg-purple flex items-center justify-center text-white p-6">
+              <Tooltip theme="light" text="This is a tooltip">
+                <InfoOutlineIcon size="medium"/>
+              </Tooltip>
+            </div>
           </Section>
         </Card>
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -34,7 +34,8 @@
     "build:js": "rollup -c",
     "build": "npm run clear && npm run build:js",
     "prepublishOnly": "npm run build",
-    "test": "echo \"No test specified\""
+    "test": "echo \"No test specified\"",
+    "typecheck": "tsc -w"
   },
   "dependencies": {
     "@popperjs/core": "^2.5.4",

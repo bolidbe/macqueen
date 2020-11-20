@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Label from "./subcomponents/Label"
 import InputNote from "./subcomponents/InputNote"
@@ -31,7 +31,7 @@ const getUIState = ({
 };
 
 interface SelectPropsType {
-  children?: React.ReactNode,
+  children?: ReactNode,
   id?: string,
   isDisabled?: boolean,
   isRequired?: boolean,
@@ -44,8 +44,8 @@ interface SelectPropsType {
   onBlur?: () => void,
   name?: string,
   className?: string,
-  label?: React.ReactNode | string,
-  note?: React.ReactNode | string,
+  label?: ReactNode,
+  note?: ReactNode,
 }
 
 export default function Select({

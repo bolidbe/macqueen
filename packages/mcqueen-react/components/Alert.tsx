@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { CheckIcon, WarningOutlineIcon, InfoOutlineIcon } from '@bolid/mcqueen-icons';
 
 import styles from './Alert.module.scss';
 
 interface AlertPropsType {
-  children?: React.ReactNode | string,
+  children?: ReactNode,
   theme?: 'success' | 'caution' | 'warning' | 'info',
   className?: string
 }

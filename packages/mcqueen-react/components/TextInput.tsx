@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from "@bolid/mcqueen-icons";
 import Label from "./subcomponents/Label"
@@ -67,8 +67,8 @@ interface TextInputPropsType {
   onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   autoComplete?: React.InputHTMLAttributes<HTMLInputElement>['autoComplete'],
   className?: string,
-  label?: React.ReactNode | string,
-  note?: React.ReactNode | string,
+  label?: ReactNode,
+  note?: ReactNode,
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputPropsType>(
@@ -103,16 +103,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputPropsType>(
     outerRef,
   ): JSX.Element => {
     const uiState = getUIState({ isDisabled, isReadOnly, hasError });
-    const hasValue = !!value
     // The input element rendered by this component. We use `useState` instead of
     // `useRef` because callback refs allow us to add more than one `ref` to a DOM node.
-    const [inputEl, setInputEl] = useState<HTMLInputElement | null>(null);
-
-    const focusInput = (): void => {
-      if (inputEl) {
-        inputEl.focus();
-      }
-    };
+    const [, setInputEl] = useState<HTMLInputElement | null>(null);
 
     const iconSize = size === 'large' ? 'small' : 'tiny'
 

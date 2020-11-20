@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Label from "./subcomponents/Label"
 import InputNote from "./subcomponents/InputNote"
@@ -37,8 +37,8 @@ interface TextAreaPropsType {
   onFocus?: () => void,
   onBlur?: () => void,
   className?: string,
-  label?: React.ReactNode | string,
-  note?: React.ReactNode | string,
+  label?: ReactNode,
+  note?: ReactNode,
 }
 
 export default function TextArea ({

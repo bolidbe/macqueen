@@ -1,8 +1,8 @@
-import React, { Component, ReactNode, ReactElement, cloneElement, useState, useEffect } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { assign } from 'lodash';
 import classNames from 'classnames';
-import { Manager, Reference, Popper } from 'react-popper';
+import { usePopper } from 'react-popper';
 
 import styles from './Tooltip.module.scss';
 
@@ -15,21 +15,6 @@ const canUseDOM = !!(
 const doesWindowSupportTouch = (): boolean =>
   typeof window !== 'undefined' && 'ontouchstart' in window;
 
-interface WhenChildrenChangePropsType {
-  children: ReactElement,
-  onChange(): void;
-}
-
-const WhenChildrenChange = ({
-  children,
-  onChange
-}: WhenChildrenChangePropsType) => {
-  useEffect(() => {
-    onChange()
-  }, [children])
-  return children
-}
-
 interface TooltipPropsType {
   children: ReactNode;
   text: string;
@@ -37,6 +22,7 @@ interface TooltipPropsType {
   position?: 'top' | 'bottom';
   closeDelayLength?: 0 | 200;
   zIndex?: number;
+  className?: string;
 }
 
 export default function Tooltip({
@@ -45,8 +31,32 @@ export default function Tooltip({
   zIndex,
   text,
   children,
-  closeDelayLength = 200
+  closeDelayLength = 200,
+  className
 }: TooltipPropsType): JSX.Element {
+  const [referenceElement, setReferenceElement] = useState<any | null>(null);
+  const [popperElement, setPopperElement] = useState<any | null>(null);
+  const [arrowElement, setArrowElement] = useState<any | null>(null);
+  const { attributes, styles: popperStyles } = usePopper(referenceElement, popperElement, {
+    placement: position,
+    modifiers: [{
+      name: 'offset',
+      options: {
+        offset: [0, 8],
+      }
+    }, {
+      name: 'preventOverflow',
+      options: {
+        boundary: 'window',
+      }
+    }, {
+      name: 'arrow',
+      options: {
+        element: arrowElement
+      }
+    }],
+    positionFixed: false
+  })
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openTimeout, setOpenTimeout] = useState<number | undefined>(undefined);
@@ -108,85 +118,62 @@ export default function Tooltip({
     };
   }, []);
 
-  const tooltip = <span>{ text }</span>
+  const placement = attributes.popper ? attributes.popper['data-popper-placement'] : null
 
   const popper = isOpen && (
-    <Popper
-      placement={position}
-      modifiers={[{
-        name: 'offset',
-        options: {
-          offset: [0, 16],
+    <div
+      ref={setPopperElement}
+      role="tooltip"
+      className={classNames({
+        [styles.tooltip]: true,
+        [styles.tooltipThemeDark]: theme === 'dark',
+        [styles.tooltipThemeLight]: theme === 'light',
+      })}
+      style={assign({}, popperStyles.popper, { zIndex })}
+      onMouseEnter={show}
+      onMouseLeave={onMouseLeave}
+      onClick={(event): void => {
+        event.stopPropagation();
+        if (doesWindowSupportTouch()) {
+          hide();
         }
-      }, {
-        name: 'preventOverflow',
-        options: {
-          boundary: 'window',
-        }
-      }]}
-      positionFixed={false}
+      }}
+      {...attributes.popper}
     >
-      {({ ref, style, placement, arrowProps, update }: any): ReactElement => (
-        <div
-          role="tooltip"
-          className={classNames({
-            [styles.tooltip]: true,
-            [styles.tooltipDark]: theme === 'dark',
-            [styles.tooltipLight]: theme === 'light',
-          })}
-          ref={ref}
-          style={assign({}, style, { zIndex })}
-          data-placement={placement}
-          onMouseEnter={show}
-          onMouseLeave={onMouseLeave}
-          onClick={(event): void => {
-            event.stopPropagation();
-            if (doesWindowSupportTouch()) {
-              hide();
-            }
-          }}
-        >
-          <WhenChildrenChange onChange={update}>
-            { tooltip }
-          </WhenChildrenChange>
-          <div
-            className={classNames({
-              [styles.nubbin]: true,
-              [styles.nubbinTop]: placement === 'top',
-              [styles.nubbinBottom]: placement === 'bottom',
-              [styles.nubbinDark]: theme === 'dark',
-              [styles.nubbinLight]: theme === 'light',
-            })}
-            ref={arrowProps.ref}
-            style={arrowProps.style}
-          />
-        </div>
-      )}
-    </Popper>
+      <div>{ text }</div>
+      <div
+        ref={setArrowElement}
+        style={popperStyles.arrow}
+        className={classNames({
+          [styles.arrow]: true,
+          [styles.arrowPositionTop]: placement === 'top',
+          [styles.arrowPositionBottom]: placement === 'bottom',
+          [styles.arrowThemeDark]: theme === 'dark',
+          [styles.arrowThemeLight]: theme === 'light',
+        })}
+      />
+    </div>
   )
 
   return (
-    <Manager>
-      <Reference>
-        {({ ref }: any): ReactElement => (
-          <div
-            ref={ref}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            onClick={onClick}
-            onFocus={onFocus}
-            onBlur={hide}
-            aria-label={text}
-          >
-            { children }
-          </div>
-        )}
-      </Reference>
+    <>
+      <div
+        className={classNames("inline-block", className)}
+        ref={setReferenceElement}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+        onFocus={onFocus}
+        onBlur={hide}
+        aria-label={text}
+      >
+        { children }
+      </div>
       {
         (isLoaded && canUseDOM)
         ? createPortal(popper, document.body)
         : popper
       }
-    </Manager>
+    </>
   )
 }
