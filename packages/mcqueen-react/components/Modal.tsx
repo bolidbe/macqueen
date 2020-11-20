@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import classNames from "classnames"
+import noScroll from 'no-scroll'
 
-import { Icon } from "@bolid/mcqueen-icons"
+import { CrossIcon } from "@bolid/mcqueen-icons"
 
 import styles from "./Modal.module.scss"
 
@@ -9,9 +10,12 @@ interface ModalPropsType {
   children: ReactNode;
   isOpen: boolean;
   className?: string;
-  shouldPageScrollAboveSmall?: boolean;
-  width?: 'small' | 'medium' | 'wide';
-  heightAboveSmall?: 'auto' | 'medium' | 'tall';
+  shouldHideCloseButton?: boolean;
+  shouldModalScroll?: boolean;
+  shouldCloseOnCurtainClick?: boolean;
+  width?: 'small' | 'medium' | 'large';
+  height?: 'auto' | 'medium' | 'large';
+  onClose(): void;
 }
 
 export default function Modal({
@@ -19,31 +23,58 @@ export default function Modal({
   isOpen,
   className,
   width = 'medium',
-  heightAboveSmall = 'tall',
-  shouldPageScrollAboveSmall=true
+  height = 'auto',
+  shouldHideCloseButton = false,
+  shouldModalScroll = true,
+  shouldCloseOnCurtainClick = true,
+  onClose
 }: ModalPropsType) {
+  useEffect(() => {
+    if(isOpen) noScroll.on()
+    else noScroll.off()
+  }, [isOpen])
+
+  const onClickCurtain = (event: any) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  }
+
   return (
     <div role="dialog" aria-label="Modal" tabIndex={-1}>
       <div className={classNames({
         [styles.curtain]: true,
         [styles.curtainOpen]: isOpen
       })}>
-        <div className={classNames({
+        <div onClick={shouldCloseOnCurtainClick ? onClickCurtain : undefined} className={classNames({
           [styles.curtainInner]: true,
-          [styles.curtainInnerShouldPageScrollAboveSmall]: shouldPageScrollAboveSmall
+          [styles.curtainInnerScroll]: shouldModalScroll
         })}>
           <div className={classNames({
             [styles.modal]: true,
+            [styles.modalOpen]: isOpen,
             [styles.modalWidthSmall]: width === 'small',
             [styles.modalWidthMedium]: width === 'medium',
-            [styles.modalWidthWide]: width === 'wide',
-            [styles.modalHeightMedium]: heightAboveSmall === 'medium',
-            [styles.modalHeightTall]: heightAboveSmall === 'tall',
-            [styles.modalOpen]: isOpen,
-            [styles.modalShouldPageScrollAboveSmall]: shouldPageScrollAboveSmall
+            [styles.modalWidthLarge]: width === 'large',
+            [styles.modalHeightMedium]: height === 'medium',
+            [styles.modalHeightLarge]: height === 'large',
+            [styles.modalShouldScroll]: shouldModalScroll
           })}>
             <div className={styles.container}>
-              { children }
+              {!shouldHideCloseButton && (
+                <div className={styles.closeButton}>
+                  <div className="m-3">
+                    <button onClick={onClose}>
+                      <CrossIcon size="medium"/>
+                    </button>
+                  </div>
+                </div>
+              )}
+              <div className={styles.content}>
+                <div className={styles.contentPadding}>
+                  { children }
+                </div>
+              </div>
             </div>
           </div>
         </div>

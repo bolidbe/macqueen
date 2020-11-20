@@ -73,6 +73,12 @@ const ColorCard = ({ hex, name }) => (
 
 export default function Home() {
   const [textInput, setTextInput] = useState("")
+  const [smallWidthModalIsOpen, setSmallWidthModalIsOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [largeWidthModalIsOpen, setLargeWidthModalIsOpen] = useState(false)
+  const [mediumHeightModalIsOpen, setMediumHeightModalIsOpen] = useState(false)
+  const [largeHeightModalIsOpen, setLargeHeightModalIsOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
       <div className="wrap">
@@ -486,8 +492,29 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Modal">
-          <Modal isOpen={true}>
-            Test
+          <Section title="Width">
+            <Button className="mr-3 mb-3" onClick={() => setModalIsOpen(true)}>Default width modal</Button>
+            <Button className="mr-3 mb-3" onClick={() => setSmallWidthModalIsOpen(true)}>Small width modal</Button>
+            <Button className="mr-3 mb-3" onClick={() => setLargeWidthModalIsOpen(true)}>Large width modal</Button>
+          </Section>
+          <Section title="Height">
+          <Button className="mr-3 mb-3" onClick={() => setMediumHeightModalIsOpen(true)}>Medium height modal</Button>
+          <Button className="mr-3 mb-3" onClick={() => setLargeHeightModalIsOpen(true)}>Large height modal</Button>
+          </Section>
+          <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
+            <Title size={4}>This is a default width modal</Title>
+          </Modal>
+          <Modal width="small" isOpen={smallWidthModalIsOpen} onClose={() => setSmallWidthModalIsOpen(false)}>
+            <Title size={4}>This is a small width modal</Title>
+          </Modal>
+          <Modal width="large" isOpen={largeWidthModalIsOpen} onClose={() => setLargeWidthModalIsOpen(false)}>
+            <Title size={4}>This is a large width modal</Title>
+          </Modal>
+          <Modal height="medium" isOpen={mediumHeightModalIsOpen} onClose={() => setMediumHeightModalIsOpen(false)}>
+            <Title size={4}>This is a medium height modal</Title>
+          </Modal>
+          <Modal height="large" isOpen={largeHeightModalIsOpen} onClose={() => setLargeHeightModalIsOpen(false)}>
+            <Title size={4}>This is a large height modal</Title>
           </Modal>
         </Card>
       </div>

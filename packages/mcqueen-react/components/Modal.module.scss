@@ -58,6 +58,33 @@
   flex-direction: column;
 }
 
+.closeButton {
+  background: theme('colors.white');
+  display: flex;
+  border-bottom: 1px solid theme('colors.gray.default');
+  min-height: 56px;
+  align-items: flex-start;
+  justify-content: flex-end;
+  order: -1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  // Momentum scrolling on iOS.
+  -webkit-overflow-scrolling: touch;
+  flex: 1 1 auto;
+}
+
+.contentPadding {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+
+  padding: 20px 20px theme('spacing.5');
+}
+
 @media screen and (min-width: theme('screens.small')){
   .curtain{
     background-color: rgba(0, 0, 0, 0.8);
@@ -72,7 +99,7 @@
       padding: theme('spacing.5');
       height: auto;
 
-      &ShouldPageScrollAboveSmall {
+      &ShouldScroll {
         max-height: none;
       }
     }
@@ -84,7 +111,7 @@
     transition: none;
     opacity: 0;
 
-    &ShouldPageScrollAboveSmall {
+    &ShouldScroll {
       max-height: none;
     }
 
@@ -102,18 +129,27 @@
         max-width: 632px;
       }
 
-      &Wide {
+      &Large {
         max-width: 1400px;
       }
     }
 
     &Height{
       &Medium {
-        min-height: 600px;
+        height: 600px;
       }
-      &Tall {
-        min-height: 900px;
+      &Large {
+        height: 900px;
       }
     }
+  }
+
+  .closeButton {
+    border-bottom: none;
+    min-height: theme('spacing.6');
+  }
+
+  .contentPadding {
+    padding: 0 theme('spacing.5') 40px;
   }
 }

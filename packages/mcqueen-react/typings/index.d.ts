@@ -1,5 +1,6 @@
 declare module 'intersection-observer';
 declare module 'object-fit-images';
+declare module 'no-scroll';
 
 // A SCSS module returns a map from string => string when imported.
 declare module '*.module.scss' {
