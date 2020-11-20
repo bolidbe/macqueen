@@ -39,7 +39,8 @@ import {
   EntityAvatar,
   FilterChip,
   ToggleChip,
-  Modal
+  Modal,
+  Tooltip
 } from "@bolid/mcqueen-react"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
@@ -498,8 +499,8 @@ export default function Home() {
             <Button className="mr-3 mb-3" onClick={() => setLargeWidthModalIsOpen(true)}>Large width modal</Button>
           </Section>
           <Section title="Height">
-          <Button className="mr-3 mb-3" onClick={() => setMediumHeightModalIsOpen(true)}>Medium height modal</Button>
-          <Button className="mr-3 mb-3" onClick={() => setLargeHeightModalIsOpen(true)}>Large height modal</Button>
+            <Button className="mr-3 mb-3" onClick={() => setMediumHeightModalIsOpen(true)}>Medium height modal</Button>
+            <Button className="mr-3 mb-3" onClick={() => setLargeHeightModalIsOpen(true)}>Large height modal</Button>
           </Section>
           <Modal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)}>
             <Title size={4}>This is a default width modal</Title>
@@ -516,6 +517,13 @@ export default function Home() {
           <Modal height="large" isOpen={largeHeightModalIsOpen} onClose={() => setLargeHeightModalIsOpen(false)}>
             <Title size={4}>This is a large height modal</Title>
           </Modal>
+        </Card>
+        <Card title="Tooltip">
+          <Section title="Position">
+            <Tooltip text="Bloblobloblo">
+              <InfoOutlineIcon/>
+            </Tooltip>
+          </Section>
         </Card>
       </div>
     </div>

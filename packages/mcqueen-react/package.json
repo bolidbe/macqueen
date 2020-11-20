@@ -37,10 +37,12 @@
     "test": "echo \"No test specified\""
   },
   "dependencies": {
+    "@popperjs/core": "^2.5.4",
     "intersection-observer": "^0.6.0",
     "no-scroll": "^2.1.1",
     "object-fit-images": "^3.2.4",
     "react-onclickoutside": "^6.4.0",
+    "react-popper": "^2.2.4",
     "react-swipeable": "^4.3.0",
     "warning": "^4.0.3"
   },
@@ -75,10 +77,12 @@
   "peerDependencies": {
     "@bolid/mcqueen-icons": ">=0",
     "@bolid/mcqueen-scss": ">=0",
+    "@popperjs/core": ">=2.5",
     "classnames": ">=2",
     "lodash": ">=4",
     "react": ">=16",
     "react-dom": ">=16",
+    "react-popper": ">=2.2",
     "warning": ">=4"
   },
   "engines": {

@@ -33,7 +33,8 @@ export default {
       'react': 'React',
       'classnames': 'classNames',
       'lodash': 'lodash',
-      '@bolid/mcqueen-icons': 'mcQueenIcons'
+      'react-popper': 'react-popper',
+      '@bolid/mcqueen-icons': '@bolid/mcqueen-icons'
     }
   })),
   external: [

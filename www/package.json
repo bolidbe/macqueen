@@ -11,11 +11,13 @@
     "@bolid/mcqueen-icons": "^0.1.8",
     "@bolid/mcqueen-react": "^0.1.7",
     "@bolid/mcqueen-scss": "^0.1.5",
+    "@popperjs/core": "^2.5.4",
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",
     "next": "9.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-popper": "^2.2.4",
     "warning": "^4.0.3"
   }
 }

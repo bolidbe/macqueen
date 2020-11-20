@@ -12,5 +12,6 @@ export { default as BannerAlert } from "./components/BannerAlert";
 export { default as Alert } from "./components/Alert";
 export { default as Image } from "./components/Image";
 export { default as Modal } from "./components/Modal";
+export { default as Tooltip } from "./components/Tooltip";
 export * from "./components/Avatar";
 export * from "./components/Chip";
