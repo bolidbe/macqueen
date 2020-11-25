@@ -17,10 +17,10 @@ const rootRelativeUrlPattern = /^\//;
 const hashUrlPattern = /^#/;
 
 const isInternalUrl = (href?: string): boolean =>
-    isString(href) && (
-      bolidDomainPattern.test(href)
-      || rootRelativeUrlPattern.test(href)
-      || hashUrlPattern.test(href)
+    isString(`${href}`) && (
+      bolidDomainPattern.test(`${href}`)
+      || rootRelativeUrlPattern.test(`${href}`)
+      || hashUrlPattern.test(`${href}`)
     )
 
 const getRel = (href?: string, shouldOpenInNewTab = false): string | undefined => {
@@ -127,7 +127,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       <FlexWrapper size={size}>
         <span className={styles.loaderContainer}>
           <span className={styles.absoluteCenter}>
-            <LoaderDots theme={loaderDotsTheme[restrictedTheme]} size="small" />
+            <LoaderDots theme={restrictedTheme ? loaderDotsTheme[restrictedTheme] : restrictedTheme} size="small" />
           </span>
           <span className="invisible">{children}</span>
         </span>

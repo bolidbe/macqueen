@@ -79,7 +79,7 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           <Image
             className={styles.square}
             src={imageUrl}
-            alt={fullName && `Avatar for ${fullName}`}
+            alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
             height={typeof size === 'string' ? dimensions[size] : `${size}px`}
             ref={outerRef}
           />
@@ -135,7 +135,7 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           <Image
             className={styles.circle}
             src={imageUrl}
-            alt={fullName && `Avatar for ${fullName}`}
+            alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
             height={typeof size === 'string' ? dimensions[size] : `${size}px`}
             ref={outerRef}
           />

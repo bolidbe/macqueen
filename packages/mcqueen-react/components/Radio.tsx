@@ -31,7 +31,7 @@ const backgroundColor = {
 const circleColor: {
   disabled: string,
   checked: string,
-  unchecked: string,
+  unchecked: string | undefined,
   error: string
 } = {
   disabled: colors.gray.default,
