@@ -8,16 +8,21 @@
     "start": "next start"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "^0.1.8",
-    "@bolid/mcqueen-react": "^0.2.0",
-    "@bolid/mcqueen-scss": "^0.1.5",
-    "@popperjs/core": "^2.5.4",
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.20",
+    "@bolid/mcqueen-icons": "0.2.0",
+    "@bolid/mcqueen-react": "0.3.2",
+    "@bolid/mcqueen-scss": "0.2.0",
+    "@popperjs/core": "2.5.4",
+    "classnames": "2.2.6",
+    "intersection-observer": "0.11.0",
+    "lodash": "4.17.20",
     "next": "9.5.3",
+    "no-scroll": "2.1.1",
+    "object-fit-images": "3.2.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-popper": "^2.2.4",
-    "warning": "^4.0.3"
+    "react-onclickoutside": "6.9.0",
+    "react-popper": "2.2.4",
+    "react-swipeable": "6.0.0",
+    "warning": "4.0.3"
   }
 }

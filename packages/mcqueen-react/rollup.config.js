@@ -38,6 +38,13 @@ export default {
     }
   })),
   external: [
-    ...Object.keys(peerDependencies || {})
+    "@bolid/mcqueen-icons",
+    "@bolid/mcqueen-scss",
+    "@popperjs/core",
+    "classnames",
+    "lodash",
+    "react",
+    "react-dom",
+    "warning"
   ]
 }

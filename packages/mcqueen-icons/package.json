@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-icons",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "A scalable set of icons handcrafted with <3 by bolid.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-icons",
   "repository": {
@@ -39,19 +39,19 @@
     "test": "echo \"No test specified\""
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "@rollup/plugin-babel": "^5.2.1",
-    "@rollup/plugin-commonjs": "^15.1.0",
-    "cheerio": "^1.0.0-rc.3",
-    "fs-extra": "^6.0.1",
-    "globby": "^11.0.0",
-    "lodash.merge": "^4.6.2",
-    "rollup": "^2.22.0",
-    "trim-newlines": "^3.0.0",
-    "typescript": "^3.7.5",
-    "yargs": "^15.1.0"
+    "@babel/core": "7.12.7",
+    "@babel/preset-env": "7.12.7",
+    "@babel/preset-react": "7.12.7",
+    "@rollup/plugin-babel": "5.2.1",
+    "@rollup/plugin-commonjs": "15.1.0",
+    "cheerio": "1.0.0-rc.3",
+    "fs-extra": "6.0.1",
+    "globby": "11.0.0",
+    "lodash.merge": "4.6.2",
+    "rollup": "2.33.3",
+    "trim-newlines": "3.0.0",
+    "typescript": "3.8.3",
+    "yargs": "15.1.0"
   },
   "peerDependencies": {
     "react": ">=16",
