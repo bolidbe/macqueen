@@ -71,7 +71,7 @@ export default function StarRating({
       >
         {isInteractive && (
           <div className={styles.inputWrap}>
-            {times(MAX_NUM_STARS, index => (
+            {times(MAX_NUM_STARS, (index: number) => (
               // eslint-disable-next-line jsx-a11y/label-has-for, jsx-a11y/label-has-associated-control
               <label
                 className={styles.label}

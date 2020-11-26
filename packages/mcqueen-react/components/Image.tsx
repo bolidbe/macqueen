@@ -128,7 +128,7 @@ function useLazyLoad(
     }
 
     return function cleanObservers(): void {
-      forEach(observers.current, o => o.disconnect());
+      forEach(observers.current, (o: any) => o.disconnect());
     };
   }, [el, browserSupportIntersectionObserver]);
 
@@ -315,8 +315,8 @@ const Image = forwardRef<HTMLElement, ImagePropsTypes>((props: ImagePropsTypes, 
   // - https://bugs.webkit.org/show_bug.cgi?id=190031
   // - https://bugs.webkit.org/show_bug.cgi?id=177068
 
-  const webpSource = find(sources, s => s.type === 'image/webp');
-  const imgTagSource = find(sources, s => s.type === 'image/jpeg' || s.type === 'image/png');
+  const webpSource = find(sources, (s: any) => s.type === 'image/webp');
+  const imgTagSource = find(sources, (s: any) => s.type === 'image/jpeg' || s.type === 'image/png');
 
   // --------------------------------------------------------------------------------------------
   // Image load and error states

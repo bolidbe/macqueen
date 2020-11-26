@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import { isNumber } from 'lodash';
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 import Image from './Image';
 
@@ -48,7 +47,7 @@ interface EntityAvatarPropsType {
   imageUrl?: string,
   initial?: string,
   fullName?: string,
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | number,
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
   className?: string
 }
 
@@ -69,11 +68,7 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={
-          isNumber(size)
-            ? { width: size, height: size }
-            : { width: dimensions[size], height: dimensions[size] }
-        }
+        style={{ width: dimensions[size], height: dimensions[size] }}
       >
         {imageUrl ? (
           <Image
@@ -104,7 +99,7 @@ interface UserAvatarPropsType {
   imageUrl?: string,
   initials?: string,
   fullName?: string,
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | number,
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
   className?: string
 }
 
@@ -125,11 +120,7 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={
-          isNumber(size)
-            ? { width: size, height: size }
-            : { width: dimensions[size], height: dimensions[size] }
-        }
+        style={{ width: dimensions[size], height: dimensions[size] }}
       >
         {imageUrl ? (
           <Image
