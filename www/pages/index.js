@@ -20,7 +20,7 @@ import {
   MapMarkerOutlineIcon,
   StarIcon,
   PhoneIcon,
-  LinkIcon
+  LinkIcon,
 } from '@bolid/mcqueen-icons'
 import {
   Title,
@@ -112,6 +112,7 @@ export default function Home() {
           }
         </Card>
 
+
         <Card title="Typography">
           <div className="flex">
             <div className="w-1/2">
@@ -135,6 +136,7 @@ export default function Home() {
             </div>
           </div>
         </Card>
+
 
         <Card title="Color">
         {
@@ -215,7 +217,7 @@ export default function Home() {
                   <Button key={i} className="mr-3 mb-3" theme={theme}>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
                 ))
               }
-              <div className="bg-indigo p-3">
+              <div className="bg-purple p-3">
                 <Button theme="solid">Solid</Button>
               </div>
             </div>
@@ -238,17 +240,15 @@ export default function Home() {
                     <Button key={i} className="mr-3 mb-3" theme={theme} isDisabled>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
                   ))
                 }
-                <div className="bg-indigo p-3">
+                <div className="bg-purple p-3">
                   <Button theme="solid" isDisabled>Solid</Button>
                 </div>
               </div>
             </SubSection>
             <SubSection title="With icon">
               <div className="flex items-end">
-                <Button iconLeft={
-                  <CheckIcon size="medium"/>
-                } size="large">Large button</Button>
-                <Button className="ml-3" size="small" iconLeft={<CheckIcon/>}>Small button</Button>
+                <Button iconLeft="calendar" size="large">Large button</Button>
+                <Button className="ml-3" size="small" iconLeft="calendar">Small button</Button>
               </div>
             </SubSection>
           </Section>
@@ -262,7 +262,7 @@ export default function Home() {
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
-                iconLeft={<CheckIcon/>}
+                iconLeft="search"
                 className="w-full"
               />
               <TextInput
@@ -279,7 +279,7 @@ export default function Home() {
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
-                iconLeft={<CheckIcon/>}
+                iconLeft="search"
                 size="large"
                 className="w-full"
               />
@@ -288,7 +288,7 @@ export default function Home() {
                 onChange={setTextInput}
                 placeholder="example@example.com"
                 className="ml-3 w-full"
-                iconLeft={<CheckIcon/>}
+                iconLeft="search"
                 size="small"
               />
             </div>
@@ -299,7 +299,7 @@ export default function Home() {
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
-                iconLeft={<CheckIcon/>}
+                iconLeft="search"
                 size="large"
                 isDisabled
               />
@@ -308,7 +308,7 @@ export default function Home() {
                 onChange={setTextInput}
                 placeholder="example@example.com"
                 className="ml-3"
-                iconLeft={<CheckIcon/>}
+                iconLeft="search"
                 isReadOnly
               />
               <TextInput
@@ -316,7 +316,7 @@ export default function Home() {
                 onChange={setTextInput}
                 placeholder="example@example.com"
                 className="ml-3"
-                iconLeft={<CheckIcon/>}
+                iconLeft="search"
                 hasError
               />
             </div>
@@ -489,7 +489,7 @@ export default function Home() {
             </div>
           </Section>
           <Section title="With Icon">
-            <ToggleChip isSelected={true} iconRight={<CheckIcon/>}>Toggle Chip</ToggleChip>
+            <ToggleChip isSelected={true} iconRight="plus">Toggle Chip</ToggleChip>
           </Section>
         </Card>
         <Card title="Modal">
@@ -536,7 +536,7 @@ export default function Home() {
             </div>
           </Section>
           <Section title="Theme">
-            <div className="bg-indigo flex items-center justify-center text-white p-6">
+            <div className="bg-purple flex items-center justify-center text-white p-6">
               <Tooltip theme="light" text="This is a tooltip">
                 <InfoOutlineIcon size="medium"/>
               </Tooltip>
