@@ -57,7 +57,7 @@ interface TextInputPropsType {
   inputMode?: 'numeric',
   name?: string,
   value?: string | number,
-  iconLeft?: ReactNode,
+  iconLeft?: string,
   onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void,
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void,

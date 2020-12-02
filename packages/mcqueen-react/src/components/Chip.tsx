@@ -8,8 +8,8 @@ interface ChipPropsType {
   children: ReactNode;
   isSelected: boolean;
   className?: string;
-  iconLeft?: ReactNode;
-  iconRight?: ReactNode;
+  iconLeft?: string;
+  iconRight?: string;
 }
 
 export function FilterChip({

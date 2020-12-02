@@ -59,8 +59,8 @@ const getAnchorProps = ({
 
 interface ButtonPropsType {
   children?: ReactNode,
-  iconLeft?: ReactNode,
-  iconRight?: ReactNode,
+  iconLeft?: string,
+  iconRight?: string,
   isDisabled?: boolean,
   isLoading?: boolean,
   onClick?: () => void,
