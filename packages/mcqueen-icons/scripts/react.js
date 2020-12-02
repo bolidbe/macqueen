@@ -1,9 +1,27 @@
 #!/usr/bin/env node
 const fse = require('fs-extra')
+const path = require('path')
 const {join, resolve} = require('path')
+const yargs = require('yargs')
 
-const srcDir = resolve(__dirname, '../src/__generated__')
-const distDir = resolve(__dirname, '../dist')
+const {argv} = yargs
+  .usage('Usage: $0 --input <input filepaths> --output <output filepath>')
+  .example('$0 --input src/__generated --output dist')
+  .option('input', {
+    alias: 'i',
+    type: 'string',
+    demandOption: true,
+    describe: 'Generated files folder.'
+  })
+  .option('output', {
+    alias: 'o',
+    type: 'string',
+    demandOption: true,
+    describe: 'Output folder.'
+  })
+
+const srcDir = path.resolve(argv.input)
+const distDir = path.resolve(argv.output)
 const dataFile = join(srcDir, 'data.json')
 const iconsFile = join(srcDir, 'icons.js')
 const typesFile = join(distDir, 'index.d.ts')

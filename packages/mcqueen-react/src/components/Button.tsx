@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import LoaderDots from './LoaderDots';
 import { isString } from 'lodash';
-import { Icon } from "@bolid/mcqueen-icons";
+import { Icon } from "@bolid/mcqueen-icons"
 
 import styles from './Button.module.scss';
 
@@ -58,9 +58,9 @@ const getAnchorProps = ({
 });
 
 interface ButtonPropsType {
-  children?: ReactNode | string,
-  iconLeft?: string,
-  iconRight?: string,
+  children?: ReactNode,
+  iconLeft?: ReactNode,
+  iconRight?: ReactNode,
   isDisabled?: boolean,
   isLoading?: boolean,
   onClick?: () => void,
@@ -142,7 +142,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
                 [styles.iconContainerHasRightChildren]: children,
               })}
             >
-              <Icon size={iconSize} name={iconLeft} />
+              <Icon name={iconLeft} size={iconSize}/>
             </span>
           )
         }
@@ -155,7 +155,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
                 [styles.iconContainerHasLeftChildren]: children,
               })}
             >
-              <Icon size={iconSize} name={iconRight} />
+              <Icon name={iconRight} size={iconSize}/>
             </span>
           )
         }

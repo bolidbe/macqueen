@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import colors from "@bolid/mcqueen-scss/config/colors.json"
 import Image from './Image';
 
 import styles from './Avatar.module.scss';
@@ -13,35 +12,18 @@ const dimensions = {
   xlarge: '140px',
 };
 
-interface StyleType {
-  color: string;
-  backgroundColor: string;
-}
+const CLASSNAMES: string[] = [
+  styles.avatarTheme1,
+  styles.avatarTheme2,
+  styles.avatarTheme3,
+  styles.avatarTheme4,
+  styles.avatarTheme5
+];
 
-const STYLES: StyleType[] = [{
-  color: colors.purple["500"],
-  backgroundColor: colors.purple["200"],
-}, {
-  color: colors.green["500"],
-  backgroundColor: colors.green["200"],
-}, {
-  color: colors.yellow["500"],
-  backgroundColor: colors.yellow["200"],
-}, {
-  color: colors.red["500"],
-  backgroundColor: colors.red["200"],
-}, {
-  color: colors.blue["500"],
-  backgroundColor: colors.blue["200"],
-}, {
-  color: colors.orange["500"],
-  backgroundColor: colors.orange["200"],
-}];
-
-const getStyle = (initials?: string): StyleType =>
+const getClassName = (initials?: string): string =>
   initials
-    ? STYLES[initials.charCodeAt(0) % STYLES.length]
-    : { color: colors.black.default, backgroundColor: colors.gray["200"] };
+    ? CLASSNAMES[initials.charCodeAt(0) % CLASSNAMES.length]
+    : CLASSNAMES[0];
 
 interface EntityAvatarPropsType {
   imageUrl?: string,
@@ -80,8 +62,7 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           />
         ) : (
           <span
-            className={`${styles.initials} ${styles.square}`}
-            style={getStyle(initial)}
+            className={`${styles.initials} ${styles.square} ${getClassName(initial)}`}
             title={fullName && `Avatar for ${fullName}`}
           >
             {initial}
@@ -132,8 +113,7 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           />
         ) : (
           <span
-            className={`${styles.initials} ${styles.circle}`}
-            style={getStyle(initials)}
+            className={`${styles.initials} ${styles.circle} ${getClassName(initials)}`}
             title={fullName && `Avatar for ${fullName}`}
           >
             {initials}

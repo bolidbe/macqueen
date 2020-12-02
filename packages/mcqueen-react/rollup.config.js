@@ -1,50 +1,66 @@
-import babel from '@rollup/plugin-babel'
-import typescript from 'rollup-plugin-typescript2'
-import commonjs from "@rollup/plugin-commonjs"
-import postcss from "rollup-plugin-postcss"
-import json from '@rollup/plugin-json';
-import path from 'path'
+const path = require('path')
+const babel = require('@rollup/plugin-babel').default
+const typescript = require('rollup-plugin-typescript2')
+const commonjs = require("@rollup/plugin-commonjs")
+const postcss = require("rollup-plugin-postcss")
+const copy = require('rollup-plugin-cpy')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
 
-import { peerDependencies } from './package.json'
+const { dependencies, peerDependencies } = require('./package.json')
 
-const formats = ['es', 'cjs']
-
-export default {
-  input: './index.tsx',
+const formats = [{
+  name: 'es',
+  preserveModules: true,
   plugins: [
     typescript({
       useTsconfigDeclarationDir: true,
       typescript: require('typescript')
     }),
-    json(),
+    babel(),
+    nodeResolve(),
+    commonjs(),
+    copy({
+      files: ['**/*.scss', '**/*.css', '!dist/**'],
+      dest: path.join('dist', 'es'),
+      options: {
+        parents: true,
+      }
+    }),
+  ],
+  external: id =>
+    // Don't attempt to bundle dependencies and peerDependencies.
+    peerDependencies[id] ||
+    // Don't attempt to parse CSS modules.
+    /module\.s?css$/.test(id)
+}, {
+  name: 'cjs',
+  preserveModules: false,
+  plugins: [
+    typescript({
+      useTsconfigDeclarationDir: true,
+      typescript: require('typescript')
+    }),
     babel(),
     postcss({
       extract: false,
       modules: true,
       use: ['sass'],
     }),
+    nodeResolve(),
     commonjs()
   ],
-  output: formats.map(format => ({
-    dir: path.join('dist', format),
-    format,
-    name: 'mcqueenreact',
-    globals: {
-      'react': 'React',
-      'classnames': 'classNames',
-      'lodash': 'lodash',
-      'react-popper': 'react-popper',
-      '@bolid/mcqueen-icons': '@bolid/mcqueen-icons'
-    }
-  })),
-  external: [
-    "@bolid/mcqueen-icons",
-    "@bolid/mcqueen-scss",
-    "@popperjs/core",
-    "classnames",
-    "lodash",
-    "react",
-    "react-dom",
-    "warning"
-  ]
-}
+  external: id =>
+    // Don't attempt to bundle dependencies and peerDependencies.
+    peerDependencies[id]
+}]
+
+module.exports = formats.map(format => ({
+  input: './src/index.tsx',
+  plugins: format.plugins,
+  output: {
+    dir: path.join('dist', format.name),
+    format: format.name,
+    preserveModules: format.preserveModules
+  },
+  external: format.external
+}))

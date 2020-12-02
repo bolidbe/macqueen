@@ -2,72 +2,11 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
 import styles from './Checkbox.module.scss';
-import colors from '@bolid/mcqueen-scss/config/colors.json';
 
 const labelCursor = {
   error: 'pointer',
   disabled: 'default',
   default: 'pointer',
-};
-
-const color = {
-  error: {
-    unchecked: colors.red.default,
-    checked: colors.red.default,
-    indeterminate: colors.red.default,
-  },
-  disabled: {
-    unchecked: colors.gray.default,
-    checked: colors.gray.default,
-    indeterminate: colors.gray.default,
-  },
-  default: {
-    unchecked: 'inherit',
-    checked: colors.white,
-    indeterminate: colors.white,
-  },
-};
-
-const borderColor = {
-  error: {
-    unchecked: colors.red.default,
-    checked: colors.red.default,
-    indeterminate: colors.red.default,
-  },
-  disabled: {
-    unchecked: colors.gray["300"],
-    checked: colors.gray["300"],
-    indeterminate: colors.gray["300"],
-  },
-  default: {
-    unchecked: colors.gray.default,
-    checked: colors.blue.default,
-    indeterminate: colors.blue.default,
-  },
-};
-
-const backgroundColor = {
-  error: {
-    unchecked: colors.white,
-    checked: colors.white,
-    indeterminate: colors.white,
-  },
-  disabled: {
-    unchecked: colors.gray["200"],
-    checked: colors.gray["200"],
-    indeterminate: colors.gray["200"],
-  },
-  default: {
-    unchecked: colors.white,
-    checked: colors.blue.default,
-    indeterminate: colors.blue.default,
-  },
-};
-
-const textColor = {
-  error: colors.red.default,
-  disabled: colors.gray.default,
-  default: 'inherit',
 };
 
 type CheckedState = 'checked' | 'indeterminate' | 'unchecked';
@@ -167,12 +106,14 @@ export default function Checkbox({
       />
 
       <div
-        className={styles.checkboxImage}
-        style={{
-          color: color[functionalState][checkedState],
-          backgroundColor: backgroundColor[functionalState][checkedState],
-          borderColor: borderColor[functionalState][checkedState],
-        }}
+        className={classNames({
+          [styles.checkboxImage]: true,
+          [styles.checkboxImageStateError]: functionalState === 'error',
+          [styles.checkboxImageStateDisabled]: functionalState === 'disabled',
+          [styles.checkboxImageStateDefaultChecked]: functionalState === 'default' && checkedState === 'checked',
+          [styles.checkboxImageStateDefaultIndeterminate]: functionalState === 'default' && checkedState === 'indeterminate',
+          [styles.checkboxImageStateDefaultUnchecked]: functionalState === 'default' && checkedState === 'unchecked'
+        })}
       >
         {isChecked && !isIndeterminate && (
           <svg
@@ -218,7 +159,12 @@ export default function Checkbox({
 
       {
         children && (
-          <span style={{ color: textColor[functionalState] }} className={styles.text}>
+          <span className={classNames({
+            [styles.text]: true,
+            [styles.textStateError]: functionalState === 'error',
+            [styles.textStateDisabled]: functionalState === 'disabled',
+            [styles.textStateDefault]: functionalState === 'default'
+          })}>
             {children}
           </span>
         )

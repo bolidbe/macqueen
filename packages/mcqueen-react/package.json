@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -14,20 +14,20 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "author": "Gabriel Sebag <gabriel@bolid.be>",
+  "author": "bolid <tech@bolid.be>",
   "license": "Apache-2.0",
   "keywords": [
     "bolid",
-    "react",
-    "mcqueen"
+    "mcqueen",
+    "react"
   ],
   "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
+  "module": "dist/es/src/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "components",
-    "index.tsx"
+    "babel.config.js",
+    "tsconfig.json"
   ],
   "sideEffects": false,
   "scripts": {
@@ -40,9 +40,9 @@
     "typecheck": "tsc -w"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "0.2.0",
-    "@bolid/mcqueen-scss": "0.2.0",
     "@popperjs/core": "2.5.4",
+    "@bolid/mcqueen-icons": "0.3.0",
+    "@bolid/mcqueen-scss": "0.3.0",
     "classnames": "2.2.6",
     "intersection-observer": "0.11.0",
     "lodash": "4.17.20",
@@ -50,9 +50,7 @@
     "object-fit-images": "3.2.4",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-onclickoutside": "6.9.0",
     "react-popper": "2.2.4",
-    "react-swipeable": "6.0.0",
     "warning": "4.0.3"
   },
   "devDependencies": {
@@ -61,7 +59,7 @@
     "@babel/preset-react": "7.12.7",
     "@rollup/plugin-babel": "5.2.1",
     "@rollup/plugin-commonjs": "15.1.0",
-    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/classnames": "2.2.11",
     "@types/lodash": "4.14.165",
     "@types/node": "14.14.10",
@@ -71,26 +69,22 @@
     "autoprefixer": "9.8.6",
     "cssnano": "4.1.10",
     "node-sass": "5.0.0",
+    "postcss-import": "12.0.0",
     "rollup": "2.33.3",
     "rollup-plugin-postcss": "3.1.8",
     "rollup-plugin-typescript2": "0.29.0",
     "tailwindcss": "1.9.6",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "rollup-plugin-cpy": "^2.0.1"
   },
   "peerDependencies": {
-    "@bolid/mcqueen-icons": "0.2.0",
-    "@bolid/mcqueen-scss": "0.2.0",
+    "@bolid/mcqueen-icons": "0.3.0",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
-    "intersection-observer": "0.11.0",
     "lodash": "4.17.20",
-    "no-scroll": "2.1.1",
-    "object-fit-images": "3.2.4",
     "react": ">=16",
     "react-dom": ">=16",
-    "react-onclickoutside": "6.9.0",
     "react-popper": "2.2.4",
-    "react-swipeable": "6.0.0",
     "warning": "4.0.3"
   },
   "engines": {

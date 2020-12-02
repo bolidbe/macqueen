@@ -28,4 +28,4 @@ That syntax is Webpack specific (and will work with Create React App), but you c
 
 ## License
 
-McQueenSCSS is licensed under the terms of the [Apache License 2.0](LICENSE).
+McQueen SCSS is licensed under the terms of the [Apache License 2.0](LICENSE).

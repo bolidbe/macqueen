@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
 import classNames from "classnames"
-
 import { Icon } from "@bolid/mcqueen-icons"
 
 import styles from "./Chip.module.scss"
@@ -9,8 +8,8 @@ interface ChipPropsType {
   children: ReactNode;
   isSelected: boolean;
   className?: string;
-  iconLeft?: string;
-  iconRight?: string;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
 }
 
 export function FilterChip({

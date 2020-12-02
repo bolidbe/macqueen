@@ -2,49 +2,12 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
 import styles from './Radio.module.scss';
-import colors from '@bolid/mcqueen-scss/config/colors.json';
-
-const borderColor = {
-  disabled: colors.gray["300"],
-  checked: colors.blue.default,
-  unchecked: colors.gray.default,
-  error: colors.red.default,
-};
 
 const labelCursor = {
   disabled: 'default',
   checked: 'pointer',
   unchecked: 'pointer',
   error: 'pointer',
-};
-
-const backgroundColor = {
-  disabled: colors.gray["200"],
-  checked: colors.white,
-  unchecked: colors.white,
-  error: colors.white,
-};
-
-/**
- * Color of the inner circle when the radio is checked.
- */
-const circleColor: {
-  disabled: string,
-  checked: string,
-  unchecked: string | undefined,
-  error: string
-} = {
-  disabled: colors.gray.default,
-  checked: colors.blue.default,
-  unchecked: undefined,
-  error: colors.red.default,
-};
-
-const textColor = {
-  disabled: colors.gray.default,
-  checked: 'inherit',
-  unchecked: 'inherit',
-  error: colors.red.default,
 };
 
 type UiState = 'disabled' | 'error' | 'checked' | 'unchecked';
@@ -125,15 +88,38 @@ export default function Radio({
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g fill={backgroundColor[uiState]} fillRule="evenodd">
-          <circle stroke={borderColor[uiState]} strokeWidth="2" cx="10" cy="10" r="9" />
-          {isChecked && <circle fill={circleColor[uiState]} cx="10" cy="10" r="6" />}
+        <g className={classNames({
+          [styles.circleBackgroundStateDisabled]: uiState === 'disabled',
+          [styles.circleBackgroundStateChecked]: uiState === 'checked',
+          [styles.circleBackgroundStateUnchecked]: uiState === 'unchecked',
+          [styles.circleBackgroundStateError]: uiState === 'error'
+        })} fillRule="evenodd">
+          <circle className={classNames({
+            [styles.circleBorderStateDisabled]: uiState === 'disabled',
+            [styles.circleBorderStateChecked]: uiState === 'checked',
+            [styles.circleBorderStateUnchecked]: uiState === 'unchecked',
+            [styles.circleBorderStateError]: uiState === 'error'
+          })} strokeWidth="2" cx="10" cy="10" r="9" />
+          {isChecked && (
+            <circle className={classNames({
+              [styles.circleRadioStateDisabled]: uiState === 'disabled',
+              [styles.circleRadioStateChecked]: uiState === 'checked',
+              [styles.circleRadioStateUnchecked]: uiState === 'unchecked',
+              [styles.circleRadioStateError]: uiState === 'error'
+            })} cx="10" cy="10" r="6" />
+          )}
         </g>
       </svg>
 
       {
         children && (
-          <span className={styles.text} style={{ color: textColor[uiState] }}>
+          <span className={classNames({
+            [styles.text]: true,
+            [styles.textStateDisabled]: uiState === 'disabled',
+            [styles.textStateChecked]: uiState === 'checked',
+            [styles.textStateUnchecked]: uiState === 'unchecked',
+            [styles.textStateError]: uiState === 'error'
+          })}>
             {children}
           </span>
         )

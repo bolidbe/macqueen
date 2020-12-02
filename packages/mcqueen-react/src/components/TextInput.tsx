@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
-import { Icon } from "@bolid/mcqueen-icons";
 import Label from "./subcomponents/Label"
 import InputNote from "./subcomponents/InputNote"
+import { Icon } from "@bolid/mcqueen-icons"
 
 import styles from './TextInput.module.scss';
 
@@ -57,7 +57,7 @@ interface TextInputPropsType {
   inputMode?: 'numeric',
   name?: string,
   value?: string | number,
-  iconLeft?: string,
+  iconLeft?: ReactNode,
   onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void,
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void,
@@ -134,7 +134,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputPropsType>(
                     [styles.iconPositionLeft]: true
                   })}
                 >
-                  <Icon size={iconSize} name={iconLeft} />
+                  <Icon name={iconLeft} size={iconSize}/>
                 </div>
               </div>
             )

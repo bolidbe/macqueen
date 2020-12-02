@@ -18,7 +18,7 @@ yarn add @bolid/mcqueen-react
 
 ## Usage
 
-McQueenReact exports each component as ES6 modules:
+McQueen React exports each component as ES6 modules:
 
 ```js
 import { Title, Button } from '@bolid/mcqueen-react';
@@ -26,4 +26,4 @@ import { Title, Button } from '@bolid/mcqueen-react';
 
 ## License
 
-McQueenReact is licensed under the terms of the [Apache License 2.0](LICENSE).
+McQueen React is licensed under the terms of the [Apache License 2.0](LICENSE).

@@ -4,13 +4,6 @@ import Label from "./subcomponents/Label"
 import InputNote from "./subcomponents/InputNote"
 
 import styles from './Select.module.scss';
-import colors from '@bolid/mcqueen-scss/config/colors.json';
-
-const iconColor = {
-  disabled: colors.gray.default,
-  default: colors.black.default,
-  error: colors.red.default,
-};
 
 const getUIState = ({
   isDisabled,
@@ -101,8 +94,11 @@ export default function Select({
               viewBox="0 0 24 24"
               width="18"
               height="18"
-              className={styles.caret}
-              stroke={iconColor[uiState]}
+              className={classNames(styles.caret, {
+                [styles.caretStateDefault]: uiState === "default",
+                [styles.caretStateDisabled]: uiState === "disabled",
+                [styles.caretStateError]: uiState === "error"
+              })}
               strokeWidth="3"
               fill="none"
               strokeLinecap="round"

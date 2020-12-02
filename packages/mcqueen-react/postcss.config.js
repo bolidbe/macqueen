@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
-    require('tailwindcss')('./node_modules/@bolid/mcqueen-scss/tailwind.config.js'),
+    require('postcss-import'),
+    require('tailwindcss'),
     require('autoprefixer'),
     require('cssnano')
   ],

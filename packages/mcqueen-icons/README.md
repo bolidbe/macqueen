@@ -18,12 +18,18 @@ yarn add @bolid/mcqueen-icons
 
 ## Usage
 
-McQueenIcons exports each component as ES6 modules:
+McQueen Icons exports each component as ES6 modules:
 
 ```js
 import { ChevronDownIcon } from '@bolid/mcqueen-icons';
 ```
 
+Or it has an Icon component that can call any icon in the library
+
+```js
+import { Icon } from '@bolid/mcqueen-icons';
+```
+
 ## License
 
-McQueenIcons is licensed under the terms of the [Apache License 2.0](LICENSE).
+McQueen Icons is licensed under the terms of the [Apache License 2.0](LICENSE).

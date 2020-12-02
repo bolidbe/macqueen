@@ -75,4 +75,16 @@
   margin-top: auto;
   margin-bottom: auto;
   pointer-events: none;
+
+  &State{
+    &Default{
+      stroke: theme("colors.black.default");
+    }
+    &Disabled{
+      stroke: theme("colors.gray.default");
+    }
+    &Error{
+      stroke: theme("colors.red.default");
+    }
+  }
 }
