@@ -20,7 +20,7 @@ const formats = [{
     nodeResolve(),
     commonjs(),
     copy({
-      files: ['**/*.scss', '**/*.css', '!dist/**'],
+      files: ['src/**/*.scss', 'src/**/*.css', '!dist/**'],
       dest: path.join('dist', 'es'),
       options: {
         parents: true,

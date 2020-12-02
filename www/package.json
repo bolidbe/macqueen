@@ -9,10 +9,10 @@
     "typecheck": "tsc -w"
   },
   "dependencies": {
-    "@popperjs/core": "2.5.4",
     "@bolid/mcqueen-icons": "0.3.0",
-    "@bolid/mcqueen-react": "0.4.0",
+    "@bolid/mcqueen-react": "0.3.3",
     "@bolid/mcqueen-scss": "0.3.0",
+    "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
     "lodash": "4.17.20",
     "next": "9.5.3",
@@ -24,6 +24,8 @@
   "devDependencies": {
     "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/warning": "^3.0.0",
     "cssnano": "4.1.10",
     "next-compose-plugins": "2.2.0",
     "next-transpile-modules": "4.1.0",

@@ -41,7 +41,7 @@ import {
   ToggleChip,
   Modal,
   Tooltip
-} from "@bolid/mcqueen-react"
+} from "@bolid/mcqueen-react/src"
 import colors from "@bolid/mcqueen-scss/config/colors.json"
 
 const Card = ({ children, title }) => (
