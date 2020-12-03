@@ -1,7 +1,16 @@
-create_link:
-	npm link ${package}
-	npm-link-shared ./node_modules/${package}/node_modules . react
+clean:
+	rm -rf node_modules yarn.lock package-lock.json
 
-link:
-	# make create_link package="@bolid/mcqueen-icons"
-	make create_link package="@bolid/mcqueen-react"
+create_link:
+	cd ../packages/${package} && rm -rf node_modules yarn.lock package-lock.json && npm unlink && npm i && npm link
+	npm link @bolid/${package}
+
+share_link:
+	npm-link-shared ./node_modules/@bolid/${package}/node_modules . react
+
+init:
+	rm -rf node_modules yarn.lock package-lock.json
+	# make create_link package="mcqueen-icons"
+	make create_link package="mcqueen-react"
+	npm i
+	make share_link package="mcqueen-react"
