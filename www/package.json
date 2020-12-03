@@ -11,7 +11,7 @@
   "dependencies": {
     "@bolid/mcqueen-icons": "0.3.2",
     "@bolid/mcqueen-react": "0.4.2",
-    "@bolid/mcqueen-scss": "0.3.0",
+    "@bolid/mcqueen-scss": "0.3.1",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
     "lodash": "4.17.20",
