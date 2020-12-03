@@ -1,0 +1,32 @@
+.link{
+  padding: 14px 10px;
+  line-height: 0.5;
+  margin: 0 theme('spacing.1');
+  font-weight: 600;
+  color: theme('colors.blue.default');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: theme('borderRadius.default');
+  font-size: theme("fontSize.body-3");
+  border-width: theme("borderWidth.default");
+  border-color: transparent;
+
+  &.disabled{
+    cursor: default;
+    color: theme('colors.gray.default');
+    &:hover{
+      background-color: transparent!important;
+    }
+  }
+
+  &.active{
+    border-color: theme('colors.blue.default');
+    background-color: theme("colors.blue.200");
+    cursor: default;
+  }
+
+  &:hover{
+    background-color: theme("colors.blue.200");
+  }
+}

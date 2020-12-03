@@ -1,5 +1,6 @@
 import { useState } from "react"
 import classNames from "classnames"
+import { GetServerSideProps } from 'next'
 import {
   ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
 } from '@bolid/mcqueen-icons'
@@ -24,7 +25,9 @@ import {
   Tooltip,
   Breadcrumbs,
   HtmlContent,
-  ShowMore
+  ShowMore,
+  LinkPagination,
+  ClickPagination
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -619,7 +622,21 @@ export default function Home() {
             </ShowMore>
           </Section>
         </Card>
+        <Card title="Pagination">
+          <Section title="Triggered by click">
+            <ClickPagination pagesCount={10} currentPage={1} onClick={() => {}}/>
+          </Section>
+          <Section className="mt-5" title="Triggered by url changes">
+            <LinkPagination pagesCount={10}/>
+          </Section>
+        </Card>
       </div>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {}
+  }
 }

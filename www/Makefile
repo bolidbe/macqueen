@@ -8,7 +8,7 @@ create_link:
 share_link:
 	npm-link-shared ./node_modules/@bolid/${package}/node_modules . react
 
-init:
+link:
 	rm -rf node_modules yarn.lock package-lock.json
 	# make create_link package="mcqueen-icons"
 	make create_link package="mcqueen-react"

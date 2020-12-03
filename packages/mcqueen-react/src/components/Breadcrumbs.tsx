@@ -3,7 +3,7 @@ import classNames from "classnames"
 let Link: any;
 try{
   Link = require('next/link').default
-}catch{
+}catch(e){
   Link = undefined
 }
 

@@ -18,3 +18,4 @@ export { default as HtmlContent } from "./components/HtmlContent";
 export { default as ShowMore } from "./components/ShowMore";
 export * from "./components/Avatar";
 export * from "./components/Chip";
+export * from "./components/Pagination";

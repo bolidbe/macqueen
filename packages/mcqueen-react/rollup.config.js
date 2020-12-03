@@ -30,6 +30,9 @@ const formats = [{
   external: id =>
     // Don't attempt to bundle dependencies and peerDependencies.
     peerDependencies[id] ||
+    id === "next" ||
+    id === "next/router" ||
+    id === "next/link" ||
     // Don't attempt to parse CSS modules.
     /module\.s?css$/.test(id)
 }, {
@@ -51,7 +54,10 @@ const formats = [{
   ],
   external: id =>
     // Don't attempt to bundle dependencies and peerDependencies.
-    peerDependencies[id]
+    peerDependencies[id] ||
+    id === "next" ||
+    id === "next/router" ||
+    id === "next/link"
 }]
 
 module.exports = formats.map(format => ({
