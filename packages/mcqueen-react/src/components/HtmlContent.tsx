@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import Longread from "./Longread"
+import classNames from "classnames"
 
 interface HtmlContentPropsType {
   children: string;
@@ -77,14 +77,13 @@ export default function HtmlContent({
   }, [])
 
   return (
-    <Longread className={className}>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: children
-            .replace(/src=/g, "data-src=")
-            .replace(/srcset=/g, "data-srcset=")
-        }}
-      ></div>
-    </Longread>
+    <div
+      className={classNames("longread", className)}
+      dangerouslySetInnerHTML={{
+        __html: children
+          .replace(/src=/g, "data-src=")
+          .replace(/srcset=/g, "data-srcset=")
+      }}
+    ></div>
   )
 }
