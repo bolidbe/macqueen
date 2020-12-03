@@ -1,4 +1,5 @@
 import { useState } from "react"
+import classNames from "classnames"
 import {
   ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
 } from '@bolid/mcqueen-icons'
@@ -22,7 +23,8 @@ import {
   Modal,
   Tooltip,
   Breadcrumbs,
-  HtmlContent
+  HtmlContent,
+  ShowMore
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -73,6 +75,7 @@ export default function Home() {
   const [largeWidthModalIsOpen, setLargeWidthModalIsOpen] = useState(false)
   const [mediumHeightModalIsOpen, setMediumHeightModalIsOpen] = useState(false)
   const [largeHeightModalIsOpen, setLargeHeightModalIsOpen] = useState(false)
+  const [showMoreIsExpanded, setShowMoreIsExpanded] = useState(false)
 
   return (
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
@@ -581,6 +584,40 @@ export default function Home() {
             </p>
           `}
           </HtmlContent>
+        </Card>
+        <Card title="Show More">
+          <Section title="Default">
+            <ShowMore
+              isExpanded={showMoreIsExpanded}
+              onClick={() => setShowMoreIsExpanded(!showMoreIsExpanded)}
+              size={3}
+            >
+              <div>This is a paragraph inside my component.</div>
+              <div className={classNames({"hidden": !showMoreIsExpanded})}>This is a second paragraph inside my component what was hidden.</div>
+            </ShowMore>
+          </Section>
+          <Section title="Variants">
+            <ShowMore
+              className="mb-5"
+              isShrinkable={false}
+              isExpanded={showMoreIsExpanded}
+              onClick={() => setShowMoreIsExpanded(!showMoreIsExpanded)}
+              size={3}
+            >
+              <div>This is a paragraph inside my component and I won't be able to shrink it afterwards.</div>
+              <div className={classNames({"hidden": !showMoreIsExpanded})}>This is a second paragraph inside my component what was hidden.</div>
+            </ShowMore>
+            <ShowMore
+              isShrinkable={false}
+              hideChevron={true}
+              isExpanded={showMoreIsExpanded}
+              onClick={() => setShowMoreIsExpanded(!showMoreIsExpanded)}
+              size={3}
+            >
+              <div>This is a paragraph inside my component and I don't have a chevron.</div>
+              <div className={classNames({"hidden": !showMoreIsExpanded})}>This is a second paragraph inside my component what was hidden.</div>
+            </ShowMore>
+          </Section>
         </Card>
       </div>
     </div>

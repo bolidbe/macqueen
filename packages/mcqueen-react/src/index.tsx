@@ -15,7 +15,6 @@ export { default as Modal } from "./components/Modal";
 export { default as Tooltip } from "./components/Tooltip";
 export { default as Breadcrumbs } from "./components/Breadcrumbs";
 export { default as HtmlContent } from "./components/HtmlContent";
-// export { default as ReadMore } from "./components/ReadMore";
-// export { default as ShowMore } from "./components/ShowMore";
+export { default as ShowMore } from "./components/ShowMore";
 export * from "./components/Avatar";
 export * from "./components/Chip";
