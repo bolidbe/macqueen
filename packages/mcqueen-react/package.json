@@ -39,9 +39,9 @@
     "typecheck": "tsc -w"
   },
   "dependencies": {
-    "@popperjs/core": "2.5.4",
-    "@bolid/mcqueen-icons": "0.3.0",
+    "@bolid/mcqueen-icons": "0.3.1",
     "@bolid/mcqueen-scss": "0.3.0",
+    "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
     "intersection-observer": "0.11.0",
     "lodash": "4.17.20",

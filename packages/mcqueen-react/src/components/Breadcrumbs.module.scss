@@ -1,0 +1,10 @@
+.breadcrumbs{
+  li{
+    &:not(:last-child){
+      margin-right: theme("spacing.1");
+    }
+    &:not(:first-child):before{
+      content: "//\A0";
+    }
+  }
+}
