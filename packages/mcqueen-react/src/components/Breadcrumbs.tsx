@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from "classnames"
 let Link: any;
 try{
-  Link = require('next/link')
+  Link = require('next/link').default
 }catch{
   Link = undefined
 }
@@ -23,7 +23,7 @@ interface BreadcrumbsPropsType {
 export default function Breadcrumbs({
   breadcrumbs,
   className
-}: BreadcrumbsPropsType) {
+}: BreadcrumbsPropsType): JSX.Element {
   return (
     <ul className={classNames("flex flex-wrap pl-0 text-body-3 heading-body-3", styles.breadcrumbs, className)}>
       {breadcrumbs.map((breadcrumb, i) => i < breadcrumbs.length - 1 ? (
