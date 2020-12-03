@@ -1,9 +1,10 @@
+const path = require('path')
 const babel = require('@rollup/plugin-babel').default
 const commonjs = require('@rollup/plugin-commonjs')
 
 const pkg = require('./package.json')
 
-const formats = ['esm', 'umd']
+const formats = ['es', 'cjs']
 
 module.exports = {
   input: 'src/index.js',
@@ -12,9 +13,8 @@ module.exports = {
     commonjs()
   ],
   output: formats.map(format => ({
-    file: `dist/index.${format}.js`,
+    dir: path.join('dist', format),
     format,
-    name: 'icons',
     globals: {
       'react': 'React'
     }

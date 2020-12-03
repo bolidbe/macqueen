@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-icons",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A scalable set of icons handcrafted with <3 by bolid.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-icons",
   "repository": {
@@ -23,8 +23,7 @@
     "svg",
     "react"
   ],
-  "main": "dist/index.umd.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
