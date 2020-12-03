@@ -1,26 +1,6 @@
 import { useState } from "react"
 import {
-  ChevronUpIcon,
-  ChevronRightIcon,
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ArrowUpIcon,
-  ArrowRightIcon,
-  ArrowDownIcon,
-  ArrowLeftIcon,
-  CheckIcon,
-  WarningOutlineIcon,
-  WarningFillIcon,
-  InfoOutlineIcon,
-  InfoFillIcon,
-  SearchIcon,
-  CalendarIcon,
-  CoinIcon,
-  MapMarkerFillIcon,
-  MapMarkerOutlineIcon,
-  StarIcon,
-  PhoneIcon,
-  LinkIcon,
+  ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
 } from '@bolid/mcqueen-icons'
 import {
   Title,
@@ -41,36 +21,48 @@ import {
   ToggleChip,
   Modal,
   Tooltip
-} from "@bolid/mcqueen-react/src"
-import colors from "@bolid/mcqueen-scss/config/colors.json"
+} from "@bolid/mcqueen-react"
+const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
-const Card = ({ children, title }) => (
+const Card = ({ children, title }: any) => (
   <div className="max-w-6 rounded-big mx-auto bg-white shadow-1 p-5 mb-5">
     <Title heading={2} size={2} className="mb-5">{ title }</Title>
     { children }
   </div>
 )
 
-const Section = ({ children, title }) => (
+const Section = ({ children, title }: any) => (
   <div className="mb-5">
     <Title heading={2} size={3} className="mb-3">{ title }</Title>
     { children }
   </div>
 )
 
-const SubSection = ({ children, title }) => (
+const SubSection = ({ children, title }: any) => (
   <div className="my-3">
     <Title heading={2} size={4} className="mb-2">{ title }</Title>
     { children }
   </div>
 )
 
-const ColorCard = ({ hex, name }) => (
+const ColorCard = ({ hex, name }: any) => (
   <div className="border rounded overflow-hidden mr-3" style={{ width: "130px" }}>
     <div className="mx-auto" style={{ backgroundColor: hex, height: "130px" }}></div>
     <Text className="border-t  py-2 text-center" size={3}> { name }</Text>
   </div>
 )
+
+type AvatarSizeType = "small" | "medium" | "large" | "xlarge" | "xsmall"
+const avatarSizes: AvatarSizeType[] = ["xlarge", "large", "medium", "small", "xsmall"]
+
+type ButtonThemeType = "primary" | "secondary" | "tertiary" | "caution" | "solid"
+const buttonThemes: ButtonThemeType[] = ['primary', 'secondary', 'tertiary', 'caution']
+
+type TextSizeType = 1 | 2 | 3 | 4
+const textSizes: TextSizeType[] = [1, 2, 3, 4]
+
+type TitleSizeType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
 
 export default function Home() {
   const [textInput, setTextInput] = useState("")
@@ -87,27 +79,7 @@ export default function Home() {
         <Card title="Icon">
           {
             [
-              ChevronUpIcon,
-              ChevronRightIcon,
-              ChevronDownIcon,
-              ChevronLeftIcon,
-              ArrowUpIcon,
-              ArrowRightIcon,
-              ArrowDownIcon,
-              ArrowLeftIcon,
-              CheckIcon,
-              WarningOutlineIcon,
-              WarningFillIcon,
-              InfoOutlineIcon,
-              InfoFillIcon,
-              SearchIcon,
-              CalendarIcon,
-              CoinIcon,
-              MapMarkerFillIcon,
-              MapMarkerOutlineIcon,
-              StarIcon,
-              PhoneIcon,
-              LinkIcon
+              ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
             ].map((icon, i) => <span key={i}>{ icon({ size: 40 }) }</span>)
           }
         </Card>
@@ -117,20 +89,20 @@ export default function Home() {
           <div className="flex">
             <div className="w-1/2">
             {
-              [...Array(8).keys()].map(i => (
-                <Title key={i} size={i+1}>Heading {i + 1}</Title>
+              titleSizes.map(i => (
+                <Title key={i} size={i}>Heading {i}</Title>
               ))
             }
             </div>
             <div className="w-1/2">
             {
-              [...Array(4).keys()].map(i => (
-                <Text key={i} size={i+1} isBold={true}>Bold body {i + 1}</Text>
+              textSizes.map(i => (
+                <Text key={i} size={i} isBold={true}>Bold body {i}</Text>
               ))
             }
             {
-              [...Array(4).keys()].map(i => (
-                <Text key={i} size={i+1}>Body {i + 1}</Text>
+              textSizes.map(i => (
+                <Text key={i} size={i}>Body {i}</Text>
               ))
             }
             </div>
@@ -140,7 +112,7 @@ export default function Home() {
 
         <Card title="Color">
         {
-          Object.keys(colors).filter(c => c !== "transparent" && c !== "white").map((color, i) => (
+          Object.keys(colors).filter((c: string) => c !== "transparent" && c !== "white").map((color: string, i) => (
             <div key={i} className="mb-5">
               <Title className="mb-3" size={3}>{ color.charAt(0).toUpperCase() + color.slice(1) }</Title>
               <div className="flex">
@@ -213,7 +185,7 @@ export default function Home() {
           <Section title="Themes">
             <div className="flex flex-wrap">
               {
-                ['primary', 'secondary', 'tertiary', 'caution'].map((theme, i) => (
+                buttonThemes.map((theme, i) => (
                   <Button key={i} className="mr-3 mb-3" theme={theme}>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
                 ))
               }
@@ -227,7 +199,7 @@ export default function Home() {
             <SubSection title="Loading">
               <div className="flex flex-wrap">
                 {
-                  ['primary', 'secondary', 'tertiary'].map((theme, i) => (
+                  buttonThemes.map((theme, i) => (
                     <Button key={i} className="mr-3 mb-3" theme={theme} isLoading>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
                   ))
                 }
@@ -236,7 +208,7 @@ export default function Home() {
             <SubSection title="States">
               <div className="flex flex-wrap">
                 {
-                  ['primary', 'secondary', 'tertiary', 'caution'].map((theme, i) => (
+                  buttonThemes.map((theme, i) => (
                     <Button key={i} className="mr-3 mb-3" theme={theme} isDisabled>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
                   ))
                 }
@@ -376,12 +348,12 @@ export default function Home() {
         <Card title="Select">
           <Section title="Sizes">
             <div className="flex items-end">
-              <Select label="Label" note="Note" className="w-full">
+              <Select onChange={() => {}} value={""} label="Label" note="Note" className="w-full">
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
               </Select>
-              <Select label="Label" note="Note" size="small" className="w-full ml-3">
+              <Select onChange={() => {}} value={""} label="Label" note="Note" size="small" className="w-full ml-3">
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
@@ -390,12 +362,12 @@ export default function Home() {
           </Section>
           <Section title="States">
             <div className="flex items-end">
-              <Select label="Label" note="Note" hasError className="w-full">
+              <Select onChange={() => {}} value={""} label="Label" note="Note" hasError className="w-full">
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
               </Select>
-              <Select label="Label" note="Note" isDisabled className="w-full ml-3">
+              <Select onChange={() => {}} value={""} label="Label" note="Note" isDisabled className="w-full ml-3">
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
@@ -406,29 +378,29 @@ export default function Home() {
         <Card title="Checkbox">
           <Section title="Checked and not checked">
             <div className="flex items-end">
-              <Checkbox isChecked>This is a checkbox</Checkbox>
-              <Checkbox className="ml-3">This is a checkbox</Checkbox>
+              <Checkbox onChange={() => {}} isChecked>This is a checkbox</Checkbox>
+              <Checkbox onChange={() => {}} className="ml-3">This is a checkbox</Checkbox>
             </div>
           </Section>
           <Section title="States">
             <div className="flex items-end">
-              <Checkbox isDisabled>This is a checkbox</Checkbox>
-              <Checkbox hasError className="ml-3">This is a checkbox</Checkbox>
-              <Checkbox isIndeterminate className="ml-3">This is a checkbox</Checkbox>
+              <Checkbox onChange={() => {}} isDisabled>This is a checkbox</Checkbox>
+              <Checkbox onChange={() => {}} hasError className="ml-3">This is a checkbox</Checkbox>
+              <Checkbox onChange={() => {}} isIndeterminate className="ml-3">This is a checkbox</Checkbox>
             </div>
           </Section>
         </Card>
         <Card title="Radio">
           <Section title="Checked and not checked">
             <div className="flex items-end">
-              <Radio isChecked>This is a radio</Radio>
-              <Radio className="ml-3">This is a radio</Radio>
+              <Radio name="radio" onChange={() => {}} isChecked>This is a radio</Radio>
+              <Radio name="radio" onChange={() => {}} className="ml-3">This is a radio</Radio>
             </div>
           </Section>
           <Section title="States">
             <div className="flex items-end">
-              <Radio isDisabled>This is a radio</Radio>
-              <Radio hasError className="ml-3">This is a radio</Radio>
+              <Radio name="radio" onChange={() => {}} isDisabled>This is a radio</Radio>
+              <Radio name="radio" onChange={() => {}} hasError className="ml-3">This is a radio</Radio>
             </div>
           </Section>
         </Card>
@@ -441,7 +413,7 @@ export default function Home() {
           </Section>
           <Section title="Sizes">
             <div className="flex items-end">
-              {["xlarge", "large", "medium", "small", "xsmall"].map((size, i) => (
+              {avatarSizes.map((size, i) => (
                 <EntityAvatar key={i} className="mr-3" imageUrl="https://www.placecage.com/640/480" size={size} />
               ))}
             </div>
@@ -480,11 +452,11 @@ export default function Home() {
         <Card title="Chip">
           <Section title="Themes">
             <div className="mb-3">
-              <FilterChip className="mr-3">Filter Chip</FilterChip>
+              <FilterChip isSelected={false} className="mr-3">Filter Chip</FilterChip>
               <FilterChip isSelected={true}>Filter Chip</FilterChip>
             </div>
             <div>
-              <ToggleChip className="mr-3">Toggle Chip</ToggleChip>
+              <ToggleChip isSelected={false} className="mr-3">Toggle Chip</ToggleChip>
               <ToggleChip isSelected={true}>Toggle Chip</ToggleChip>
             </div>
           </Section>

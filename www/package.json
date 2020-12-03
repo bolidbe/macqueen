@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@bolid/mcqueen-icons": "0.3.0",
-    "@bolid/mcqueen-react": "0.3.3",
+    "@bolid/mcqueen-react": "0.4.0",
     "@bolid/mcqueen-scss": "0.3.0",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
