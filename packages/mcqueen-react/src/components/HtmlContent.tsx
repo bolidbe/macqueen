@@ -1,14 +1,12 @@
 import React, { useEffect } from "react"
-import classNames from "classnames"
+import parse from 'html-react-parser'
 
 interface HtmlContentPropsType {
   children: string;
-  className?: string;
 }
 
 export default function HtmlContent({
-  children,
-  className
+  children
 }: HtmlContentPropsType){
   useEffect(() => {
     var lazyload: any;
@@ -77,13 +75,12 @@ export default function HtmlContent({
   }, [])
 
   return (
-    <div
-      className={classNames("longread", className)}
-      dangerouslySetInnerHTML={{
-        __html: children
-          .replace(/src=/g, "data-src=")
-          .replace(/srcset=/g, "data-srcset=")
-      }}
-    ></div>
+    <>
+    {parse(
+      children
+      .replace(/src=/g, "data-src=")
+      .replace(/srcset=/g, "data-srcset=")
+    )}
+    </>
   )
 }

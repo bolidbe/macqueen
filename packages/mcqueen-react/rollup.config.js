@@ -4,6 +4,7 @@ const typescript = require('rollup-plugin-typescript2')
 const commonjs = require("@rollup/plugin-commonjs")
 const postcss = require("rollup-plugin-postcss")
 const copy = require('rollup-plugin-cpy')
+const json = require('@rollup/plugin-json')
 const { nodeResolve } = require('@rollup/plugin-node-resolve')
 
 const { dependencies, peerDependencies } = require('./package.json')
@@ -19,6 +20,7 @@ const formats = [{
     babel(),
     nodeResolve(),
     commonjs(),
+    json(),
     copy({
       files: ['src/**/*.scss', 'src/**/*.css', '!dist/**'],
       dest: path.join('dist', 'es'),
@@ -49,6 +51,7 @@ const formats = [{
       modules: true,
       use: ['sass'],
     }),
+    json(),
     nodeResolve(),
     commonjs()
   ],
