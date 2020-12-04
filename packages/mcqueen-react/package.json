@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -39,7 +39,7 @@
     "typecheck": "tsc -w"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "0.3.2",
+    "@bolid/mcqueen-icons": "0.3.3",
     "@bolid/mcqueen-scss": "0.3.1",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
@@ -79,7 +79,7 @@
     "rollup-plugin-cpy": "^2.0.1"
   },
   "peerDependencies": {
-    "@bolid/mcqueen-icons": "0.3.2",
+    "@bolid/mcqueen-icons": "0.3.3",
     "@bolid/mcqueen-scss": "0.3.1",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",

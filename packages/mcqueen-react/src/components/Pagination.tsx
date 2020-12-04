@@ -9,21 +9,19 @@ try{
   useRouter = require('next/router').useRouter
   Link = require('next/link').default
 }catch(e){
-  useRouter = () => {
-    if(typeof window !== 'undefined'){
-      return {
-        asPath: `${window.location.pathname}${window.location.search}`
-      }
-    }else{
-      return {
-        asPath: ""
-      }
-    }
-  }
+  useRouter = () => null
   Link = undefined
 }
 
 import styles from "./Pagination.module.scss"
+
+const getPath = () => {
+  if(typeof window !== 'undefined'){
+    return `${window.location.pathname}${window.location.search}`
+  }else{
+    return ""
+  }
+}
 
 const getPrevLinks = (Component: any, currentPage: number, props: {[key: string]: any} = {}) => {
   const min = currentPage - 2 > 1
@@ -69,7 +67,7 @@ let LinkPage = ({
   isDisabled=false
 }: LinkPagePropsType) => {
   const router = useRouter()
-  const { url, query } = queryString.parseUrl(router.asPath)
+  const { url, query } = queryString.parseUrl(router ? router.asPath : getPath())
 
   const anchorProps = {
     className: classNames(styles.link, { [styles.disabled]: isDisabled })
@@ -107,7 +105,7 @@ const LinkPagination = ({
   className
 }: LinkPaginationPropsType) => {
   const router = useRouter()
-  const { query } = queryString.parseUrl(router.asPath)
+  const { query } = queryString.parseUrl(router ? router.asPath : getPath())
   const currentPage = query.page ? +query.page : 1
 
   return pagesCount > 1 ? (

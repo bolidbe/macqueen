@@ -52,7 +52,7 @@ const icons = svgFilepaths.map(filepath => {
     const [, name, height] = filename.match(filenamePattern)
     const svg = fs.readFileSync(path.resolve(filepath), 'utf8')
     const $ = cheerio.load(svg)
-    $('[fill]').attr('fill', 'currentColor')
+    $('[fill]:not([fill="white"]):not([fill="#FFFFFF"]):not([fill="#FFF"]):not([fill="#fff"]):not([fill="#ffffff"])').attr('fill', 'currentColor')
     const svgElement = $('svg')
     const svgWidth = parseInt(svgElement.attr('width'))
     const svgHeight = parseInt(svgElement.attr('height'))

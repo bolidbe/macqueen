@@ -87,11 +87,11 @@
 
 @media screen and (min-width: theme('screens.small')){
   .curtain{
-    background-color: rgba(0, 0, 0, 0.8);
     transition: opacity .25s cubic-bezier(.45,0,.4,1),
       visibility .25s cubic-bezier(.45,0,.4,1);
 
     &Open{
+      background-color: rgba(0, 0, 0, 0.8);
       transition: opacity .3s cubic-bezier(.45,0,.4,1);
     }
 
