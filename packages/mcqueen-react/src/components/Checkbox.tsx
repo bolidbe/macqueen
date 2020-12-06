@@ -50,7 +50,6 @@ interface CheckboxPropsType {
   id?: string,
   isRequired?: boolean,
   name?: string,
-  labelPadding?: string,
   onChange: (value: boolean, id?: string) => void,
   isIndeterminate?: boolean,
   checkboxVerticalAlign?: 'top' | 'center',
@@ -66,7 +65,6 @@ export default function Checkbox({
   isChecked = false,
   isDisabled = false,
   isIndeterminate = false,
-  labelPadding = '14px 0',
   isRequired = false,
   name,
   onChange,
@@ -90,7 +88,7 @@ export default function Checkbox({
         [styles.checkboxVerticalAlignTop]: checkboxVerticalAlign === 'top',
         [styles.checkboxVerticalAlignCenter]: checkboxVerticalAlign === 'center',
       }, className)}
-      style={{ cursor: labelCursor[functionalState], padding: labelPadding }}
+      style={{ cursor: labelCursor[functionalState] }}
     >
       <input
         className={styles.input}
