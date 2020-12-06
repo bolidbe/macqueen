@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -39,26 +39,15 @@
     "typecheck": "tsc -w"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "1.0.0",
-    "@bolid/mcqueen-scss": "1.0.0",
-    "@popperjs/core": "2.5.4",
-    "classnames": "2.2.6",
-    "html-react-parser": "0.14.2",
     "intersection-observer": "0.11.0",
-    "lodash": "4.17.20",
-    "next": "10.0.2",
     "no-scroll": "2.1.1",
-    "object-fit-images": "3.2.4",
-    "query-string": "6.13.5",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-popper": "2.2.4",
-    "warning": "4.0.3"
+    "object-fit-images": "3.2.4"
   },
   "devDependencies": {
     "@babel/core": "7.12.7",
     "@babel/preset-env": "7.12.7",
     "@babel/preset-react": "7.12.7",
+    "@bolid/mcqueen-scss": "1.0.0",
     "@rollup/plugin-babel": "5.2.1",
     "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -81,17 +70,17 @@
     "typescript": "3.8.3"
   },
   "peerDependencies": {
-    "@bolid/mcqueen-icons": "1.0.0",
-    "@bolid/mcqueen-scss": "1.0.0",
-    "@popperjs/core": "2.5.4",
-    "classnames": "2.2.6",
-    "html-react-parser": "0.14.2",
-    "lodash": "4.17.20",
-    "query-string": "6.13.5",
-    "react": ">=16",
-    "react-dom": ">=16",
-    "react-popper": "2.2.4",
-    "warning": "4.0.3"
+    "@bolid/mcqueen-icons": ">= 1.0.1",
+    "@bolid/mcqueen-scss": ">= 1.0.0",
+    "@popperjs/core": ">= 2.5.4 < 3.0.0",
+    "classnames": ">= 2.2.6 < 3.0.0",
+    "html-react-parser": ">= 0.14.2",
+    "lodash": ">= 4.17.20 < 5.0.0",
+    "query-string": ">= 6.13.5 < 7.0.0",
+    "react": ">= 16.2.0 < 17.0.0-0",
+    "react-dom": ">= 16.2.0 < 17.0.0-0",
+    "react-popper": ">= 2.2.4 < 3.0.0",
+    "warning": ">= 4.0.3 < 5.0.0"
   },
   "engines": {
     "node": ">=8"
