@@ -8,8 +8,6 @@
   padding: 10px 14px;
   vertical-align: middle;
   resize: vertical;
-  height: 152px;
-  min-height: 104px;
 
   ::-webkit-input-placeholder,
   ::-moz-placeholder,
@@ -22,7 +20,7 @@
       border-color: theme('colors.gray.default');
       color: theme('colors.black.default');
       background-color: theme('colors.white');
-      
+
       &:focus {
         color: theme('colors.black.default');
         border-color: theme('colors.blue.default');
