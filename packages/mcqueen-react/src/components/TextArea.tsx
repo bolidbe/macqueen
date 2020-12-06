@@ -24,21 +24,22 @@ const getUIState = ({
 };
 
 interface TextAreaPropsType {
-  id?: string,
-  isDisabled?: boolean,
-  isReadOnly?: boolean,
-  isRequired?: boolean,
-  hasError?: boolean,
-  placeholder?: string,
-  name?: string,
-  value: string,
-  maxLength?: number,
-  onChange: (newValue: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void,
-  onFocus?: () => void,
-  onBlur?: () => void,
-  className?: string,
-  label?: ReactNode,
-  note?: ReactNode,
+  id?: string;
+  isDisabled?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
+  hasError?: boolean;
+  placeholder?: string;
+  name?: string;
+  value: string;
+  maxLength?: number;
+  onChange: (newValue: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  className?: string;
+  label?: ReactNode;
+  note?: ReactNode;
+  rows?: number;
 }
 
 export default function TextArea ({
@@ -56,7 +57,8 @@ export default function TextArea ({
   name,
   className,
   label,
-  note
+  note,
+  rows = 4
 }: TextAreaPropsType): JSX.Element {
   const uiState = getUIState({ hasError, isDisabled });
 
@@ -85,6 +87,7 @@ export default function TextArea ({
         onFocus={onFocus}
         onBlur={onBlur}
         name={name}
+        rows={rows}
       />
       {
         note && (
