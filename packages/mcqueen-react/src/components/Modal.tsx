@@ -41,7 +41,7 @@ export default function Modal({
   }, [])
 
   const onClickCurtain = (event: any) => {
-    if (event.target === event.currentTarget) {
+    if (shouldCloseOnCurtainClick && event.target === event.currentTarget) {
       onClose();
     }
   }
@@ -52,7 +52,7 @@ export default function Modal({
         [styles.curtain]: true,
         [styles.curtainOpen]: isOpen
       })}>
-        <div onClick={shouldCloseOnCurtainClick ? onClickCurtain : undefined} className={classNames({
+        <div onClick={onClickCurtain} className={classNames({
           [styles.curtainInner]: true,
           [styles.curtainInnerScroll]: shouldModalScroll
         })}>
@@ -65,8 +65,8 @@ export default function Modal({
             [styles.modalHeightMedium]: height === 'medium',
             [styles.modalHeightLarge]: height === 'large',
             [styles.modalShouldScroll]: shouldModalScroll
-          }, className)}>
-            <div className={styles.container}>
+          })}>
+            <div className={classNames(styles.container, className)}>
               {!shouldHideCloseButton && (
                 <div className={styles.closeButton}>
                   <div className="m-3">
