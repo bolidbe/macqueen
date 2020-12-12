@@ -34,6 +34,12 @@ export default function Modal({
     else noScroll.off()
   }, [isOpen])
 
+  useEffect(() => {
+    return () => {
+      noScroll.off()
+    }
+  }, [])
+
   const onClickCurtain = (event: any) => {
     if (event.target === event.currentTarget) {
       onClose();

@@ -6,11 +6,10 @@ create_link:
 	npm link @bolid/${package}
 
 share_link:
-	npm-link-shared ./node_modules/@bolid/${package}/node_modules . react
+	npm-link-shared ./node_modules/@bolid/${package}/node_modules . ${shared_package}
 
 link:
 	rm -rf node_modules yarn.lock package-lock.json
-	# make create_link package="mcqueen-icons"
-	make create_link package="mcqueen-react"
 	npm i
-	make share_link package="mcqueen-react"
+	make create_link package="mcqueen-react"
+	make share_link package="mcqueen-react" shared_package="react"
