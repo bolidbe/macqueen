@@ -16,6 +16,7 @@ export { default as Tooltip } from "./components/Tooltip";
 export { default as Breadcrumbs } from "./components/Breadcrumbs";
 export { default as HtmlContent } from "./components/HtmlContent";
 export { default as ShowMore } from "./components/ShowMore";
+export { default as Pill } from "./components/Pill";
 export * from "./components/Avatar";
 export * from "./components/Chip";
 export * from "./components/Pagination";

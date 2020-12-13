@@ -27,7 +27,8 @@ import {
   HtmlContent,
   ShowMore,
   LinkPagination,
-  ClickPagination
+  ClickPagination,
+  Pill
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -470,6 +471,21 @@ export default function Home() {
           </Section>
           <Section title="With Icon">
             <ToggleChip isSelected={true} iconRight="plus">Toggle Chip</ToggleChip>
+          </Section>
+        </Card>
+        <Card title="Pill">
+          <Section title="Colors">
+            {["orange", "red", "pink", "purple", "yellow", "blue", "green"].map((color, i) => (
+              <Pill key={i} className="mr-2" color={color}>Pill { color }</Pill>
+            ))}
+          </Section>
+          <Section title="Sizes">
+          {["large", "medium", "small"].map((size, i) => (
+            <Pill key={i} className="mr-2" color="orange" size={size}>Pill ({size})</Pill>
+          ))}
+          </Section>
+          <Section title="With Icon">
+            <Pill color="orange" icon="plus">Pill with an icon</Pill>
           </Section>
         </Card>
         <Card title="Modal">
