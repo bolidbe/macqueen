@@ -7,7 +7,7 @@ import styles from "./Chip.module.scss"
 interface ChipPropsType {
   children: ReactNode;
   isSelected: boolean;
-  onClick()?: void;
+  onClick?(): void;
   className?: string;
   iconLeft?: string;
   iconRight?: string;
