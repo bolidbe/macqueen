@@ -7,6 +7,7 @@ import styles from "./Chip.module.scss"
 interface ChipPropsType {
   children: ReactNode;
   isSelected: boolean;
+  onClick()?: void;
   className?: string;
   iconLeft?: string;
   iconRight?: string;
@@ -15,12 +16,13 @@ interface ChipPropsType {
 export function FilterChip({
   children,
   className,
+  onClick,
   iconLeft,
   iconRight,
   isSelected
 }: ChipPropsType) {
   return (
-    <div className={classNames({
+    <div onClick={onClick} className={classNames({
       [styles.chip]: true,
       [styles.chipThemeFilter]: true,
       [styles.chipStateSelected]: isSelected
@@ -46,13 +48,14 @@ export function FilterChip({
 
 export function ToggleChip({
   children,
+  onClick,
   className,
   iconLeft,
   iconRight,
   isSelected
 }: ChipPropsType) {
   return (
-    <div className={classNames({
+    <div onClick={onClick} className={classNames({
       [styles.chip]: true,
       [styles.chipThemeToggle]: true,
       [styles.chipStateSelected]: isSelected
