@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -22,7 +22,7 @@
     "react"
   ],
   "main": "dist/cjs/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/cjs/index.d.ts",
   "files": [
     "dist",
     "babel.config.js",

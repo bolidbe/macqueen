@@ -15,7 +15,13 @@ const formats = [{
   plugins: [
     typescript({
       useTsconfigDeclarationDir: true,
-      typescript: require('typescript')
+      typescript: require('typescript'),
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+          declarationDir: path.join('dist', 'es', 'src')
+        }
+      }
     }),
     babel(),
     nodeResolve(),
@@ -43,17 +49,23 @@ const formats = [{
   plugins: [
     typescript({
       useTsconfigDeclarationDir: true,
-      typescript: require('typescript')
+      typescript: require('typescript'),
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+          declarationDir: path.join('dist', 'cjs')
+        }
+      }
     }),
     babel(),
+    nodeResolve(),
+    commonjs(),
+    json(),
     postcss({
       extract: false,
       modules: true,
       use: ['sass'],
-    }),
-    json(),
-    nodeResolve(),
-    commonjs()
+    })
   ],
   external: id =>
     // Don't attempt to bundle dependencies and peerDependencies.
