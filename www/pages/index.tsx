@@ -28,7 +28,8 @@ import {
   ShowMore,
   LinkPagination,
   ClickPagination,
-  Pill
+  Pill,
+  Autosuggest
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -71,6 +72,40 @@ const textSizes: TextSizeType[] = [1, 2, 3, 4]
 
 type TitleSizeType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
+
+const SearchAutosuggest = () => {
+  const [value, setValue] = useState("")
+
+  const handleSelect = (val) => {
+    setValue(val)
+  }
+
+  const options = [{
+    label: "First",
+    value: "First"
+  }, {
+    label: "Second",
+    value: "Second"
+  }, {
+    label: "Third",
+    value: "Third"
+  }]
+
+  return (
+    <>
+      <Autosuggest
+        iconLeft="search"
+        label="Search for something"
+        placeholder="Placeholder"
+        options={options}
+        onSelect={handleSelect}
+      />
+      <Text size={4} className="mt-1">
+      Selected value : { value ? value : "Nothing yet..." }
+      </Text>
+    </>
+  )
+}
 
 export default function Home() {
   const [textInput, setTextInput] = useState("")
@@ -647,6 +682,9 @@ export default function Home() {
           <Section className="mt-5" title="Triggered by url changes">
             <LinkPagination pagesCount={10}/>
           </Section>
+        </Card>
+        <Card title="Autosuggest">
+          <SearchAutosuggest/>
         </Card>
       </div>
     </div>

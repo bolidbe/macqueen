@@ -1,0 +1,32 @@
+.input{
+  &:active{
+    border-color: red!important;
+  }
+}
+
+.options {
+  padding: 4px 0 4px 0;
+  position: absolute;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  max-height: 280px;
+  overflow-x: auto;
+  background-color: #fff;
+  z-index: 10;
+  font-size: theme('fontSize.body3');
+  font-weight: 500;
+  width: 100%;
+  border-width: 1px;
+  border-color: theme('colors.gray.300');
+  box-shadow: theme('boxShadow.4');
+
+  li, .error {
+    padding: 8px 10px;
+  }
+
+  li {
+    &.active {
+      background-color: theme('colors.blue.200');
+    }
+  }
+}

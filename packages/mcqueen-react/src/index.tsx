@@ -3,6 +3,7 @@ export { default as Text } from './components/Text';
 export { default as Button } from './components/Button';
 export { default as TextInput } from "./components/TextInput";
 export { default as TextArea } from "./components/TextArea";
+export { default as Autosuggest } from "./components/Autosuggest";
 export { default as LoaderDots } from "./components/LoaderDots";
 export { default as Select } from "./components/Select";
 export { default as Checkbox } from "./components/Checkbox";
