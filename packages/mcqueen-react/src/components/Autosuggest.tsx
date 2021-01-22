@@ -5,14 +5,14 @@ import TextInput from "./TextInput"
 
 import styles from "./Autosuggest.module.scss"
 
-export interface OptionType {
+export interface AutosuggestOptionType {
   label: string;
   value: any;
 }
 
 interface AutosuggestPropsType {
   onSelect(value: any): void;
-  options: OptionType[];
+  options: AutosuggestOptionType[];
   onChange?(value: string): void;
   className?: string;
   iconLeft?: string;
@@ -35,7 +35,7 @@ export default function Autosuggest({
   const [search, setSearch] = useState("")
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
 
-  const handleSelect = (option: OptionType) => {
+  const handleSelect = (option: AutosuggestOptionType) => {
     setSearch(option.label)
     onSelect(option.value)
   }
