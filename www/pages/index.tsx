@@ -1,5 +1,6 @@
 import { useState } from "react"
 import classNames from "classnames"
+import { includes, filter } from "lodash"
 import { GetServerSideProps } from 'next'
 import {
   ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
@@ -74,13 +75,18 @@ type TitleSizeType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
 
 const SearchAutosuggest = () => {
-  const [value, setValue] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")
+  const [value, setValue] = useState(null)
+
+  const handleChange = (val) => {
+    setSearchTerm(val)
+  }
 
   const handleSelect = (val) => {
     setValue(val)
   }
 
-  const options = [{
+  const options = filter([{
     label: "First",
     value: "First"
   }, {
@@ -89,7 +95,7 @@ const SearchAutosuggest = () => {
   }, {
     label: "Third",
     value: "Third"
-  }]
+  }], option => searchTerm === "" || includes(option.label.toLowerCase(), searchTerm))
 
   return (
     <>
@@ -99,6 +105,8 @@ const SearchAutosuggest = () => {
         placeholder="Placeholder"
         options={options}
         onSelect={handleSelect}
+        onChange={handleChange}
+        value={searchTerm}
       />
       <Text size={4} className="mt-1">
       Selected value : { value ? value : "Nothing yet..." }

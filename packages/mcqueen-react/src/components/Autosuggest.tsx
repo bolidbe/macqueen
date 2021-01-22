@@ -11,38 +11,40 @@ export interface AutosuggestOptionType {
 }
 
 interface AutosuggestPropsType {
-  onSelect(value: any): void;
+  value: string;
   options: AutosuggestOptionType[];
-  onChange?(value: string): void;
+  onSelect(value: any): void;
+  onChange(value: string): void;
   className?: string;
   iconLeft?: string;
   placeholder?: string;
   label?: string;
   isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
 export default function Autosuggest({
+  value,
   onSelect,
+  options,
   className,
   iconLeft,
   placeholder,
-  options,
   onChange,
-  isLoading,
-  label
+  label,
+  isLoading=false,
+  isDisabled=false
 }: AutosuggestPropsType) {
   const [inputEl, setInputEl] = useState<HTMLInputElement | null>(null);
-  const [search, setSearch] = useState("")
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
 
   const handleSelect = (option: AutosuggestOptionType) => {
-    setSearch(option.label)
+    onChange(option.label)
     onSelect(option.value)
   }
 
   const handleChange = (value: any) => {
-    setSearch(value)
-    if(onChange) onChange(value)
+    onChange(value)
   }
 
   const handleFocus = () => setOptionsIsOpen(true)
@@ -69,7 +71,7 @@ export default function Autosuggest({
         { option.label }
       </li>
     ))
-  }else if(search !== ""){
+  }else if(value !== ""){
     optionsList = <li>Aucun résultat ne correspond à votre recherche</li>
   }
 
@@ -78,12 +80,13 @@ export default function Autosuggest({
       <TextInput
         ref={setInputEl}
         onChange={handleChange}
-        value={search}
+        value={value}
         onFocus={handleFocus}
         className={classNames(styles.input, "w-full")}
         iconLeft={iconLeft}
         placeholder={placeholder}
         label={label}
+        isDisabled={isDisabled}
       />
       {(optionsIsOpen && optionsList) && (
         <ul className={styles.options} onClick={handleBlur}>
