@@ -23,65 +23,69 @@ const getPath = () => {
   }
 }
 
-const getPrevLinks = (Component: any, currentPage: number, props: {[key: string]: any} = {}) => {
-  const min = currentPage - 2 > 1
-  ? currentPage - 1
+const getPrevPages = (Component: any, page: number, props: {[key: string]: any} = {}) => {
+  const min = page - 2 > 1
+  ? page - 1
   : 1
 
   return (min === 1 ? [] : [
     <Component key={1} page={1} {...props}>1</Component>
   ])
   .concat(min > 2 ? [
-    <span key={currentPage} className="mx-1">...</span>
+    <span key={page} className="mx-1">...</span>
   ] : [])
-  .concat(range(min, currentPage).map((page: number) => (
-    <Component key={page} page={page} {...props}>{ page }</Component>
+  .concat(range(min, page).map((p: number) => (
+    <Component key={p} page={p} {...props}>{ p }</Component>
   )))
 }
 
-const getNextLinks = (Component: any, currentPage: number, pagesCount: number, props: {[key: string]: any} = {}) => {
-  const max = currentPage + 2 < pagesCount
-  ? currentPage + 1
+const getNextPages = (Component: any, page: number, pagesCount: number, props: {[key: string]: any} = {}) => {
+  const max = page + 2 < pagesCount
+  ? page + 1
   : pagesCount
 
-  return range(currentPage + 1, max + 1).map((page: number) => (
-    <Component key={page} page={page} {...props}>{ page }</Component>
+  return range(page + 1, max + 1).map((p: number) => (
+    <Component key={p} page={p} {...props}>{ p }</Component>
   ))
   .concat(max < pagesCount - 1 ? [
-    <span key={currentPage} className="mx-1">...</span>
+    <span key={page} className="mx-1">...</span>
   ] : [])
   .concat(max === pagesCount ? [] : [
     <Component key={pagesCount} page={pagesCount} {...props}>{ pagesCount }</Component>
   ])
 }
 
-interface LinkPagePropsType {
+/*
+* PAGINATION USING URL PARAM QUERY
+*/
+
+interface QueryPagePropsType {
   page: number,
+  query: {[key: string]: any};
   isDisabled?: boolean,
   children?: ReactNode
 }
 
-let LinkPage = ({
+const QueryPage = ({
   page,
+  query,
   children,
   isDisabled=false
-}: LinkPagePropsType) => {
+}: QueryPagePropsType) => {
   const router = useRouter()
-  const { url, query } = queryString.parseUrl(router ? router.asPath : getPath())
+  const { url } = queryString.parseUrl(router ? router.asPath : getPath())
+  const params = queryString.stringify({
+    ...query,
+    page: page === 1 ? undefined : page
+  })
+  const newUrl = url + (params !== "" ? `?${params}` : "")
 
   const anchorProps = {
     className: classNames(styles.link, { [styles.disabled]: isDisabled })
   }
 
-  const params = queryString.stringify({
-    ...query,
-    page: page === 1 ? undefined : page
-  })
-
-  const newUrl = url + (params !== "" ? `?${params}` : "")
-
   const link = Link ? (
-    <Link href={url} as={newUrl}>
+    <Link href={newUrl}>
       <a {...anchorProps}>
         { children }
       </a>
@@ -95,47 +99,136 @@ let LinkPage = ({
   return !isDisabled ? link : <div {...anchorProps}>{ children }</div>
 }
 
-interface LinkPaginationPropsType {
+interface QueryPaginationPropsType {
   pagesCount: number;
   className?: string;
 }
 
-const LinkPagination = ({
+const QueryPagination = ({
   pagesCount,
   className
-}: LinkPaginationPropsType) => {
+}: QueryPaginationPropsType) => {
   const router = useRouter()
   const { query } = queryString.parseUrl(router ? router.asPath : getPath())
-  const currentPage = query.page ? +query.page : 1
+  const page = query.page ? +query.page : 1
 
   return pagesCount > 1 ? (
     <div className={classNames("flex justify-center items-center", className)}>
-      <LinkPage isDisabled={currentPage === 1} page={currentPage - 1}>
+      <QueryPage isDisabled={page === 1} page={page - 1} query={query}>
         <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
-      </LinkPage>
-      { getPrevLinks(LinkPage, currentPage) }
-      <span className={classNames(styles.link, styles.active)}>{ currentPage }</span>
-      { getNextLinks(LinkPage, currentPage, pagesCount) }
-      <LinkPage isDisabled={currentPage === pagesCount} page={currentPage + 1}>
+      </QueryPage>
+      { getPrevPages(QueryPage, page, { query }) }
+      <span className={classNames(styles.link, styles.active)}>{ page }</span>
+      { getNextPages(QueryPage, page, pagesCount, { query }) }
+      <QueryPage isDisabled={page === pagesCount} page={page + 1} query={query}>
         <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
-      </LinkPage>
+      </QueryPage>
     </div>
   ) : null
 }
 
-interface ClickPagePropsType {
+
+/*
+* PAGINATION USING URL PARAM QUERY
+*/
+
+interface PathPagePropsType {
+  page: number,
+  path: string,
+  isDisabled?: boolean,
+  children?: ReactNode
+}
+
+const PathPage = ({
+  page,
+  path,
+  children,
+  isDisabled=false
+}: PathPagePropsType) => {
+  const router = useRouter()
+  const { query } = queryString.parseUrl(router ? router.asPath : getPath())
+  const params = queryString.stringify(query)
+  const url = path + (page !== 1 ? `${path.endsWith("/") ? "" : "/"}${page}` : `${path === "" ? "/" : ""}`) + (params !== "" ? `?${params}` : "")
+
+  const anchorProps = {
+    className: classNames(styles.link, { [styles.disabled]: isDisabled })
+  }
+
+  const link = Link ? (
+    <Link href={url}>
+      <a {...anchorProps}>
+        { children }
+      </a>
+    </Link>
+  ) : (
+    <a href={url} {...anchorProps}>
+      { children }
+    </a>
+  )
+
+  return !isDisabled ? link : <div {...anchorProps}>{ children }</div>
+}
+
+interface PathPaginationPropsType {
+  path: string;
+  page: number;
+  pagesCount: number;
+  className?: string;
+}
+
+const PathPagination = ({
+  pagesCount,
+  className
+}: PathPaginationPropsType) => {
+  const router = useRouter()
+  const { url } = queryString.parseUrl(router ? router.asPath : getPath())
+  const urlSplit = url.split("/")
+  const lastItemOfUrl = urlSplit[urlSplit.length - 1]
+
+  // If the last item is a number, then we know that we're on a page
+  let page;
+  let path;
+  if(/^\d+$/.test(lastItemOfUrl)){
+    page = parseInt(lastItemOfUrl)
+    path = urlSplit.slice(-1,1).join("/")
+  }else{
+    page = 1
+    path = url
+  }
+  console.log(path, page)
+
+  return pagesCount > 1 ? (
+    <div className={classNames("flex justify-center items-center", className)}>
+      <PathPage isDisabled={page === 1} page={page - 1} path={path}>
+        <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
+      </PathPage>
+      { getPrevPages(PathPage, page, { path }) }
+      <span className={classNames(styles.link, styles.active)}>{ page }</span>
+      { getNextPages(PathPage, page, pagesCount, { path }) }
+      <PathPage isDisabled={page === pagesCount} page={page + 1} path={path}>
+        <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
+      </PathPage>
+    </div>
+  ) : null
+}
+
+/*
+* PAGINATION USING LOCAL STATE AND CLICK
+*/
+
+interface StatePagePropsType {
   isDisabled?: boolean;
   children?: ReactNode;
   onClick(page: number): void;
   page: number;
 }
 
-const ClickPage = ({
+const StatePage = ({
   onClick,
   children,
   isDisabled=false,
   page
-}: ClickPagePropsType) => {
+}: StatePagePropsType) => {
   const buttonProps = {
     className: classNames(styles.link, { [styles.disabled]: isDisabled })
   }
@@ -147,30 +240,34 @@ const ClickPage = ({
   ) : <div {...buttonProps}>{ children }</div>
 }
 
-interface ClickPaginationPropsType {
+interface StatePaginationPropsType {
   pagesCount: number;
-  currentPage: number;
+  page: number;
   className?: string;
   onClick(page: number): void
 }
 
-const ClickPagination = ({
+const StatePagination = ({
   pagesCount,
-  currentPage,
+  page,
   onClick,
   className
-}: ClickPaginationPropsType) => pagesCount > 1 ? (
+}: StatePaginationPropsType) => pagesCount > 1 ? (
   <div className={classNames("flex justify-center items-center", className)}>
-    <ClickPage isDisabled={currentPage === 1} page={currentPage - 1} onClick={onClick}>
+    <StatePage isDisabled={page === 1} page={page - 1} onClick={onClick}>
       <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
-    </ClickPage>
-    { getPrevLinks(ClickPage, currentPage, { onClick }) }
-    <span className={classNames(styles.link, styles.active)}>{ currentPage }</span>
-    { getNextLinks(ClickPage, currentPage, pagesCount, { onClick }) }
-    <ClickPage isDisabled={currentPage === pagesCount} page={currentPage + 1} onClick={onClick}>
+    </StatePage>
+    { getPrevPages(StatePage, page, { onClick }) }
+    <span className={classNames(styles.link, styles.active)}>{ page }</span>
+    { getNextPages(StatePage, page, pagesCount, { onClick }) }
+    <StatePage isDisabled={page === pagesCount} page={page + 1} onClick={onClick}>
       <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
-    </ClickPage>
+    </StatePage>
   </div>
 ) : null
 
-export { LinkPagination, ClickPagination }
+export {
+  PathPagination,
+  QueryPagination,
+  StatePagination
+}

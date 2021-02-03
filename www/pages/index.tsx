@@ -27,8 +27,9 @@ import {
   Breadcrumbs,
   HtmlContent,
   ShowMore,
-  LinkPagination,
-  ClickPagination,
+  QueryPagination,
+  StatePagination,
+  PathPagination,
   Pill,
   Autosuggest
 } from "@bolid/mcqueen-react"
@@ -684,11 +685,14 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Pagination">
-          <Section title="Triggered by click">
-            <ClickPagination pagesCount={10} currentPage={1} onClick={() => {}}/>
+          <Section title="Using local state">
+            <StatePagination page={1} pagesCount={10} onClick={() => {}}/>
           </Section>
-          <Section className="mt-5" title="Triggered by url changes">
-            <LinkPagination pagesCount={10}/>
+          <Section className="mt-5" title="Using query string parameter">
+            <QueryPagination pagesCount={10}/>
+          </Section>
+          <Section className="mt-5" title="Using url path">
+            <PathPagination page={1} path="" pagesCount={10}/>
           </Section>
         </Card>
         <Card title="Autosuggest">
