@@ -195,7 +195,6 @@ const PathPagination = ({
     page = 1
     path = url
   }
-  console.log(path, page)
 
   return pagesCount > 1 ? (
     <div className={classNames("flex justify-center items-center", className)}>
