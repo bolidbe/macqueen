@@ -145,10 +145,11 @@ const PathPage = ({
   children,
   isDisabled=false
 }: PathPagePropsType) => {
-  const router = useRouter()
-  const { query } = queryString.parseUrl(router ? router.asPath : getPath())
-  const params = queryString.stringify(query)
-  const url = path + (page !== 1 ? `${path.endsWith("/") ? "" : "/"}${page}` : `${path === "" ? "/" : ""}`) + (params !== "" ? `?${params}` : "")
+  const url = path + (
+    page !== 1
+    ? `${path.endsWith("/") ? "" : "/"}${page}`
+    : `${path === "" ? "/" : ""}`
+  )
 
   const anchorProps = {
     className: classNames(styles.link, { [styles.disabled]: isDisabled })
@@ -188,7 +189,7 @@ const PathPagination = ({
   let path;
   if(/^\d+$/.test(lastItemOfUrl)){
     page = parseInt(lastItemOfUrl)
-    path = urlSplit.slice(-1,1).join("/")
+    path = urlSplit.slice(0,-1).join("/")
   }else{
     page = 1
     path = url
