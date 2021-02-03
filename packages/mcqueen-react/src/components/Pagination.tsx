@@ -170,8 +170,6 @@ const PathPage = ({
 }
 
 interface PathPaginationPropsType {
-  path: string;
-  page: number;
   pagesCount: number;
   className?: string;
 }
