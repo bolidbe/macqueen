@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-scss",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SCSS files for building bolid UI.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-scss",
   "repository": {

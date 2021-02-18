@@ -23,6 +23,8 @@
   border-radius: theme('borderRadius.default');
   max-width: 235px;
 
+  z-index: 100;
+
   &Theme{
     &Dark {
       background: theme('colors.black.default');
