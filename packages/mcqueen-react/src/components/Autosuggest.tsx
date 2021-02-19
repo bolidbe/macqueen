@@ -1,5 +1,6 @@
 import React, { ReactNode, useState, useEffect } from "react"
 import classNames from "classnames"
+import { groupBy } from "lodash"
 
 import TextInput from "./TextInput"
 
@@ -21,6 +22,7 @@ interface AutosuggestPropsType {
   label?: string;
   isLoading?: boolean;
   isDisabled?: boolean;
+  groupBy?: string;
 }
 
 export default function Autosuggest({
@@ -33,7 +35,8 @@ export default function Autosuggest({
   onChange,
   label,
   isLoading=false,
-  isDisabled=false
+  isDisabled=false,
+  groupBy: group
 }: AutosuggestPropsType) {
   const [inputEl, setInputEl] = useState<HTMLInputElement | null>(null);
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
@@ -64,15 +67,43 @@ export default function Autosuggest({
 
   let optionsList: ReactNode;
   if(isLoading){
-    optionsList = <li>Chargement des résultats...</li>
+    optionsList = (
+      <ul className={styles.options} onClick={handleBlur}>
+        <li>Chargement des résultats...</li>
+      </ul>
+    )
   }else if(options.length > 0){
-    optionsList = options.map((option, i) => (
-      <li className="hover:bg-blue-200 cursor-pointer" key={i} onClick={() => handleSelect(option)}>
-        { option.label }
-      </li>
-    ))
+    if(group){
+      const groups = groupBy(options, group)
+      optionsList = Object.keys(groups).map((key: string, i: number) => (
+        <div className={styles.group} key={i}>
+          <div className={styles.groupName}>{ key }</div>
+          <ul className={styles.options} onClick={handleBlur}>
+          {groups[key].map((option: AutosuggestOptionType, j: number) => (
+            <li className="hover:bg-blue-200 cursor-pointer" key={j} onClick={() => handleSelect(option)}>
+              { option.label }
+            </li>
+          ))}
+          </ul>
+        </div>
+      ))
+    }else{
+      optionsList = (
+        <ul className={styles.options} onClick={handleBlur}>
+        {options.map((option, i) => (
+          <li className="hover:bg-blue-200 cursor-pointer" key={i} onClick={() => handleSelect(option)}>
+            { option.label }
+          </li>
+        ))}
+        </ul>
+      )
+    }
   }else if(value !== ""){
-    optionsList = <li>Aucun résultat ne correspond à votre recherche</li>
+    optionsList = (
+      <ul className={styles.options} onClick={handleBlur}>
+        <li>Aucun résultat ne correspond à votre recherche</li>
+      </ul>
+    )
   }
 
   return (
@@ -89,9 +120,9 @@ export default function Autosuggest({
         isDisabled={isDisabled}
       />
       {(optionsIsOpen && optionsList) && (
-        <ul className={styles.options} onClick={handleBlur}>
-         { optionsList }
-        </ul>
+        <div className={styles.dropdown}>
+        { optionsList }
+        </div>
       )}
     </div>
   )

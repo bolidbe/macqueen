@@ -4,7 +4,7 @@
   }
 }
 
-.options {
+.dropdown{
   padding: 4px 0 4px 0;
   position: absolute;
   border-bottom-left-radius: 5px;
@@ -13,12 +13,30 @@
   overflow-x: auto;
   background-color: #fff;
   z-index: 1;
-  font-size: theme('fontSize.body3');
+  font-size: theme('fontSize.body-2');
   font-weight: 500;
   width: 100%;
   border-width: 1px;
   border-color: theme('colors.gray.300');
   box-shadow: theme('boxShadow.4');
+}
+
+.group{
+  .groupName{
+    padding: 6px 6px;
+    color: theme('colors.black.default');
+    font-weight: 600;
+  }
+
+  ul.options{
+    li{
+      padding: 8px 16px;
+    }
+  }
+}
+
+ul.options {
+  padding: 0;
 
   li, .error {
     padding: 8px 10px;

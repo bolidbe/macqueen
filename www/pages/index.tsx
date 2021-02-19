@@ -75,7 +75,9 @@ const textSizes: TextSizeType[] = [1, 2, 3, 4]
 type TitleSizeType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
 
-const SearchAutosuggest = () => {
+const SearchAutosuggest = ({
+  groupBy
+}) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [value, setValue] = useState(null)
 
@@ -89,13 +91,16 @@ const SearchAutosuggest = () => {
 
   const options = filter([{
     label: "First",
-    value: "First"
+    value: "First",
+    group: "Group 1"
   }, {
     label: "Second",
-    value: "Second"
+    value: "Second",
+    group: "Group 1"
   }, {
     label: "Third",
-    value: "Third"
+    value: "Third",
+    group: "Group 2"
   }], option => searchTerm === "" || includes(option.label.toLowerCase(), searchTerm))
 
   return (
@@ -108,6 +113,7 @@ const SearchAutosuggest = () => {
         onSelect={handleSelect}
         onChange={handleChange}
         value={searchTerm}
+        groupBy={groupBy}
       />
       <Text size={4} className="mt-1">
       Selected value : { value ? value : "Nothing yet..." }
@@ -696,7 +702,12 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Autosuggest">
-          <SearchAutosuggest/>
+          <Section title="Simple autosuggest">
+            <SearchAutosuggest/>
+          </Section>
+          <Section title="Autosuggest with groups">
+            <SearchAutosuggest groupBy="group"/>
+          </Section>
         </Card>
       </div>
     </div>
