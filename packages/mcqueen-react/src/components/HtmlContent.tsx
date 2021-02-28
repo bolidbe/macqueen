@@ -21,7 +21,7 @@ export default function HtmlContent({
     }
 
     if ("IntersectionObserver" in window) {
-      lazyloadImages = document.querySelectorAll("img[data-src]:not(.loaded-lazy-image)");
+      lazyloadImages = Array.prototype.slice.call(document.querySelectorAll("img[data-src]:not(.loaded-lazy-image)"));
 
       var imageObserver = new IntersectionObserver(function(entries, _) {
         entries.forEach(function(entry) {
@@ -38,7 +38,7 @@ export default function HtmlContent({
       });
     } else {
       var lazyloadThrottleTimeout: any;
-      lazyloadImages = document.querySelectorAll("img[data-src]:not(.loaded-lazy-image)");
+      lazyloadImages = Array.prototype.slice.call(document.querySelectorAll("img[data-src]:not(.loaded-lazy-image)"));
 
       lazyload = () => {
         if(lazyloadThrottleTimeout) {
