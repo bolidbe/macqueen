@@ -47,9 +47,9 @@
       background-color: theme('colors.white.default');
     }
     &Disabled{
-      color: theme('colors.gray.default');
-      border-color: theme('colors.gray.300');
-      background-color: theme('colors.gray.200');
+      color: #99ACC2;
+      border-color: theme('colors.gray.default');
+      background-color: theme('colors.gray.300');
     }
     &Default{
       &Unchecked{
@@ -85,7 +85,7 @@
       color: theme('colors.red.default');
     }
     &Disabled{
-      color: theme('colors.gray.default');
+      color: #7C98B6;
     }
     &Default{
       color: inherit;

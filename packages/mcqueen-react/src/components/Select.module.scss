@@ -34,7 +34,7 @@
     &Disabled {
       background-color: theme('colors.gray.200');
       border-color: theme('colors.gray.default');
-      color: theme('colors.black.200');
+      color: #7C98B6;
     }
 
     &Error {
@@ -81,7 +81,7 @@
       stroke: theme("colors.black.default");
     }
     &Disabled{
-      stroke: theme("colors.gray.default");
+      stroke: #7C98B6;
     }
     &Error{
       stroke: theme("colors.red.default");

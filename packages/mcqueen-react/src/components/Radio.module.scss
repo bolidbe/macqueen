@@ -41,7 +41,7 @@
   &Border{
     &State{
       &Disabled{
-        stroke: theme('colors.gray.300');
+        stroke: theme('colors.gray.default');
       }
       &Checked{
         stroke: theme('colors.blue.default');
@@ -58,7 +58,7 @@
   &Background{
     &State{
       &Disabled{
-        fill: theme('colors.gray.200');
+        fill: theme('colors.gray.300');
       }
       &Checked{
         fill: theme('colors.white');
@@ -75,7 +75,7 @@
   &Radio{
     &State{
       &Disabled{
-        fill: theme('colors.gray.default');
+        fill: #99ACC2;
       }
       &Checked{
         fill: theme('colors.blue.default');
@@ -101,7 +101,7 @@
 
   &State{
     &Disabled{
-      color: theme('colors.gray.default');
+      color: #7C98B6;
     }
     &Checked{
       color: inherit;
