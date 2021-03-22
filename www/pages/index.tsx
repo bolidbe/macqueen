@@ -3,7 +3,72 @@ import classNames from "classnames"
 import { includes, filter } from "lodash"
 import { GetServerSideProps } from 'next'
 import {
-  ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
+  AccountFillIcon,
+  AccountOutlineIcon,
+  AirConditioningIcon,
+  AnalyticsIcon,
+  ArrowDownIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
+  AtIcon,
+  BadgeIcon,
+  BodyworkIcon,
+  BrakeIcon,
+  BrowserIcon,
+  BucketIcon,
+  CalendarIcon,
+  CarIcon,
+  CardIcon,
+  ChargeIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  ClockIcon,
+  ClutchIcon,
+  CoinIcon,
+  CompassIcon,
+  CrossIcon,
+  DiagnosticIcon,
+  EditIcon,
+  EngineIcon,
+  ExhaustIcon,
+  FilterIcon,
+  GalleryIcon,
+  HomeIcon,
+  InfoFillIcon,
+  InfoOutlineIcon,
+  LinkIcon,
+  ListIcon,
+  LockIcon,
+  LogoutIcon,
+  MailIcon,
+  MapMarkerFillIcon,
+  MapMarkerOutlineIcon,
+  MinusIcon,
+  OilIcon,
+  PhoneIcon,
+  PlusIcon,
+  QuestionFillIcon,
+  QuestionOutlineIcon,
+  SearchIcon,
+  SettingsIcon,
+  ShockAbsorberIcon,
+  StarFillIcon,
+  StarOutlineIcon,
+  SteeringIcon,
+  StopFillIcon,
+  TimingBeltIcon,
+  TowTruckIcon,
+  UnlockedIcon,
+  UserIcon,
+  UsersIcon,
+  VisionIcon,
+  WarningFillIcon,
+  WarningOutlineIcon,
+  WheelIcon
 } from '@bolid/mcqueen-icons'
 import {
   Title,
@@ -14,6 +79,7 @@ import {
   Select,
   Radio,
   Checkbox,
+  Toggle,
   StarRating,
   BannerAlert,
   Alert,
@@ -138,7 +204,72 @@ export default function Home() {
         <Card title="Icon">
           {
             [
-              ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon, BucketIcon, CalendarIcon, CheckIcon, ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, CoinIcon, CompassIcon, CrossIcon, EditIcon, FilterFillIcon, FilterOutlineIcon, InfoFillIcon, InfoOutlineIcon, LinkIcon, ListIcon, MapMarkerFillIcon, MapMarkerOutlineIcon, MinusIcon, PhoneIcon, PlusIcon, SearchIcon, StarIcon, StopFillIcon, WarningFillIcon, WarningOutlineIcon
+              AccountFillIcon,
+              AccountOutlineIcon,
+              AirConditioningIcon,
+              AnalyticsIcon,
+              ArrowDownIcon,
+              ArrowLeftIcon,
+              ArrowRightIcon,
+              ArrowUpIcon,
+              AtIcon,
+              BadgeIcon,
+              BodyworkIcon,
+              BrakeIcon,
+              BrowserIcon,
+              BucketIcon,
+              CalendarIcon,
+              CarIcon,
+              CardIcon,
+              ChargeIcon,
+              CheckIcon,
+              ChevronDownIcon,
+              ChevronLeftIcon,
+              ChevronRightIcon,
+              ChevronUpIcon,
+              ClockIcon,
+              ClutchIcon,
+              CoinIcon,
+              CompassIcon,
+              CrossIcon,
+              DiagnosticIcon,
+              EditIcon,
+              EngineIcon,
+              ExhaustIcon,
+              FilterIcon,
+              GalleryIcon,
+              HomeIcon,
+              InfoFillIcon,
+              InfoOutlineIcon,
+              LinkIcon,
+              ListIcon,
+              LockIcon,
+              LogoutIcon,
+              MailIcon,
+              MapMarkerFillIcon,
+              MapMarkerOutlineIcon,
+              MinusIcon,
+              OilIcon,
+              PhoneIcon,
+              PlusIcon,
+              QuestionFillIcon,
+              QuestionOutlineIcon,
+              SearchIcon,
+              SettingsIcon,
+              ShockAbsorberIcon,
+              StarFillIcon,
+              StarOutlineIcon,
+              SteeringIcon,
+              StopFillIcon,
+              TimingBeltIcon,
+              TowTruckIcon,
+              UnlockedIcon,
+              UserIcon,
+              UsersIcon,
+              VisionIcon,
+              WarningFillIcon,
+              WarningOutlineIcon,
+              WheelIcon
             ].map((icon, i) => <span key={i}>{ icon({ size: 40 }) }</span>)
           }
         </Card>
@@ -446,6 +577,20 @@ export default function Home() {
               <Checkbox onChange={() => {}} isDisabled>This is a checkbox</Checkbox>
               <Checkbox onChange={() => {}} hasError className="ml-3">This is a checkbox</Checkbox>
               <Checkbox onChange={() => {}} isIndeterminate className="ml-3">This is a checkbox</Checkbox>
+            </div>
+          </Section>
+        </Card>
+        <Card title="Toggle">
+          <Section title="Checked and not checked">
+            <div className="flex items-end">
+              <Toggle onChange={() => {}} isChecked>This is a toggle</Toggle>
+              <Toggle onChange={() => {}} className="ml-3">This is a toggle</Toggle>
+            </div>
+          </Section>
+          <Section title="States">
+            <div className="flex items-end">
+              <Toggle onChange={() => {}} isDisabled>This is a toggle</Toggle>
+              <Toggle onChange={() => {}} hasError className="ml-3">This is a toggle</Toggle>
             </div>
           </Section>
         </Card>

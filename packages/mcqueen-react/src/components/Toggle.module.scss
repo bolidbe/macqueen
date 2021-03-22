@@ -1,0 +1,120 @@
+.toggle {
+  position: relative;
+  display: flex;
+
+  &VerticalAlignTop {
+    align-items: flex-start;
+  }
+
+  &VerticalAlignCenter {
+    align-items: center;
+  }
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+
+  &:focus ~ .toggleContainer {
+    box-shadow: 0 0 0px 4px theme("colors.gray.300");
+  }
+}
+
+$toggleHeight: 22px;
+
+.toggleContainer {
+  width: 40px;
+  height: $toggleHeight;
+  border-radius: 99px;
+  border-width: 2px;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: none;
+  box-sizing: content-box;
+
+  // Margin that makes the input appear decently aligned against
+  // various Thumbprint <Text> sizes
+  .toggleVerticalAlignTop & {
+    margin-top: 1px;
+  }
+
+  &State{
+    &Error{
+      background-color: theme('colors.red.default');
+      border-color: theme('colors.red.default');
+    }
+    &Disabled{
+      background-color: theme('colors.gray.default');
+      border-color: theme('colors.gray.default');
+    }
+    &Default{
+      &Unchecked{
+        background-color: theme('colors.gray.default');
+        border-color: theme('colors.gray.default');
+      }
+      &Checked{
+        justify-content: flex-end;
+        background-color: theme('colors.blue.default');
+        border-color: theme('colors.blue.default');
+      }
+    }
+  }
+}
+
+.toggleImage {
+  width: $toggleHeight;
+  height: $toggleHeight;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+
+  &State{
+    &Error{
+      color: theme('colors.red.default');
+      background-color: theme('colors.white');
+    }
+    &Disabled{
+      color: theme('colors.gray.default');
+      background-color: #99ACC2;
+    }
+    &Default{
+      &Unchecked{
+        color: theme('colors.gray.default');
+        background-color: theme('colors.white');
+      }
+      &Checked{
+        color: theme('colors.blue.default');
+        background-color: theme('colors.white');
+      }
+    }
+  }
+}
+
+.text {
+  // This must take up the remaining available space for content that must be right-aligned.
+  flex: 1 0 0%;
+  // 'min-width' is needed to allow text within the toggle to truncate.
+  min-width: 0;
+  font-size: theme("fontSize.body-2");
+  font-weight: 400;
+  padding-left: 8px;
+
+  &State{
+    &Error{
+      color: theme('colors.red.default');
+    }
+    &Disabled{
+      color: #7C98B6;
+    }
+    &Default{
+      color: inherit;
+    }
+  }
+}

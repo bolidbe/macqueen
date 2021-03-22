@@ -7,6 +7,7 @@ export { default as Autosuggest, AutosuggestOptionType } from "./components/Auto
 export { default as LoaderDots } from "./components/LoaderDots";
 export { default as Select } from "./components/Select";
 export { default as Checkbox } from "./components/Checkbox";
+export { default as Toggle } from "./components/Toggle";
 export { default as Radio } from "./components/Radio";
 export { default as StarRating } from "./components/StarRating";
 export { default as BannerAlert } from "./components/BannerAlert";
