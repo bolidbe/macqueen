@@ -10,9 +10,8 @@ try{
 import styles from "./Breadcrumbs.module.scss"
 
 interface BreadcrumbType {
-  title: string;
-  href: string;
-  as?: string;
+  name: string;
+  path: string;
 }
 
 interface BreadcrumbsPropsType {
@@ -30,17 +29,17 @@ export default function Breadcrumbs({
         <li key={i}>
         {
           Link ? (
-            <Link href={breadcrumb.href} as={breadcrumb.as}>
-              <a className="text-blue">{ breadcrumb.title }</a>
+            <Link href={breadcrumb.path}>
+              <a className="text-blue">{ breadcrumb.name }</a>
             </Link>
           ) : (
-            <a href={breadcrumb.href} className="text-blue">{ breadcrumb.title }</a>
+            <a href={breadcrumb.path} className="text-blue">{ breadcrumb.name }</a>
           )
         }
         </li>
       ) : (
         <li key={i}>
-          <span>{ breadcrumb.title }</span>
+          <span>{ breadcrumb.name }</span>
         </li>
       ))}
     </ul>
