@@ -63,8 +63,11 @@
   }
 
   &Theme{
-    &Brand {
+    &Primary {
       background-color: theme('colors.orange.default');
+    }
+    &Secondary {
+      background-color: theme('colors.blue.default');
     }
     &Inverse {
       background-color: theme('colors.white');

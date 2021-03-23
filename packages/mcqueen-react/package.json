@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {

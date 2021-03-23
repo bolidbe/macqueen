@@ -8,7 +8,7 @@ import styles from './Button.module.scss';
 
 enum loaderDotsTheme {
   primary = 'inverse',
-  secondary = 'brand',
+  secondary = 'primary',
   tertiary = 'muted'
 }
 
