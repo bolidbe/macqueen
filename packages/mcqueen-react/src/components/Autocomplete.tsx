@@ -4,6 +4,8 @@ import Autosuggest from 'react-autosuggest';
 
 // import TextInput from "./TextInput"
 
+import styles from "./Autocomplete.module.scss"
+
 type SuggestionValueType = string | number
 
 export interface SuggestionType {
@@ -15,6 +17,23 @@ export interface SuggestionType {
 export interface SuggestionsSectionType {
   title: string;
   suggestions: SuggestionType[];
+}
+
+interface AutocompleteTheme {
+  container: string;
+  containerOpen: string;
+  input: string;
+  inputOpen: string;
+  inputFocused: string;
+  suggestionsContainer: string;
+  suggestionsContainerOpen: string;
+  suggestionsList: string;
+  suggestion: string;
+  suggestionFirst: string;
+  suggestionHighlighted: string;
+  sectionContainer: string;
+  sectionContainerFirst: string;
+  sectionTitle: string;
 }
 
 interface HandleChangeType {
@@ -48,28 +67,57 @@ interface AutocompletePropsType {
   className?: string,
   label?: ReactNode,
   note?: ReactNode,
-
+  isLoading?: boolean;
   suggestions: SuggestionsSectionType[] | SuggestionType[];
   onFetchRequested(value: string): void;
   onSelect: (value: SuggestionValueType, suggestion: SuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
   onClearRequested?(): void;
   renderSuggestion?(suggestion: SuggestionType): ReactNode;
+  renderSuggestionsContainer?(options: any): ReactNode;
+  renderSectionTitle?(section: SuggestionsSectionType): ReactNode;
   shouldAlwaysRenderSuggestions?: boolean;
+  theme?: AutocompleteTheme;
 }
 
+const defaultRenderSuggestion = ({ label }: SuggestionType) => (
+  <div>{ label }</div>
+)
+
+const defaultRenderSuggestionsContainer = ({ containerProps, children }: any): ReactNode => {
+  return (
+    <div {...containerProps}>
+      { children }
+    </div>
+  );
+}
+
+const defaultRenderSectionTitle = (section: SuggestionsSectionType) => (
+  <strong>{section.title}</strong>
+)
+
 export default function Autocomplete({
+  id,
+  //isDisabled,
+  //isReadOnly,
+  //isRequired,
+  //hasError,
+  placeholder,
+  //size,
+  name,
+  // iconLeft,
+  className,
+  label,
+  //note,
+  //isLoading,
   suggestions,
   onFetchRequested,
   onClearRequested = () => {},
-  renderSuggestion = (suggestion: SuggestionType) => (
-    <div>{ suggestion.label }</div>
-  ),
+  renderSuggestion = defaultRenderSuggestion,
+  renderSuggestionsContainer = defaultRenderSuggestionsContainer,
+  renderSectionTitle = defaultRenderSectionTitle,
   onSelect,
   shouldAlwaysRenderSuggestions = false,
-  id,
-  label,
-  placeholder,
-  className
+  theme = {}
 }: AutocompletePropsType) {
   const [search, setSearch] = useState("")
   const [value, setValue] = useState<SuggestionValueType>("")
@@ -100,11 +148,17 @@ export default function Autocomplete({
         value={value}
       />
       <Autosuggest
+        theme={{
+          ...styles,
+          theme
+        }}
         suggestions={suggestions}
         onSuggestionsFetchRequested={handleFetchRequested}
         onSuggestionsClearRequested={onClearRequested}
         getSuggestionValue={(suggestion: SuggestionType) => suggestion.label}
         renderSuggestion={renderSuggestion}
+        renderSuggestionsContainer={renderSuggestionsContainer}
+        renderSectionTitle={renderSectionTitle}
         shouldRenderSuggestions={shouldRenderSuggestions}
         onSuggestionSelected={handleSelectSuggestion}
         inputProps={{
