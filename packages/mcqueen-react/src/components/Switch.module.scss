@@ -1,4 +1,4 @@
-.toggle {
+.switch {
   position: relative;
   display: flex;
 
@@ -18,16 +18,16 @@
   width: 1px;
   height: 1px;
 
-  &:focus ~ .toggleContainer {
+  &:focus ~ .switchContainer {
     box-shadow: 0 0 0px 4px theme("colors.gray.300");
   }
 }
 
-$toggleHeight: 22px;
+$switchHeight: 22px;
 
-.toggleContainer {
+.switchContainer {
   width: 40px;
-  height: $toggleHeight;
+  height: $switchHeight;
   border-radius: 99px;
   border-width: 2px;
   border-style: solid;
@@ -39,7 +39,7 @@ $toggleHeight: 22px;
 
   // Margin that makes the input appear decently aligned against
   // various Thumbprint <Text> sizes
-  .toggleVerticalAlignTop & {
+  .switchVerticalAlignTop & {
     margin-top: 1px;
   }
 
@@ -66,9 +66,9 @@ $toggleHeight: 22px;
   }
 }
 
-.toggleImage {
-  width: $toggleHeight;
-  height: $toggleHeight;
+.switchImage {
+  width: $switchHeight;
+  height: $switchHeight;
   border-radius: 99px;
   display: flex;
   align-items: center;

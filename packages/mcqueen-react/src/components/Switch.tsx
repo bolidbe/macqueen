@@ -14,7 +14,7 @@ type FunctionalState = 'disabled' | 'error' | 'default';
 const getFunctionalState = ({
   isDisabled,
   hasError,
-}: Pick<TogglePropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
+}: Pick<SwitchPropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
   if (isDisabled) {
     return 'disabled';
   }
@@ -26,7 +26,7 @@ const getFunctionalState = ({
   return 'default';
 };
 
-interface TogglePropsType {
+interface SwitchPropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
   hasError?: boolean,
@@ -35,13 +35,13 @@ interface TogglePropsType {
   isRequired?: boolean,
   name?: string,
   onChange: (value: boolean, id?: string) => void,
-  toggleVerticalAlign?: 'top' | 'center',
+  switchVerticalAlign?: 'top' | 'center',
   value?: string | string[] | number,
   className?: string
 }
 
-export default function Toggle({
-  toggleVerticalAlign = 'center',
+export default function Switch({
+  switchVerticalAlign = 'center',
   children,
   hasError = false,
   id,
@@ -52,7 +52,7 @@ export default function Toggle({
   onChange,
   value,
   className
-}: TogglePropsType): JSX.Element {
+}: SwitchPropsType): JSX.Element {
   const functionalState = getFunctionalState({ isDisabled, hasError });
   // React adds a `value` attribute (`value=""`) to `input[type="checkbox"]` even if the `value`
   // prop is `undefined`. This prevents the default browser behavior of `value="on"` when the
@@ -64,9 +64,9 @@ export default function Toggle({
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
     <label
-      className={classNames(styles.toggle, {
-        [styles.toggleVerticalAlignTop]: toggleVerticalAlign === 'top',
-        [styles.toggleVerticalAlignCenter]: toggleVerticalAlign === 'center',
+      className={classNames(styles.switch, {
+        [styles.switchVerticalAlignTop]: switchVerticalAlign === 'top',
+        [styles.switchVerticalAlignCenter]: switchVerticalAlign === 'center',
       }, className)}
       style={{ cursor: labelCursor[functionalState] }}
     >
@@ -85,20 +85,20 @@ export default function Toggle({
 
       <div
         className={classNames({
-          [styles.toggleContainer]: true,
-          [styles.toggleContainerStateError]: functionalState === 'error',
-          [styles.toggleContainerStateDisabled]: functionalState === 'disabled',
-          [styles.toggleContainerStateDefaultChecked]: functionalState === 'default' && isChecked,
-          [styles.toggleContainerStateDefaultUnchecked]: functionalState === 'default' && !isChecked
+          [styles.switchContainer]: true,
+          [styles.switchContainerStateError]: functionalState === 'error',
+          [styles.switchContainerStateDisabled]: functionalState === 'disabled',
+          [styles.switchContainerStateDefaultChecked]: functionalState === 'default' && isChecked,
+          [styles.switchContainerStateDefaultUnchecked]: functionalState === 'default' && !isChecked
         })}
       >
         <div
           className={classNames({
-            [styles.toggleImage]: true,
-            [styles.toggleImageStateError]: functionalState === 'error',
-            [styles.toggleImageStateDisabled]: functionalState === 'disabled',
-            [styles.toggleImageStateDefaultChecked]: functionalState === 'default' && isChecked,
-            [styles.toggleImageStateDefaultUnchecked]: functionalState === 'default' && !isChecked
+            [styles.switchImage]: true,
+            [styles.switchImageStateError]: functionalState === 'error',
+            [styles.switchImageStateDisabled]: functionalState === 'disabled',
+            [styles.switchImageStateDefaultChecked]: functionalState === 'default' && isChecked,
+            [styles.switchImageStateDefaultUnchecked]: functionalState === 'default' && !isChecked
           })}
         >
           {isChecked && (
