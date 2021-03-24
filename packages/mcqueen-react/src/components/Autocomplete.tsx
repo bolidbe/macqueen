@@ -1,129 +1,121 @@
-import React, { ReactNode, useState, useEffect } from "react"
+import React, { ReactNode, useState } from "react"
 import classNames from "classnames"
-import { groupBy } from "lodash"
+import Autosuggest from 'react-autosuggest';
 
-import TextInput from "./TextInput"
+// import TextInput from "./TextInput"
 
-import styles from "./Autocomplete.module.scss"
+type SuggestionValueType = string | number
 
-export interface AutocompleteOptionType {
+export interface SuggestionType {
   label: string;
-  value: any;
+  value: SuggestionValueType;
+  item?: any;
+}
+
+export interface SuggestionsSectionType {
+  title: string;
+  suggestions: SuggestionType[];
+}
+
+interface HandleChangeType {
+  newValue: string;
+  method: 'down' | 'up' | 'escape' | 'enter' | 'click' | 'type';
+}
+
+interface HandleFetchRequestedType {
+  value: string;
+  reason: 'input-changed' | 'input-focused' | 'escape-pressed' | 'suggestions-revealed' | 'suggestion-selected';
+}
+
+interface HandleSelectType {
+  suggestion: SuggestionType;
+  suggestionValue: SuggestionValueType;
+  suggestionIndex: number;
+  sectionIndex: number;
+  method: 'click' | 'enter';
 }
 
 interface AutocompletePropsType {
-  value: string;
-  options: AutocompleteOptionType[];
-  onSelect(value: any): void;
-  onChange(value: string): void;
-  className?: string;
-  iconLeft?: string;
-  placeholder?: string;
-  label?: string;
-  isLoading?: boolean;
-  isDisabled?: boolean;
-  groupBy?: string;
+  id?: string,
+  isDisabled?: boolean,
+  isReadOnly?: boolean,
+  isRequired?: boolean,
+  hasError?: boolean,
+  placeholder?: string,
+  size?: 'small' | 'large',
+  name?: string,
+  iconLeft?: string,
+  className?: string,
+  label?: ReactNode,
+  note?: ReactNode,
+
+  suggestions: SuggestionsSectionType[] | SuggestionType[];
+  onFetchRequested(value: string): void;
+  onSelect: (value: SuggestionValueType, suggestion: SuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
+  onClearRequested?(): void;
+  renderSuggestion?(suggestion: SuggestionType): ReactNode;
+  shouldAlwaysRenderSuggestions?: boolean;
 }
 
 export default function Autocomplete({
-  value,
+  suggestions,
+  onFetchRequested,
+  onClearRequested = () => {},
+  renderSuggestion = (suggestion: SuggestionType) => (
+    <div>{ suggestion.label }</div>
+  ),
   onSelect,
-  options,
-  className,
-  iconLeft,
-  placeholder,
-  onChange,
+  shouldAlwaysRenderSuggestions = false,
+  id,
   label,
-  isLoading=false,
-  isDisabled=false,
-  groupBy: group
+  placeholder,
+  className
 }: AutocompletePropsType) {
-  const [inputEl, setInputEl] = useState<HTMLInputElement | null>(null);
-  const [optionsIsOpen, setOptionsIsOpen] = useState(false);
+  const [search, setSearch] = useState("")
+  const [value, setValue] = useState<SuggestionValueType>("")
 
-  const handleSelect = (option: AutocompleteOptionType) => {
-    onChange(option.label)
-    onSelect(option.value)
+  const shouldRenderSuggestions = (value: string, _: string) => {
+    return shouldAlwaysRenderSuggestions ? true : value.trim().length > 0;
   }
 
-  const handleChange = (value: any) => {
-    onChange(value)
+  const handleChange = (_: any, { newValue }: HandleChangeType) => {
+    setSearch(newValue)
   }
 
-  const handleFocus = () => setOptionsIsOpen(true)
-  const handleBlur = () => setOptionsIsOpen(false)
-  const handleClickOutside = (event: any) => {
-    if (optionsIsOpen && inputEl && !inputEl.contains(event.target)){
-      handleBlur()
-    }
+  const handleFetchRequested = (value: HandleFetchRequestedType) => {
+    onFetchRequested(value.value)
   }
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  });
-
-  let optionsList: ReactNode;
-  if(isLoading){
-    optionsList = (
-      <ul className={styles.options} onClick={handleBlur}>
-        <li>Chargement des résultats...</li>
-      </ul>
-    )
-  }else if(options.length > 0){
-    if(group){
-      const groups = groupBy(options, group)
-      optionsList = Object.keys(groups).map((key: string, i: number) => (
-        <div className={styles.group} key={i}>
-          <div className={styles.groupName}>{ key }</div>
-          <ul className={styles.options} onClick={handleBlur}>
-          {groups[key].map((option: AutocompleteOptionType, j: number) => (
-            <li className="hover:bg-blue-200 cursor-pointer" key={j} onClick={() => handleSelect(option)}>
-              { option.label }
-            </li>
-          ))}
-          </ul>
-        </div>
-      ))
-    }else{
-      optionsList = (
-        <ul className={styles.options} onClick={handleBlur}>
-        {options.map((option, i) => (
-          <li className="hover:bg-blue-200 cursor-pointer" key={i} onClick={() => handleSelect(option)}>
-            { option.label }
-          </li>
-        ))}
-        </ul>
-      )
-    }
-  }else if(value !== ""){
-    optionsList = (
-      <ul className={styles.options} onClick={handleBlur}>
-        <li>Aucun résultat ne correspond à votre recherche</li>
-      </ul>
-    )
+  const handleSelectSuggestion = (_: any, { suggestion }: HandleSelectType) => {
+    setValue(suggestion.value)
+    onSelect(suggestion.value, suggestion)
   }
 
   return (
     <div className={classNames("relative", className)}>
-      <TextInput
-        ref={setInputEl}
-        onChange={handleChange}
+      <input
+        id={id}
+        type="hidden"
+        name={name}
         value={value}
-        onFocus={handleFocus}
-        className={classNames(styles.input, "w-full")}
-        iconLeft={iconLeft}
-        placeholder={placeholder}
-        label={label}
-        isDisabled={isDisabled}
       />
-      {(optionsIsOpen && optionsList) && (
-        <div className={styles.dropdown}>
-        { optionsList }
-        </div>
-      )}
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={handleFetchRequested}
+        onSuggestionsClearRequested={onClearRequested}
+        getSuggestionValue={(suggestion: SuggestionType) => suggestion.label}
+        renderSuggestion={renderSuggestion}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        onSuggestionSelected={handleSelectSuggestion}
+        inputProps={{
+          value: search,
+          onChange: handleChange,
+          label,
+          placeholder,
+          // iconLeft
+        }}
+        // renderInputComponent={(inputProps: any) => <TextInput {...inputProps}/>}
+      />
     </div>
   )
 }

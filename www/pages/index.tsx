@@ -145,42 +145,37 @@ const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
 const SearchAutocomplete = ({
   groupBy
 }) => {
-  const [searchTerm, setSearchTerm] = useState("")
   const [value, setValue] = useState(null)
 
-  const handleChange = (val) => {
-    setSearchTerm(val)
+  const handleFetchRequested = (value) => {
+    console.log("FETCH", value)
   }
 
-  const handleSelect = (val) => {
-    setValue(val)
+  const handleSelect = (value, suggestion) => {
+    console.log("SELECT", value, suggestion)
+    setValue(value)
   }
 
-  const options = filter([{
+  const suggestions = [{
     label: "First",
-    value: "First",
-    group: "Group 1"
+    value: "1"
   }, {
     label: "Second",
-    value: "Second",
-    group: "Group 1"
+    value: "2"
   }, {
     label: "Third",
-    value: "Third",
-    group: "Group 2"
-  }], option => searchTerm === "" || includes(option.label.toLowerCase(), searchTerm))
+    value: "3"
+  }]
 
   return (
     <>
       <Autocomplete
-        iconLeft="search"
         label="Search for something"
+        iconLeft="search"
         placeholder="Placeholder"
-        options={options}
+        suggestions={suggestions}
+        onFetchRequested={handleFetchRequested}
         onSelect={handleSelect}
-        onChange={handleChange}
-        value={searchTerm}
-        groupBy={groupBy}
       />
       <Text size={4} className="mt-1">
       Selected value : { value ? value : "Nothing yet..." }
@@ -849,7 +844,7 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Autocomplete">
-          <Section title="Simple autosuggest">
+          <Section title="Simple autocomplete">
             <SearchAutocomplete/>
           </Section>
           <Section title="Autocomplete with groups">
