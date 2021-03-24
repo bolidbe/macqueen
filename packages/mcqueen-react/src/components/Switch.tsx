@@ -14,7 +14,7 @@ type FunctionalState = 'disabled' | 'error' | 'default';
 const getFunctionalState = ({
   isDisabled,
   hasError,
-}: Pick<SwitchPropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
+}: Pick<TogglePropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
   if (isDisabled) {
     return 'disabled';
   }
@@ -26,7 +26,7 @@ const getFunctionalState = ({
   return 'default';
 };
 
-interface SwitchPropsType {
+interface TogglePropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
   hasError?: boolean,
@@ -34,14 +34,14 @@ interface SwitchPropsType {
   id?: string,
   isRequired?: boolean,
   name?: string,
-  onChange: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
-  switchVerticalAlign?: 'top' | 'center',
+  onChange: (value: boolean, id?: string) => void,
+  toggleVerticalAlign?: 'top' | 'center',
   value?: string | string[] | number,
   className?: string
 }
 
-export default function Switch({
-  switchVerticalAlign = 'center',
+export default function Toggle({
+  toggleVerticalAlign = 'center',
   children,
   hasError = false,
   id,
@@ -52,7 +52,7 @@ export default function Switch({
   onChange,
   value,
   className
-}: SwitchPropsType): JSX.Element {
+}: TogglePropsType): JSX.Element {
   const functionalState = getFunctionalState({ isDisabled, hasError });
   // React adds a `value` attribute (`value=""`) to `input[type="checkbox"]` even if the `value`
   // prop is `undefined`. This prevents the default browser behavior of `value="on"` when the
@@ -64,9 +64,9 @@ export default function Switch({
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
     <label
-      className={classNames(styles.switch, {
-        [styles.switchVerticalAlignTop]: switchVerticalAlign === 'top',
-        [styles.switchVerticalAlignCenter]: switchVerticalAlign === 'center',
+      className={classNames(styles.toggle, {
+        [styles.toggleVerticalAlignTop]: toggleVerticalAlign === 'top',
+        [styles.toggleVerticalAlignCenter]: toggleVerticalAlign === 'center',
       }, className)}
       style={{ cursor: labelCursor[functionalState] }}
     >
@@ -77,7 +77,7 @@ export default function Switch({
         id={id}
         name={name}
         checked={isChecked}
-        onChange={(e): void => onChange(e.target.checked, e)}
+        onChange={(event): void => onChange(event.target.checked, id)}
         disabled={isDisabled}
         required={isRequired}
         {...valuePropObject}
@@ -85,20 +85,20 @@ export default function Switch({
 
       <div
         className={classNames({
-          [styles.switchContainer]: true,
-          [styles.switchContainerStateError]: functionalState === 'error',
-          [styles.switchContainerStateDisabled]: functionalState === 'disabled',
-          [styles.switchContainerStateDefaultChecked]: functionalState === 'default' && isChecked,
-          [styles.switchContainerStateDefaultUnchecked]: functionalState === 'default' && !isChecked
+          [styles.toggleContainer]: true,
+          [styles.toggleContainerStateError]: functionalState === 'error',
+          [styles.toggleContainerStateDisabled]: functionalState === 'disabled',
+          [styles.toggleContainerStateDefaultChecked]: functionalState === 'default' && isChecked,
+          [styles.toggleContainerStateDefaultUnchecked]: functionalState === 'default' && !isChecked
         })}
       >
         <div
           className={classNames({
-            [styles.switchImage]: true,
-            [styles.switchImageStateError]: functionalState === 'error',
-            [styles.switchImageStateDisabled]: functionalState === 'disabled',
-            [styles.switchImageStateDefaultChecked]: functionalState === 'default' && isChecked,
-            [styles.switchImageStateDefaultUnchecked]: functionalState === 'default' && !isChecked
+            [styles.toggleImage]: true,
+            [styles.toggleImageStateError]: functionalState === 'error',
+            [styles.toggleImageStateDisabled]: functionalState === 'disabled',
+            [styles.toggleImageStateDefaultChecked]: functionalState === 'default' && isChecked,
+            [styles.toggleImageStateDefaultUnchecked]: functionalState === 'default' && !isChecked
           })}
         >
           {isChecked && (

@@ -1,4 +1,4 @@
-.switch {
+.toggle {
   position: relative;
   display: flex;
 
@@ -18,16 +18,16 @@
   width: 1px;
   height: 1px;
 
-  &:focus ~ .switchContainer {
+  &:focus ~ .toggleContainer {
     box-shadow: 0 0 0px 4px theme("colors.gray.300");
   }
 }
 
-$switchHeight: 22px;
+$toggleHeight: 22px;
 
-.switchContainer {
+.toggleContainer {
   width: 40px;
-  height: $switchHeight;
+  height: $toggleHeight;
   border-radius: 99px;
   border-width: 2px;
   border-style: solid;
@@ -39,7 +39,7 @@ $switchHeight: 22px;
 
   // Margin that makes the input appear decently aligned against
   // various Thumbprint <Text> sizes
-  .switchVerticalAlignTop & {
+  .toggleVerticalAlignTop & {
     margin-top: 1px;
   }
 
@@ -66,9 +66,9 @@ $switchHeight: 22px;
   }
 }
 
-.switchImage {
-  width: $switchHeight;
-  height: $switchHeight;
+.toggleImage {
+  width: $toggleHeight;
+  height: $toggleHeight;
   border-radius: 99px;
   display: flex;
   align-items: center;
@@ -100,7 +100,7 @@ $switchHeight: 22px;
 .text {
   // This must take up the remaining available space for content that must be right-aligned.
   flex: 1 0 0%;
-  // 'min-width' is needed to allow text within the switch to truncate.
+  // 'min-width' is needed to allow text within the toggle to truncate.
   min-width: 0;
   font-size: theme("fontSize.body-2");
   font-weight: 400;
