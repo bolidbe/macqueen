@@ -1,8 +1,9 @@
-import React, { ReactNode, useState } from "react"
-import classNames from "classnames"
+import React, { ReactNode, useState, useRef, useEffect } from "react"
 import Autosuggest from 'react-autosuggest';
+import classNames from "classnames"
+import { has, find, debounce } from "lodash"
 
-// import TextInput from "./TextInput"
+import TextInputBase from "./subcomponents/TextInputBase"
 
 import styles from "./Autocomplete.module.scss"
 
@@ -15,25 +16,25 @@ export interface SuggestionType {
 }
 
 export interface SuggestionsSectionType {
-  title: string;
+  section: string;
   suggestions: SuggestionType[];
 }
 
 interface AutocompleteTheme {
-  container: string;
-  containerOpen: string;
-  input: string;
-  inputOpen: string;
-  inputFocused: string;
-  suggestionsContainer: string;
-  suggestionsContainerOpen: string;
-  suggestionsList: string;
-  suggestion: string;
-  suggestionFirst: string;
-  suggestionHighlighted: string;
-  sectionContainer: string;
-  sectionContainerFirst: string;
-  sectionTitle: string;
+  container?: string;
+  containerOpen?: string;
+  input?: string;
+  inputOpen?: string;
+  inputFocused?: string;
+  suggestionsContainer?: string;
+  suggestionsContainerOpen?: string;
+  suggestionsList?: string;
+  suggestion?: string;
+  suggestionFirst?: string;
+  suggestionHighlighted?: string;
+  sectionContainer?: string;
+  sectionContainerFirst?: string;
+  sectionTitle?: string;
 }
 
 interface HandleChangeType {
@@ -68,8 +69,10 @@ interface AutocompletePropsType {
   label?: ReactNode,
   note?: ReactNode,
   isLoading?: boolean;
+  defaultSuggestion?: SuggestionType;
   suggestions: SuggestionsSectionType[] | SuggestionType[];
   onFetchRequested(value: string): void;
+  fetchDelay?: number;
   onSelect: (value: SuggestionValueType, suggestion: SuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
   onClearRequested?(): void;
   renderSuggestion?(suggestion: SuggestionType): ReactNode;
@@ -92,25 +95,31 @@ const defaultRenderSuggestionsContainer = ({ containerProps, children }: any): R
 }
 
 const defaultRenderSectionTitle = (section: SuggestionsSectionType) => (
-  <strong>{section.title}</strong>
+  <strong>{section.section}</strong>
 )
+
+const defaultGetSectionSuggestions = (section: SuggestionsSectionType) => {
+  return section.suggestions;
+}
 
 export default function Autocomplete({
   id,
-  //isDisabled,
-  //isReadOnly,
-  //isRequired,
-  //hasError,
+  isDisabled,
+  isReadOnly,
+  isRequired,
+  hasError,
   placeholder,
-  //size,
+  size,
   name,
-  // iconLeft,
+  iconLeft,
   className,
   label,
-  //note,
-  //isLoading,
+  note,
+  isLoading,
+  defaultSuggestion,
   suggestions,
   onFetchRequested,
+  fetchDelay = 0,
   onClearRequested = () => {},
   renderSuggestion = defaultRenderSuggestion,
   renderSuggestionsContainer = defaultRenderSuggestionsContainer,
@@ -119,8 +128,15 @@ export default function Autocomplete({
   shouldAlwaysRenderSuggestions = false,
   theme = {}
 }: AutocompletePropsType) {
-  const [search, setSearch] = useState("")
-  const [value, setValue] = useState<SuggestionValueType>("")
+  const [search, setSearch] = useState(defaultSuggestion ? defaultSuggestion.label : "")
+  const [value, setValue] = useState<SuggestionValueType>(defaultSuggestion ? defaultSuggestion.value : "")
+  const onFetchRequestedDebounce = useRef<any>(undefined)
+
+  useEffect(() => {
+    onFetchRequestedDebounce.current = debounce((value: string): void => {
+      onFetchRequested(value)
+    }, fetchDelay)
+  }, [])
 
   const shouldRenderSuggestions = (value: string, _: string) => {
     return shouldAlwaysRenderSuggestions ? true : value.trim().length > 0;
@@ -131,7 +147,7 @@ export default function Autocomplete({
   }
 
   const handleFetchRequested = (value: HandleFetchRequestedType) => {
-    onFetchRequested(value.value)
+    onFetchRequestedDebounce.current(value.value)
   }
 
   const handleSelectSuggestion = (_: any, { suggestion }: HandleSelectType) => {
@@ -155,20 +171,32 @@ export default function Autocomplete({
         suggestions={suggestions}
         onSuggestionsFetchRequested={handleFetchRequested}
         onSuggestionsClearRequested={onClearRequested}
-        getSuggestionValue={(suggestion: SuggestionType) => suggestion.label}
-        renderSuggestion={renderSuggestion}
         renderSuggestionsContainer={renderSuggestionsContainer}
+        renderSuggestion={renderSuggestion}
+        getSuggestionValue={(suggestion: SuggestionType) => suggestion.label}
         renderSectionTitle={renderSectionTitle}
+        getSectionSuggestions={defaultGetSectionSuggestions}
         shouldRenderSuggestions={shouldRenderSuggestions}
         onSuggestionSelected={handleSelectSuggestion}
+        multiSection={!!find(suggestions, s => has(s, "section"))}
         inputProps={{
+          id,
           value: search,
           onChange: handleChange,
-          label,
+          name: name ? `${name}-autocomplete` : undefined,
+          isDisabled,
+          isReadOnly,
+          isRequired,
+          hasError,
           placeholder,
-          // iconLeft
+          size,
+          iconLeft,
+          className,
+          label,
+          note,
+          isLoading
         }}
-        // renderInputComponent={(inputProps: any) => <TextInput {...inputProps}/>}
+        renderInputComponent={(inputProps: any) => <TextInputBase {...inputProps}/>}
       />
     </div>
   )

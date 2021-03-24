@@ -5,67 +5,35 @@
 .suggestionsContainerOpen{
   display: block;
   position: absolute;
-  top: 0px;
-  width: 280px;
-  border: 1px solid #aaa;
-  background-color: #fff;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  z-index: 2;
-}
-
-/*
-.input{
-  &:active{
-    border-color: red!important;
-  }
-}
-
-.dropdown{
-  padding: 4px 0 4px 0;
-  position: absolute;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  max-height: 280px;
-  overflow-x: auto;
-  background-color: #fff;
-  z-index: 1;
-  font-size: theme('fontSize.body-2');
-  font-weight: 500;
   width: 100%;
-  border-width: 1px;
-  border-color: theme('colors.gray.300');
-  box-shadow: theme('boxShadow.4');
-}
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px !important;
+  font-size: theme('fontSize.body-2');
+  // padding: 16px;
+  z-index: 30;
+  max-height: 270px;
+  overflow-y: auto;
 
-.group{
-  .groupName{
-    padding: 6px 6px;
-    color: theme('colors.black.default');
-    font-weight: 600;
-  }
-
-  ul.options{
-    li{
-      padding: 8px 16px;
-    }
+  ul{
+    padding-left: 0;
   }
 }
 
-ul.options {
-  padding: 0;
-
-  li, .error {
-    padding: 8px 10px;
-  }
-
-  li {
-    &.active {
-      background-color: theme('colors.blue.200');
-    }
-  }
+.sectionContainer:not(:first-child){
+  margin-top: 8px;
 }
-*/
+
+.sectionTitle{
+  margin-bottom: 8px;
+}
+
+.suggestion{
+  padding: 12px;
+  cursor: pointer;
+}
+
+.suggestionHighlighted{
+  background-color: theme('colors.gray.200');
+}

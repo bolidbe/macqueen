@@ -142,21 +142,20 @@ const textSizes: TextSizeType[] = [1, 2, 3, 4]
 type TitleSizeType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
 
-const SearchAutocomplete = ({
-  groupBy
-}) => {
-  const [value, setValue] = useState(null)
+const SUGGESTIONS = [{
+  label: "First",
+  value: "1"
+}, {
+  label: "Second",
+  value: "2"
+}, {
+  label: "Third",
+  value: "3"
+}]
 
-  const handleFetchRequested = (value) => {
-    console.log("FETCH", value)
-  }
-
-  const handleSelect = (value, suggestion) => {
-    console.log("SELECT", value, suggestion)
-    setValue(value)
-  }
-
-  const suggestions = [{
+const SUGGESTIONS_SECTIONS = [{
+  section: "Section 1",
+  suggestions: [{
     label: "First",
     value: "1"
   }, {
@@ -166,9 +165,42 @@ const SearchAutocomplete = ({
     label: "Third",
     value: "3"
   }]
+}, {
+  section: "Section 2",
+  suggestions: [{
+    label: "First",
+    value: "1"
+  }, {
+    label: "Second",
+    value: "2"
+  }]
+}]
+
+const SearchAutocomplete = ({
+  className,
+  hasSections,
+  isLoading,
+  hasError,
+  isDisabled
+}) => {
+  const [suggestions, setSuggestions] = useState(hasSections ? SUGGESTIONS_SECTIONS : SUGGESTIONS)
+  const [value, setValue] = useState(null)
+
+  const handleFetchRequested = (value) => {
+    if(!hasSections){
+      setSuggestions(filter(
+        SUGGESTIONS,
+        option => value === "" || includes(option.label.toLowerCase(), value)
+      ))
+    }
+  }
+
+  const handleSelect = (value, suggestion) => {
+    setValue(value)
+  }
 
   return (
-    <>
+    <div className={className}>
       <Autocomplete
         label="Search for something"
         iconLeft="search"
@@ -176,11 +208,15 @@ const SearchAutocomplete = ({
         suggestions={suggestions}
         onFetchRequested={handleFetchRequested}
         onSelect={handleSelect}
+        isLoading={isLoading}
+        hasError={hasError}
+        isDisabled={isDisabled}
+        name="search"
       />
       <Text size={4} className="mt-1">
       Selected value : { value ? value : "Nothing yet..." }
       </Text>
-    </>
+    </div>
   )
 }
 
@@ -847,8 +883,13 @@ export default function Home() {
           <Section title="Simple autocomplete">
             <SearchAutocomplete/>
           </Section>
-          <Section title="Autocomplete with groups">
-            <SearchAutocomplete groupBy="group"/>
+          <Section title="With sections">
+            <SearchAutocomplete hasSections/>
+          </Section>
+          <Section title="States">
+            <SearchAutocomplete className="mb-3" isLoading={true} />
+            <SearchAutocomplete className="mb-3" hasError={true} />
+            <SearchAutocomplete className="mb-3" isDisabled={true} />
           </Section>
         </Card>
       </div>

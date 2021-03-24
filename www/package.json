@@ -9,8 +9,8 @@
     "typecheck": "tsc -w"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "1.0.4",
-    "@bolid/mcqueen-react": "1.0.28",
+    "@bolid/mcqueen-icons": "1.0.5",
+    "@bolid/mcqueen-react": "1.0.29",
     "@bolid/mcqueen-scss": "1.0.2",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
