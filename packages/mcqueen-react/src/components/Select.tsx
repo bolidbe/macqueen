@@ -82,7 +82,7 @@ export default function Select({
           required={isRequired}
           value={value}
           onClick={onClick}
-          onChange={(event): void => onChange(event.target.value, event)}
+          onChange={(e): void => onChange(e.target.value, e)}
           onFocus={onFocus}
           onBlur={onBlur}
           name={name}

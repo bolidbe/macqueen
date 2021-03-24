@@ -9,7 +9,7 @@ try{
 
 import styles from "./Breadcrumbs.module.scss"
 
-interface BreadcrumbType {
+export interface BreadcrumbType {
   name: string;
   path: string;
 }

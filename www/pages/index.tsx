@@ -80,7 +80,7 @@ import {
   Select,
   Radio,
   Checkbox,
-  Toggle,
+  Switch,
   StarRating,
   BannerAlert,
   Alert,
@@ -98,7 +98,7 @@ import {
   StatePagination,
   PathPagination,
   Pill,
-  Autosuggest
+  Autocomplete
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -142,7 +142,7 @@ const textSizes: TextSizeType[] = [1, 2, 3, 4]
 type TitleSizeType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 const titleSizes: TitleSizeType[] = [1, 2, 3, 4, 5, 6, 7, 8]
 
-const SearchAutosuggest = ({
+const SearchAutocomplete = ({
   groupBy
 }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -172,7 +172,7 @@ const SearchAutosuggest = ({
 
   return (
     <>
-      <Autosuggest
+      <Autocomplete
         iconLeft="search"
         label="Search for something"
         placeholder="Placeholder"
@@ -582,17 +582,17 @@ export default function Home() {
             </div>
           </Section>
         </Card>
-        <Card title="Toggle">
+        <Card title="Switch">
           <Section title="Checked and not checked">
             <div className="flex items-end">
-              <Toggle onChange={() => {}} isChecked>This is a toggle</Toggle>
-              <Toggle onChange={() => {}} className="ml-3">This is a toggle</Toggle>
+              <Switch onChange={() => {}} isChecked>This is a switch</Switch>
+              <Switch onChange={() => {}} className="ml-3">This is a switch</Switch>
             </div>
           </Section>
           <Section title="States">
             <div className="flex items-end">
-              <Toggle onChange={() => {}} isDisabled>This is a toggle</Toggle>
-              <Toggle onChange={() => {}} hasError className="ml-3">This is a toggle</Toggle>
+              <Switch onChange={() => {}} isDisabled>This is a switch</Switch>
+              <Switch onChange={() => {}} hasError className="ml-3">This is a switch</Switch>
             </div>
           </Section>
         </Card>
@@ -739,13 +739,13 @@ export default function Home() {
         <Card title="Breadcrumbs">
           <Breadcrumbs breadcrumbs={[{
             title: "First item",
-            href: "/"
+            path: "/"
           }, {
             title: "Second item",
-            href: "/second"
+            path: "/second"
           }, {
             title: "Third item",
-            href: "/third"
+            path: "/third"
           }]}/>
         </Card>
         <Card title="HTML Content and Longread">
@@ -848,12 +848,12 @@ export default function Home() {
             <PathPagination page={1} path="" pagesCount={10}/>
           </Section>
         </Card>
-        <Card title="Autosuggest">
+        <Card title="Autocomplete">
           <Section title="Simple autosuggest">
-            <SearchAutosuggest/>
+            <SearchAutocomplete/>
           </Section>
-          <Section title="Autosuggest with groups">
-            <SearchAutosuggest groupBy="group"/>
+          <Section title="Autocomplete with groups">
+            <SearchAutocomplete groupBy="group"/>
           </Section>
         </Card>
       </div>

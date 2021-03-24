@@ -4,16 +4,16 @@ import { groupBy } from "lodash"
 
 import TextInput from "./TextInput"
 
-import styles from "./Autosuggest.module.scss"
+import styles from "./Autocomplete.module.scss"
 
-export interface AutosuggestOptionType {
+export interface AutocompleteOptionType {
   label: string;
   value: any;
 }
 
-interface AutosuggestPropsType {
+interface AutocompletePropsType {
   value: string;
-  options: AutosuggestOptionType[];
+  options: AutocompleteOptionType[];
   onSelect(value: any): void;
   onChange(value: string): void;
   className?: string;
@@ -25,7 +25,7 @@ interface AutosuggestPropsType {
   groupBy?: string;
 }
 
-export default function Autosuggest({
+export default function Autocomplete({
   value,
   onSelect,
   options,
@@ -37,11 +37,11 @@ export default function Autosuggest({
   isLoading=false,
   isDisabled=false,
   groupBy: group
-}: AutosuggestPropsType) {
+}: AutocompletePropsType) {
   const [inputEl, setInputEl] = useState<HTMLInputElement | null>(null);
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
 
-  const handleSelect = (option: AutosuggestOptionType) => {
+  const handleSelect = (option: AutocompleteOptionType) => {
     onChange(option.label)
     onSelect(option.value)
   }
@@ -79,7 +79,7 @@ export default function Autosuggest({
         <div className={styles.group} key={i}>
           <div className={styles.groupName}>{ key }</div>
           <ul className={styles.options} onClick={handleBlur}>
-          {groups[key].map((option: AutosuggestOptionType, j: number) => (
+          {groups[key].map((option: AutocompleteOptionType, j: number) => (
             <li className="hover:bg-blue-200 cursor-pointer" key={j} onClick={() => handleSelect(option)}>
               { option.label }
             </li>

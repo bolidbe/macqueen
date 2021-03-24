@@ -50,7 +50,7 @@ interface CheckboxPropsType {
   id?: string,
   isRequired?: boolean,
   name?: string,
-  onChange: (value: boolean, id?: string) => void,
+  onChange: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
   isIndeterminate?: boolean,
   checkboxVerticalAlign?: 'top' | 'center',
   value?: string | string[] | number,
@@ -97,7 +97,7 @@ export default function Checkbox({
         id={id}
         name={name}
         checked={isChecked}
-        onChange={(event): void => onChange(event.target.checked, id)}
+        onChange={(e): void => onChange(e.target.checked, e)}
         disabled={isDisabled}
         required={isRequired}
         {...valuePropObject}

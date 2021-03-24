@@ -41,7 +41,7 @@ interface RadioPropsType {
   hasError?: boolean,
   name: string,
   labelPadding?: string,
-  onChange: (isChecked: boolean, id?: string) => void,
+  onChange: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
   radioVerticalAlign?: 'top' | 'center',
   className?: string
 }
@@ -74,7 +74,7 @@ export default function Radio({
         className={styles.input}
         type="radio"
         id={id}
-        onChange={(event): void => onChange(event.target.checked, id)}
+        onChange={(e): void => onChange(e.target.checked, e)}
         checked={isChecked}
         name={name}
         disabled={isDisabled}

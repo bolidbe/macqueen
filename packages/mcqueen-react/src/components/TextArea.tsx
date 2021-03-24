@@ -83,7 +83,7 @@ export default function TextArea ({
         required={isRequired}
         placeholder={placeholder}
         value={value}
-        onChange={(event): void => onChange(event.target.value, event)}
+        onChange={(e): void => onChange(e.target.value, e)}
         onFocus={onFocus}
         onBlur={onBlur}
         name={name}
