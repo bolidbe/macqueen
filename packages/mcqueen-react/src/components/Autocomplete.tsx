@@ -129,6 +129,8 @@ export default function Autocomplete({
   const onFetchRequestedDebounce = useRef<any>(debounce((value: string): void => {
     if(value !== ""){
       onFetchRequested(value)
+    }else if(onClearRequested){
+      onClearRequested()
     }
   }, fetchDelay))
 
@@ -167,7 +169,6 @@ export default function Autocomplete({
         }}
         suggestions={suggestions}
         onSuggestionsFetchRequested={handleFetchRequested}
-        onSuggestionsClearRequested={onClearRequested}
         renderSuggestionsContainer={renderSuggestionsContainer}
         renderSuggestion={renderSuggestion}
         getSuggestionValue={(suggestion: AutocompleteSuggestionType) => suggestion.label}
