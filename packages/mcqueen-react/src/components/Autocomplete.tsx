@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useRef, useEffect } from "react"
+import React, { ReactNode, useState, useRef } from "react"
 import Autosuggest from 'react-autosuggest';
 import classNames from "classnames"
 import { has, find, debounce } from "lodash"
@@ -126,15 +126,14 @@ export default function Autocomplete({
   shouldAlwaysRenderSuggestions = false,
   theme = {}
 }: AutocompletePropsType) {
+  const onFetchRequestedDebounce = useRef<any>(debounce((value: string): void => {
+    if(value !== ""){
+      onFetchRequested(value)
+    }
+  }, fetchDelay))
+
   const [search, setSearch] = useState(defaultSuggestion ? defaultSuggestion.label : "")
   const [value, setValue] = useState<string | number>(defaultSuggestion ? defaultSuggestion.value : "")
-  const onFetchRequestedDebounce = useRef<any>(undefined)
-
-  useEffect(() => {
-    onFetchRequestedDebounce.current = debounce((value: string): void => {
-      onFetchRequested(value)
-    }, fetchDelay)
-  }, [])
 
   const shouldRenderSuggestions = (value: string, _: string) => {
     return shouldAlwaysRenderSuggestions ? true : value.trim().length > 0;
@@ -144,8 +143,8 @@ export default function Autocomplete({
     setSearch(newValue)
   }
 
-  const handleFetchRequested = (value: HandleFetchRequestedType) => {
-    onFetchRequestedDebounce.current(value.value)
+  const handleFetchRequested = ({ value }: HandleFetchRequestedType) => {
+    onFetchRequestedDebounce.current(value)
   }
 
   const handleSelectSuggestion = (_: any, { suggestion }: HandleSelectType) => {

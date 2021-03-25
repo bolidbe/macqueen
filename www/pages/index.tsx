@@ -769,13 +769,13 @@ export default function Home() {
         </Card>
         <Card title="Breadcrumbs">
           <Breadcrumbs breadcrumbs={[{
-            title: "First item",
+            name: "First item",
             path: "/"
           }, {
-            title: "Second item",
+            name: "Second item",
             path: "/second"
           }, {
-            title: "Third item",
+            name: "Third item",
             path: "/third"
           }]}/>
         </Card>
