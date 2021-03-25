@@ -7,11 +7,9 @@ import TextInputBase from "./subcomponents/TextInputBase"
 
 import styles from "./Autocomplete.module.scss"
 
-type SuggestionValueType = string | number
-
 export interface AutocompleteSuggestionType {
   label: string;
-  value: SuggestionValueType;
+  value: string | number;
   item?: any;
 }
 
@@ -49,7 +47,7 @@ interface HandleFetchRequestedType {
 
 interface HandleSelectType {
   suggestion: AutocompleteSuggestionType;
-  suggestionValue: SuggestionValueType;
+  suggestionValue: string | number;
   suggestionIndex: number;
   sectionIndex: number;
   method: 'click' | 'enter';
@@ -73,7 +71,7 @@ interface AutocompletePropsType {
   suggestions: AutocompleteSuggestionsSectionType[] | AutocompleteSuggestionType[];
   onFetchRequested(value: string): void;
   fetchDelay?: number;
-  onSelect: (value: SuggestionValueType, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
+  onSelect: (value: string | number, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
   onClearRequested?(): void;
   renderSuggestion?(suggestion: AutocompleteSuggestionType): ReactNode;
   renderSuggestionsContainer?(options: any): ReactNode;
@@ -129,7 +127,7 @@ export default function Autocomplete({
   theme = {}
 }: AutocompletePropsType) {
   const [search, setSearch] = useState(defaultSuggestion ? defaultSuggestion.label : "")
-  const [value, setValue] = useState<SuggestionValueType>(defaultSuggestion ? defaultSuggestion.value : "")
+  const [value, setValue] = useState<string | number>(defaultSuggestion ? defaultSuggestion.value : "")
   const onFetchRequestedDebounce = useRef<any>(undefined)
 
   useEffect(() => {
