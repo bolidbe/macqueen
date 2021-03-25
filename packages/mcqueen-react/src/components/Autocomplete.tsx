@@ -9,15 +9,15 @@ import styles from "./Autocomplete.module.scss"
 
 type SuggestionValueType = string | number
 
-export interface SuggestionType {
+export interface AutocompleteSuggestionType {
   label: string;
   value: SuggestionValueType;
   item?: any;
 }
 
-export interface SuggestionsSectionType {
+export interface AutocompleteSuggestionsSectionType {
   section: string;
-  suggestions: SuggestionType[];
+  suggestions: AutocompleteSuggestionType[];
 }
 
 interface AutocompleteTheme {
@@ -48,7 +48,7 @@ interface HandleFetchRequestedType {
 }
 
 interface HandleSelectType {
-  suggestion: SuggestionType;
+  suggestion: AutocompleteSuggestionType;
   suggestionValue: SuggestionValueType;
   suggestionIndex: number;
   sectionIndex: number;
@@ -69,20 +69,20 @@ interface AutocompletePropsType {
   label?: ReactNode,
   note?: ReactNode,
   isLoading?: boolean;
-  defaultSuggestion?: SuggestionType;
-  suggestions: SuggestionsSectionType[] | SuggestionType[];
+  defaultSuggestion?: AutocompleteSuggestionType;
+  suggestions: AutocompleteSuggestionsSectionType[] | AutocompleteSuggestionType[];
   onFetchRequested(value: string): void;
   fetchDelay?: number;
-  onSelect: (value: SuggestionValueType, suggestion: SuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
+  onSelect: (value: SuggestionValueType, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
   onClearRequested?(): void;
-  renderSuggestion?(suggestion: SuggestionType): ReactNode;
+  renderSuggestion?(suggestion: AutocompleteSuggestionType): ReactNode;
   renderSuggestionsContainer?(options: any): ReactNode;
-  renderSectionTitle?(section: SuggestionsSectionType): ReactNode;
+  renderSectionTitle?(section: AutocompleteSuggestionsSectionType): ReactNode;
   shouldAlwaysRenderSuggestions?: boolean;
   theme?: AutocompleteTheme;
 }
 
-const defaultRenderSuggestion = ({ label }: SuggestionType) => (
+const defaultRenderSuggestion = ({ label }: AutocompleteSuggestionType) => (
   <div>{ label }</div>
 )
 
@@ -94,11 +94,11 @@ const defaultRenderSuggestionsContainer = ({ containerProps, children }: any): R
   );
 }
 
-const defaultRenderSectionTitle = (section: SuggestionsSectionType) => (
+const defaultRenderSectionTitle = (section: AutocompleteSuggestionsSectionType) => (
   <strong>{section.section}</strong>
 )
 
-const defaultGetSectionSuggestions = (section: SuggestionsSectionType) => {
+const defaultGetSectionSuggestions = (section: AutocompleteSuggestionsSectionType) => {
   return section.suggestions;
 }
 
@@ -173,7 +173,7 @@ export default function Autocomplete({
         onSuggestionsClearRequested={onClearRequested}
         renderSuggestionsContainer={renderSuggestionsContainer}
         renderSuggestion={renderSuggestion}
-        getSuggestionValue={(suggestion: SuggestionType) => suggestion.label}
+        getSuggestionValue={(suggestion: AutocompleteSuggestionType) => suggestion.label}
         renderSectionTitle={renderSectionTitle}
         getSectionSuggestions={defaultGetSectionSuggestions}
         shouldRenderSuggestions={shouldRenderSuggestions}
