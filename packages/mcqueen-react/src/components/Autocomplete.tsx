@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useRef } from "react"
 import Autosuggest from 'react-autosuggest';
 import classNames from "classnames"
-import { has, find, debounce } from "lodash"
+import { has, find, debounce, noop } from "lodash"
 
 import TextInputBase from "./subcomponents/TextInputBase"
 
@@ -70,9 +70,9 @@ interface AutocompletePropsType {
   defaultSuggestion?: AutocompleteSuggestionType;
   suggestions: AutocompleteSuggestionsSectionType[] | AutocompleteSuggestionType[];
   onFetchRequested(value: string): void;
+  onClearRequested?(): void;
   fetchDelay?: number;
   onSelect: (value: string | number, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
-  onClearRequested?(): void;
   renderSuggestion?(suggestion: AutocompleteSuggestionType): ReactNode;
   renderSuggestionsContainer?(options: any): ReactNode;
   renderSectionTitle?(section: AutocompleteSuggestionsSectionType): ReactNode;
@@ -118,7 +118,7 @@ export default function Autocomplete({
   suggestions,
   onFetchRequested,
   fetchDelay = 0,
-  onClearRequested = () => {},
+  onClearRequested = noop,
   renderSuggestion = defaultRenderSuggestion,
   renderSuggestionsContainer = defaultRenderSuggestionsContainer,
   renderSectionTitle = defaultRenderSectionTitle,
@@ -129,7 +129,7 @@ export default function Autocomplete({
   const onFetchRequestedDebounce = useRef<any>(debounce((value: string): void => {
     if(value !== ""){
       onFetchRequested(value)
-    }else if(onClearRequested){
+    }else{
       onClearRequested()
     }
   }, fetchDelay))
@@ -169,6 +169,7 @@ export default function Autocomplete({
         }}
         suggestions={suggestions}
         onSuggestionsFetchRequested={handleFetchRequested}
+        onSuggestionsClearRequested={noop}
         renderSuggestionsContainer={renderSuggestionsContainer}
         renderSuggestion={renderSuggestion}
         getSuggestionValue={(suggestion: AutocompleteSuggestionType) => suggestion.label}
