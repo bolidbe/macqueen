@@ -23,7 +23,7 @@ const getUIState = ({
   return 'default';
 };
 
-interface TextAreaPropsType {
+export interface TextAreaPropsType {
   id?: string;
   isDisabled?: boolean;
   isReadOnly?: boolean;

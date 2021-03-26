@@ -32,7 +32,7 @@ const getUIState = ({
   return 'unchecked';
 };
 
-interface RadioPropsType {
+export interface RadioPropsType {
   isDisabled?: boolean,
   children?: ReactNode,
   id?: string,

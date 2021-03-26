@@ -18,7 +18,7 @@ export interface AutocompleteSuggestionsSectionType {
   suggestions: AutocompleteSuggestionType[];
 }
 
-interface AutocompleteTheme {
+export interface AutocompleteThemeType {
   container?: string;
   containerOpen?: string;
   input?: string;
@@ -77,7 +77,7 @@ interface AutocompletePropsType {
   renderSuggestionsContainer?(options: any): ReactNode;
   renderSectionTitle?(section: AutocompleteSuggestionsSectionType): ReactNode;
   shouldAlwaysRenderSuggestions?: boolean;
-  theme?: AutocompleteTheme;
+  theme?: AutocompleteThemeType;
 }
 
 const defaultRenderSuggestion = ({ label }: AutocompleteSuggestionType) => (

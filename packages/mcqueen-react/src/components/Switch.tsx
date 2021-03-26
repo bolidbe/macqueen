@@ -26,7 +26,7 @@ const getFunctionalState = ({
   return 'default';
 };
 
-interface SwitchPropsType {
+export interface SwitchPropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
   hasError?: boolean,

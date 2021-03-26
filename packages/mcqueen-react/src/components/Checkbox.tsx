@@ -42,7 +42,7 @@ const getFunctionalState = ({
   return 'default';
 };
 
-interface CheckboxPropsType {
+export interface CheckboxPropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
   hasError?: boolean,

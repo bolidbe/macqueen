@@ -23,7 +23,7 @@ const getUIState = ({
   return 'default';
 };
 
-interface SelectPropsType {
+export interface SelectPropsType {
   children?: ReactNode,
   id?: string,
   isDisabled?: boolean,

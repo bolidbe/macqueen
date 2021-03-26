@@ -2,7 +2,7 @@ import React from 'react';
 
 import TextInputBase, { TextInputBasePropsType } from "./subcomponents/TextInputBase"
 
-interface TextInputPropsType extends Omit<TextInputBasePropsType, "onChange"> {
+export interface TextInputPropsType extends Omit<TextInputBasePropsType, "onChange"> {
   onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
