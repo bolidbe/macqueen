@@ -34,7 +34,7 @@ export interface SwitchPropsType {
   id?: string,
   isRequired?: boolean,
   name?: string,
-  onChange: (value: boolean, id?: string) => void,
+  onChange: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
   switchVerticalAlign?: 'top' | 'center',
   value?: string | string[] | number,
   className?: string
@@ -77,7 +77,7 @@ export default function Switch({
         id={id}
         name={name}
         checked={isChecked}
-        onChange={(event): void => onChange(event.target.checked, id)}
+        onChange={(event): void => onChange(event.target.checked, event)}
         disabled={isDisabled}
         required={isRequired}
         {...valuePropObject}

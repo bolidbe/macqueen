@@ -33,7 +33,7 @@ export interface TextAreaPropsType {
   name?: string;
   value: string;
   maxLength?: number;
-  onChange: (newValue: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onFocus?: () => void;
   onBlur?: () => void;
   className?: string;

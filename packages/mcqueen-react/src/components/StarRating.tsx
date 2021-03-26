@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { clamp, times, noop } from 'lodash';
 import classNames from 'classnames';
 
@@ -11,32 +11,31 @@ const MAX_NUM_STARS = 5;
 const PRECISION = 0.5;
 
 interface StarRatingPropsType {
-  rating: number,
-  reviewsCount?: number,
-  hoverRating?: 0 | 1 | 2 | 3 | 4 | 5,
-  size?: 'small' | 'medium' | 'large',
-  onStarClick?: (value: number) => void,
-  onStarHover?: (value: number) => void,
-  onMouseLeave?: () => void,
-  showRating?: boolean,
-  className?: string
+  rating: number | string;
+  reviewsCount?: number;
+  size?: 'small' | 'medium' | 'large';
+  showRating?: boolean;
+  className?: string;
+  name?: string;
+  onChange?: (value: number, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function StarRating({
   rating,
   reviewsCount,
-  hoverRating = 0,
   size = 'small',
-  onStarClick = noop,
-  onStarHover = noop,
-  onMouseLeave = noop,
+  name,
+  onChange = noop,
   showRating = false,
   className
 }: StarRatingPropsType): JSX.Element {
+  const [hoverRating, setHoverRating] = useState(0)
+
   // Determine if instance is interactive.
-  const isInteractive = onStarClick !== noop || onStarHover !== noop;
+  const isInteractive = onChange !== noop;
 
   // Limit rating to between 0 and MAX_NUM_STARS
+  // @ts-ignore
   const clampedRating = clamp(rating, 0, MAX_NUM_STARS);
 
   // Round rating to PRECISION (e.g, 2.7 --> 2.5).
@@ -66,7 +65,7 @@ export default function StarRating({
         className={styles.starRating}
         data-star={ratingValue}
         aria-label={ariaLabel}
-        onMouseLeave={onMouseLeave}
+        onMouseLeave={() => setHoverRating(0)}
         role={isInteractive ? undefined : 'img'}
       >
         {isInteractive && (
@@ -76,14 +75,14 @@ export default function StarRating({
               <label
                 className={styles.label}
                 key={index}
-                onMouseEnter={(): void => onStarHover(index + 1)}
+                onMouseEnter={(): void => setHoverRating(index + 1)}
               >
                 <input
                   className={styles.input}
                   type="radio"
-                  name="rating"
+                  name={name}
                   value={index + 1}
-                  onClick={(): void => onStarClick(index + 1)}
+                  onChange={(e): void => onChange(parseInt(e.target.value), e)}
                 />
                 {index === 0 ? '1 star' : `${index + 1} stars`}
               </label>

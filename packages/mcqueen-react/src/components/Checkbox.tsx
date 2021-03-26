@@ -50,7 +50,7 @@ export interface CheckboxPropsType {
   id?: string,
   isRequired?: boolean,
   name?: string,
-  onChange: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
   isIndeterminate?: boolean,
   checkboxVerticalAlign?: 'top' | 'center',
   value?: string | string[] | number,

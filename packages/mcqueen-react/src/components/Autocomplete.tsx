@@ -9,7 +9,7 @@ import styles from "./Autocomplete.module.scss"
 
 export interface AutocompleteSuggestionType {
   label: string;
-  value: string | number;
+  value: string;
   item?: any;
 }
 
@@ -47,7 +47,7 @@ interface HandleFetchRequestedType {
 
 interface HandleSelectType {
   suggestion: AutocompleteSuggestionType;
-  suggestionValue: string | number;
+  suggestionValue: string;
   suggestionIndex: number;
   sectionIndex: number;
   method: 'click' | 'enter';
@@ -72,7 +72,7 @@ export interface AutocompletePropsType {
   onFetchRequested: (value: string) => void;
   onClearRequested?: () => void;
   fetchDelay?: number;
-  onSelect: (value: string | number, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
+  onSelect: (value: string, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
   renderSuggestion?: (suggestion: AutocompleteSuggestionType) => ReactNode;
   renderSuggestionsContainer?: (options: any) => ReactNode;
   renderSectionTitle?: (section: AutocompleteSuggestionsSectionType) => ReactNode;
@@ -135,7 +135,7 @@ export default function Autocomplete({
   }, fetchDelay))
 
   const [search, setSearch] = useState(defaultSuggestion ? defaultSuggestion.label : "")
-  const [value, setValue] = useState<string | number>(defaultSuggestion ? defaultSuggestion.value : "")
+  const [value, setValue] = useState<string>(defaultSuggestion ? defaultSuggestion.value : "")
 
   const shouldRenderSuggestions = (value: string, _: string) => {
     return shouldAlwaysRenderSuggestions ? true : value.trim().length > 0;
