@@ -3,7 +3,7 @@ export { default as Text } from './components/Text';
 export { default as Button } from './components/Button';
 export { default as TextInput, TextInputPropsType } from "./components/TextInput";
 export { default as TextArea, TextAreaPropsType } from "./components/TextArea";
-export { default as Autocomplete, AutocompleteSuggestionType, AutocompleteSuggestionsSectionType, AutocompleteThemeType } from "./components/Autocomplete";
+export { default as Autocomplete, AutocompletePropsType, AutocompleteSuggestionType, AutocompleteSuggestionsSectionType, AutocompleteThemeType } from "./components/Autocomplete";
 export { default as LoaderDots } from "./components/LoaderDots";
 export { default as Select, SelectPropsType } from "./components/Select";
 export { default as Checkbox, CheckboxPropsType } from "./components/Checkbox";

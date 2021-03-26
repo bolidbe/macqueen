@@ -53,7 +53,7 @@ interface HandleSelectType {
   method: 'click' | 'enter';
 }
 
-interface AutocompletePropsType {
+export interface AutocompletePropsType {
   id?: string,
   isDisabled?: boolean,
   isReadOnly?: boolean,
@@ -69,13 +69,13 @@ interface AutocompletePropsType {
   isLoading?: boolean;
   defaultSuggestion?: AutocompleteSuggestionType;
   suggestions: AutocompleteSuggestionsSectionType[] | AutocompleteSuggestionType[];
-  onFetchRequested(value: string): void;
-  onClearRequested?(): void;
+  onFetchRequested: (value: string) => void;
+  onClearRequested?: () => void;
   fetchDelay?: number;
   onSelect: (value: string | number, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
-  renderSuggestion?(suggestion: AutocompleteSuggestionType): ReactNode;
-  renderSuggestionsContainer?(options: any): ReactNode;
-  renderSectionTitle?(section: AutocompleteSuggestionsSectionType): ReactNode;
+  renderSuggestion?: (suggestion: AutocompleteSuggestionType) => ReactNode;
+  renderSuggestionsContainer?: (options: any) => ReactNode;
+  renderSectionTitle?: (section: AutocompleteSuggestionsSectionType) => ReactNode;
   shouldAlwaysRenderSuggestions?: boolean;
   theme?: AutocompleteThemeType;
 }
