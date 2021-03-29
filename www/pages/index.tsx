@@ -227,10 +227,10 @@ const Form = () => {
       textinput: "Lala",
       textarea: "Lala",
       select: "",
-      checkbox1: "",
-      checkbox2: "",
+      checkbox1: false,
+      checkbox2: false,
       switch1: "",
-      switch2: "",
+      switch2: true,
       radio: "",
       starrating: "0"
     }
@@ -245,6 +245,7 @@ const Form = () => {
   const switch1 = watch("switch1")
   const checkbox1 = watch("checkbox1")
 
+  /*
   console.log("TEXTINPUT", textinput)
   console.log("TEXTAREA", textarea)
   console.log("SELECT", select)
@@ -252,6 +253,7 @@ const Form = () => {
   console.log("CHECKBOX 1", checkbox1)
   console.log("SWITCH 1", switch1)
   console.log("RADIO", radio)
+  */
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -4,45 +4,6 @@ import { noop } from 'lodash';
 
 import styles from './Checkbox.module.scss';
 
-const labelCursor = {
-  error: 'pointer',
-  disabled: 'default',
-  default: 'pointer',
-};
-
-type CheckedState = 'checked' | 'indeterminate' | 'unchecked';
-type FunctionalState = 'disabled' | 'error' | 'default';
-
-const getCheckedState = ({
-  isChecked,
-  isIndeterminate,
-}: Pick<CheckboxPropsType, 'isChecked' | 'isIndeterminate'>): CheckedState => {
-  if (!!isChecked) {
-    return 'checked';
-  }
-
-  if (!!isIndeterminate) {
-    return 'indeterminate';
-  }
-
-  return 'unchecked';
-};
-
-const getFunctionalState = ({
-  isDisabled,
-  hasError,
-}: Pick<CheckboxPropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
-  if (!!isDisabled) {
-    return 'disabled';
-  }
-
-  if (!!hasError) {
-    return 'error';
-  }
-
-  return 'default';
-};
-
 export interface CheckboxPropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
@@ -76,9 +37,6 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
     }: CheckboxPropsType,
     outerRef
   ): JSX.Element {
-    const functionalState = getFunctionalState({ isDisabled, hasError });
-    const checkedState = getCheckedState({ isChecked, isIndeterminate });
-
     // React adds a `value` attribute (`value=""`) to `input[type="checkbox"]` even if the `value`
     // prop is `undefined`. This prevents the default browser behavior of `value="on"` when the
     // `value` attribute is omitted. We can work around the React behavior and avoid adding
@@ -93,7 +51,7 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
           [styles.checkboxVerticalAlignTop]: checkboxVerticalAlign === 'top',
           [styles.checkboxVerticalAlignCenter]: checkboxVerticalAlign === 'center',
         }, className)}
-        style={{ cursor: labelCursor[functionalState] }}
+        style={{ cursor: !!isDisabled ? "default" : "pointer" }}
       >
         <input
           ref={outerRef}
@@ -111,60 +69,53 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
 
         <div
           className={classNames({
-            [styles.checkboxImage]: true,
-            [styles.checkboxImageStateError]: functionalState === 'error',
-            [styles.checkboxImageStateDisabled]: functionalState === 'disabled',
-            [styles.checkboxImageStateDefaultChecked]: functionalState === 'default' && checkedState === 'checked',
-            [styles.checkboxImageStateDefaultIndeterminate]: functionalState === 'default' && checkedState === 'indeterminate',
-            [styles.checkboxImageStateDefaultUnchecked]: functionalState === 'default' && checkedState === 'unchecked'
+            [styles.checkboxContainer]: true,
+            [styles.checkboxContainerStateError]: !!hasError,
+            [styles.checkboxContainerStateIndeterminate]: !!isIndeterminate
           })}
         >
-          {!!isChecked && !isIndeterminate && (
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="15.232"
-                y="4.003"
-                width="11.701"
-                height="1.879"
-                rx=".939"
-                transform="rotate(123 15.232 4.003)"
-              />
-              <rect
-                x="8.83"
-                y="13.822"
-                width="7.337"
-                height="1.879"
-                rx=".939"
-                transform="rotate(-146 8.83 13.822)"
-              />
-              <path d="M8.072 13.306l1.03-1.586.787.512-1.03 1.586z" />
-            </svg>
-          )}
-          {!!isIndeterminate && (
-            <svg
-              width="10"
-              height="2"
-              viewBox="0 0 10 2"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect x="0" y="0" width="10" height="2" />
-            </svg>
-          )}
+          <svg
+            className={styles.checkboxCheckedIcon}
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="15.232"
+              y="4.003"
+              width="11.701"
+              height="1.879"
+              rx=".939"
+              transform="rotate(123 15.232 4.003)"
+            />
+            <rect
+              x="8.83"
+              y="13.822"
+              width="7.337"
+              height="1.879"
+              rx=".939"
+              transform="rotate(-146 8.83 13.822)"
+            />
+            <path d="M8.072 13.306l1.03-1.586.787.512-1.03 1.586z" />
+          </svg>
+          <svg
+            className={styles.checkboxIndeterminateIcon}
+            width="10"
+            height="2"
+            viewBox="0 0 10 2"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="0" y="0" width="10" height="2" />
+          </svg>
         </div>
 
         {children && (
           <span className={classNames({
             [styles.text]: true,
-            [styles.textStateError]: functionalState === 'error',
-            [styles.textStateDisabled]: functionalState === 'disabled',
-            [styles.textStateDefault]: functionalState === 'default'
+            [styles.textStateError]: !!hasError
           })}>
             {children}
           </span>

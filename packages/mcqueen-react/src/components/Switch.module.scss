@@ -11,6 +11,10 @@
   }
 }
 
+.switchCheckedIcon{
+  display: none;
+}
+
 .input {
   position: absolute;
   opacity: 0;
@@ -48,25 +52,10 @@ $switchHeight: 22px;
       background-color: theme('colors.red.default');
       border-color: theme('colors.red.default');
     }
-    &Disabled{
-      background-color: theme('colors.gray.default');
-      border-color: theme('colors.gray.default');
-    }
-    &Default{
-      &Unchecked{
-        background-color: theme('colors.gray.default');
-        border-color: theme('colors.gray.default');
-      }
-      &Checked{
-        justify-content: flex-end;
-        background-color: theme('colors.blue.default');
-        border-color: theme('colors.blue.default');
-      }
-    }
   }
 }
 
-.switchImage {
+.switchCircle {
   width: $switchHeight;
   height: $switchHeight;
   border-radius: 99px;
@@ -74,27 +63,6 @@ $switchHeight: 22px;
   align-items: center;
   justify-content: center;
   flex: none;
-
-  &State{
-    &Error{
-      color: theme('colors.red.default');
-      background-color: theme('colors.white');
-    }
-    &Disabled{
-      color: theme('colors.gray.default');
-      background-color: #99ACC2;
-    }
-    &Default{
-      &Unchecked{
-        color: theme('colors.gray.default');
-        background-color: theme('colors.white');
-      }
-      &Checked{
-        color: theme('colors.blue.default');
-        background-color: theme('colors.white');
-      }
-    }
-  }
 }
 
 .text {
@@ -105,16 +73,80 @@ $switchHeight: 22px;
   font-size: theme("fontSize.body-2");
   font-weight: 400;
   padding-left: 8px;
+  color: inherit;
 
   &State{
     &Error{
       color: theme('colors.red.default');
     }
-    &Disabled{
-      color: #7C98B6;
+  }
+}
+
+.input:not(:checked){
+  & ~ .switchContainer{
+    background-color: theme('colors.gray.default');
+    border-color: theme('colors.gray.default');
+
+    .switchCircle{
+      color: theme('colors.gray.default');
+      background-color: theme('colors.white');
     }
-    &Default{
-      color: inherit;
+
+    &State{
+      &Error{
+        border-color: theme('colors.red.default');
+        background-color: theme('colors.red.default');
+
+        .switchCircle{
+          color: theme('colors.red.default');
+          background-color: theme('colors.white');
+        }
+      }
     }
+  }
+}
+
+.input:checked{
+  & ~ .switchContainer{
+    justify-content: flex-end;
+    background-color: theme('colors.blue.default');
+    border-color: theme('colors.blue.default');
+
+    .switchCircle{
+      color: theme('colors.blue.default');
+      background-color: theme('colors.white');
+
+      .switchCheckedIcon{
+        display: block;
+      }
+    }
+
+    &State{
+      &Error{
+        border-color: theme('colors.red.default');
+        background-color: theme('colors.red.default');
+
+        .switchCircle{
+          color: theme('colors.red.default');
+          background-color: theme('colors.white');
+        }
+      }
+    }
+  }
+}
+
+.input:disabled{
+  & ~ .switchContainer{
+    background-color: theme('colors.gray.default')!important;
+    border-color: theme('colors.gray.default')!important;
+
+    .switchCircle{
+      color: theme('colors.gray.default')!important;
+      background-color: #99ACC2!important;
+    }
+  }
+
+  & ~ .text{
+    color: #7C98B6!important;
   }
 }

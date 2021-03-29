@@ -4,29 +4,6 @@ import { noop } from 'lodash';
 
 import styles from './Switch.module.scss';
 
-const labelCursor = {
-  error: 'pointer',
-  disabled: 'default',
-  default: 'pointer',
-};
-
-type FunctionalState = 'disabled' | 'error' | 'default';
-
-const getFunctionalState = ({
-  isDisabled,
-  hasError,
-}: Pick<SwitchPropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
-  if (!!isDisabled) {
-    return 'disabled';
-  }
-
-  if (!!hasError) {
-    return 'error';
-  }
-
-  return 'default';
-};
-
 export interface SwitchPropsType {
   isDisabled?: boolean,
   isChecked?: boolean,
@@ -58,8 +35,6 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
     }: SwitchPropsType,
     outerRef
   ): JSX.Element {
-    const functionalState = getFunctionalState({ isDisabled, hasError });
-
     // React adds a `value` attribute (`value=""`) to `input[type="checkbox"]` even if the `value`
     // prop is `undefined`. This prevents the default browser behavior of `value="on"` when the
     // `value` attribute is omitted. We can work around the React behavior and avoid adding
@@ -74,7 +49,7 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
           [styles.switchVerticalAlignTop]: switchVerticalAlign === 'top',
           [styles.switchVerticalAlignCenter]: switchVerticalAlign === 'center',
         }, className)}
-        style={{ cursor: labelCursor[functionalState] }}
+        style={{ cursor: isDisabled ? "default" : "pointer" }}
       >
         <input
           ref={outerRef}
@@ -93,56 +68,47 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
         <div
           className={classNames({
             [styles.switchContainer]: true,
-            [styles.switchContainerStateError]: functionalState === 'error',
-            [styles.switchContainerStateDisabled]: functionalState === 'disabled',
-            [styles.switchContainerStateDefaultChecked]: functionalState === 'default' && !!isChecked,
-            [styles.switchContainerStateDefaultUnchecked]: functionalState === 'default' && !isChecked
+            [styles.switchContainerStateError]: !!hasError
           })}
         >
           <div
             className={classNames({
-              [styles.switchImage]: true,
-              [styles.switchImageStateError]: functionalState === 'error',
-              [styles.switchImageStateDisabled]: functionalState === 'disabled',
-              [styles.switchImageStateDefaultChecked]: functionalState === 'default' && !!isChecked,
-              [styles.switchImageStateDefaultUnchecked]: functionalState === 'default' && !isChecked
+              [styles.switchCircle]: true,
+              [styles.switchCircleStateError]: !!hasError
             })}
           >
-            {!!isChecked && (
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 18 18"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="15.232"
-                  y="4.003"
-                  width="11.701"
-                  height="1.879"
-                  rx=".939"
-                  transform="rotate(123 15.232 4.003)"
-                />
-                <rect
-                  x="8.83"
-                  y="13.822"
-                  width="7.337"
-                  height="1.879"
-                  rx=".939"
-                  transform="rotate(-146 8.83 13.822)"
-                />
-                <path d="M8.072 13.306l1.03-1.586.787.512-1.03 1.586z" />
-              </svg>
-            )}
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 18 18"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.switchCheckedIcon}
+            >
+              <rect
+                x="15.232"
+                y="4.003"
+                width="11.701"
+                height="1.879"
+                rx=".939"
+                transform="rotate(123 15.232 4.003)"
+              />
+              <rect
+                x="8.83"
+                y="13.822"
+                width="7.337"
+                height="1.879"
+                rx=".939"
+                transform="rotate(-146 8.83 13.822)"
+              />
+              <path d="M8.072 13.306l1.03-1.586.787.512-1.03 1.586z" />
+            </svg>
           </div>
         </div>
         {children && (
           <span className={classNames({
             [styles.text]: true,
-            [styles.textStateError]: functionalState === 'error',
-            [styles.textStateDisabled]: functionalState === 'disabled',
-            [styles.textStateDefault]: functionalState === 'default'
+            [styles.textStateError]: !!hasError
           })}>
             {children}
           </span>
