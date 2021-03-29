@@ -1,4 +1,5 @@
 import React from 'react';
+import { noop } from "lodash"
 
 import TextInputBase, { TextInputBasePropsType } from "./subcomponents/TextInputBase"
 
@@ -6,14 +7,14 @@ export interface TextInputPropsType extends Omit<TextInputBasePropsType, "onChan
   onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputPropsType>(
-  (
+export default React.forwardRef<HTMLInputElement, TextInputPropsType>(
+  function TextInput(
     {
-      onChange,
+      onChange = noop,
       ...props
     }: TextInputPropsType,
     outerRef,
-  ): JSX.Element => {
+  ): JSX.Element {
     return (
       <TextInputBase
         {...props}
@@ -21,8 +22,5 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputPropsType>(
         onChange={(e): void => onChange(e.target.value, e)}
       />
     );
-  },
-);
-TextInput.displayName = 'TextInput';
-
-export default TextInput;
+  }
+)

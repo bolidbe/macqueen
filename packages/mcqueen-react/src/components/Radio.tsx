@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+import { noop } from 'lodash';
 
 import styles from './Radio.module.scss';
 
@@ -17,15 +18,15 @@ const getUIState = ({
   isDisabled,
   hasError,
 }: Pick<RadioPropsType, 'isDisabled' | 'hasError' | 'isChecked'>): UiState => {
-  if (isDisabled) {
+  if (!!isDisabled) {
     return 'disabled';
   }
 
-  if (hasError) {
+  if (!!hasError) {
     return 'error';
   }
 
-  if (isChecked) {
+  if (!!isChecked) {
     return 'checked';
   }
 
@@ -39,83 +40,87 @@ export interface RadioPropsType {
   isChecked?: boolean,
   isRequired?: boolean,
   hasError?: boolean,
-  name: string,
-  value: string;
+  name?: string,
+  value?: string;
   labelPadding?: string,
-  onChange: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void,
   radioVerticalAlign?: 'top' | 'center',
   className?: string
 }
 
-export default function Radio({
-  children = null,
-  id,
-  isChecked = false,
-  isDisabled = false,
-  isRequired = false,
-  hasError = false,
-  labelPadding = '14px 0',
-  name,
-  value,
-  onChange,
-  radioVerticalAlign = 'center',
-  className
-}: RadioPropsType): JSX.Element {
-  const uiState = getUIState({ isChecked, isDisabled, hasError });
+export default React.forwardRef<HTMLInputElement, RadioPropsType>(
+  function Radio(
+    {
+      children = null,
+      id,
+      isChecked,
+      isDisabled,
+      isRequired,
+      hasError,
+      labelPadding = '14px 0',
+      name,
+      value,
+      onChange = noop,
+      radioVerticalAlign = 'center',
+      className
+    }: RadioPropsType,
+    outerRef
+  ): JSX.Element {
+    const uiState = getUIState({ isChecked, isDisabled, hasError });
 
-  return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
-    <label
-      className={classNames(styles.radio, {
-        [styles.radioRadioVerticalAlignTop]: radioVerticalAlign === 'top',
-        [styles.radioRadioVerticalAlignCenter]: radioVerticalAlign === 'center',
-      }, className)}
-      style={{ padding: labelPadding, cursor: labelCursor[uiState] }}
-    >
-      <input
-        className={styles.input}
-        type="radio"
-        id={id}
-        onChange={(e): void => onChange(e.target.value, e)}
-        checked={isChecked}
-        name={name}
-        value={value}
-        disabled={isDisabled}
-        required={isRequired}
-      />
-
-      <svg
-        className={styles.circle}
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
+    return (
+      // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
+      <label
+        className={classNames(styles.radio, {
+          [styles.radioRadioVerticalAlignTop]: radioVerticalAlign === 'top',
+          [styles.radioRadioVerticalAlignCenter]: radioVerticalAlign === 'center',
+        }, className)}
+        style={{ padding: labelPadding, cursor: labelCursor[uiState] }}
       >
-        <g className={classNames({
-          [styles.circleBackgroundStateDisabled]: uiState === 'disabled',
-          [styles.circleBackgroundStateChecked]: uiState === 'checked',
-          [styles.circleBackgroundStateUnchecked]: uiState === 'unchecked',
-          [styles.circleBackgroundStateError]: uiState === 'error'
-        })} fillRule="evenodd">
-          <circle className={classNames({
-            [styles.circleBorderStateDisabled]: uiState === 'disabled',
-            [styles.circleBorderStateChecked]: uiState === 'checked',
-            [styles.circleBorderStateUnchecked]: uiState === 'unchecked',
-            [styles.circleBorderStateError]: uiState === 'error'
-          })} strokeWidth="2" cx="10" cy="10" r="9" />
-          {isChecked && (
-            <circle className={classNames({
-              [styles.circleRadioStateDisabled]: uiState === 'disabled',
-              [styles.circleRadioStateChecked]: uiState === 'checked',
-              [styles.circleRadioStateUnchecked]: uiState === 'unchecked',
-              [styles.circleRadioStateError]: uiState === 'error'
-            })} cx="10" cy="10" r="6" />
-          )}
-        </g>
-      </svg>
+        <input
+          className={styles.input}
+          type="radio"
+          ref={outerRef}
+          id={id}
+          onChange={(e): void => onChange(e.target.value, e)}
+          checked={isChecked}
+          name={name}
+          value={value}
+          disabled={isDisabled}
+          required={isRequired}
+        />
 
-      {
-        children && (
+        <svg
+          className={styles.circle}
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g className={classNames({
+            [styles.circleBackgroundStateDisabled]: uiState === 'disabled',
+            [styles.circleBackgroundStateChecked]: uiState === 'checked',
+            [styles.circleBackgroundStateUnchecked]: uiState === 'unchecked',
+            [styles.circleBackgroundStateError]: uiState === 'error'
+          })} fillRule="evenodd">
+            <circle className={classNames({
+              [styles.circleBorderStateDisabled]: uiState === 'disabled',
+              [styles.circleBorderStateChecked]: uiState === 'checked',
+              [styles.circleBorderStateUnchecked]: uiState === 'unchecked',
+              [styles.circleBorderStateError]: uiState === 'error'
+            })} strokeWidth="2" cx="10" cy="10" r="9" />
+            {!!isChecked && (
+              <circle className={classNames({
+                [styles.circleRadioStateDisabled]: uiState === 'disabled',
+                [styles.circleRadioStateChecked]: uiState === 'checked',
+                [styles.circleRadioStateUnchecked]: uiState === 'unchecked',
+                [styles.circleRadioStateError]: uiState === 'error'
+              })} cx="10" cy="10" r="6" />
+            )}
+          </g>
+        </svg>
+
+        {children && (
           <span className={classNames({
             [styles.text]: true,
             [styles.textStateDisabled]: uiState === 'disabled',
@@ -125,8 +130,8 @@ export default function Radio({
           })}>
             {children}
           </span>
-        )
-      }
-    </label>
-  );
-}
+        )}
+      </label>
+    )
+  }
+)

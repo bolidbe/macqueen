@@ -20,7 +20,7 @@ export function FilterChip({
   iconLeft,
   iconRight,
   isSelected
-}: ChipPropsType) {
+}: ChipPropsType): JSX.Element {
   return (
     <div onClick={onClick} className={classNames({
       [styles.chip]: true,
@@ -53,7 +53,7 @@ export function ToggleChip({
   iconLeft,
   iconRight,
   isSelected
-}: ChipPropsType) {
+}: ChipPropsType): JSX.Element {
   return (
     <div onClick={onClick} className={classNames({
       [styles.chip]: true,

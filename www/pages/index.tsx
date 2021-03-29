@@ -2,6 +2,7 @@ import { useState } from "react"
 import classNames from "classnames"
 import { includes, filter } from "lodash"
 import { GetServerSideProps } from 'next'
+import { useForm } from "react-hook-form";
 import {
   AccountFillIcon,
   AccountOutlineIcon,
@@ -220,6 +221,112 @@ const SearchAutocomplete = ({
   )
 }
 
+const Form = () => {
+  const { register, handleSubmit, watch, errors } = useForm({
+    defaultValues: {
+      textinput: "Lala",
+      textarea: "Lala",
+      select: "",
+      checkbox1: "",
+      checkbox2: "",
+      switch1: "",
+      switch2: "",
+      radio: "",
+      starrating: "0"
+    }
+  })
+  const onSubmit = data => console.log(data);
+
+  const textinput = watch("textinput")
+  const textarea = watch("textarea")
+  const select = watch("select")
+  const starrating = watch("starrating")
+  const radio = watch("radio")
+  const switch1 = watch("switch1")
+  const checkbox1 = watch("checkbox1")
+
+  console.log("TEXTINPUT", textinput)
+  console.log("TEXTAREA", textarea)
+  console.log("SELECT", select)
+  console.log("RATING", starrating)
+  console.log("CHECKBOX 1", checkbox1)
+  console.log("SWITCH 1", switch1)
+  console.log("RADIO", radio)
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <TextInput
+        ref={register}
+        label="Text Input"
+        name="textinput"
+      />
+      <TextArea
+        ref={register}
+        label="Text Area"
+        name="textarea"
+      />
+      <Select
+        ref={register}
+        label="Select"
+        name="select"
+      >
+        <option value="">Empty</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </Select>
+      <Checkbox
+        ref={register}
+        name="checkbox1"
+      >
+        Checkbox 1
+      </Checkbox>
+      <Checkbox
+        ref={register}
+        name="checkbox2"
+      >
+        Checkbox 2
+      </Checkbox>
+      <Switch
+        ref={register}
+        name="switch1"
+      >
+        Switch 1
+      </Switch>
+      <Switch
+        ref={register}
+        name="switch2"
+      >
+        Switch 2
+      </Switch>
+      <Radio
+        ref={register}
+        name="radio"
+        value="1"
+      >
+        Radio 1
+      </Radio>
+      <Radio
+        ref={register}
+        name="radio"
+        value="2"
+      >
+        Radio 2
+      </Radio>
+      <StarRating
+        ref={register}
+        name="starrating"
+        isInteractive={true}
+        size="large"
+        rating={starrating}
+      />
+      // Autocomplete
+      <Button type="submit">
+        Envoyer
+      </Button>
+    </form>
+  );
+}
+
 export default function Home() {
   const [textInput, setTextInput] = useState("")
   const [smallWidthModalIsOpen, setSmallWidthModalIsOpen] = useState(false)
@@ -233,6 +340,9 @@ export default function Home() {
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
       <div className="wrap">
         <Title className="text-center mb-6" heading={1}>McQueen Playground</Title>
+        <Card title="Form">
+          <Form/>
+        </Card>
         <Card title="Icon">
           {
             [

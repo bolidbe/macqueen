@@ -8,3 +8,4 @@ declare module 'intersection-observer';
 declare module 'object-fit-images';
 declare module 'no-scroll';
 declare module 'react-popper';
+declare module 'react-hook-form';

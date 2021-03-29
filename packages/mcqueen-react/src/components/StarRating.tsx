@@ -20,82 +20,88 @@ interface StarRatingPropsType {
   onChange?: (value: number, event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function StarRating({
-  rating,
-  reviewsCount,
-  size = 'small',
-  name,
-  onChange = noop,
-  showRating = false,
-  className
-}: StarRatingPropsType): JSX.Element {
-  const [hoverRating, setHoverRating] = useState(0)
+export default React.forwardRef<HTMLInputElement, StarRatingPropsType>(
+  function StarRating(
+    {
+      rating,
+      reviewsCount,
+      size = 'small',
+      name,
+      onChange = noop,
+      showRating = false,
+      className
+    }: StarRatingPropsType,
+    outerRef
+  ): JSX.Element {
+    const [hoverRating, setHoverRating] = useState(0)
 
-  // Determine if instance is interactive.
-  const isInteractive = onChange !== noop;
+    // Determine if instance is interactive.
+    const isInteractive = onChange !== noop;
 
-  // Limit rating to between 0 and MAX_NUM_STARS
-  // @ts-ignore
-  const clampedRating = clamp(rating, 0, MAX_NUM_STARS);
+    // Limit rating to between 0 and MAX_NUM_STARS
+    // @ts-ignore
+    const clampedRating = clamp(rating, 0, MAX_NUM_STARS);
 
-  // Round rating to PRECISION (e.g, 2.7 --> 2.5).
-  const roundedRating = Math.round(clampedRating / PRECISION) * PRECISION;
+    // Round rating to PRECISION (e.g, 2.7 --> 2.5).
+    const roundedRating = Math.round(clampedRating / PRECISION) * PRECISION;
 
-  // Use hoverRating when present, otherwise use rating
-  const ratingValue = hoverRating || roundedRating;
+    // Use hoverRating when present, otherwise use rating
+    const ratingValue = hoverRating || roundedRating;
 
-  // aria-label text
-  const ariaStarText = ratingValue === 1 ? 'star' : 'stars';
-  const ariaLabel = `${ratingValue} ${ariaStarText} out of ${MAX_NUM_STARS} star rating`;
+    // aria-label text
+    const ariaStarText = ratingValue === 1 ? 'star' : 'stars';
+    const ariaLabel = `${ratingValue} ${ariaStarText} out of ${MAX_NUM_STARS} star rating`;
 
-  return (
-    <div className={classNames({
-      [styles.starRatingContainer]: true,
-      [styles.starRatingContainerSizeSmall]: size === 'small',
-      [styles.starRatingContainerSizeMedium]: size === 'medium',
-      [styles.starRatingContainerSizeLarge]: size === 'large',
-    }, className)}>
-      {showRating && (
-        <div className={classNames({
-          [styles.text]: true,
-          [styles.textPositionLeft]: true
-        })}>{ rating }</div>
-      )}
-      <div
-        className={styles.starRating}
-        data-star={ratingValue}
-        aria-label={ariaLabel}
-        onMouseLeave={() => setHoverRating(0)}
-        role={isInteractive ? undefined : 'img'}
-      >
-        {isInteractive && (
-          <div className={styles.inputWrap}>
-            {times(MAX_NUM_STARS, (index: number) => (
-              // eslint-disable-next-line jsx-a11y/label-has-for, jsx-a11y/label-has-associated-control
-              <label
-                className={styles.label}
-                key={index}
-                onMouseEnter={(): void => setHoverRating(index + 1)}
-              >
-                <input
-                  className={styles.input}
-                  type="radio"
-                  name={name}
-                  value={index + 1}
-                  onChange={(e): void => onChange(parseInt(e.target.value), e)}
-                />
-                {index === 0 ? '1 star' : `${index + 1} stars`}
-              </label>
-            ))}
-          </div>
+    return (
+      <div className={classNames({
+        [styles.starRatingContainer]: true,
+        [styles.starRatingContainerSizeSmall]: size === 'small',
+        [styles.starRatingContainerSizeMedium]: size === 'medium',
+        [styles.starRatingContainerSizeLarge]: size === 'large',
+      }, className)}>
+        {showRating && (
+          <div className={classNames({
+            [styles.text]: true,
+            [styles.textPositionLeft]: true
+          })}>{ rating }</div>
+        )}
+        <div
+          className={styles.starRating}
+          data-star={ratingValue}
+          aria-label={ariaLabel}
+          onMouseLeave={() => setHoverRating(0)}
+          role={isInteractive ? undefined : 'img'}
+        >
+          {isInteractive && (
+            <div className={styles.inputWrap}>
+              {times(MAX_NUM_STARS, (index: number) => (
+                // eslint-disable-next-line jsx-a11y/label-has-for, jsx-a11y/label-has-associated-control
+                <label
+                  className={styles.label}
+                  key={index}
+                  onMouseEnter={(): void => setHoverRating(index + 1)}
+                >
+                  <input
+                    ref={outerRef}
+                    className={styles.input}
+                    type="radio"
+                    name={name}
+                    value={index + 1}
+                    onChange={(e): void => onChange(parseInt(e.target.value), e)}
+                  />
+                  {index === 0 ? '1 star' : `${index + 1} stars`}
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
+        {reviewsCount && (
+          <div className={classNames({
+            [styles.text]: true,
+            [styles.textPositionRight]: true
+          })}>({ reviewsCount } Avis)</div>
         )}
       </div>
-      {reviewsCount && (
-        <div className={classNames({
-          [styles.text]: true,
-          [styles.textPositionRight]: true
-        })}>({ reviewsCount } Avis)</div>
-      )}
-    </div>
-  );
-}
+    );
+  }
+)

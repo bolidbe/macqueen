@@ -27,15 +27,13 @@ export default function Breadcrumbs({
     <ul className={classNames("flex flex-wrap pl-0 text-body-3 heading-body-3", styles.breadcrumbs, className)}>
       {breadcrumbs.map((breadcrumb, i) => i < breadcrumbs.length - 1 ? (
         <li key={i}>
-        {
-          Link ? (
-            <Link href={breadcrumb.path}>
-              <a className="text-blue">{ breadcrumb.name }</a>
-            </Link>
-          ) : (
-            <a href={breadcrumb.path} className="text-blue">{ breadcrumb.name }</a>
-          )
-        }
+        {Link ? (
+          <Link href={breadcrumb.path}>
+            <a className="text-blue">{ breadcrumb.name }</a>
+          </Link>
+        ) : (
+          <a href={breadcrumb.path} className="text-blue">{ breadcrumb.name }</a>
+        )}
         </li>
       ) : (
         <li key={i}>

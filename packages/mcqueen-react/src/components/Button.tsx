@@ -88,21 +88,24 @@ const FlexWrapper = ({
   </div>
 )
 
-const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType>(
-  ({
-    children,
-    iconLeft,
-    iconRight,
-    isDisabled = false,
-    isLoading = false,
-    onClick,
-    href,
-    shouldOpenInNewTab,
-    theme = 'primary',
-    size = 'large',
-    type = 'button',
-    className
-  }: ButtonPropsType, ref): JSX.Element => {
+export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType>(
+  function Button(
+    {
+      children,
+      iconLeft,
+      iconRight,
+      isDisabled = false,
+      isLoading = false,
+      onClick,
+      href,
+      shouldOpenInNewTab,
+      theme = 'primary',
+      size = 'large',
+      type = 'button',
+      className
+    }: ButtonPropsType,
+    outerRef
+  ): JSX.Element {
     const commonProps = {
       disabled: isLoading || isDisabled,
       className: classNames({
@@ -134,31 +137,27 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       </FlexWrapper>
     ) : (
       <FlexWrapper size={size}>
-        {
-          iconLeft && (
-            <span
-              className={classNames({
-                [styles.iconContainer]: true,
-                [styles.iconContainerHasRightChildren]: children,
-              })}
-            >
-              <Icon name={iconLeft} size={iconSize}/>
-            </span>
-          )
-        }
+        {iconLeft && (
+          <span
+            className={classNames({
+              [styles.iconContainer]: true,
+              [styles.iconContainerHasRightChildren]: children,
+            })}
+          >
+            <Icon name={iconLeft} size={iconSize}/>
+          </span>
+        )}
         { children }
-        {
-          iconRight && (
-            <span
-              className={classNames({
-                [styles.iconContainer]: true,
-                [styles.iconContainerHasLeftChildren]: children,
-              })}
-            >
-              <Icon name={iconRight} size={iconSize}/>
-            </span>
-          )
-        }
+        {iconRight && (
+          <span
+            className={classNames({
+              [styles.iconContainer]: true,
+              [styles.iconContainerHasLeftChildren]: children,
+            })}
+          >
+            <Icon name={iconRight} size={iconSize}/>
+          </span>
+        )}
       </FlexWrapper>
     )
 
@@ -167,15 +166,13 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       return (
         <a
           {...commonProps}
-          {
-            ...getAnchorProps({
-              isDisabled,
-              shouldOpenInNewTab,
-              onClick,
-              href
-            })
-          }
-          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...getAnchorProps({
+            isDisabled,
+            shouldOpenInNewTab,
+            onClick,
+            href
+          })}
+          ref={outerRef as React.Ref<HTMLAnchorElement>}
         >
             { newChildren }
         </a>
@@ -191,12 +188,10 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       <button
         {...commonProps}
         {...buttonProps}
-        ref={ref as React.Ref<HTMLButtonElement>}
+        ref={outerRef as React.Ref<HTMLButtonElement>}
       >
         { newChildren }
       </button>
     )
   }
 )
-
-export default Button

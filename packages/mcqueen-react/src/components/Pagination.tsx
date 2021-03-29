@@ -71,7 +71,7 @@ const QueryPage = ({
   query,
   children,
   isDisabled=false
-}: QueryPagePropsType) => {
+}: QueryPagePropsType): JSX.Element => {
   const router = useRouter()
   const { url } = queryString.parseUrl(router ? router.asPath : getPath())
   const params = queryString.stringify({
@@ -104,15 +104,17 @@ interface QueryPaginationPropsType {
   className?: string;
 }
 
-const QueryPagination = ({
+export function QueryPagination({
   pagesCount,
   className
-}: QueryPaginationPropsType) => {
+}: QueryPaginationPropsType): JSX.Element | null {
   const router = useRouter()
   const { query } = queryString.parseUrl(router ? router.asPath : getPath())
   const page = query.page ? +query.page : 1
 
-  return pagesCount > 1 ? (
+  if(pagesCount < 2) return null
+
+  return (
     <div className={classNames("flex justify-center items-center", className)}>
       <QueryPage isDisabled={page === 1} page={page - 1} query={query}>
         <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
@@ -124,7 +126,7 @@ const QueryPagination = ({
         <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
       </QueryPage>
     </div>
-  ) : null
+  )
 }
 
 
@@ -144,7 +146,7 @@ const PathPage = ({
   path,
   children,
   isDisabled=false
-}: PathPagePropsType) => {
+}: PathPagePropsType): JSX.Element => {
   const url = path + (
     page !== 1
     ? `${path.endsWith("/") ? "" : "/"}${page}`
@@ -175,10 +177,10 @@ interface PathPaginationPropsType {
   className?: string;
 }
 
-const PathPagination = ({
+export function PathPagination({
   pagesCount,
   className
-}: PathPaginationPropsType) => {
+}: PathPaginationPropsType): JSX.Element | null {
   const router = useRouter()
   const { url } = queryString.parseUrl(router ? router.asPath : getPath())
   const urlSplit = url.split("/")
@@ -195,7 +197,9 @@ const PathPagination = ({
     path = url
   }
 
-  return pagesCount > 1 ? (
+  if(pagesCount < 2) return null
+
+  return (
     <div className={classNames("flex justify-center items-center", className)}>
       <PathPage isDisabled={page === 1} page={page - 1} path={path}>
         <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
@@ -207,7 +211,7 @@ const PathPagination = ({
         <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
       </PathPage>
     </div>
-  ) : null
+  )
 }
 
 /*
@@ -226,7 +230,7 @@ const StatePage = ({
   children,
   isDisabled=false,
   page
-}: StatePagePropsType) => {
+}: StatePagePropsType): JSX.Element => {
   const buttonProps = {
     className: classNames(styles.link, { [styles.disabled]: isDisabled })
   }
@@ -245,27 +249,25 @@ interface StatePaginationPropsType {
   onClick(page: number): void
 }
 
-const StatePagination = ({
+export function StatePagination({
   pagesCount,
   page,
   onClick,
   className
-}: StatePaginationPropsType) => pagesCount > 1 ? (
-  <div className={classNames("flex justify-center items-center", className)}>
-    <StatePage isDisabled={page === 1} page={page - 1} onClick={onClick}>
-      <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
-    </StatePage>
-    { getPrevPages(StatePage, page, { onClick }) }
-    <span className={classNames(styles.link, styles.active)}>{ page }</span>
-    { getNextPages(StatePage, page, pagesCount, { onClick }) }
-    <StatePage isDisabled={page === pagesCount} page={page + 1} onClick={onClick}>
-      <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
-    </StatePage>
-  </div>
-) : null
+}: StatePaginationPropsType): JSX.Element | null {
+  if(pagesCount < 2) return null
 
-export {
-  PathPagination,
-  QueryPagination,
-  StatePagination
+  return (
+    <div className={classNames("flex justify-center items-center", className)}>
+      <StatePage isDisabled={page === 1} page={page - 1} onClick={onClick}>
+        <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
+      </StatePage>
+      { getPrevPages(StatePage, page, { onClick }) }
+      <span className={classNames(styles.link, styles.active)}>{ page }</span>
+      { getNextPages(StatePage, page, pagesCount, { onClick }) }
+      <StatePage isDisabled={page === pagesCount} page={page + 1} onClick={onClick}>
+        <span className="hidden large:block mr-2">Suivant</span> <small><ArrowRightIcon/></small>
+      </StatePage>
+    </div>
+  )
 }

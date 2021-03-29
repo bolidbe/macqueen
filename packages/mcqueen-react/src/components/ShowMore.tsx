@@ -33,9 +33,7 @@ export default function ShowMore({
         <div className="cursor-pointer" onClick={onClick}>
           <Text size={size} className="flex items-center text-blue hover:text-blue-500">
             <span>
-            {
-              isExpanded ? "Voir moins" : "Voir plus"
-            }
+            { isExpanded ? "Voir moins" : "Voir plus" }
             </span>
             {!hideChevron && (
               <Icon size={iconSize} name={ isExpanded ? "chevron-up" : "chevron-down" } className="ml-1"/>

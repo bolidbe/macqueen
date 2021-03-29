@@ -1,8 +1,9 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Label from "./Label"
 import InputNote from "./InputNote"
 import { Icon } from "@bolid/mcqueen-icons"
+import { noop } from 'lodash';
 
 import styles from './TextInputBase.module.scss';
 
@@ -16,15 +17,15 @@ const getUIState = ({
   isReadOnly,
   hasError,
 }: Pick<TextInputBasePropsType, 'isDisabled' | 'isReadOnly' | 'hasError'>): UiState => {
-  if (isDisabled) {
+  if (!!isDisabled) {
     return 'disabled';
   }
 
-  if (isReadOnly) {
+  if (!!isReadOnly) {
     return 'readonly';
   }
 
-  if (hasError) {
+  if (!!hasError) {
     return 'error';
   }
 
@@ -59,7 +60,7 @@ export interface TextInputBasePropsType {
   name?: string;
   value?: string;
   iconLeft?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -72,28 +73,28 @@ export interface TextInputBasePropsType {
   note?: ReactNode;
 }
 
-const TextInputBase = React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
-  (
+export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
+  function TextInputTextInputBase(
     {
       id,
       type = 'text',
-      isDisabled = false,
-      isReadOnly = false,
-      isRequired = false,
-      isLoading = false,
-      hasError = false,
+      isDisabled,
+      isReadOnly,
+      isRequired,
+      isLoading,
+      hasError,
       placeholder,
       size = 'large',
       name,
-      value = '',
+      value,
       iconLeft,
-      onClick = (): void => {},
-      onChange = (): void => {},
-      onFocus = (): void => {},
-      onBlur = (): void => {},
-      onKeyDown = (): void => {},
-      onKeyUp = (): void => {},
-      onKeyPress = (): void => {},
+      onClick = noop,
+      onChange = noop,
+      onFocus = noop,
+      onBlur = noop,
+      onKeyDown = noop,
+      onKeyUp = noop,
+      onKeyPress = noop,
       inputMode,
       pattern,
       maxLength,
@@ -103,12 +104,8 @@ const TextInputBase = React.forwardRef<HTMLInputElement, TextInputBasePropsType>
       note
     }: TextInputBasePropsType,
     outerRef,
-  ): JSX.Element => {
+  ): JSX.Element {
     const uiState = getUIState({ isDisabled, isReadOnly, hasError });
-    // The input element rendered by this component. We use `useState` instead of
-    // `useRef` because callback refs allow us to add more than one `ref` to a DOM node.
-    const [, setInputEl] = useState<HTMLInputElement | null>(null);
-
     const iconSize = size === 'large' ? 'small' : 'tiny'
 
     /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
@@ -121,26 +118,22 @@ const TextInputBase = React.forwardRef<HTMLInputElement, TextInputBasePropsType>
           [styles.textInputStateError]: uiState === 'error',
         }, className)}
       >
-        {
-          label && (
-            <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
-          )
-        }
+        {label && (
+          <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
+        )}
         <div className={styles.inputContainer}>
-          {
-            iconLeft && (
-              <div>
-                <div
-                  className={classNames({
-                    [styles.icon]: true,
-                    [styles.iconPositionLeft]: true
-                  })}
-                >
-                  <Icon name={iconLeft} size={iconSize}/>
-                </div>
+          {iconLeft && (
+            <div>
+              <div
+                className={classNames({
+                  [styles.icon]: true,
+                  [styles.iconPositionLeft]: true
+                })}
+              >
+                <Icon name={iconLeft} size={iconSize}/>
               </div>
-            )
-          }
+            </div>
+          )}
 
           <input
             className={classNames({
@@ -165,15 +158,7 @@ const TextInputBase = React.forwardRef<HTMLInputElement, TextInputBasePropsType>
             onKeyUp={(e): void => onKeyUp(e)}
             onKeyPress={(e): void => onKeyPress(e)}
             id={id}
-            ref={(el): void => {
-              setInputEl(el);
-
-              // `outerRef` is the potential forwarded `ref` passed in from a consumer.
-              // Not all refs are callable functions, so only try and call it if it is.
-              if (typeof outerRef === 'function') {
-                outerRef(el);
-              }
-            }}
+            ref={outerRef}
             inputMode={inputMode}
             pattern={pattern}
             maxLength={maxLength}
@@ -182,49 +167,43 @@ const TextInputBase = React.forwardRef<HTMLInputElement, TextInputBasePropsType>
 
           <div className={styles.inputStyles}/>
 
-          {
-            isLoading && (
-              <div>
-                <div
-                  className={classNames({
-                    [styles.icon]: true,
-                    [styles.iconPositionRight]: true
-                  })}
+          {!!isLoading && (
+            <div>
+              <div
+                className={classNames({
+                  [styles.icon]: true,
+                  [styles.iconPositionRight]: true
+                })}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0px"
+                  y="0px"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 50 50"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0px"
-                    y="0px"
-                    width="24px"
-                    height="24px"
-                    viewBox="0 0 50 50"
-                  >
-                    <path fill="#00A4BD" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-                      <animateTransform
-                        attributeType="xml"
-                        attributeName="transform"
-                        type="rotate"
-                        from="0 25 25"
-                        to="360 25 25"
-                        dur="0.8s"
-                        repeatCount="indefinite"
-                      />
-                    </path>
-                  </svg>
-                </div>
+                  <path fill="#00A4BD" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                    <animateTransform
+                      attributeType="xml"
+                      attributeName="transform"
+                      type="rotate"
+                      from="0 25 25"
+                      to="360 25 25"
+                      dur="0.8s"
+                      repeatCount="indefinite"
+                    />
+                  </path>
+                </svg>
               </div>
-            )
-          }
+            </div>
+          )}
         </div>
-        {
-          note && (
-            <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
-          )
-        }
-      </div>
-    );
-  },
-);
-TextInputBase.displayName = 'TextInputBase';
 
-export default TextInputBase;
+        {note && (
+          <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
+        )}
+      </div>
+    )
+  }
+)

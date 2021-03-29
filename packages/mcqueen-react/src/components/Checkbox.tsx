@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+import { noop } from 'lodash';
 
 import styles from './Checkbox.module.scss';
 
@@ -16,11 +17,11 @@ const getCheckedState = ({
   isChecked,
   isIndeterminate,
 }: Pick<CheckboxPropsType, 'isChecked' | 'isIndeterminate'>): CheckedState => {
-  if (isChecked) {
+  if (!!isChecked) {
     return 'checked';
   }
 
-  if (isIndeterminate) {
+  if (!!isIndeterminate) {
     return 'indeterminate';
   }
 
@@ -31,11 +32,11 @@ const getFunctionalState = ({
   isDisabled,
   hasError,
 }: Pick<CheckboxPropsType, 'isDisabled' | 'hasError'>): FunctionalState => {
-  if (isDisabled) {
+  if (!!isDisabled) {
     return 'disabled';
   }
 
-  if (hasError) {
+  if (!!hasError) {
     return 'error';
   }
 
@@ -50,98 +51,102 @@ export interface CheckboxPropsType {
   id?: string,
   isRequired?: boolean,
   name?: string,
-  onChange: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange?: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
   isIndeterminate?: boolean,
   checkboxVerticalAlign?: 'top' | 'center',
   value?: string | string[] | number,
   className?: string
 }
 
-export default function Checkbox({
-  checkboxVerticalAlign = 'center',
-  children,
-  hasError = false,
-  id,
-  isChecked = false,
-  isDisabled = false,
-  isIndeterminate = false,
-  isRequired = false,
-  name,
-  onChange,
-  value,
-  className
-}: CheckboxPropsType): JSX.Element {
-  const functionalState = getFunctionalState({ isDisabled, hasError });
-  const checkedState = getCheckedState({ isChecked, isIndeterminate });
+export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
+  function Checkbox(
+    {
+      checkboxVerticalAlign = 'center',
+      children,
+      hasError,
+      id,
+      isChecked,
+      isDisabled,
+      isIndeterminate,
+      isRequired,
+      name,
+      onChange = noop,
+      value,
+      className
+    }: CheckboxPropsType,
+    outerRef
+  ): JSX.Element {
+    const functionalState = getFunctionalState({ isDisabled, hasError });
+    const checkedState = getCheckedState({ isChecked, isIndeterminate });
 
-  // React adds a `value` attribute (`value=""`) to `input[type="checkbox"]` even if the `value`
-  // prop is `undefined`. This prevents the default browser behavior of `value="on"` when the
-  // `value` attribute is omitted. We can work around the React behavior and avoid adding
-  // `value=""` to the DOM by conditionally creating an object that we then spread onto the
-  // element. More context: https://github.com/thumbtack/thumbprint/issues/589
-  const valuePropObject = value ? { value } : {};
+    // React adds a `value` attribute (`value=""`) to `input[type="checkbox"]` even if the `value`
+    // prop is `undefined`. This prevents the default browser behavior of `value="on"` when the
+    // `value` attribute is omitted. We can work around the React behavior and avoid adding
+    // `value=""` to the DOM by conditionally creating an object that we then spread onto the
+    // element. More context: https://github.com/thumbtack/thumbprint/issues/589
+    const valuePropObject = value ? { value } : {};
 
-  return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
-    <label
-      className={classNames(styles.checkbox, {
-        [styles.checkboxVerticalAlignTop]: checkboxVerticalAlign === 'top',
-        [styles.checkboxVerticalAlignCenter]: checkboxVerticalAlign === 'center',
-      }, className)}
-      style={{ cursor: labelCursor[functionalState] }}
-    >
-      <input
-        className={styles.input}
-        aria-checked={isIndeterminate ? 'mixed' : isChecked}
-        type="checkbox"
-        id={id}
-        name={name}
-        checked={isChecked}
-        onChange={(e): void => onChange(e.target.checked, e)}
-        disabled={isDisabled}
-        required={isRequired}
-        {...valuePropObject}
-      />
-
-      <div
-        className={classNames({
-          [styles.checkboxImage]: true,
-          [styles.checkboxImageStateError]: functionalState === 'error',
-          [styles.checkboxImageStateDisabled]: functionalState === 'disabled',
-          [styles.checkboxImageStateDefaultChecked]: functionalState === 'default' && checkedState === 'checked',
-          [styles.checkboxImageStateDefaultIndeterminate]: functionalState === 'default' && checkedState === 'indeterminate',
-          [styles.checkboxImageStateDefaultUnchecked]: functionalState === 'default' && checkedState === 'unchecked'
-        })}
+    return (
+      // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
+      <label
+        className={classNames(styles.checkbox, {
+          [styles.checkboxVerticalAlignTop]: checkboxVerticalAlign === 'top',
+          [styles.checkboxVerticalAlignCenter]: checkboxVerticalAlign === 'center',
+        }, className)}
+        style={{ cursor: labelCursor[functionalState] }}
       >
-        {isChecked && !isIndeterminate && (
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="15.232"
-              y="4.003"
-              width="11.701"
-              height="1.879"
-              rx=".939"
-              transform="rotate(123 15.232 4.003)"
-            />
-            <rect
-              x="8.83"
-              y="13.822"
-              width="7.337"
-              height="1.879"
-              rx=".939"
-              transform="rotate(-146 8.83 13.822)"
-            />
-            <path d="M8.072 13.306l1.03-1.586.787.512-1.03 1.586z" />
-          </svg>
-        )}
-        {
-          isIndeterminate && (
+        <input
+          ref={outerRef}
+          className={styles.input}
+          aria-checked={!!isIndeterminate ? 'mixed' : isChecked}
+          type="checkbox"
+          id={id}
+          name={name}
+          checked={isChecked}
+          onChange={(e): void => onChange(e.target.checked, e)}
+          disabled={isDisabled}
+          required={isRequired}
+          {...valuePropObject}
+        />
+
+        <div
+          className={classNames({
+            [styles.checkboxImage]: true,
+            [styles.checkboxImageStateError]: functionalState === 'error',
+            [styles.checkboxImageStateDisabled]: functionalState === 'disabled',
+            [styles.checkboxImageStateDefaultChecked]: functionalState === 'default' && checkedState === 'checked',
+            [styles.checkboxImageStateDefaultIndeterminate]: functionalState === 'default' && checkedState === 'indeterminate',
+            [styles.checkboxImageStateDefaultUnchecked]: functionalState === 'default' && checkedState === 'unchecked'
+          })}
+        >
+          {!!isChecked && !isIndeterminate && (
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="15.232"
+                y="4.003"
+                width="11.701"
+                height="1.879"
+                rx=".939"
+                transform="rotate(123 15.232 4.003)"
+              />
+              <rect
+                x="8.83"
+                y="13.822"
+                width="7.337"
+                height="1.879"
+                rx=".939"
+                transform="rotate(-146 8.83 13.822)"
+              />
+              <path d="M8.072 13.306l1.03-1.586.787.512-1.03 1.586z" />
+            </svg>
+          )}
+          {!!isIndeterminate && (
             <svg
               width="10"
               height="2"
@@ -151,12 +156,10 @@ export default function Checkbox({
             >
               <rect x="0" y="0" width="10" height="2" />
             </svg>
-          )
-        }
-      </div>
+          )}
+        </div>
 
-      {
-        children && (
+        {children && (
           <span className={classNames({
             [styles.text]: true,
             [styles.textStateError]: functionalState === 'error',
@@ -165,8 +168,8 @@ export default function Checkbox({
           })}>
             {children}
           </span>
-        )
-      }
-    </label>
-  );
-}
+        )}
+      </label>
+    );
+  }
+)

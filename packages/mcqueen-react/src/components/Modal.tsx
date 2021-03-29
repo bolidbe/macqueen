@@ -28,7 +28,7 @@ export default function Modal({
   shouldModalScroll = true,
   shouldCloseOnCurtainClick = true,
   onClose
-}: ModalPropsType) {
+}: ModalPropsType): JSX.Element {
   useEffect(() => {
     if(isOpen) noScroll.on()
     else noScroll.off()

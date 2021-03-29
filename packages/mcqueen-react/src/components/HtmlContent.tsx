@@ -7,7 +7,7 @@ interface HtmlContentPropsType {
 
 export default function HtmlContent({
   children
-}: HtmlContentPropsType){
+}: HtmlContentPropsType): JSX.Element {
   useEffect(() => {
     var lazyload: any;
     var lazyloadImages: any;

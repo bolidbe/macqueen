@@ -34,13 +34,16 @@ interface EntityAvatarPropsType {
 }
 
 const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
-  ({
-    imageUrl,
-    size = 'small',
-    initial,
-    fullName,
-    className
-  }: EntityAvatarPropsType, outerRef ): JSX.Element => {
+  (
+    {
+      imageUrl,
+      size = 'small',
+      initial,
+      fullName,
+      className
+    }: EntityAvatarPropsType,
+    outerRef
+  ): JSX.Element => {
     return (
       <div
         className={classNames(styles.avatar, {
@@ -69,9 +72,9 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           </span>
         )}
       </div>
-    );
-  },
-);
+    )
+  }
+)
 
 // Needed because of the `forwardRef`.
 EntityAvatar.displayName = 'EntityAvatar';
@@ -85,13 +88,16 @@ interface UserAvatarPropsType {
 }
 
 const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
-  ({
-    imageUrl,
-    size = 'small',
-    initials,
-    fullName,
-    className
-  }: UserAvatarPropsType, outerRef): JSX.Element => {
+  (
+    {
+      imageUrl,
+      size = 'small',
+      initials,
+      fullName,
+      className
+    }: UserAvatarPropsType,
+    outerRef
+  ): JSX.Element => {
     return (
       <div
         className={classNames(styles.avatar, {
@@ -120,9 +126,9 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           </span>
         )}
       </div>
-    );
-  },
-);
+    )
+  }
+)
 
 // Needed because of the `forwardRef`.
 UserAvatar.displayName = 'UserAvatar';

@@ -11,13 +11,13 @@ interface IInputNoteProps {
 
 export default function InputNote({
   children,
-  hasError = false,
+  hasError,
   className
 }: IInputNoteProps): JSX.Element {
   return (
     <div className={classNames({
       [styles.inputNote]: true,
-      [styles.inputNoteStateError]: hasError
+      [styles.inputNoteStateError]: !!hasError
     }, className)}>{ children }</div>
   )
 }

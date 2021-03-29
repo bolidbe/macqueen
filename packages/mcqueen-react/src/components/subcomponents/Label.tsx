@@ -12,15 +12,15 @@ interface ILabelProps {
 
 export default function Label({
   children,
-  hasError = false,
-  isDisabled = false,
+  hasError,
+  isDisabled,
   className
 }: ILabelProps): JSX.Element {
   return (
     <div className={classNames({
       [styles.label]: true,
-      [styles.labelStateError]: hasError,
-      [styles.labelStateDisabled]: isDisabled
+      [styles.labelStateError]: !!hasError,
+      [styles.labelStateDisabled]: !!isDisabled
     }, className)}>{ children }</div>
   )
 }
