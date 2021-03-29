@@ -71,12 +71,7 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
             [styles.switchContainerStateError]: !!hasError
           })}
         >
-          <div
-            className={classNames({
-              [styles.switchCircle]: true,
-              [styles.switchCircleStateError]: !!hasError
-            })}
-          >
+          <div className={styles.switchCircle}>
             <svg
               width="12"
               height="12"
