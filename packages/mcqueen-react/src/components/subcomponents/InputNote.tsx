@@ -4,9 +4,9 @@ import classNames from 'classnames';
 import styles from './InputNote.module.scss';
 
 interface IInputNoteProps {
-  children: ReactNode | string,
-  hasError?: boolean,
-  className?: string,
+  children: ReactNode | string;
+  hasError?: boolean;
+  className?: string;
 }
 
 export default function InputNote({

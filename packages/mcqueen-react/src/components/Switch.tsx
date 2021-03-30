@@ -5,17 +5,17 @@ import { noop } from 'lodash';
 import styles from './Switch.module.scss';
 
 export interface SwitchPropsType {
-  isDisabled?: boolean,
-  isChecked?: boolean,
-  hasError?: boolean,
-  children?: ReactNode,
-  id?: string,
-  isRequired?: boolean,
-  name?: string,
-  onChange?: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
-  switchVerticalAlign?: 'top' | 'center',
-  value?: string | string[] | number,
-  className?: string
+  isDisabled?: boolean;
+  isChecked?: boolean;
+  hasError?: boolean;
+  children?: ReactNode;
+  id?: string;
+  isRequired?: boolean;
+  name?: string;
+  onChange?: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  switchVerticalAlign?: 'top' | 'center';
+  value?: string | string[] | number;
+  className?: string;
 }
 
 export default React.forwardRef<HTMLInputElement, SwitchPropsType>(

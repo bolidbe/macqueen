@@ -22,7 +22,6 @@ export default function StarRating({
     <div className={classNames("flex items-center", className)}>
       {showRating && (
         <div className={classNames({
-          [styles.text]: true,
           [styles.textPositionLeft]: true,
           [styles.textSizeSmall]: size === 'small',
           [styles.textSizeMedium]: size === 'medium',
@@ -37,7 +36,6 @@ export default function StarRating({
       />
       {reviewsCount && (
         <div className={classNames({
-          [styles.text]: true,
           [styles.textPositionRight]: true,
           [styles.textSizeSmall]: size === 'small',
           [styles.textSizeMedium]: size === 'medium',

@@ -60,10 +60,10 @@ const getNextPages = (Component: any, page: number, pagesCount: number, props: {
 */
 
 interface QueryPagePropsType {
-  page: number,
+  page: number;
   query: {[key: string]: any};
-  isDisabled?: boolean,
-  children?: ReactNode
+  isDisabled?: boolean;
+  children?: ReactNode;
 }
 
 const QueryPage = ({
@@ -135,10 +135,10 @@ export function QueryPagination({
 */
 
 interface PathPagePropsType {
-  page: number,
-  path: string,
-  isDisabled?: boolean,
-  children?: ReactNode
+  page: number;
+  path: string;
+  isDisabled?: boolean;
+  children?: ReactNode;
 }
 
 const PathPage = ({
@@ -246,7 +246,7 @@ interface StatePaginationPropsType {
   pagesCount: number;
   page: number;
   className?: string;
-  onClick(page: number): void
+  onClick(page: number): void;
 }
 
 export function StatePagination({

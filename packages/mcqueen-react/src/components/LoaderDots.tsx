@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import styles from './LoaderDots.module.scss';
 
 interface LoaderDotsPropsType {
-  assistiveText?: string,
-  size?: 'small' | 'medium',
-  theme?: 'primary' | 'secondary' | 'inverse' | 'muted',
-  className?: string
+  assistiveText?: string;
+  size?: 'small' | 'medium';
+  theme?: 'primary' | 'secondary' | 'inverse' | 'muted';
+  className?: string;
 }
 
 export default function LoaderDots({

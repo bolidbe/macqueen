@@ -5,18 +5,17 @@ import { noop } from 'lodash';
 import styles from './Radio.module.scss';
 
 export interface RadioPropsType {
-  isDisabled?: boolean,
-  children?: ReactNode,
-  id?: string,
-  isChecked?: boolean,
-  isRequired?: boolean,
-  hasError?: boolean,
-  name?: string,
+  isDisabled?: boolean;
+  children?: ReactNode;
+  id?: string;
+  isChecked?: boolean;
+  isRequired?: boolean;
+  hasError?: boolean;
+  name?: string;
   value?: string;
-  labelPadding?: string,
-  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void,
-  radioVerticalAlign?: 'top' | 'center',
-  className?: string
+  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+  radioVerticalAlign?: 'top' | 'center';
+  className?: string;
 }
 
 export default React.forwardRef<HTMLInputElement, RadioPropsType>(
@@ -28,7 +27,6 @@ export default React.forwardRef<HTMLInputElement, RadioPropsType>(
       isDisabled,
       isRequired,
       hasError,
-      labelPadding = '14px 0',
       name,
       value,
       onChange = noop,
@@ -41,10 +39,10 @@ export default React.forwardRef<HTMLInputElement, RadioPropsType>(
       // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
       <label
         className={classNames(styles.radio, {
-          [styles.radioRadioVerticalAlignTop]: radioVerticalAlign === 'top',
-          [styles.radioRadioVerticalAlignCenter]: radioVerticalAlign === 'center',
+          [styles.radioVerticalAlignTop]: radioVerticalAlign === 'top',
+          [styles.radioVerticalAlignCenter]: radioVerticalAlign === 'center',
         }, className)}
-        style={{ padding: labelPadding, cursor: !!isDisabled ? "default" : "pointer" }}
+        style={{ cursor: !!isDisabled ? "default" : "pointer" }}
       >
         <input
           className={styles.input}

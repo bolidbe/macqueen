@@ -5,18 +5,18 @@ import { noop } from 'lodash';
 import styles from './Checkbox.module.scss';
 
 export interface CheckboxPropsType {
-  isDisabled?: boolean,
-  isChecked?: boolean,
-  hasError?: boolean,
-  children?: ReactNode,
-  id?: string,
-  isRequired?: boolean,
-  name?: string,
-  onChange?: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void,
-  isIndeterminate?: boolean,
-  checkboxVerticalAlign?: 'top' | 'center',
-  value?: string | string[] | number,
-  className?: string
+  isDisabled?: boolean;
+  isChecked?: boolean;
+  hasError?: boolean;
+  children?: ReactNode;
+  id?: string;
+  isRequired?: boolean;
+  name?: string;
+  onChange?: (isChecked: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  isIndeterminate?: boolean;
+  checkboxVerticalAlign?: 'top' | 'center';
+  value?: string | string[] | number;
+  className?: string;
 }
 
 export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(

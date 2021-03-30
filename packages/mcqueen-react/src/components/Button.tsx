@@ -34,10 +34,10 @@ const getRel = (href?: string, shouldOpenInNewTab = false): string | undefined =
 };
 
 interface AnchorPropsType {
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
-  target: string,
-  rel?: string,
-  href?: string
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  target: string;
+  rel?: string;
+  href?: string;
 }
 
 const getAnchorProps = ({
@@ -58,18 +58,18 @@ const getAnchorProps = ({
 });
 
 interface ButtonPropsType {
-  children?: ReactNode,
-  iconLeft?: string,
-  iconRight?: string,
-  isDisabled?: boolean,
-  isLoading?: boolean,
-  onClick?: () => void,
-  href?: string,
-  shouldOpenInNewTab?: boolean,
-  theme?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid',
-  size?: 'small' | 'large',
-  type?: 'button' | 'submit',
-  className?: string
+  children?: ReactNode;
+  iconLeft?: string;
+  iconRight?: string;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  onClick?: () => void;
+  href?: string;
+  shouldOpenInNewTab?: boolean;
+  theme?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid';
+  size?: 'small' | 'large';
+  type?: 'button' | 'submit';
+  className?: string;
 }
 
 const FlexWrapper = ({

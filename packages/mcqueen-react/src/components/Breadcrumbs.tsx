@@ -15,8 +15,8 @@ export interface BreadcrumbType {
 }
 
 interface BreadcrumbsPropsType {
-  breadcrumbs: BreadcrumbType[],
-  className?: string
+  breadcrumbs: BreadcrumbType[];
+  className?: string;
 }
 
 export default function Breadcrumbs({

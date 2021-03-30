@@ -2,11 +2,11 @@ import { createElement, ReactNode, ReactHTML } from 'react';
 import classNames from 'classnames';
 
 interface TextPropsType {
-  children?: ReactNode | string,
-  size?: 1 | 2 | 3 | 4,
-  className?: string,
-  elementName?: keyof ReactHTML,
-  isBold?: boolean
+  children?: ReactNode | string;
+  size?: 1 | 2 | 3 | 4;
+  className?: string;
+  elementName?: keyof ReactHTML;
+  isBold?: boolean;
 }
 
 export default function Text({

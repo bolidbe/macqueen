@@ -22,21 +22,21 @@ const getUIState = ({
 };
 
 export interface SelectPropsType {
-  children?: ReactNode,
-  id?: string,
-  isDisabled?: boolean,
-  isRequired?: boolean,
-  hasError?: boolean,
-  size?: 'small' | 'large',
-  value?: string,
-  onClick?: () => void,
-  onChange?: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void,
-  onFocus?: () => void,
-  onBlur?: () => void,
-  name?: string,
-  className?: string,
-  label?: ReactNode,
-  note?: ReactNode,
+  children?: ReactNode;
+  id?: string;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  hasError?: boolean;
+  size?: 'small' | 'large';
+  value?: string;
+  onClick?: () => void;
+  onChange?: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  name?: string;
+  className?: string;
+  label?: ReactNode;
+  note?: ReactNode;
 }
 
 export default React.forwardRef<HTMLSelectElement, SelectPropsType>(

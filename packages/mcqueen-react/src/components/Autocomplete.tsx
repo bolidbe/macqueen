@@ -59,7 +59,7 @@ export interface AutocompletePropsType extends Omit<TextInputBasePropsType, "onC
   onFetchRequested: (value: string) => void;
   onClearRequested?: () => void;
   fetchDelay?: number;
-  onSelect?: (value: string, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void,
+  onSelect?: (value: string, suggestion: AutocompleteSuggestionType, event?: React.ChangeEvent<HTMLInputElement>) => void;
   renderSuggestion?: (suggestion: AutocompleteSuggestionType) => ReactNode;
   renderSuggestionsContainer?: (options: any) => ReactNode;
   renderSectionTitle?: (section: AutocompleteSuggestionsSectionType) => ReactNode;
@@ -136,6 +136,8 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
       onSelect(suggestion.value, suggestion)
     }
 
+    // const valuePropObject = defaultSuggestion ? { value: defaultSuggestion.value } : {};
+
     return (
       <div className={classNames("relative", className)}>
         <input
@@ -143,7 +145,6 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
           id={id}
           name={name}
           type="hidden"
-          /* If there's an outer ref, we use the input as uncontrolled component */
           value={value}
         />
         <Autosuggest

@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import styles from './Title.module.scss';
 
 interface TitlePropsType {
-  children: ReactNode,
-  size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
-  className?: string,
-  heading?: 1 | 2 | 3 | 4 | 5 | 6,
-  id?: string
+  children: ReactNode;
+  size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  className?: string;
+  heading?: 1 | 2 | 3 | 4 | 5 | 6;
+  id?: string;
 }
 
 export default function Title({

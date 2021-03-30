@@ -52,10 +52,7 @@ export default function Modal({
         [styles.curtain]: true,
         [styles.curtainOpen]: isOpen
       })}>
-        <div onClick={onClickCurtain} className={classNames({
-          [styles.curtainInner]: true,
-          [styles.curtainInnerScroll]: shouldModalScroll
-        })}>
+        <div onClick={onClickCurtain} className={styles.curtainInner}>
           <div className={classNames({
             [styles.modal]: true,
             [styles.modalOpen]: isOpen,

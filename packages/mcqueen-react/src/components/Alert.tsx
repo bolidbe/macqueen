@@ -5,9 +5,9 @@ import { CheckIcon, WarningOutlineIcon, InfoOutlineIcon } from '@bolid/mcqueen-i
 import styles from './Alert.module.scss';
 
 interface AlertPropsType {
-  children?: ReactNode,
-  theme?: 'success' | 'caution' | 'warning' | 'info',
-  className?: string
+  children?: ReactNode;
+  theme?: 'success' | 'caution' | 'warning' | 'info';
+  className?: string;
 }
 
 const ALERT_ICONS = {

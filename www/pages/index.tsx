@@ -1,6 +1,6 @@
 import { useState } from "react"
 import classNames from "classnames"
-import { includes, filter } from "lodash"
+import { includes, filter, keys } from "lodash"
 import { GetServerSideProps } from 'next'
 import { useForm } from "react-hook-form";
 import {
@@ -223,7 +223,8 @@ const SearchAutocomplete = ({
 }
 
 const Form = () => {
-  const { register, handleSubmit, watch, errors } = useForm({
+  const [result, setResult] = useState()
+  const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       textinput: "Lala",
       textarea: "Lala",
@@ -233,43 +234,26 @@ const Form = () => {
       switch1: "",
       switch2: true,
       radio: "",
-      starrating: "0"
+      starrating: "0",
+      autocomplete: "1"
     }
   })
-  const onSubmit = data => console.log(data);
-
-  const textinput = watch("textinput")
-  const textarea = watch("textarea")
-  const select = watch("select")
-  const starrating = watch("starrating")
-  const radio = watch("radio")
-  const switch1 = watch("switch1")
-  const checkbox1 = watch("checkbox1")
-
-  /*
-  console.log("TEXTINPUT", textinput)
-  console.log("TEXTAREA", textarea)
-  console.log("SELECT", select)
-  console.log("RATING", starrating)
-  console.log("CHECKBOX 1", checkbox1)
-  console.log("SWITCH 1", switch1)
-  console.log("RADIO", radio)
-  */
+  const onSubmit = data => setResult(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextInput
-        ref={register}
+        ref={register({ required: true })}
         label="Text Input"
         name="textinput"
       />
       <TextArea
-        ref={register}
+        ref={register({ required: true })}
         label="Text Area"
         name="textarea"
       />
       <Select
-        ref={register}
+        ref={register({ required: true })}
         label="Select"
         name="select"
       >
@@ -278,52 +262,72 @@ const Form = () => {
         <option value="2">Option 2</option>
       </Select>
       <Checkbox
-        ref={register}
+        ref={register({ required: true })}
         name="checkbox1"
       >
         Checkbox 1
       </Checkbox>
       <Checkbox
-        ref={register}
+        ref={register({ required: true })}
         name="checkbox2"
       >
         Checkbox 2
       </Checkbox>
       <Switch
-        ref={register}
+        ref={register({ required: true })}
         name="switch1"
       >
         Switch 1
       </Switch>
       <Switch
-        ref={register}
+        ref={register({ required: true })}
         name="switch2"
       >
         Switch 2
       </Switch>
       <Radio
-        ref={register}
+        ref={register({ required: true })}
         name="radio"
         value="1"
       >
         Radio 1
       </Radio>
       <Radio
-        ref={register}
+        ref={register({ required: true })}
         name="radio"
         value="2"
       >
         Radio 2
       </Radio>
       <StarRatingInput
-        ref={register}
+        ref={register({ required: true })}
         name="starrating"
         size="large"
       />
-      // Autocomplete
+      <Autocomplete
+        ref={register({ required: true })}
+        name="autocomplete"
+        label="Autocomplete"
+        suggestions={SUGGESTIONS}
+        onFetchRequested={() => {}}
+        defaultSuggestion={SUGGESTIONS[0]}
+      />
       <Button type="submit">
         Envoyer
       </Button>
+      {result ? (
+        <pre>
+        { JSON.stringify(result, null, 2) }
+        </pre>
+      ) : (
+        <>
+        {errors && (
+          <pre>
+          { JSON.stringify(keys(errors), null, 2) }
+          </pre>
+        )}
+        </>
+      )}
     </form>
   );
 }
@@ -341,9 +345,6 @@ export default function Home() {
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
       <div className="wrap">
         <Title className="text-center mb-6" heading={1}>McQueen Playground</Title>
-        <Card title="Form">
-          <Form/>
-        </Card>
         <Card title="Icon">
           {
             [
@@ -752,6 +753,22 @@ export default function Home() {
             </div>
           </Section>
         </Card>
+        <Card title="Autocomplete">
+          <Section title="Simple autocomplete">
+            <SearchAutocomplete/>
+          </Section>
+          <Section title="With sections">
+            <SearchAutocomplete hasSections/>
+          </Section>
+          <Section title="States">
+            <SearchAutocomplete className="mb-3" isLoading={true} />
+            <SearchAutocomplete className="mb-3" hasError={true} />
+            <SearchAutocomplete className="mb-3" isDisabled={true} />
+          </Section>
+        </Card>
+        <Card title="Complete form example">
+          <Form/>
+        </Card>
         <Card title="Avatar">
           <Section title="Variants">
             <div className="flex">
@@ -988,19 +1005,6 @@ export default function Home() {
           </Section>
           <Section className="mt-5" title="Using url path">
             <PathPagination page={1} path="" pagesCount={10}/>
-          </Section>
-        </Card>
-        <Card title="Autocomplete">
-          <Section title="Simple autocomplete">
-            <SearchAutocomplete/>
-          </Section>
-          <Section title="With sections">
-            <SearchAutocomplete hasSections/>
-          </Section>
-          <Section title="States">
-            <SearchAutocomplete className="mb-3" isLoading={true} />
-            <SearchAutocomplete className="mb-3" hasError={true} />
-            <SearchAutocomplete className="mb-3" isDisabled={true} />
           </Section>
         </Card>
       </div>

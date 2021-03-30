@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import styles from './Label.module.scss';
 
 interface ILabelProps {
-  children: ReactNode | string,
-  hasError?: boolean,
-  isDisabled?: boolean,
-  className?: string,
+  children: ReactNode | string;
+  hasError?: boolean;
+  isDisabled?: boolean;
+  className?: string;
 }
 
 export default function Label({

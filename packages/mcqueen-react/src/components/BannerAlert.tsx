@@ -10,9 +10,9 @@ const ALERT_ICONS = {
 };
 
 interface BannerAlertPropsType {
-  children: ReactNode,
-  theme: 'info' | 'warning' | 'caution',
-  className?: string
+  children: ReactNode;
+  theme: 'info' | 'warning' | 'caution';
+  className?: string;
 }
 
 export default function AlertBanner({

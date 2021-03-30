@@ -139,40 +139,40 @@ function useLazyLoad(
 }
 
 type ImageSource = {
-  type: 'image/webp' | 'image/jpeg' | 'image/png' | 'image/gif',
-  srcSet: string
+  type: 'image/webp' | 'image/jpeg' | 'image/png' | 'image/gif';
+  srcSet: string;
 };
 
 interface ImagePropsTypes {
-  src: string,
-  sources?: ImageSource[],
-  alt: string,
-  height?: string,
-  containerAspectRatio?: number,
-  forceEarlyRender?: React.ImgHTMLAttributes<HTMLImageElement>['sizes'],
-  objectFit?: 'cover' | 'contain',
-  objectPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right',
-  className?: string,
+  src: string;
+  sources?: ImageSource[];
+  alt: string;
+  height?: string;
+  containerAspectRatio?: number;
+  forceEarlyRender?: React.ImgHTMLAttributes<HTMLImageElement>['sizes'];
+  objectFit?: 'cover' | 'contain';
+  objectPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right';
+  className?: string;
   style?: {
-    [key: string]: any
-  }
+    [key: string]: any;
+  };
 }
 
 type ObjectFitPropsType = {
   style?: {
     // Not using React.CSSProperties types for these two, because we use a restricted subset.
-    objectFit?: 'cover' | 'contain',
-    objectPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right',
-    fontFamily?: React.CSSProperties['fontFamily'],
-    height?: '100%'
+    objectFit?: 'cover' | 'contain';
+    objectPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right';
+    fontFamily?: React.CSSProperties['fontFamily'];
+    height?: '100%';
   };
 };
 
 type AspectRatioBoxPropsType = {
   style?: {
-    paddingTop?: React.CSSProperties['paddingTop'],
-    overflow?: React.CSSProperties['overflow'],
-    height?: React.CSSProperties['height']
+    paddingTop?: React.CSSProperties['paddingTop'];
+    overflow?: React.CSSProperties['overflow'];
+    height?: React.CSSProperties['height'];
   };
 };
 
