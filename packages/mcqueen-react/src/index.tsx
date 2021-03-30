@@ -10,6 +10,7 @@ export { default as Checkbox, CheckboxPropsType } from "./components/Checkbox";
 export { default as Switch, SwitchPropsType } from "./components/Switch";
 export { default as Radio, RadioPropsType } from "./components/Radio";
 export { default as StarRating } from "./components/StarRating";
+export { default as StarRatingInput, StarRatingInputPropsType } from "./components/StarRatingInput";
 export { default as BannerAlert } from "./components/BannerAlert";
 export { default as Alert } from "./components/Alert";
 export { default as Image } from "./components/Image";

@@ -83,6 +83,7 @@ import {
   Checkbox,
   Switch,
   StarRating,
+  StarRatingInput,
   BannerAlert,
   Alert,
   Image,
@@ -314,12 +315,10 @@ const Form = () => {
       >
         Radio 2
       </Radio>
-      <StarRating
+      <StarRatingInput
         ref={register}
         name="starrating"
-        isInteractive={true}
         size="large"
-        rating={starrating}
       />
       // Autocomplete
       <Button type="submit">
