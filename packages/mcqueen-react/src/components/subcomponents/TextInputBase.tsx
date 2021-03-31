@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import Label from "./Label"
-import InputNote from "./InputNote"
+import Label from "../Label"
+import InputNote from "../InputNote"
 import { Icon } from "@bolid/mcqueen-icons"
 import { noop } from 'lodash';
 

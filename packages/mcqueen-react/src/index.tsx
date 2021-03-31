@@ -1,6 +1,8 @@
 export { default as Title } from './components/Title';
 export { default as Text } from './components/Text';
 export { default as Button } from './components/Button';
+export { default as Label } from "./components/Label";
+export { default as InputNote } from "./components/InputNote";
 export { default as TextInput, TextInputPropsType } from "./components/TextInput";
 export { default as TextArea, TextAreaPropsType } from "./components/TextArea";
 export { default as Autocomplete, AutocompletePropsType, AutocompleteSuggestionType, AutocompleteSuggestionsSectionType, AutocompleteThemeType } from "./components/Autocomplete";
