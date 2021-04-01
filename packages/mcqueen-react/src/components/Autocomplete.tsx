@@ -3,7 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import classNames from "classnames"
 import { has, find, debounce, noop } from "lodash"
 
-import TextInputBase, { TextInputBasePropsType } from "./subcomponents/TextInputBase"
+import TextInputBase, { TextInputBasePropsType } from "./TextInput/Base"
 
 import styles from "./Autocomplete.module.scss"
 

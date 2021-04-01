@@ -1,7 +1,7 @@
 import React from 'react';
 import { noop } from "lodash"
 
-import TextInputBase, { TextInputBasePropsType } from "./subcomponents/TextInputBase"
+import TextInputBase, { TextInputBasePropsType } from "./Base"
 
 export interface TextInputPropsType extends Omit<TextInputBasePropsType, "onChange"> {
   onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;

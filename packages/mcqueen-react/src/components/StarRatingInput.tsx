@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { times, noop } from 'lodash';
 
-import StarRatingBase, { StarRatingBasePropsType, MAX_NUM_STARS } from "./subcomponents/StarRatingBase"
+import StarRatingBase, { StarRatingBasePropsType, MAX_NUM_STARS } from "./StarRating/Base"
 
 import styles from './StarRatingInput.module.scss';
 

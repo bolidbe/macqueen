@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import styles from './StarRating.module.scss';
+import styles from './index.module.scss';
 
-import StarRatingBase, { StarRatingBasePropsType } from "./subcomponents/StarRatingBase"
+import StarRatingBase, { StarRatingBasePropsType } from "./Base"
 
 interface StarRatingPropsType extends StarRatingBasePropsType {
   showRating?: boolean;

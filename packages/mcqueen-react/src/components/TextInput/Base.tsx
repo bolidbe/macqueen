@@ -5,7 +5,7 @@ import InputNote from "../InputNote"
 import { Icon } from "@bolid/mcqueen-icons"
 import { noop } from 'lodash';
 
-import styles from './TextInputBase.module.scss';
+import styles from './Base.module.scss';
 
 type UiState = 'disabled' | 'readonly' | 'error' | 'default';
 

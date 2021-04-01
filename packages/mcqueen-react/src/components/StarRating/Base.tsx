@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { clamp, noop } from 'lodash';
 import classNames from 'classnames';
 
-import styles from './StarRatingBase.module.scss';
+import styles from './Base.module.scss';
 
 // Total number of stars
 export const MAX_NUM_STARS = 5;
