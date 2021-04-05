@@ -809,6 +809,7 @@ export default function Home() {
         </Card>
         <Card title="Banner Alert">
           <Section title="Themes">
+            <BannerAlert className="mb-3" theme="success">Banner Success</BannerAlert>
             <BannerAlert className="mb-3" theme="info">Banner Info</BannerAlert>
             <BannerAlert className="mb-3" theme="warning">Banner Warning</BannerAlert>
             <BannerAlert theme="caution">Banner Caution</BannerAlert>

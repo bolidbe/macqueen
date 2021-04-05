@@ -15,6 +15,14 @@
   }
 
   &State{
+    &Success{
+      background-color: theme('colors.green.200');
+      color: theme('colors.green.500');
+
+      a {
+        color: theme('colors.green.500');
+      }
+    }
     &Info{
       background-color: theme('colors.blue.200');
       color: theme('colors.blue.500');

@@ -6,16 +6,11 @@
   outline: 0 !important;
 }
 
-html, body{
-  min-height: 100%;
-}
-
 html, body, code{
   font-family: theme('fontFamily.default');
   font-weight: theme('fontWeight.400');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
   color: theme('colors.black.300');
   font-size: theme('fontSize.body-2');
 }
