@@ -4,7 +4,7 @@ import { Icon } from "@bolid/mcqueen-icons"
 
 type IconSize = 'tiny' | 'small' | 'medium'
 
-interface ShowMorePropsType {
+export interface ShowMorePropsType {
   children: ReactNode;
   isExpanded: boolean;
   isShrinkable?: boolean;

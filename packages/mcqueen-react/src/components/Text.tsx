@@ -1,7 +1,7 @@
 import { createElement, ReactNode, ReactHTML } from 'react';
 import classNames from 'classnames';
 
-interface TextPropsType {
+export interface TextPropsType {
   children?: ReactNode | string;
   size?: 1 | 2 | 3 | 4;
   className?: string;

@@ -143,7 +143,7 @@ type ImageSource = {
   srcSet: string;
 };
 
-interface ImagePropsTypes {
+export interface ImagePropsType {
   src: string;
   sources?: ImageSource[];
   alt: string;
@@ -176,9 +176,9 @@ type AspectRatioBoxPropsType = {
   };
 };
 
-export default forwardRef<HTMLElement, ImagePropsTypes>(
+export default forwardRef<HTMLElement, ImagePropsType>(
   function Image(
-    props: ImagePropsTypes,
+    props: ImagePropsType,
     outerRef
   ): JSX.Element {
     const {

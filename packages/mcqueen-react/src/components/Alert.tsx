@@ -4,7 +4,7 @@ import { CheckIcon, WarningOutlineIcon, InfoOutlineIcon } from '@bolid/mcqueen-i
 
 import styles from './Alert.module.scss';
 
-interface AlertPropsType {
+export interface AlertPropsType {
   children?: ReactNode;
   theme?: 'success' | 'caution' | 'warning' | 'info';
   className?: string;

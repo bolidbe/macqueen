@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './Label.module.scss';
 
-interface ILabelProps {
+export interface LabelPropsType {
   children: ReactNode | string;
   hasError?: boolean;
   isDisabled?: boolean;
@@ -15,7 +15,7 @@ export default function Label({
   hasError,
   isDisabled,
   className
-}: ILabelProps): JSX.Element {
+}: LabelPropsType): JSX.Element {
   return (
     <div className={classNames({
       [styles.label]: true,

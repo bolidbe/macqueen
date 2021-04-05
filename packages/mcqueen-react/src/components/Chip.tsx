@@ -4,7 +4,7 @@ import { Icon } from "@bolid/mcqueen-icons"
 
 import styles from "./Chip.module.scss"
 
-interface ChipPropsType {
+export interface ChipPropsType {
   children: ReactNode;
   isSelected: boolean;
   onClick?(): void;

@@ -57,7 +57,7 @@ const getAnchorProps = ({
   href: isDisabled ? undefined : href
 });
 
-interface ButtonPropsType {
+export interface ButtonPropsType {
   children?: ReactNode;
   iconLeft?: string;
   iconRight?: string;

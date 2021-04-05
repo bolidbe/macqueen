@@ -5,18 +5,18 @@ import { Icon } from "@bolid/mcqueen-icons";
 
 import styles from './Pill.module.scss';
 
-interface PillPropsTypes {
+const iconSizes = {
+  small: 'tiny',
+  medium: 'small',
+  large: 'medium'
+}
+
+export interface PillPropsType {
   children: string;
   icon?: string;
   color?: 'green' | 'red' | 'orange' | 'blue' | 'yellow' | 'purple' | 'pink';
   className?: string;
   size?: 'large' | 'medium' | 'small';
-}
-
-const iconSizes = {
-  small: 'tiny',
-  medium: 'small',
-  large: 'medium'
 }
 
 export default function Pill({
@@ -25,7 +25,7 @@ export default function Pill({
   children,
   className,
   size = 'medium'
-}: PillPropsTypes): JSX.Element {
+}: PillPropsType): JSX.Element {
   return (
     <div
       className={classNames({

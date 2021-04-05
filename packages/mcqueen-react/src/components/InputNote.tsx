@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './InputNote.module.scss';
 
-interface IInputNoteProps {
+export interface InputNotePropsType {
   children: ReactNode | string;
   hasError?: boolean;
   className?: string;
@@ -13,7 +13,7 @@ export default function InputNote({
   children,
   hasError,
   className
-}: IInputNoteProps): JSX.Element {
+}: InputNotePropsType): JSX.Element {
   return (
     <div className={classNames({
       [styles.inputNote]: true,

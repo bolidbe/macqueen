@@ -14,7 +14,7 @@ export interface BreadcrumbType {
   path: string;
 }
 
-interface BreadcrumbsPropsType {
+export interface BreadcrumbsPropsType {
   breadcrumbs: BreadcrumbType[];
   className?: string;
 }

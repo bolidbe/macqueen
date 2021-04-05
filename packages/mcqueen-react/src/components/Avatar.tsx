@@ -25,7 +25,7 @@ const getClassName = (initials?: string): string =>
     ? CLASSNAMES[initials.charCodeAt(0) % CLASSNAMES.length]
     : CLASSNAMES[0];
 
-interface EntityAvatarPropsType {
+export interface EntityAvatarPropsType {
   imageUrl?: string,
   initial?: string,
   fullName?: string,
@@ -79,7 +79,7 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
 // Needed because of the `forwardRef`.
 EntityAvatar.displayName = 'EntityAvatar';
 
-interface UserAvatarPropsType {
+export interface UserAvatarPropsType {
   imageUrl?: string,
   initials?: string,
   fullName?: string,

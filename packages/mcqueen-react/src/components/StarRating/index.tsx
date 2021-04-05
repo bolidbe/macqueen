@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 
 import StarRatingBase, { StarRatingBasePropsType } from "./Base"
 
-interface StarRatingPropsType extends StarRatingBasePropsType {
+export interface StarRatingPropsType extends StarRatingBasePropsType {
   showRating?: boolean;
   reviewsCount?: number;
 }

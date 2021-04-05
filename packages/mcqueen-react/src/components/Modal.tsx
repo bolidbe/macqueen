@@ -6,7 +6,7 @@ import { CrossIcon } from "@bolid/mcqueen-icons"
 
 import styles from "./Modal.module.scss"
 
-interface ModalPropsType {
+export interface ModalPropsType {
   children: ReactNode;
   isOpen: boolean;
   className?: string;

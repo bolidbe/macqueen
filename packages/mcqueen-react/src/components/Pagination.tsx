@@ -99,7 +99,7 @@ const QueryPage = ({
   return !isDisabled ? link : <div {...anchorProps}>{ children }</div>
 }
 
-interface QueryPaginationPropsType {
+export interface QueryPaginationPropsType {
   pagesCount: number;
   className?: string;
 }
@@ -172,7 +172,7 @@ const PathPage = ({
   return !isDisabled ? link : <div {...anchorProps}>{ children }</div>
 }
 
-interface PathPaginationPropsType {
+export interface PathPaginationPropsType {
   pagesCount: number;
   className?: string;
 }
@@ -242,7 +242,7 @@ const StatePage = ({
   ) : <div {...buttonProps}>{ children }</div>
 }
 
-interface StatePaginationPropsType {
+export interface StatePaginationPropsType {
   pagesCount: number;
   page: number;
   className?: string;

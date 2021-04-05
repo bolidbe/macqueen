@@ -9,7 +9,7 @@ const ALERT_ICONS = {
   warning: <WarningFillIcon size="medium" className={styles.icon} />,
 };
 
-interface BannerAlertPropsType {
+export interface BannerAlertPropsType {
   children: ReactNode;
   theme: 'info' | 'warning' | 'caution';
   className?: string;

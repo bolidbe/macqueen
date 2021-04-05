@@ -15,7 +15,7 @@ const canUseDOM = !!(
 const doesWindowSupportTouch = (): boolean =>
   typeof window !== 'undefined' && 'ontouchstart' in window;
 
-interface TooltipPropsType {
+export interface TooltipPropsType {
   children: ReactNode;
   text: string;
   theme?: 'light' | 'dark';

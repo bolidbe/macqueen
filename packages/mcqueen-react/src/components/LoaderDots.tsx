@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './LoaderDots.module.scss';
 
-interface LoaderDotsPropsType {
+export interface LoaderDotsPropsType {
   assistiveText?: string;
   size?: 'small' | 'medium';
   theme?: 'primary' | 'secondary' | 'inverse' | 'muted';

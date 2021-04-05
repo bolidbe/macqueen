@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import styles from './Title.module.scss';
 
-interface TitlePropsType {
+export interface TitlePropsType {
   children: ReactNode;
   size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   className?: string;
