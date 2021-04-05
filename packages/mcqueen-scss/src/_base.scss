@@ -7,7 +7,7 @@
 }
 
 html, body{
-  height: 100%;
+  min-height: 100%;
 }
 
 html, body, code{
@@ -31,10 +31,6 @@ b{
 
 ul, ol{
   padding-left: theme('spacing.3');
-}
-
-.pt-navbar{
-  padding-top: $navbarHeight;
 }
 
 .wrap{

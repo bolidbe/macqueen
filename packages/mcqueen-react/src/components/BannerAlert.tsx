@@ -15,7 +15,7 @@ export interface BannerAlertPropsType {
   className?: string;
 }
 
-export default function AlertBanner({
+export default function BannerAlert({
   children,
   theme,
   className
