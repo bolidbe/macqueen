@@ -152,6 +152,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
             ...styles,
             theme
           }}
+          id={id ? `${id}-autocomplete` : undefined}
           suggestions={suggestions}
           onSuggestionsFetchRequested={handleFetchRequested}
           onSuggestionsClearRequested={noop}
@@ -167,8 +168,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
             ...props,
             value: search,
             onChange: handleChange,
-            name: name ? `${name}-autocomplete` : "autocomplete",
-            id: id ? `${id}-autocomplete` : undefined
+            name: name ? `${name}-autocomplete` : "autocomplete"
           }}
           renderInputComponent={(inputProps: any) => <TextInputBase {...inputProps}/>}
         />
