@@ -364,7 +364,7 @@ export default forwardRef<HTMLElement, ImagePropsType>(
             // The order of `sizes`, `srcSet`, and `src` is important to work around a bug in
             // Safari. Once the bug is fixed, we should simplify this by using `src` on the
             // `img` tag and using `source` tags.
-            sizes={sizes}
+            sizes={shouldLoadImage && imgTagSource ? sizes : undefined}
             // Only add this attribute if lazyload has been triggered.
             srcSet={shouldLoadImage && imgTagSource ? imgTagSource.srcSet : undefined}
             // Only add this attribute if lazyload has been triggered.

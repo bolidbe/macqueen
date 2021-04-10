@@ -167,7 +167,8 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
             ...props,
             value: search,
             onChange: handleChange,
-            name: name ? `${name}-autocomplete` : "autocomplete"
+            name: name ? `${name}-autocomplete` : "autocomplete",
+            id: id ? `${id}-autocomplete` : undefined
           }}
           renderInputComponent={(inputProps: any) => <TextInputBase {...inputProps}/>}
         />

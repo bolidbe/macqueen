@@ -5,11 +5,11 @@ import Image from './Image';
 import styles from './Avatar.module.scss';
 
 const dimensions = {
-  xsmall: '32px',
-  small: '48px',
-  medium: '72px',
-  large: '100px',
-  xlarge: '140px',
+  xsmall: '32',
+  small: '48',
+  medium: '72',
+  large: '100',
+  xlarge: '140',
 };
 
 const CLASSNAMES: string[] = [
@@ -53,14 +53,14 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={{ width: dimensions[size], height: dimensions[size] }}
+        style={{ width: `${dimensions[size]}px`, height: `${dimensions[size]}px` }}
       >
         {imageUrl ? (
           <Image
             className={styles.square}
             src={imageUrl}
             alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
-            height={typeof size === 'string' ? dimensions[size] : `${size}px`}
+            height={typeof size === 'string' ? dimensions[size] : size}
             ref={outerRef}
           />
         ) : (
@@ -107,14 +107,14 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={{ width: dimensions[size], height: dimensions[size] }}
+        style={{ width: `${dimensions[size]}px`, height: `${dimensions[size]}px` }}
       >
         {imageUrl ? (
           <Image
             className={styles.circle}
             src={imageUrl}
             alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
-            height={typeof size === 'string' ? dimensions[size] : `${size}px`}
+            height={typeof size === 'string' ? dimensions[size] : size}
             ref={outerRef}
           />
         ) : (

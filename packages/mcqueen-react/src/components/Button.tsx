@@ -79,13 +79,13 @@ const FlexWrapper = ({
   children: ReactNode | string,
   size: 'small' | 'large'
 }) => (
-  <div className={classNames({
+  <span className={classNames({
     [styles.flexWrapper]: true,
     [styles.flexWrapperSizeSmall]: size === 'small',
     [styles.flexWrapperSizeLarge]: size === 'large'
   })}>
     { children }
-  </div>
+  </span>
 )
 
 export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType>(

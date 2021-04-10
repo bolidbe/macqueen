@@ -32,10 +32,6 @@ export default function StarRatingBase({
   // Round rating to PRECISION (e.g, 2.7 --> 2.5).
   const ratingValue = Math.round(clampedRating / PRECISION) * PRECISION;
 
-  // aria-label text
-  const ariaStarText = ratingValue === 1 ? 'star' : 'stars';
-  const ariaLabel = `${ratingValue} ${ariaStarText} out of ${MAX_NUM_STARS} star rating`;
-
   return (
     <div
       className={classNames({
@@ -45,7 +41,6 @@ export default function StarRatingBase({
         [styles.starRatingSizeLarge]: size === 'large',
       }, className)}
       data-star={ratingValue}
-      aria-label={ariaLabel}
       onMouseLeave={onMouseLeave}
     >
       { children }
