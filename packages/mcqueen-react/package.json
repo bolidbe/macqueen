@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -47,7 +47,7 @@
     "@babel/core": "7.12.7",
     "@babel/preset-env": "7.12.7",
     "@babel/preset-react": "7.12.7",
-    "@bolid/mcqueen-icons": "^1.0.8",
+    "@bolid/mcqueen-icons": "^1.0.9",
     "@bolid/mcqueen-scss": "^1.0.4",
     "@popperjs/core": "^2.5.4",
     "@rollup/plugin-babel": "5.2.1",
@@ -81,7 +81,7 @@
     "warning": "^4.0.3"
   },
   "peerDependencies": {
-    "@bolid/mcqueen-icons": ">= 1.0.8",
+    "@bolid/mcqueen-icons": ">= 1.0.9",
     "@bolid/mcqueen-scss": ">= 1.0.4",
     "@popperjs/core": ">= 2.5.4 < 3.0.0",
     "classnames": ">= 2.2.6 < 3.0.0",

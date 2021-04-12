@@ -51,7 +51,7 @@ export default function Modal({
       <div className={classNames({
         [styles.curtain]: true,
         [styles.curtainOpen]: isOpen
-      })}>
+      })} style={{ visibility: isOpen ? "visible" : "hidden" }}>
         <div onClick={onClickCurtain} className={styles.curtainInner}>
           <div className={classNames({
             [styles.modal]: true,
