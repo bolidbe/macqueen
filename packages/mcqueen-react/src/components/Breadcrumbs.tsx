@@ -24,7 +24,7 @@ export default function Breadcrumbs({
   className
 }: BreadcrumbsPropsType): JSX.Element {
   return (
-    <ul className={classNames("flex flex-wrap pl-0 text-body-3 heading-body-3", styles.breadcrumbs, className)}>
+    <ul className={classNames("flex flex-wrap pl-0 text-body-3 leading-body-3", styles.breadcrumbs, className)}>
       {breadcrumbs.map((breadcrumb, i) => i < breadcrumbs.length - 1 ? (
         <li key={i}>
         {Link ? (
