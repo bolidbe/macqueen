@@ -122,16 +122,7 @@ $icon-padding: 16px;
       }
     }
 
-    &Readonly {
-      color: theme('colors.black.default');
-
-      .inputStyles {
-        background-color: theme('colors.white');
-        border-color: theme('colors.gray.default');
-      }
-    }
-
-    &Disabled {
+    &Disabled, &Readonly {
       color: #7C98B6;
 
       .inputStyles {
