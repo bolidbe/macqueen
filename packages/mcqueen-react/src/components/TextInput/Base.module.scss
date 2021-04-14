@@ -122,12 +122,16 @@ $icon-padding: 16px;
       }
     }
 
-    &Disabled, &Readonly {
+    &Disabled, &ReadOnly {
       color: #7C98B6;
 
       .inputStyles {
         background-color: theme('colors.gray.200');
         border-color: theme('colors.gray.default');
+      }
+
+      .input:focus{
+        color: #7C98B6;
       }
     }
 
@@ -164,9 +168,9 @@ $icon-padding: 16px;
       }
     }
 
-    &Readonly, &Disabled, .icon{
+    &ReadOnly, &Disabled {
       .input, .icon{
-        cursor: default;
+        cursor: not-allowed;
       }
     }
   }

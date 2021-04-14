@@ -113,13 +113,13 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
       <div
         className={classNames({
           [styles.textInputStateDefault]: uiState === 'default',
-          [styles.textInputStateReadonly]: uiState === 'readonly',
+          [styles.textInputStateReadOnly]: uiState === 'readonly',
           [styles.textInputStateDisabled]: uiState === 'disabled',
           [styles.textInputStateError]: uiState === 'error',
         }, className)}
       >
         {label && (
-          <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
+          <Label {...{ hasError, isDisabled, isReadOnly }} className="mb-1">{ label }</Label>
         )}
         <div className={styles.inputContainer}>
           {iconLeft && (
