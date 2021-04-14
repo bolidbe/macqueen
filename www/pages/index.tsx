@@ -603,6 +603,7 @@ export default function Home() {
           <Section title="States">
             <div className="flex items-end">
               <TextInput
+                label="Disabled"
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
@@ -611,6 +612,7 @@ export default function Home() {
                 isDisabled
               />
               <TextInput
+                label="Read only"
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
@@ -619,6 +621,7 @@ export default function Home() {
                 isReadOnly
               />
               <TextInput
+                label="Error"
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
