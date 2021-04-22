@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import { createPortal } from 'react-dom';
 import classNames from "classnames"
 import noScroll from 'no-scroll'
 
@@ -28,13 +29,16 @@ export default function Modal({
   shouldModalScroll = true,
   shouldCloseOnCurtainClick = true,
   onClose
-}: ModalPropsType): JSX.Element {
+}: ModalPropsType): JSX.Element | null {
+  const [isLoaded, setIsLoaded] = useState(false)
+
   useEffect(() => {
     if(isOpen) noScroll.on()
     else noScroll.off()
   }, [isOpen])
 
   useEffect(() => {
+    setIsLoaded(true)
     return () => {
       noScroll.off()
     }
@@ -46,7 +50,11 @@ export default function Modal({
     }
   }
 
-  return (
+  if(typeof window === 'undefined' || !isLoaded){
+    return null
+  }
+
+  return createPortal(
     <div role="dialog" aria-label="Modal" tabIndex={-1}>
       <div className={classNames({
         [styles.curtain]: true,
@@ -83,5 +91,5 @@ export default function Modal({
         </div>
       </div>
     </div>
-  )
+  , document.body)
 }
