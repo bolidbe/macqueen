@@ -3,6 +3,9 @@ import Autosuggest from 'react-autosuggest';
 import classNames from "classnames"
 import { has, find, debounce, noop } from "lodash"
 
+import Label from "./Label"
+import InputNote from "./InputNote"
+
 import TextInputBase, { TextInputBasePropsType } from "./TextInput/Base"
 
 import styles from "./Autocomplete.module.scss"
@@ -104,6 +107,11 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
       onSelect = noop,
       shouldAlwaysRenderSuggestions = false,
       theme = {},
+      label,
+      hasError,
+      isDisabled,
+      isReadOnly,
+      note,
       ...props
     }: AutocompletePropsType,
     outerRef
@@ -147,6 +155,9 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
           type="hidden"
           value={value}
         />
+        {label && (
+          <Label {...{ hasError, isDisabled, isReadOnly }} className="mb-1">{ label }</Label>
+        )}
         <Autosuggest
           theme={{
             ...styles,
@@ -166,12 +177,19 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
           multiSection={!!find(suggestions, s => has(s, "section"))}
           inputProps={{
             ...props,
+            hasError,
+            isDisabled,
+            isReadOnly,
             value: search,
             onChange: handleChange,
             name: name ? `${name}-autocomplete` : "autocomplete"
           }}
           renderInputComponent={(inputProps: any) => <TextInputBase {...inputProps}/>}
         />
+
+        {note && (
+          <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
+        )}
       </div>
     )
   }
