@@ -72,7 +72,7 @@ export default function HtmlContent({
         window.removeEventListener("orientationChange", lazyload);
       }
     }
-  }, [])
+  }, [children])
 
   return (
     <>
