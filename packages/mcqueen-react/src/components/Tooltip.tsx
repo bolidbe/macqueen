@@ -1,16 +1,12 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import { assign } from 'lodash';
 import classNames from 'classnames';
 import { usePopper } from 'react-popper';
+import canUseDOM from "../utils/canUseDOM"
+
+import ConditionalPortal from "./ConditionalPortal"
 
 import styles from './Tooltip.module.scss';
-
-const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-);
 
 const doesWindowSupportTouch = (): boolean =>
   typeof window !== 'undefined' && 'ontouchstart' in window;
@@ -34,10 +30,10 @@ export default function Tooltip({
   closeDelayLength = 200,
   className
 }: TooltipPropsType): JSX.Element {
-  const [referenceElement, setReferenceElement] = useState<any | null>(null);
-  const [popperElement, setPopperElement] = useState<any | null>(null);
-  const [arrowElement, setArrowElement] = useState<any | null>(null);
-  const { attributes, styles: popperStyles } = usePopper(referenceElement, popperElement, {
+  const [elementRef, setElementRef] = useState<any | null>(null);
+  const [popperRef, setPopperRef] = useState<any | null>(null);
+  const [arrowRef, setArrowRef] = useState<any | null>(null);
+  const { attributes, styles: popperStyles } = usePopper(elementRef, popperRef, {
     placement: position,
     modifiers: [{
       name: 'offset',
@@ -52,7 +48,7 @@ export default function Tooltip({
     }, {
       name: 'arrow',
       options: {
-        element: arrowElement
+        element: arrowRef
       }
     }],
     positionFixed: false
@@ -102,7 +98,7 @@ export default function Tooltip({
     }
   };
 
-  useEffect((): (() => void) => {
+  useEffect(() => {
     const handleKeyUp = (event: KeyboardEvent): void => {
       if (canUseDOM && event.keyCode === 27) {
         event.preventDefault();
@@ -122,7 +118,7 @@ export default function Tooltip({
 
   const popper = isOpen && (
     <div
-      ref={setPopperElement}
+      ref={setPopperRef}
       role="tooltip"
       className={classNames({
         [styles.tooltip]: true,
@@ -142,7 +138,7 @@ export default function Tooltip({
     >
       <div>{ text }</div>
       <div
-        ref={setArrowElement}
+        ref={setArrowRef}
         style={popperStyles.arrow}
         className={classNames({
           [styles.arrow]: true,
@@ -159,7 +155,7 @@ export default function Tooltip({
     <>
       <div
         className={classNames("inline-block", className)}
-        ref={setReferenceElement}
+        ref={setElementRef}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         onClick={onClick}
@@ -169,11 +165,11 @@ export default function Tooltip({
       >
         { children }
       </div>
-      {
-        (isLoaded && canUseDOM)
-        ? createPortal(popper, document.body)
-        : popper
-      }
+      {isLoaded && (
+        <ConditionalPortal>
+          { popper }
+        </ConditionalPortal>
+      )}
     </>
   )
 }

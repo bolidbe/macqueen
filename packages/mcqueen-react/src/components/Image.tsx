@@ -2,6 +2,7 @@ import React, { useRef, useState, forwardRef, useEffect, useCallback } from 'rea
 import { find, forEach } from 'lodash';
 import classNames from 'classnames';
 import warning from 'warning';
+import canUseDOM from "../utils/canUseDOM"
 
 import styles from './Image.module.scss';
 
@@ -15,12 +16,6 @@ import styles from './Image.module.scss';
 // 4. The image is set to opacity:0 to start to prevent flash of alt text
 // 5. The image onLoad and onError events remove padding-top placholder and sets opacity to 1.
 // --------------------------------------------------------------------------------------------
-
-const canUseDOM = !!(
-  typeof window !== 'undefined' &&
-  window.document &&
-  window.document.createElement
-);
 
 function scrollparent(element: Element): Element {
   let style = getComputedStyle(element);

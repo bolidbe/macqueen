@@ -6,7 +6,7 @@ import styles from './LoaderDots.module.scss';
 export interface LoaderDotsPropsType {
   assistiveText?: string;
   size?: 'small' | 'medium';
-  theme?: 'primary' | 'secondary' | 'inverse' | 'muted';
+  theme?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'inverse';
   className?: string;
 }
 
@@ -20,8 +20,9 @@ export default function LoaderDots({
     [styles.dot]: true,
     [styles.dotThemePrimary]: theme === 'primary',
     [styles.dotThemeSecondary]: theme === 'secondary',
+    [styles.dotThemeTertiary]: theme === 'tertiary',
+    [styles.dotThemeCaution]: theme === 'caution',
     [styles.dotThemeInverse]: theme === 'inverse',
-    [styles.dotThemeMuted]: theme === 'muted',
     [styles.dotSizeSmall]: size === 'small',
     [styles.dotSizeMedium]: size === 'medium',
   });

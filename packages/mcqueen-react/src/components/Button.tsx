@@ -6,22 +6,16 @@ import { Icon } from "@bolid/mcqueen-icons"
 
 import styles from './Button.module.scss';
 
-enum loaderDotsTheme {
-  primary = 'inverse',
-  secondary = 'primary',
-  tertiary = 'muted'
-}
-
 const bolidDomainPattern = /^(?:https?:)?\/\/(?:[a-zA-Z0-9-]+\.)*bolid\.be\//;
 const rootRelativeUrlPattern = /^\//;
 const hashUrlPattern = /^#/;
 
 const isInternalUrl = (href?: string): boolean =>
-    isString(`${href}`) && (
-      bolidDomainPattern.test(`${href}`)
-      || rootRelativeUrlPattern.test(`${href}`)
-      || hashUrlPattern.test(`${href}`)
-    )
+  isString(`${href}`) && (
+    bolidDomainPattern.test(`${href}`)
+    || rootRelativeUrlPattern.test(`${href}`)
+    || hashUrlPattern.test(`${href}`)
+  )
 
 const getRel = (href?: string, shouldOpenInNewTab = false): string | undefined => {
   if (shouldOpenInNewTab) {
@@ -66,7 +60,8 @@ export interface ButtonPropsType {
   onClick?: () => void;
   href?: string;
   shouldOpenInNewTab?: boolean;
-  theme?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'solid';
+  theme?: 'primary' | 'secondary' | 'tertiary' | 'caution';
+  variant?: 'solid' | 'outline' | 'ghost';
   size?: 'small' | 'large';
   type?: 'button' | 'submit';
   className?: string;
@@ -100,6 +95,7 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       href,
       shouldOpenInNewTab,
       theme = 'primary',
+      variant = 'solid',
       size = 'large',
       type = 'button',
       className
@@ -110,18 +106,20 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       disabled: isLoading || isDisabled,
       className: classNames({
         [styles.button]: true,
-        [styles.buttonThemePrimary]: theme === 'primary',
-        [styles.buttonThemeTertiary]: theme === 'tertiary',
-        [styles.buttonThemeSecondary]: theme === 'secondary',
-        [styles.buttonThemeCaution]: theme === 'caution',
-        [styles.buttonThemeSolid]: theme === 'solid'
+        [styles.buttonThemePrimarySolid]: theme === 'primary' && variant === 'solid',
+        [styles.buttonThemeSecondarySolid]: theme === 'secondary' && variant === 'solid',
+        [styles.buttonThemeTertiarySolid]: theme === 'tertiary' && variant === 'solid',
+        [styles.buttonThemeCautionSolid]: theme === 'caution' && variant === 'solid',
+        [styles.buttonThemePrimaryOutline]: theme === 'primary' && variant === 'outline',
+        [styles.buttonThemeSecondaryOutline]: theme === 'secondary' && variant === 'outline',
+        [styles.buttonThemeTertiaryOutline]: theme === 'tertiary' && variant === 'outline',
+        [styles.buttonThemeCautionOutline]: theme === 'caution' && variant === 'outline',
+        [styles.buttonThemePrimaryGhost]: theme === 'primary' && variant === 'ghost',
+        [styles.buttonThemeSecondaryGhost]: theme === 'secondary' && variant === 'ghost',
+        [styles.buttonThemeTertiaryGhost]: theme === 'tertiary' && variant === 'ghost',
+        [styles.buttonThemeCautionGhost]: theme === 'caution' && variant === 'ghost'
       }, className)
     }
-
-    const restrictedTheme =
-      theme === 'primary' || theme === 'secondary' || theme === 'tertiary'
-      ? theme
-      : undefined
 
     const iconSize = size === 'large' ? 'medium' : 'small'
 
@@ -130,7 +128,7 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       <FlexWrapper size={size}>
         <span className={styles.loaderContainer}>
           <span className={styles.absoluteCenter}>
-            <LoaderDots theme={restrictedTheme ? loaderDotsTheme[restrictedTheme] : restrictedTheme} size="small" />
+            <LoaderDots theme={variant === "solid" ? "inverse" : theme} size="small" />
           </span>
           <span className="invisible">{children}</span>
         </span>

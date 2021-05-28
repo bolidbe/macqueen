@@ -69,11 +69,14 @@
     &Secondary {
       background-color: theme('colors.blue.default');
     }
+    &Tertiary {
+      background-color: theme('colors.black.300');
+    }
+    &Caution {
+      background-color: theme('colors.red.default');
+    }
     &Inverse {
       background-color: theme('colors.white');
-    }
-    &Muted {
-      background-color: theme('colors.black.300');
     }
   }
 

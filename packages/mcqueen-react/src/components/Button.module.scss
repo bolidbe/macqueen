@@ -77,7 +77,7 @@ $button-border-width: 2px;
     border-right: none;
   }
 
-  &ThemePrimary {
+  &ThemePrimarySolid {
     color: theme('colors.white');
     background-color: theme('colors.orange.default');
     border-color: theme('colors.orange.default');
@@ -93,7 +93,55 @@ $button-border-width: 2px;
     }
   }
 
-  &ThemeSecondary {
+  &ThemeSecondarySolid {
+    color: theme('colors.white');
+    background-color: theme('colors.blue.default');
+    border-color: theme('colors.blue.default');
+
+    &[disabled] {
+      background-color: theme('colors.blue.300');
+      border-color: theme('colors.blue.300');
+    }
+
+    &:focus {
+      background-color: theme('colors.blue.500');
+      border-color: theme('colors.blue.500');
+    }
+  }
+
+  &ThemeTertiarySolid {
+    color: theme('colors.white');
+    background-color: theme('colors.black.300');
+    border-color: theme('colors.black.300');
+
+    &[disabled] {
+      background-color: theme('colors.black.200');
+      border-color: theme('colors.black.200');
+    }
+
+    &:focus {
+      background-color: theme('colors.black.default');
+      border-color: theme('colors.black.default');
+    }
+  }
+
+  &ThemeCautionSolid {
+    color: theme('colors.white');
+    background-color: theme('colors.red.default');
+    border-color: theme('colors.red.default');
+
+    &[disabled] {
+      background-color: theme('colors.red.300');
+      border-color: theme('colors.red.300');
+    }
+
+    &:focus {
+      background-color: theme('colors.red.500');
+      border-color: theme('colors.red.500');
+    }
+  }
+
+  &ThemePrimaryOutline {
     color: theme('colors.orange.default');
     background-color: theme('colors.white');
     border-color: theme('colors.gray.default');
@@ -107,21 +155,35 @@ $button-border-width: 2px;
     }
   }
 
-  &ThemeTertiary {
+  &ThemeSecondaryOutline {
+    color: theme('colors.blue.default');
+    background-color: theme('colors.white');
+    border-color: theme('colors.gray.default');
+
+    &[disabled] {
+      color: theme('colors.blue.300');
+    }
+
+    &:focus {
+      border-color: theme('colors.blue.500');
+    }
+  }
+
+  &ThemeTertiaryOutline {
     color: theme('colors.black.300');
     background-color: theme('colors.white');
     border-color: theme('colors.gray.default');
 
     &[disabled] {
-      color: theme('colors.gray.default');
+      color: theme('colors.black.200');
     }
 
     &:focus {
-      border-color: theme('colors.black.300');
+      border-color: theme('colors.black.default');
     }
   }
 
-  &ThemeCaution {
+  &ThemeCautionOutline {
     color: theme('colors.red.default');
     background-color: theme('colors.white');
     border-color: theme('colors.gray.default');
@@ -131,20 +193,47 @@ $button-border-width: 2px;
     }
 
     &:focus {
-      color: theme('colors.red.500');
       border-color: theme('colors.red.500');
     }
   }
 
-  &ThemeSolid {
-    color: theme('colors.black.default');
+  &ThemePrimaryGhost {
+    color: theme('colors.orange.default');
     background-color: theme('colors.white');
     border-color: theme('colors.white');
 
     &[disabled] {
-      color: theme('colors.gray.default');
-      background-color: 'rgba(255, 255, 255, 0.5)';
-      border-color: 'transparent';
+      color: theme('colors.orange.300');
+    }
+  }
+
+  &ThemeSecondaryGhost {
+    color: theme('colors.blue.default');
+    background-color: theme('colors.white');
+    border-color: theme('colors.white');
+
+    &[disabled] {
+      color: theme('colors.blue.300');
+    }
+  }
+
+  &ThemeTertiaryGhost {
+    color: theme('colors.black.300');
+    background-color: theme('colors.white');
+    border-color: theme('colors.white');
+
+    &[disabled] {
+      color: theme('colors.black.200');
+    }
+  }
+
+  &ThemeCautionGhost {
+    color: theme('colors.red.default');
+    background-color: theme('colors.white');
+    border-color: transparent;
+
+    &[disabled] {
+      color: theme('colors.red.300');
     }
   }
 

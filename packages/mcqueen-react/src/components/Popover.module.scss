@@ -1,0 +1,66 @@
+.popover {
+  background: theme('colors.white');
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: theme('borderRadius.default');
+  border-top: 4px solid theme('colors.blue.default');
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  outline: none;
+
+  &StateIsOpen{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  &Icon {
+    // Increase click target of the button to make it easier to tap.
+    margin: theme('spacing.2');
+  }
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin: theme('spacing.2');
+  // Create an arrow with CSS.
+  border-width: theme('spacing.2') theme('spacing.2') 0 theme('spacing.2');
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  &Position{
+    &Top {
+      transform: scale(-1);
+      top: -12px;
+      border-top-color: theme('colors.blue.default');
+    }
+
+    &Bottom {
+      transform: scale(1);
+      bottom: -8px;
+      border-top-color: theme('colors.white');
+    }
+
+    &Left {
+      transform: rotate(90deg);
+      left: -20px;
+      border-top-color: theme('colors.white');
+    }
+
+    &Right {
+      transform: rotate(-90deg);
+      right: -20px;
+      border-top-color: theme('colors.white');
+    }
+  }
+}

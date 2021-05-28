@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, cloneElement } from "react"
 import classNames from "classnames"
 import { includes, filter, keys } from "lodash"
 import { GetServerSideProps } from 'next'
@@ -100,7 +100,8 @@ import {
   StatePagination,
   PathPagination,
   Pill,
-  Autocomplete
+  Autocomplete,
+  Popover
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -135,8 +136,11 @@ const ColorCard = ({ hex, name }: any) => (
 type AvatarSizeType = "small" | "medium" | "large" | "xlarge" | "xsmall"
 const avatarSizes: AvatarSizeType[] = ["xlarge", "large", "medium", "small", "xsmall"]
 
-type ButtonThemeType = "primary" | "secondary" | "tertiary" | "caution" | "solid"
+type ButtonThemeType = "primary" | "secondary" | "tertiary" | "caution"
 const buttonThemes: ButtonThemeType[] = ['primary', 'secondary', 'tertiary', 'caution']
+
+type ButtonVariantType = "solid" | "outline" | "ghost"
+const buttonVariants: ButtonThemeType[] = ['solid', 'outline', 'ghost']
 
 type TextSizeType = 1 | 2 | 3 | 4
 const textSizes: TextSizeType[] = [1, 2, 3, 4]
@@ -346,83 +350,86 @@ export default function Home() {
   const [mediumHeightModalIsOpen, setMediumHeightModalIsOpen] = useState(false)
   const [largeHeightModalIsOpen, setLargeHeightModalIsOpen] = useState(false)
   const [showMoreIsExpanded, setShowMoreIsExpanded] = useState(false)
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
       <div className="wrap">
         <Title className="text-center mb-6" heading={1}>McQueen Playground</Title>
         <Card title="Icon">
-          {
-            [
-              AccountFillIcon,
-              AccountOutlineIcon,
-              AirConditioningIcon,
-              AnalyticsIcon,
-              ArrowDownIcon,
-              ArrowLeftIcon,
-              ArrowRightIcon,
-              ArrowUpIcon,
-              AtIcon,
-              BadgeIcon,
-              BodyworkIcon,
-              BrakeIcon,
-              BrowserIcon,
-              BucketIcon,
-              CalendarIcon,
-              CarIcon,
-              CardIcon,
-              ChargeIcon,
-              CheckIcon,
-              ChevronDownIcon,
-              ChevronLeftIcon,
-              ChevronRightIcon,
-              ChevronUpIcon,
-              ClockIcon,
-              ClutchIcon,
-              CoinIcon,
-              CompassIcon,
-              CrossIcon,
-              DiagnosticIcon,
-              EditIcon,
-              EngineIcon,
-              ExhaustIcon,
-              FilterIcon,
-              GalleryIcon,
-              HomeIcon,
-              InfoFillIcon,
-              InfoOutlineIcon,
-              LinkIcon,
-              ListIcon,
-              LockIcon,
-              LogoutIcon,
-              MailIcon,
-              MapMarkerFillIcon,
-              MapMarkerOutlineIcon,
-              MinusIcon,
-              OilIcon,
-              ParallelismIcon,
-              PhoneIcon,
-              PlusIcon,
-              QuestionFillIcon,
-              QuestionOutlineIcon,
-              SearchIcon,
-              SettingsIcon,
-              ShockAbsorberIcon,
-              StarFillIcon,
-              StarOutlineIcon,
-              SteeringIcon,
-              StopFillIcon,
-              TimingBeltIcon,
-              TowTruckIcon,
-              UnlockedIcon,
-              UserIcon,
-              UsersIcon,
-              VisionIcon,
-              WarningFillIcon,
-              WarningOutlineIcon,
-              WheelIcon
-            ].map((icon, i) => <span key={i}>{ icon({ size: 40 }) }</span>)
-          }
+          {[
+            AccountFillIcon,
+            AccountOutlineIcon,
+            AirConditioningIcon,
+            AnalyticsIcon,
+            ArrowDownIcon,
+            ArrowLeftIcon,
+            ArrowRightIcon,
+            ArrowUpIcon,
+            AtIcon,
+            BadgeIcon,
+            BodyworkIcon,
+            BrakeIcon,
+            BrowserIcon,
+            BucketIcon,
+            CalendarIcon,
+            CarIcon,
+            CardIcon,
+            ChargeIcon,
+            CheckIcon,
+            ChevronDownIcon,
+            ChevronLeftIcon,
+            ChevronRightIcon,
+            ChevronUpIcon,
+            ClockIcon,
+            ClutchIcon,
+            CoinIcon,
+            CompassIcon,
+            CrossIcon,
+            DiagnosticIcon,
+            EditIcon,
+            EngineIcon,
+            ExhaustIcon,
+            FilterIcon,
+            GalleryIcon,
+            HomeIcon,
+            InfoFillIcon,
+            InfoOutlineIcon,
+            LinkIcon,
+            ListIcon,
+            LockIcon,
+            LogoutIcon,
+            MailIcon,
+            MapMarkerFillIcon,
+            MapMarkerOutlineIcon,
+            MinusIcon,
+            OilIcon,
+            ParallelismIcon,
+            PhoneIcon,
+            PlusIcon,
+            QuestionFillIcon,
+            QuestionOutlineIcon,
+            SearchIcon,
+            SettingsIcon,
+            ShockAbsorberIcon,
+            StarFillIcon,
+            StarOutlineIcon,
+            SteeringIcon,
+            StopFillIcon,
+            TimingBeltIcon,
+            TowTruckIcon,
+            UnlockedIcon,
+            UserIcon,
+            UsersIcon,
+            VisionIcon,
+            WarningFillIcon,
+            WarningOutlineIcon,
+            WheelIcon
+          ].map((icon, i) =>
+            !!icon ? (
+              <span key={i}>{ icon({ size: 40 }) }</span>
+            ) : null
+          )}
         </Card>
 
 
@@ -525,37 +532,59 @@ export default function Home() {
 
           <Section title="Themes">
             <div className="flex flex-wrap">
-              {
-                buttonThemes.map((theme, i) => (
-                  <Button key={i} className="mr-3 mb-3" theme={theme}>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
-                ))
-              }
-              <div className="bg-purple p-3">
-                <Button theme="solid">Solid</Button>
-              </div>
+              {buttonThemes.map((theme, i) => (
+                <Button
+                  key={i}
+                  className="mr-3"
+                  theme={theme}
+                >
+                  { theme.charAt(0).toUpperCase() + theme.slice(1) }
+                </Button>
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Variants">
+            <div className="flex flex-wrap bg-purple p-3">
+              {buttonVariants.map((variant, i) => (
+                <Button
+                  key={i}
+                  className="mr-3"
+                  variant={variant}
+                >
+                  { variant.charAt(0).toUpperCase() + variant.slice(1) }
+                </Button>
+              ))}
             </div>
           </Section>
 
           <Section title="Variants">
             <SubSection title="Loading">
               <div className="flex flex-wrap">
-                {
-                  buttonThemes.map((theme, i) => (
-                    <Button key={i} className="mr-3 mb-3" theme={theme} isLoading>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
-                  ))
-                }
+                {buttonThemes.map((theme, i) => (
+                  <Button
+                    key={i}
+                    className="mr-3 mb-3"
+                    theme={theme}
+                    isLoading
+                  >
+                    { theme.charAt(0).toUpperCase() + theme.slice(1) }
+                  </Button>
+                ))}
               </div>
             </SubSection>
             <SubSection title="States">
               <div className="flex flex-wrap">
-                {
-                  buttonThemes.map((theme, i) => (
-                    <Button key={i} className="mr-3 mb-3" theme={theme} isDisabled>{ theme.charAt(0).toUpperCase() + theme.slice(1) }</Button>
-                  ))
-                }
-                <div className="bg-purple p-3">
-                  <Button theme="solid" isDisabled>Solid</Button>
-                </div>
+                {buttonThemes.map((theme, i) => (
+                  <Button
+                    key={i}
+                    className="mr-3 mb-3"
+                    theme={theme}
+                    isDisabled
+                  >
+                    { theme.charAt(0).toUpperCase() + theme.slice(1) }
+                  </Button>
+                ))}
               </div>
             </SubSection>
             <SubSection title="With icon">
@@ -1016,6 +1045,36 @@ export default function Home() {
           <Section className="mt-5" title="Using url path">
             <PathPagination page={1} path="" pagesCount={10}/>
           </Section>
+        </Card>
+        <Card title="Popover">
+          <Popover
+            content={(
+              <>
+                <Title className="mb-1" size={6}>This is my Popover title</Title>
+                <Text size={3}>This is my Popover content and it should wrap if the content is too long.</Text>
+                <Button
+                  onClick={() => setPopoverIsOpen(false)}
+                  size="small"
+                  theme="secondary"
+                  className="mt-2"
+                >
+                  Close
+                </Button>
+              </>
+            )}
+            isOpen={popoverIsOpen}
+            onClose={() => {
+              setPopoverIsOpen(false);
+            }}
+            position="top"
+            popoverClassName="px-3 py-4 max-w-2"
+          >
+            <Button
+              onClick={() => setPopoverIsOpen(!popoverIsOpen)}
+            >
+              Open Popover
+            </Button>
+          </Popover>
         </Card>
       </div>
     </div>
