@@ -61,7 +61,7 @@ export interface ButtonPropsType {
   href?: string;
   shouldOpenInNewTab?: boolean;
   theme?: 'primary' | 'secondary' | 'tertiary' | 'caution';
-  variant?: 'solid' | 'outline' | 'ghost';
+  variant?: 'solid' | 'outline' | 'inverse';
   size?: 'small' | 'large';
   type?: 'button' | 'submit';
   className?: string;
@@ -114,10 +114,10 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
         [styles.buttonThemeSecondaryOutline]: theme === 'secondary' && variant === 'outline',
         [styles.buttonThemeTertiaryOutline]: theme === 'tertiary' && variant === 'outline',
         [styles.buttonThemeCautionOutline]: theme === 'caution' && variant === 'outline',
-        [styles.buttonThemePrimaryGhost]: theme === 'primary' && variant === 'ghost',
-        [styles.buttonThemeSecondaryGhost]: theme === 'secondary' && variant === 'ghost',
-        [styles.buttonThemeTertiaryGhost]: theme === 'tertiary' && variant === 'ghost',
-        [styles.buttonThemeCautionGhost]: theme === 'caution' && variant === 'ghost'
+        [styles.buttonThemePrimaryInverse]: theme === 'primary' && variant === 'inverse',
+        [styles.buttonThemeSecondaryInverse]: theme === 'secondary' && variant === 'inverse',
+        [styles.buttonThemeTertiaryInverse]: theme === 'tertiary' && variant === 'inverse',
+        [styles.buttonThemeCautionInverse]: theme === 'caution' && variant === 'inverse'
       }, className)
     }
 

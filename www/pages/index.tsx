@@ -139,8 +139,8 @@ const avatarSizes: AvatarSizeType[] = ["xlarge", "large", "medium", "small", "xs
 type ButtonThemeType = "primary" | "secondary" | "tertiary" | "caution"
 const buttonThemes: ButtonThemeType[] = ['primary', 'secondary', 'tertiary', 'caution']
 
-type ButtonVariantType = "solid" | "outline" | "ghost"
-const buttonVariants: ButtonThemeType[] = ['solid', 'outline', 'ghost']
+type ButtonVariantType = "solid" | "outline" | "inverse"
+const buttonVariants: ButtonThemeType[] = ['solid', 'outline', 'inverse']
 
 type TextSizeType = 1 | 2 | 3 | 4
 const textSizes: TextSizeType[] = [1, 2, 3, 4]

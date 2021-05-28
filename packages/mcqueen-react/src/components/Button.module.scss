@@ -197,7 +197,7 @@ $button-border-width: 2px;
     }
   }
 
-  &ThemePrimaryGhost {
+  &ThemePrimaryInverse {
     color: theme('colors.orange.default');
     background-color: theme('colors.white');
     border-color: theme('colors.white');
@@ -207,7 +207,7 @@ $button-border-width: 2px;
     }
   }
 
-  &ThemeSecondaryGhost {
+  &ThemeSecondaryInverse {
     color: theme('colors.blue.default');
     background-color: theme('colors.white');
     border-color: theme('colors.white');
@@ -217,7 +217,7 @@ $button-border-width: 2px;
     }
   }
 
-  &ThemeTertiaryGhost {
+  &ThemeTertiaryInverse {
     color: theme('colors.black.300');
     background-color: theme('colors.white');
     border-color: theme('colors.white');
@@ -227,7 +227,7 @@ $button-border-width: 2px;
     }
   }
 
-  &ThemeCautionGhost {
+  &ThemeCautionInverse {
     color: theme('colors.red.default');
     background-color: theme('colors.white');
     border-color: transparent;
