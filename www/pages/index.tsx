@@ -924,6 +924,18 @@ export default function Home() {
                   <Title className="ml-2" size={5}>Bottom</Title>
                 </div>
               </Tooltip>
+              <Tooltip position="left" className="mr-3" text="This is a tooltip">
+                <div className="flex items-center">
+                  <InfoOutlineIcon size="medium"/>
+                  <Title className="ml-2" size={5}>Left</Title>
+                </div>
+              </Tooltip>
+              <Tooltip position="right" className="mr-3" text="This is a tooltip">
+                <div className="flex items-center">
+                  <InfoOutlineIcon size="medium"/>
+                  <Title className="ml-2" size={5}>Right</Title>
+                </div>
+              </Tooltip>
             </div>
           </Section>
           <Section title="Theme">
@@ -1067,7 +1079,6 @@ export default function Home() {
               setPopoverIsOpen(false);
             }}
             position="top"
-            popoverClassName="px-3 py-4 max-w-2"
           >
             <Button
               onClick={() => setPopoverIsOpen(!popoverIsOpen)}

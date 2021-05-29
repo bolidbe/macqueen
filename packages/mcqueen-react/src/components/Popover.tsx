@@ -12,24 +12,13 @@ import styles from './Popover.module.scss';
 export interface PopoverPropsType {
   children: ReactNode;
   content: ReactNode;
-  position?:
-    'top-start'
-    | 'top'
-    | 'top-end'
-    | 'bottom-start'
-    | 'bottom'
-    | 'bottom-end'
-    | 'left-start'
-    | 'left'
-    | 'left-end'
-    | 'right-start'
-    | 'right'
-    | 'right-end';
+  position?: 'top' | 'bottom' | 'left' | 'right';
   isOpen: boolean;
+  size?: 'small' | 'large';
   onClose: () => void;
   container?: 'inline' | 'body';
-  popoverClassName?: string;
   className?: string;
+  shouldCloseOnClickOutside?: boolean;
 }
 
 export default function Popover({
@@ -37,10 +26,11 @@ export default function Popover({
     content,
     onClose,
     isOpen,
+    size = 'small',
     position = 'top',
     container = 'body',
-    popoverClassName,
-    className
+    className,
+    shouldCloseOnClickOutside = false
 }: PopoverPropsType): JSX.Element {
   const [elementRef, setElementRef] = useState<any | null>(null);
   const [popperRef, setPopperRef] = useState<any | null>(null);
@@ -75,11 +65,27 @@ export default function Popover({
   useCloseOnEscape(onClose, shouldBindEscListener);
   useFocusTrap(elementRef, shouldTrapFocus, elementRef);
 
+  const handleClickOutside = (e: any) => {
+    if (!!popperRef && !popperRef.contains(e.target)){
+      onClose()
+    }
+  }
+
   useEffect(() => {
     setIsLoaded(true)
   }, []);
 
+  useEffect(() => {
+    if(isOpen && shouldCloseOnClickOutside){
+      document.addEventListener("click", handleClickOutside);
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }
+  }, [isOpen, popperRef, shouldCloseOnClickOutside]);
+
   const placement = attributes.popper ? attributes.popper['data-popper-placement'] : null
+
   const popover = isOpen && (
     <div
       ref={setPopperRef}
@@ -87,7 +93,9 @@ export default function Popover({
       className={classNames({
         [styles.popover]: true,
         [styles.popoverStateIsOpen]: isOpen,
-      }, popoverClassName)}
+        [styles.popoverSizeSmall]: size === 'small',
+        [styles.popoverSizeLarge]: size === 'large'
+      })}
       style={popperStyles.popper}
       {...attributes.popper}
     >
@@ -116,10 +124,10 @@ export default function Popover({
         ref={setArrowRef}
         className={classNames({
           [styles.arrow]: true,
-          [styles.arrowPositionTop]: placement === 'bottom',
-          [styles.arrowPositionBottom]: placement === 'top',
-          [styles.arrowPositionLeft]: placement === 'right',
-          [styles.arrowPositionRight]: placement === 'left',
+          [styles.arrowPositionTop]: placement === 'top',
+          [styles.arrowPositionBottom]: placement === 'bottom',
+          [styles.arrowPositionLeft]: placement === 'left',
+          [styles.arrowPositionRight]: placement === 'right',
         })}
         style={popperStyles.arrow}
       />

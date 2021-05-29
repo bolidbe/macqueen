@@ -40,42 +40,77 @@
 
 $arrow-position: theme('spacing.2');
 .arrow {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   position: absolute;
-  z-index: -1;
-
-  &:before{
-    content: "";
-    transform: rotate(45deg);
-    top: 0px;
-    left: 0px;
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    z-index: -1;
-  }
+  border-style: solid;
+  position: absolute;
+  border-width: 0;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-top-color: transparent;
 
   &Position{
     &Top {
-      bottom: -4px;
+      bottom: -6px;
+      border-width: 6px 6px 0 6px;
     }
 
     &Bottom {
-      top: -4px;
+      top: -6px;
+      border-width: 0 6px 6px 6px;
+    }
+
+    &Left {
+      right: -6px;
+      border-width: 6px 0 6px 6px;
+    }
+
+    &Right {
+      left: -6px;
+      border-width: 6px 6px 6px 0;
     }
   }
 
   &Theme{
     &Dark {
-      &:before{
-        background: theme('colors.black.default');
+      &.arrowPosition{
+        &Top {
+          border-top-color: theme('colors.black.default');
+        }
+
+        &Bottom {
+          border-bottom-color: theme('colors.black.default');
+        }
+
+        &Left {
+          border-left-color: theme('colors.black.default');
+        }
+
+        &Right {
+          border-right-color: theme('colors.black.default');
+        }
       }
     }
 
     &Light {
-      &:before{
-        background: theme('colors.white');
+      &.arrowPosition{
+        &Top {
+          border-top-color: theme('colors.white');
+        }
+
+        &Bottom {
+          border-bottom-color: theme('colors.white');
+        }
+
+        &Left {
+          border-left-color: theme('colors.white');
+        }
+
+        &Right {
+          border-right-color: theme('colors.white');
+        }
       }
     }
   }

@@ -15,7 +15,7 @@ export interface TooltipPropsType {
   children: ReactNode;
   text: string;
   theme?: 'light' | 'dark';
-  position?: 'top' | 'bottom';
+  position?: 'top' | 'bottom' | 'left' | 'right';
   closeDelayLength?: 0 | 200;
   zIndex?: number;
   className?: string;
@@ -144,6 +144,8 @@ export default function Tooltip({
           [styles.arrow]: true,
           [styles.arrowPositionTop]: placement === 'top',
           [styles.arrowPositionBottom]: placement === 'bottom',
+          [styles.arrowPositionLeft]: placement === 'left',
+          [styles.arrowPositionRight]: placement === 'right',
           [styles.arrowThemeDark]: theme === 'dark',
           [styles.arrowThemeLight]: theme === 'light',
         })}
