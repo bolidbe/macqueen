@@ -11,7 +11,7 @@ export interface ModalPropsType {
   children: ReactNode;
   isOpen: boolean;
   className?: string;
-  shouldHideCloseButton?: boolean;
+  closeButtonIsHidden?: boolean;
   shouldModalScroll?: boolean;
   shouldCloseOnCurtainClick?: boolean;
   width?: 'small' | 'medium' | 'large';
@@ -25,7 +25,7 @@ export default function Modal({
   className,
   width = 'medium',
   height = 'auto',
-  shouldHideCloseButton = false,
+  closeButtonIsHidden = false,
   shouldModalScroll = true,
   shouldCloseOnCurtainClick = true,
   onClose
@@ -73,7 +73,7 @@ export default function Modal({
               [styles.modalShouldScroll]: shouldModalScroll
             })}>
               <div className={classNames(styles.container, className)}>
-                {!shouldHideCloseButton && (
+                {!closeButtonIsHidden && (
                   <div className={styles.closeButton}>
                     <div className="m-3">
                       <button onClick={onClose}>
