@@ -30,8 +30,18 @@
 }
 
 .suggestion{
-  padding: 12px;
-  cursor: pointer;
+  &SizeSmall{
+    padding: 8px;
+    cursor: pointer;
+    font-size: theme('fontSize.body-3');
+    line-height: theme('lineHeight.body-3');
+  }
+  &SizeLarge{
+    padding: 12px;
+    cursor: pointer;
+    font-size: theme('fontSize.body-2');
+    line-height: theme('lineHeight.body-2');
+  }
 }
 
 .suggestionHighlighted{

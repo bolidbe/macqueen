@@ -107,6 +107,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
       onSelect = noop,
       shouldAlwaysRenderSuggestions = false,
       theme = {},
+      size,
       label,
       hasError,
       isDisabled,
@@ -161,6 +162,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
         <Autosuggest
           theme={{
             ...styles,
+            suggestion: size === "large" ? styles.suggestionSizeLarge : styles.suggestionSizeSmall,
             theme
           }}
           id={id ? `${id}-autocomplete` : undefined}
@@ -177,6 +179,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
           multiSection={!!find(suggestions, s => has(s, "section"))}
           inputProps={{
             ...props,
+            size,
             hasError,
             isDisabled,
             isReadOnly,
