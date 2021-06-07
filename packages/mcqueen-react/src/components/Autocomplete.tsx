@@ -107,7 +107,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
       onSelect = noop,
       shouldAlwaysRenderSuggestions = false,
       theme = {},
-      size,
+      size = "large",
       label,
       hasError,
       isDisabled,
@@ -147,6 +147,8 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
 
     // const valuePropObject = defaultSuggestion ? { value: defaultSuggestion.value } : {};
 
+    console.log(size)
+
     return (
       <div className={classNames("relative", className)}>
         <input
@@ -162,7 +164,8 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
         <Autosuggest
           theme={{
             ...styles,
-            suggestion: size === "large" ? styles.suggestionSizeLarge : styles.suggestionSizeSmall,
+            sectionTitle: size === "small" ? styles.sectionTitleSizeSmall : styles.sectionTitleSizeLarge,
+            suggestion: size === "small" ? styles.suggestionSizeSmall : styles.suggestionSizeLarge,
             theme
           }}
           id={id ? `${id}-autocomplete` : undefined}

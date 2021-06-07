@@ -26,7 +26,16 @@
 }
 
 .sectionTitle{
-  margin-bottom: 8px;
+  &SizeSmall{
+    margin-bottom: 8px;
+    font-size: theme('fontSize.body-3');
+    line-height: theme('lineHeight.body-3');
+  }
+  &SizeLarge{
+    margin-bottom: 8px;
+    font-size: theme('fontSize.body-2');
+    line-height: theme('lineHeight.body-2');
+  }
 }
 
 .suggestion{
