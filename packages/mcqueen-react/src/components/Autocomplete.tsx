@@ -147,8 +147,6 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
 
     // const valuePropObject = defaultSuggestion ? { value: defaultSuggestion.value } : {};
 
-    console.log(size)
-
     return (
       <div className={classNames("relative", className)}>
         <input
