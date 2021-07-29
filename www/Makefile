@@ -13,3 +13,4 @@ link:
 	npm i
 	make create_link package="mcqueen-react"
 	make share_link package="mcqueen-react" shared_package="react"
+	make create_link package="mcqueen-scss"

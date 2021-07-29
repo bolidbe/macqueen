@@ -80,6 +80,8 @@ export default function HtmlContent({
       children
       .replace(/src=/g, "data-src=")
       .replace(/srcset=/g, "data-srcset=")
+      .replace(/<table/, "<div class=\"overflow-x-auto pb-2\"><table")
+      .replace(/<\/table>/, "</table></div>")
     )}
     </>
   )
