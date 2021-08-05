@@ -9,41 +9,37 @@
     overflow-x: scroll;
     border: 1px solid theme('colors.gray.default');
 
-    thead{
-      tr{
-        border-bottom: 1px solid theme('colors.gray.default');
+    > *:first-child tr:first-child {
+      border-bottom: 1px solid theme('colors.gray.default');
 
-        th{
-          font-weight: 700;
-          font-size: theme('fontSize.body-2');
-          color: theme('colors.black.default');
-          text-align: left;
-          padding: 8px 16px;
-          background: theme('colors.purple.200');
-          white-space: nowrap;
+      th, td{
+        font-weight: 700;
+        font-size: theme('fontSize.body-2');
+        color: theme('colors.black.default');
+        text-align: left;
+        padding: 8px 16px;
+        background: theme('colors.purple.200');
+        white-space: nowrap;
 
-          &:not(:first-child){
-            border-left: 1px solid theme('colors.gray.default');
-          }
+        &:not(:first-child){
+          border-left: 1px solid theme('colors.gray.default');
         }
       }
     }
 
-    tbody{
-      tr{
-        &:not(:last-child){
-          border-bottom: 1px solid theme('colors.gray.default');
-        }
+    tbody tr{
+      &:not(:last-child){
+        border-bottom: 1px solid theme('colors.gray.default');
+      }
 
-        td{
-          padding: 8px 16px;
-          vertical-align: top;
-          font-size: theme('fontSize.body-2');
-          background: white;
+      td{
+        padding: 8px 16px;
+        vertical-align: top;
+        font-size: theme('fontSize.body-2');
+        background: white;
 
-          &:not(:first-child){
-            border-left: 1px solid theme('colors.gray.default');
-          }
+        &:not(:first-child){
+          border-left: 1px solid theme('colors.gray.default');
         }
       }
     }
@@ -95,6 +91,7 @@
   }
 
   p,
+  div,
   table,
   img,
   ul,

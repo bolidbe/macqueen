@@ -980,6 +980,7 @@ export default function Home() {
                   Vivamus a consectetur libero, sit amet sagittis neque. Etiam non elit nec purus tempus
                   tincidunt id sit amet ipsum. Sed scelerisque enim viverra vehicula hendrerit.
               </p>
+              <h3>Morbi sagittis, dolor et molestie rhoncus</h3>
               <table>
                 <thead>
                   <tr>
@@ -998,6 +999,25 @@ export default function Home() {
                   </tr>
                 </tbody>
               </table>
+              <h2>Duis pretium viverra leo ac sagittis?</h2>
+              <div>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Pièce</td>
+                      <td>Prix</td>
+                    </tr>
+                    <tr>
+                      <td>Clé à laine</td>
+                      <td>230€</td>
+                    </tr>
+                    <tr>
+                      <td>Clé de serrage</td>
+                      <td>210€</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               <p>
                   Proin sit amet metus eu augue suscipit blandit at eu massa. Suspendisse semper sed lectus
                   quis suscipit. Praesent finibus lobortis facilisis. Maecenas est leo, tincidunt id fermentum
