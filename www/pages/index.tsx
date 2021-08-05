@@ -1002,6 +1002,10 @@ export default function Home() {
               <h2>Duis pretium viverra leo ac sagittis?</h2>
               <div>
                 <table>
+                  <colgroup>
+                    <col></col>
+                    <col></col>
+                  </colgroup>
                   <tbody>
                     <tr>
                       <td>Pièce</td>

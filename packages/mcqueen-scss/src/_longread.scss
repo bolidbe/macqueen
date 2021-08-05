@@ -1,55 +1,40 @@
+@mixin tbody {
+  td{
+    font-weight: 400;
+    font-size: theme('fontSize.body-2');
+    color: theme('colors.black.300');
+    text-align: left;
+    padding: 8px 16px;
+    vertical-align: top;
+    background: white;
+    white-space: normal;
+
+    &:not(:first-child){
+      border-left: 1px solid theme('colors.gray.default');
+    }
+  }
+}
+
+@mixin thead {
+  th, td{
+    font-weight: 700;
+    font-size: theme('fontSize.body-2');
+    color: theme('colors.black.default');
+    text-align: left;
+    padding: 8px 16px;
+    vertical-align: top;
+    background: theme('colors.purple.200');
+    white-space: nowrap;
+
+    &:not(:first-child){
+      border-left: 1px solid theme('colors.gray.default');
+    }
+  }
+}
+
 .longread{
   h1, h2, h3{
     color: theme('colors.black.default');
-  }
-
-  table{
-    min-width: 100%;
-    padding: 0;
-    overflow-x: scroll;
-    border: 1px solid theme('colors.gray.default');
-
-    > *:first-child tr:first-child {
-      border-bottom: 1px solid theme('colors.gray.default');
-
-      th, td{
-        font-weight: 700;
-        font-size: theme('fontSize.body-2');
-        color: theme('colors.black.default');
-        text-align: left;
-        padding: 8px 16px;
-        background: theme('colors.purple.200');
-        white-space: nowrap;
-
-        &:not(:first-child){
-          border-left: 1px solid theme('colors.gray.default');
-        }
-      }
-    }
-
-    tbody tr{
-      &:not(:last-child){
-        border-bottom: 1px solid theme('colors.gray.default');
-      }
-
-      td{
-        padding: 8px 16px;
-        vertical-align: top;
-        font-size: theme('fontSize.body-2');
-        background: white;
-
-        &:not(:first-child){
-          border-left: 1px solid theme('colors.gray.default');
-        }
-      }
-    }
-  }
-
-  *:first-child{
-    margin-top: 0;
-  }
-  *:last-child{
-    margin-bottom: 0;
   }
 
   h1 {
@@ -72,6 +57,35 @@
     margin-top: theme('spacing.5');
   }
 
+  table{
+    min-width: 100%;
+    padding: 0;
+    overflow-x: scroll;
+    border: 1px solid theme('colors.gray.default');
+
+    // The first rows are theads
+    tr:first-child {
+      @include thead;
+    }
+
+    // If the table has a thead, then we cancel the first row rule
+    thead + tbody tr:first-child {
+      @include tbody;
+    }
+
+    thead tr{
+      border-bottom: 1px solid theme('colors.gray.default');
+    }
+
+    tbody tr{
+      @include tbody;
+
+      &:not(:last-child){
+        border-bottom: 1px solid theme('colors.gray.default');
+      }
+    }
+  }
+
   ul,
   ol {
     margin-bottom: 12px;
@@ -90,6 +104,14 @@
     list-style-type: decimal;
   }
 
+  a{
+    color: theme('colors.blue.default');
+  }
+
+  img{
+    border-radius: theme('borderRadius.default');
+  }
+
   p,
   div,
   table,
@@ -100,12 +122,11 @@
     margin-top: 20px;
   }
 
-  a{
-    color: theme('colors.blue.default');
+  *:first-child{
+    margin-top: 0;
   }
-
-  img{
-    border-radius: theme('borderRadius.default');
+  *:last-child{
+    margin-bottom: 0;
   }
 }
 
