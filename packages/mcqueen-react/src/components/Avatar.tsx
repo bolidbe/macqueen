@@ -26,11 +26,12 @@ const getClassName = (initials?: string): string =>
     : CLASSNAMES[0];
 
 export interface EntityAvatarPropsType {
-  imageUrl?: string,
-  initial?: string,
-  fullName?: string,
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
-  className?: string
+  imageUrl?: string;
+  initial?: string;
+  fullName?: string;
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+  className?: string;
+  shouldForceEarlyRender?: boolean;
 }
 
 const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
@@ -40,10 +41,12 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
       size = 'small',
       initial,
       fullName,
-      className
+      className,
+      shouldForceEarlyRender = false
     }: EntityAvatarPropsType,
     outerRef
   ): JSX.Element => {
+    const sizeInPixels = typeof size === 'string' ? dimensions[size] : size
     return (
       <div
         className={classNames(styles.avatar, {
@@ -53,15 +56,16 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={{ width: `${dimensions[size]}px`, height: `${dimensions[size]}px` }}
+        style={{ width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
       >
         {imageUrl ? (
           <Image
             className={styles.square}
             src={imageUrl}
             alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
-            height={typeof size === 'string' ? dimensions[size] : size}
+            height={sizeInPixels}
             ref={outerRef}
+            forceEarlyRender={shouldForceEarlyRender ? `${sizeInPixels}px` : undefined}
           />
         ) : (
           <span
@@ -80,11 +84,12 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
 EntityAvatar.displayName = 'EntityAvatar';
 
 export interface UserAvatarPropsType {
-  imageUrl?: string,
-  initials?: string,
-  fullName?: string,
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
-  className?: string
+  imageUrl?: string;
+  initials?: string;
+  fullName?: string;
+  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+  className?: string;
+  shouldForceEarlyRender?: boolean;
 }
 
 const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
@@ -94,10 +99,12 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
       size = 'small',
       initials,
       fullName,
-      className
+      className,
+      shouldForceEarlyRender = false
     }: UserAvatarPropsType,
     outerRef
   ): JSX.Element => {
+    const sizeInPixels = typeof size === 'string' ? dimensions[size] : size
     return (
       <div
         className={classNames(styles.avatar, {
@@ -107,15 +114,16 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={{ width: `${dimensions[size]}px`, height: `${dimensions[size]}px` }}
+        style={{ width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
       >
         {imageUrl ? (
           <Image
             className={styles.circle}
             src={imageUrl}
             alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
-            height={typeof size === 'string' ? dimensions[size] : size}
+            height={sizeInPixels}
             ref={outerRef}
+            forceEarlyRender={shouldForceEarlyRender ? `${sizeInPixels}px` : undefined}
           />
         ) : (
           <span
