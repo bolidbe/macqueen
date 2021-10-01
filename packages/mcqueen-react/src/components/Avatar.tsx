@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
-import Image from './Image';
+import Image, { ImagePropsType } from './Image';
 
 import styles from './Avatar.module.scss';
 
@@ -25,13 +25,12 @@ const getClassName = (initials?: string): string =>
     ? CLASSNAMES[initials.charCodeAt(0) % CLASSNAMES.length]
     : CLASSNAMES[0];
 
-export interface EntityAvatarPropsType {
+export interface EntityAvatarPropsType extends Pick<ImagePropsType, 'forceEarlyRender'> {
   imageUrl?: string;
   initial?: string;
   fullName?: string;
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   className?: string;
-  shouldForceEarlyRender?: boolean;
 }
 
 const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
@@ -42,7 +41,7 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
       initial,
       fullName,
       className,
-      shouldForceEarlyRender = false
+      forceEarlyRender
     }: EntityAvatarPropsType,
     outerRef
   ): JSX.Element => {
@@ -65,7 +64,7 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
             alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
             height={sizeInPixels}
             ref={outerRef}
-            forceEarlyRender={shouldForceEarlyRender ? `${sizeInPixels}px` : undefined}
+            forceEarlyRender={forceEarlyRender}
           />
         ) : (
           <span
@@ -83,13 +82,12 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
 // Needed because of the `forwardRef`.
 EntityAvatar.displayName = 'EntityAvatar';
 
-export interface UserAvatarPropsType {
+export interface UserAvatarPropsType extends Pick<ImagePropsType, 'forceEarlyRender'> {
   imageUrl?: string;
   initials?: string;
   fullName?: string;
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   className?: string;
-  shouldForceEarlyRender?: boolean;
 }
 
 const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
@@ -100,7 +98,7 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
       initials,
       fullName,
       className,
-      shouldForceEarlyRender = false
+      forceEarlyRender
     }: UserAvatarPropsType,
     outerRef
   ): JSX.Element => {
@@ -123,7 +121,7 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
             alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
             height={sizeInPixels}
             ref={outerRef}
-            forceEarlyRender={shouldForceEarlyRender ? `${sizeInPixels}px` : undefined}
+            forceEarlyRender={forceEarlyRender}
           />
         ) : (
           <span
