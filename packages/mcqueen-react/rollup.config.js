@@ -9,6 +9,13 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve')
 
 const { dependencies, peerDependencies } = require('./package.json')
 
+const plugins = [
+  babel(),
+  nodeResolve(),
+  commonjs(),
+  json()
+]
+
 const formats = [{
   name: 'es',
   preserveModules: true,
@@ -23,10 +30,6 @@ const formats = [{
         }
       }
     }),
-    babel(),
-    nodeResolve(),
-    commonjs(),
-    json(),
     copy({
       files: ['src/**/*.scss', 'src/**/*.css', '!dist/**'],
       dest: path.join('dist', 'es'),
@@ -57,10 +60,6 @@ const formats = [{
         }
       }
     }),
-    babel(),
-    nodeResolve(),
-    commonjs(),
-    json(),
     postcss({
       extract: false,
       modules: true,
@@ -77,7 +76,10 @@ const formats = [{
 
 module.exports = formats.map(format => ({
   input: './src/index.tsx',
-  plugins: format.plugins,
+  plugins: [
+    ...plugins,
+    format.plugins
+  ],
   output: {
     dir: path.join('dist', format.name),
     format: format.name,

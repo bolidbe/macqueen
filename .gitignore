@@ -1,8 +1,19 @@
-node_modules
+# general
 .DS_Store
+node_modules
+package-lock.json
 yarn.lock
 yarn-error.log
-dist
-.next
-__generated__
-package-lock.json
+
+# mcqueen-icons
+packages/mcqueen-icons/src/data.json
+packages/mcqueen-icons/dist
+
+# mcqueen-react
+packages/mcqueen-react/dist
+
+# mcqueen-scss
+packages/mcqueen-scss/dist
+
+# www
+www/.next
