@@ -11,9 +11,9 @@ share_link:
 link:
 	rm -rf node_modules yarn.lock package-lock.json
 	npm i
-	make create_link package="mcqueen-react"
-	make share_link package="mcqueen-react" shared_package="react"
-	make share_link package="mcqueen-react" shared_package="lodash"
+	# make create_link package="mcqueen-react"
+	# make share_link package="mcqueen-react" shared_package="react"
+	# make share_link package="mcqueen-react" shared_package="lodash"
 	# make create_link package="mcqueen-scss"
-	# make create_link package="mcqueen-icons"
-	# make share_link package="mcqueen-icons" shared_package="react"
+	make create_link package="mcqueen-icons"
+	make share_link package="mcqueen-icons" shared_package="react"

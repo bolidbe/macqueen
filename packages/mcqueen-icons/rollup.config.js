@@ -50,6 +50,7 @@ module.exports = formats.map(format => ({
     dir: path.join('dist', format.name),
     format: format.name,
     preserveModules: format.preserveModules,
+    preserveModulesRoot: 'src',
     globals: {
       'react': 'React'
     }

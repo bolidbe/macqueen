@@ -3,7 +3,7 @@ import babel from '@rollup/plugin-babel'
 import typescript from 'rollup-plugin-typescript2'
 import commonjs from "@rollup/plugin-commonjs"
 import postcss from "rollup-plugin-postcss"
-import copy from 'rollup-plugin-cpy'
+import copy from 'rollup-plugin-copy'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from "rollup-plugin-terser"
@@ -15,22 +15,12 @@ const formats = [{
   name: 'es',
   preserveModules: true,
   plugins: [
-    typescript({
-      useTsconfigDeclarationDir: true,
-      typescript: require('typescript'),
-      tsconfigOverride: {
-        compilerOptions: {
-          declaration: true,
-          declarationDir: path.join('dist', 'es', 'src')
-        }
-      }
-    }),
     copy({
-      files: ['src/**/*.scss', 'src/**/*.css', '!dist/**'],
-      dest: path.join('dist', 'es'),
-      options: {
-        parents: true,
-      }
+      targets: [{
+        src: ['src/**/*.scss', 'src/**/*.css', '!dist/**'],
+        dest: path.join('dist', 'es')
+      }],
+      flatten: false
     }),
   ],
   external: id =>
@@ -46,16 +36,6 @@ const formats = [{
   name: 'cjs',
   preserveModules: false,
   plugins: [
-    typescript({
-      useTsconfigDeclarationDir: true,
-      typescript: require('typescript'),
-      tsconfigOverride: {
-        compilerOptions: {
-          declaration: true,
-          declarationDir: path.join('dist', 'cjs')
-        }
-      }
-    }),
     postcss({
       extract: false,
       modules: true,
@@ -74,6 +54,16 @@ const formats = [{
 module.exports = formats.map(format => ({
   input: './src/index.tsx',
   plugins: [
+    typescript({
+      useTsconfigDeclarationDir: true,
+      typescript: require('typescript'),
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+          declarationDir: path.join('dist', format.name)
+        }
+      }
+    }),
     babel(),
     nodeResolve(),
     commonjs(),
@@ -85,6 +75,7 @@ module.exports = formats.map(format => ({
     dir: path.join('dist', format.name),
     format: format.name,
     preserveModules: format.preserveModules,
+    preserveModulesRoot: 'src',
     globals: {
       'react': 'React'
     }
