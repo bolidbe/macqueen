@@ -1,5 +1,6 @@
 import React, { useRef, useState, forwardRef, useEffect, useCallback } from 'react';
-import { find, forEach } from 'lodash';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
 import classNames from 'classnames';
 import warning from 'warning';
 import canUseDOM from "../utils/canUseDOM"

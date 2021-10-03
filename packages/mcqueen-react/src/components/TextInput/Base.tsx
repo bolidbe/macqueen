@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Label from "../Label"
 import InputNote from "../InputNote"
 import { Icon } from "@bolid/mcqueen-icons"
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 import styles from './Base.module.scss';
 

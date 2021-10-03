@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
-import { clamp, noop } from 'lodash';
+import clamp from 'lodash/clamp';
+import noop from 'lodash/noop';
 import classNames from 'classnames';
 
 import styles from './Base.module.scss';

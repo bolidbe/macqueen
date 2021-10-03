@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { times, noop } from 'lodash';
+import times from 'lodash/times';
+import noop from 'lodash/noop';
 
 import StarRatingBase, { StarRatingBasePropsType, MAX_NUM_STARS } from "./StarRating/Base"
 

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Label from "./Label"
 import InputNote from "./InputNote"
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 import styles from './TextArea.module.scss';
 

@@ -1,7 +1,10 @@
 import React, { ReactNode, useState, useRef } from "react"
 import Autosuggest from 'react-autosuggest';
 import classNames from "classnames"
-import { has, find, debounce, noop } from "lodash"
+import has from "lodash/has"
+import find from "lodash/find"
+import debounce from "lodash/debounce"
+import noop from "lodash/noop"
 
 import Label from "./Label"
 import InputNote from "./InputNote"

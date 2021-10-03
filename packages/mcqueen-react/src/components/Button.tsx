@@ -1,7 +1,7 @@
 import React, { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import LoaderDots from './LoaderDots';
-import { isString } from 'lodash';
+import isString from 'lodash/isString';
 import { Icon } from "@bolid/mcqueen-icons"
 
 import styles from './Button.module.scss';

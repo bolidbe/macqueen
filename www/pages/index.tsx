@@ -1,6 +1,7 @@
 import { useState } from "react"
 import classNames from "classnames"
-import { includes, filter, keys } from "lodash"
+import includes from "lodash/includes"
+import keys from "lodash/keys"
 import { GetServerSideProps } from 'next'
 import { useForm } from "react-hook-form";
 import {
@@ -209,9 +210,8 @@ const SearchAutocomplete = ({
 
   const handleFetchRequested = (value: string) => {
     if(!hasSections){
-      setSuggestions(filter(
-        SUGGESTIONS,
-        (option: AutocompleteSuggestionType) => value === "" || includes(option.label.toLowerCase(), value)
+      setSuggestions(SUGGESTIONS.filter(
+        (suggestion: AutocompleteSuggestionType) => (value === "" || includes(suggestion.label.toLowerCase(), value))
       ))
     }
   }

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 import styles from './Switch.module.scss';
 

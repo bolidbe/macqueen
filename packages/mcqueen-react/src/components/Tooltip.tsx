@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { assign } from 'lodash';
+import assign from 'lodash/assign';
 import classNames from 'classnames';
 import { usePopper } from 'react-popper';
 import canUseDOM from "../utils/canUseDOM"

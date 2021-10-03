@@ -1,6 +1,5 @@
 interface Window { dataLayer: any[]; }
 
-declare module 'lodash';
 declare module 'classnames';
 declare module 'react-scroll';
 declare module 'google-map-react';
