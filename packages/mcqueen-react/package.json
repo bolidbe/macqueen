@@ -32,7 +32,7 @@
   "scripts": {
     "clear": "rm -rf dist",
     "dev": "npm run clear && rollup -cw",
-    "build": "npm run clear && rollup -c",
+    "build": "npm run clear && rollup -c && replace-in-files --string='@bolid/mcqueen-icons' --replacement='@bolid/mcqueen-icons/dist/es' 'dist/es/src/components/**/*'",
     "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\"",
     "typecheck": "tsc -w"
@@ -72,6 +72,7 @@
     "react-autosuggest": "10.1.0",
     "react-dom": "16.12.0",
     "react-popper": "2.2.4",
+    "replace-in-files-cli": "1.0.0",
     "rollup": "2.33.3",
     "rollup-plugin-cpy": "2.0.1",
     "rollup-plugin-postcss": "3.1.8",
