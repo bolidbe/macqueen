@@ -7,6 +7,7 @@ import copy from 'rollup-plugin-cpy'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from "rollup-plugin-terser"
+import { includes } from "lodash"
 
 const { peerDependencies } = require('./package.json')
 
@@ -38,6 +39,7 @@ const formats = [{
     id === "next" ||
     id === "next/router" ||
     id === "next/link" ||
+    includes(id, "lodash") ||
     // Don't attempt to parse CSS modules.
     /module\.s?css$/.test(id)
 }, {
@@ -65,7 +67,8 @@ const formats = [{
     peerDependencies[id] ||
     id === "next" ||
     id === "next/router" ||
-    id === "next/link"
+    id === "next/link" ||
+    includes(id, "lodash")
 }]
 
 module.exports = formats.map(format => ({

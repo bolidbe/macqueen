@@ -5,7 +5,9 @@ import { Icon } from "@bolid/mcqueen-icons";
 
 import styles from './Pill.module.scss';
 
-const iconSizes = {
+const iconSizes: {
+  [key: string]: 'tiny' | 'small' | 'medium';
+} = {
   small: 'tiny',
   medium: 'small',
   large: 'medium'

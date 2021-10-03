@@ -143,7 +143,7 @@ const iconsComponents = Object.entries(iconsByName)
 import React from 'react'
 import { getSvgProps } from '../utils'
 
-interface ${icon.name}PropsType extends React.SVGProps<SVGSVGElement> {
+export interface ${icon.name}PropsType extends React.SVGProps<SVGSVGElement> {
   ${iconPropsType}
 }
 
@@ -165,7 +165,7 @@ ${Object.entries(iconsByName).map(([key, icon]) => (
 `import ${icon.name} from "./${icon.name}"`
 )).join("\n")}
 
-interface IconPropsType extends React.SVGProps<SVGSVGElement> {
+export interface IconPropsType extends React.SVGProps<SVGSVGElement> {
   ${iconPropsType}
   name: string;
 }
@@ -192,7 +192,7 @@ export default function Icon({
 function writeIndex() {
   const code = `${GENERATED_HEADER}
 
-${iconsComponents.map(({name}) => `export { default as ${name} } from "./components/${name}"`).join('\n')}
+${iconsComponents.map(({name}) => `export { default as ${name}, ${name}PropsType } from "./components/${name}"`).join('\n')}
   `
   return writeFile(indexFile, code)
 }
