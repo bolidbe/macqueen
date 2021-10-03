@@ -72,7 +72,7 @@ import {
   WarningFillIcon,
   WarningOutlineIcon,
   WheelIcon
-} from '@bolid/mcqueen-icons/dist/es'
+} from '@bolid/mcqueen-icons'
 import {
   Title,
   Text,
@@ -104,7 +104,7 @@ import {
   Autocomplete,
   AutocompleteSuggestionType,
   Popover
-} from "@bolid/mcqueen-react/dist/es/src"
+} from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
 const Card = ({ children, title }: any) => (

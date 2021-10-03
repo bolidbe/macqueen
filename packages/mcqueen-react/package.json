@@ -32,7 +32,7 @@
   "scripts": {
     "clear": "rm -rf dist",
     "dev": "npm run clear && rollup -cw",
-    "build": "npm run clear && rollup -c && replace-in-files --string='@bolid/mcqueen-icons' --replacement='@bolid/mcqueen-icons/dist/es' 'dist/es/src/components/**/*'",
+    "build": "npm run clear && rollup -c && replace-in-files --string='@bolid/mcqueen-icons' --replacement='@bolid/mcqueen-icons/dist/es' 'dist/es/components/**/*' && replace-in-files --regex='../src/components/' --replacement='./' 'dist/es/components/**/*'",
     "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\"",
     "typecheck": "tsc -w"
