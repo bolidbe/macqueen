@@ -6,11 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc -w"
+    "typecheck": "tsc -w",
+    "analyze": "ANALYZE=true yarn build"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "1.0.10",
-    "@bolid/mcqueen-react": "1.2.8",
+    "@bolid/mcqueen-icons": "1.1.0",
+    "@bolid/mcqueen-react": "1.2.9",
     "@bolid/mcqueen-scss": "1.0.8",
     "@popperjs/core": "2.5.4",
     "classnames": "2.2.6",
@@ -26,6 +27,7 @@
     "warning": "4.0.3"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "11.1.2",
     "@types/node": "14.14.10",
     "@types/react": "16.9.49",
     "@types/react-dom": "16.9.0",

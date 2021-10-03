@@ -1,24 +1,50 @@
 import path from 'path'
 import babel from '@rollup/plugin-babel'
-import commonjs from '@rollup/plugin-commonjs';
-import { terser } from "rollup-plugin-terser";
+import typescript from 'rollup-plugin-typescript2'
+import commonjs from '@rollup/plugin-commonjs'
+import { terser } from "rollup-plugin-terser"
 
-const pkg = require('./package.json')
+const { peerDependencies } = require('./package.json')
 
 const formats = [{
   name: 'es',
-  preserveModules: true
+  preserveModules: true,
+  plugins: [
+    typescript({
+      useTsconfigDeclarationDir: true,
+      typescript: require('typescript'),
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+          declarationDir: path.join('dist', 'es')
+        }
+      }
+    })
+  ],
 }, {
   name: 'cjs',
-  preserveModules: false
+  preserveModules: false,
+  plugins: [
+    typescript({
+      useTsconfigDeclarationDir: true,
+      typescript: require('typescript'),
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+          declarationDir: path.join('dist', 'cjs')
+        }
+      }
+    })
+  ],
 }]
 
 module.exports = formats.map(format => ({
-  input: 'src/index.js',
+  input: './src/index.tsx',
   plugins: [
     babel(),
     commonjs(),
-    // terser()
+    terser(),
+    ...format.plugins
   ],
   output: {
     dir: path.join('dist', format.name),
@@ -28,7 +54,7 @@ module.exports = formats.map(format => ({
       'react': 'React'
     }
   },
-  external: [
-    ...Object.keys(pkg.peerDependencies || {}),
-  ]
+  external: id =>
+    // Don't attempt to bundle peerDependencies.
+    peerDependencies[id]
 }))

@@ -1,4 +1,4 @@
-import { useState, cloneElement } from "react"
+import { useState } from "react"
 import classNames from "classnames"
 import { includes, filter, keys } from "lodash"
 import { GetServerSideProps } from 'next'
@@ -33,7 +33,7 @@ import {
   CompassIcon,
   CrossIcon,
   DiagnosticIcon,
-  EditIcon,
+  EditFillIcon,
   EngineIcon,
   ExhaustIcon,
   FilterIcon,
@@ -71,7 +71,7 @@ import {
   WarningFillIcon,
   WarningOutlineIcon,
   WheelIcon
-} from '@bolid/mcqueen-icons'
+} from '@bolid/mcqueen-icons/dist/es'
 import {
   Title,
   Text,
@@ -101,8 +101,9 @@ import {
   PathPagination,
   Pill,
   Autocomplete,
+  AutocompleteSuggestionType,
   Popover
-} from "@bolid/mcqueen-react"
+} from "@bolid/mcqueen-react/dist/es/src"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
 const Card = ({ children, title }: any) => (
@@ -140,7 +141,7 @@ type ButtonThemeType = "primary" | "secondary" | "tertiary" | "caution"
 const buttonThemes: ButtonThemeType[] = ['primary', 'secondary', 'tertiary', 'caution']
 
 type ButtonVariantType = "solid" | "outline" | "inverse"
-const buttonVariants: ButtonThemeType[] = ['solid', 'outline', 'inverse']
+const buttonVariants: ButtonVariantType[] = ['solid', 'outline', 'inverse']
 
 type TextSizeType = 1 | 2 | 3 | 4
 const textSizes: TextSizeType[] = [1, 2, 3, 4]
@@ -188,26 +189,34 @@ const SUGGESTIONS_SECTIONS = [{
   }]
 }]
 
+interface SearchAutocompletePropsType {
+  className?: string;
+  hasSections?: boolean;
+  isLoading?: boolean;
+  hasError?: boolean;
+  isDisabled?: boolean;
+}
+
 const SearchAutocomplete = ({
   className,
-  hasSections,
-  isLoading,
-  hasError,
-  isDisabled
-}) => {
+  hasSections = false,
+  isLoading = false,
+  hasError = false,
+  isDisabled = false
+}: SearchAutocompletePropsType) => {
   const [suggestions, setSuggestions] = useState(hasSections ? SUGGESTIONS_SECTIONS : SUGGESTIONS)
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState<string|null>(null)
 
-  const handleFetchRequested = (value) => {
+  const handleFetchRequested = (value: string) => {
     if(!hasSections){
       setSuggestions(filter(
         SUGGESTIONS,
-        option => value === "" || includes(option.label.toLowerCase(), value)
+        (option: AutocompleteSuggestionType) => value === "" || includes(option.label.toLowerCase(), value)
       ))
     }
   }
 
-  const handleSelect = (value, suggestion) => {
+  const handleSelect = (value: string) => {
     setValue(value)
   }
 
@@ -248,7 +257,7 @@ const Form = () => {
       autocomplete: "1"
     }
   })
-  const onSubmit = data => setResult(data);
+  const onSubmit = (data: any) => setResult(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -387,7 +396,7 @@ export default function Home() {
             CompassIcon,
             CrossIcon,
             DiagnosticIcon,
-            EditIcon,
+            EditFillIcon,
             EngineIcon,
             ExhaustIcon,
             FilterIcon,
@@ -871,11 +880,13 @@ export default function Home() {
         <Card title="Pill">
           <Section title="Colors">
             {["orange", "red", "pink", "purple", "yellow", "blue", "green"].map((color, i) => (
+              // @ts-ignore
               <Pill key={i} className="mr-2" color={color}>Pill { color }</Pill>
             ))}
           </Section>
           <Section title="Sizes">
-          {["large", "medium", "small"].map((size, i) => (
+          {(["large", "medium", "small"]).map((size, i) => (
+            // @ts-ignore
             <Pill key={i} className="mr-2" color="orange" size={size}>Pill ({size})</Pill>
           ))}
           </Section>
@@ -1097,7 +1108,7 @@ export default function Home() {
             <QueryPagination pagesCount={10}/>
           </Section>
           <Section className="mt-5" title="Using url path">
-            <PathPagination page={1} path="" pagesCount={10}/>
+            <PathPagination pagesCount={10}/>
           </Section>
         </Card>
         <Card title="Popover">

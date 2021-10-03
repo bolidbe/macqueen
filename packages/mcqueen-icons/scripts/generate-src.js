@@ -8,26 +8,29 @@ const merge = require('lodash.merge')
 
 const iconsDir = path.resolve("icons")
 const srcDir = path.resolve("src")
-const distDir = path.resolve("dist")
 const componentsDir = path.join(srcDir, 'components')
 
 const svgFiles = path.join(iconsDir, "**/*.svg")
-const dataFile = path.join(srcDir, 'data.json')
-const iconsFile = path.join(componentsDir, 'icons.js')
-const indexFile = path.join(srcDir, 'index.js')
-const utilsFile = path.join(srcDir, 'utils.js')
-const typesFile = path.join(distDir, 'index.d.ts')
+const iconsFile = path.join(componentsDir, 'icons.tsx')
+const indexFile = path.join(srcDir, 'index.tsx')
+const utilsFile = path.join(srcDir, 'utils.tsx')
 
-const svgFilepaths = globby.sync(svgFiles).filter(filepath => path.parse(filepath).ext === '.svg')
+const writeFile = (filePath, code) => {
+  return fs.writeFile(filePath, code, 'utf8').then(() => {
+    console.warn('wrote %s', filePath)
+  })
+}
 
-if (svgFilepaths.length === 0) {
+const svgFilesPaths = globby.sync(svgFiles).filter(filepath => path.parse(filepath).ext === '.svg')
+
+if (svgFilesPaths.length === 0) {
   console.error('No SVG file(s) found')
   process.exit(1)
 }
 
 let exitCode = 0
 
-const icons = svgFilepaths.map(filepath => {
+const icons = svgFilesPaths.map(filepath => {
   try {
     const filename = path.parse(filepath).base
     const filenamePattern = /(.+)-([0-9]+).svg$/
@@ -110,7 +113,7 @@ const iconsByName = icons.reduce(
   (acc, icon) =>
     merge(acc, {
       [icon.name]: {
-        name: icon.name,
+        name: `${pascalCase(icon.name)}Icon`,
         heights: {
           [icon.height]: {
             width: icon.width,
@@ -122,6 +125,9 @@ const iconsByName = icons.reduce(
   {}
 )
 
+const iconPropsType = `size?: number | 'tiny' | 'small' | 'medium';
+  verticalAlign?: 'middle' | 'text-bottom' | 'text-top' | 'top' | 'unset';`
+
 const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
 
 function pascalCase(str) {
@@ -129,194 +135,148 @@ function pascalCase(str) {
 }
 
 const iconsComponents = Object.entries(iconsByName)
-  .map(([key, icon]) => {
-    const name = `${pascalCase(key)}Icon`
-    const code = `
-      function ${name}(props) {
-        const svgDataByHeight = ${JSON.stringify(icon.heights)}
-        return <svg {...getSvgProps({...props, svgDataByHeight})} />
-      }
-      ${name}.defaultProps = {
-        size: 16,
-        verticalAlign: 'text-bottom'
-      }
-    `
+  .map(([key, icon]) => ({
+    key,
+    name: icon.name,
+    code: `${GENERATED_HEADER}
 
-    return {
-      key,
-      name,
-      code
-    }
-  })
+import React from 'react'
+import { getSvgProps } from '../utils'
+
+interface ${icon.name}PropsType extends React.SVGProps<SVGSVGElement> {
+  ${iconPropsType}
+}
+
+export default function ${icon.name}(props: ${icon.name}PropsType) {
+  const svgDataByHeight = ${JSON.stringify(icon.heights)}
+  return <svg {...getSvgProps({...props, svgDataByHeight})} />
+}
+    `
+  }))
   .sort((a, b) => a.key.localeCompare(b.key))
+  .concat({
+      key: 'icon',
+      name: 'Icon',
+      code: `${GENERATED_HEADER}
 
-function writeIndex(file) {
-  const code = `${GENERATED_HEADER}
-import React from 'react'
-export * from './components/icons'
-  `
-  return fs.writeFile(file, code, 'utf8').then(() => {
-    console.warn('wrote %s', file)
-    return iconsComponents
-  })
-}
-
-function writeUtils(file) {
-  const code = `${GENERATED_HEADER}
-export const sizeMap = {
-  tiny: 12,
-  small: 16,
-  medium: 24
-}
-
-export function closestNaturalHeight(naturalHeights, height) {
-  return naturalHeights
-    .map(naturalHeight => parseInt(naturalHeight, 10))
-    .reduce((acc, naturalHeight) => (naturalHeight <= height ? naturalHeight : acc), naturalHeights[0])
-}
-
-export function getSvgProps({'aria-label': ariaLabel, className, size, verticalAlign, svgDataByHeight}) {
-  const height = sizeMap[size] || size
-  const naturalHeight = closestNaturalHeight(Object.keys(svgDataByHeight), height)
-  const naturalWidth = svgDataByHeight[naturalHeight].width
-  const width = height * (naturalWidth / naturalHeight)
-  const path = svgDataByHeight[naturalHeight].path
-
-  return {
-    'aria-hidden': ariaLabel ? 'false' : 'true',
-    'aria-label': ariaLabel,
-    role: 'img',
-    className,
-    viewBox: \`0 0 \${naturalWidth} \${naturalHeight}\`,
-    width,
-    height,
-    fill: 'currentColor',
-    style: {
-      display: 'inline-block',
-      userSelect: 'none',
-      verticalAlign
-    },
-    dangerouslySetInnerHTML: {__html: path}
-  }
-}
-  `
-  return fs.writeFile(file, code, 'utf8').then(() => {
-    console.warn('wrote %s', file)
-    return iconsComponents
-  })
-}
-
-function writeIcons(file) {
-  const code = `${GENERATED_HEADER}
 import React from 'react'
 
-const sizeMap = {
-  tiny: 12,
-  small: 16,
-  medium: 24
+${Object.entries(iconsByName).map(([key, icon]) => (
+`import ${icon.name} from "./${icon.name}"`
+)).join("\n")}
+
+interface IconPropsType extends React.SVGProps<SVGSVGElement> {
+  ${iconPropsType}
+  name: string;
 }
 
-function closestNaturalHeight(naturalHeights, height) {
-  return naturalHeights
-    .map(naturalHeight => parseInt(naturalHeight, 10))
-    .reduce((acc, naturalHeight) => (naturalHeight <= height ? naturalHeight : acc), naturalHeights[0])
-}
-
-function getSvgProps({'aria-label': ariaLabel, className, size, verticalAlign, svgDataByHeight}) {
-  const height = sizeMap[size] || size
-  const naturalHeight = closestNaturalHeight(Object.keys(svgDataByHeight), height)
-  const naturalWidth = svgDataByHeight[naturalHeight].width
-  const width = height * (naturalWidth / naturalHeight)
-  const path = svgDataByHeight[naturalHeight].path
-
-  return {
-    'aria-hidden': ariaLabel ? 'false' : 'true',
-    'aria-label': ariaLabel,
-    role: 'img',
-    className,
-    viewBox: \`0 0 \${naturalWidth} \${naturalHeight}\`,
-    width,
-    height,
-    fill: 'currentColor',
-    style: {
-      display: 'inline-block',
-      userSelect: 'none',
-      verticalAlign
-    },
-    dangerouslySetInnerHTML: {__html: path}
-  }
-}
-${iconsComponents.map(({code}) => code).join('\n')}
-
-function Icon(props) {
-  switch(props.name){
-    ${iconsComponents.map(({ key, name }) => (
+export default function Icon({
+  name,
+  ...props
+}: IconPropsType) {
+  switch(name){
+    ${Object.entries(iconsByName).map(([key, icon]) => (
     `
-      case "${ key }":
-        return <${name} {...props} />
-        break;
+    case "${ key }":
+      return <${icon.name} {...props} />
+      break;
     `
     )).join("")}
     default:
-      return none;
+      return null;
   }
 }
-Icon.defaultProps = {
-  size: 16,
-  verticalAlign: 'text-bottom'
-}
-
-export {
-  Icon,
-  ${iconsComponents.map(({name}) => name).join(',\n  ')},
-}
-  `
-  return fs.writeFile(file, code, 'utf8').then(() => {
-    console.warn('wrote %s', file)
-    return iconsComponents
+      `
   })
-}
 
-function writeTypes(file) {
+function writeIndex() {
   const code = `${GENERATED_HEADER}
-import * as React from 'react'
 
-type Size = 'tiny' | 'small' | 'medium'
-
-interface IconProps {
-  'aria-label'?: string
-  className?: string
-  size?: number | Size
-  verticalAlign?: 'middle' | 'text-bottom' | 'text-top' | 'top' | 'unset',
-  name?: string
+${iconsComponents.map(({name}) => `export { default as ${name} } from "./components/${name}"`).join('\n')}
+  `
+  return writeFile(indexFile, code)
 }
 
-type IconType = React.FC<IconProps>
+function writeUtils() {
+  const code = `${GENERATED_HEADER}
 
-${iconsComponents.map(({name}) => `declare const ${name}: IconType`).join('\n')}
-declare const Icon: IconType
+import React from 'react'
 
-export {
-  IconType,
-  IconProps,
-  Icon,
-  ${iconsComponents.map(({name}) => name).join(',\n  ')}
+const sizes: any = {
+  tiny: 12,
+  small: 16,
+  medium: 24
+}
+
+function getClosestSvgHeight(svgHeights: string[], height: number) {
+  return svgHeights
+    .map(svgHeight => parseInt(svgHeight, 10))
+    .reduce(
+      (acc: number, svgHeight: number) => (
+        svgHeight <= height
+        ? svgHeight
+        : acc
+      ), parseInt(svgHeights[0])
+    )
+}
+
+interface GetSvgPropsType extends React.SVGProps<SVGSVGElement> {
+  ${iconPropsType}
+  svgDataByHeight: any;
+}
+
+export function getSvgProps({
+  'aria-label': ariaLabel,
+  svgDataByHeight,
+  size = 16,
+  verticalAlign = 'text-bottom',
+  ...props
+}: GetSvgPropsType) {
+  const height = sizes[size] || size
+  const svgHeight = getClosestSvgHeight(Object.keys(svgDataByHeight), height)
+  const svgWidth = svgDataByHeight[svgHeight].width
+  const width = height * (svgWidth / svgHeight)
+  const path = svgDataByHeight[svgHeight].path
+
+  return {
+    'aria-hidden': !!ariaLabel ? false : true,
+    'aria-label': ariaLabel,
+    role: 'img',
+    viewBox: \`0 0 \${svgWidth} \${svgHeight}\`,
+    width,
+    height,
+    fill: 'currentColor',
+    style: {
+      display: 'inline-block',
+      verticalAlign
+    },
+    dangerouslySetInnerHTML: {__html: path},
+    ...props
+  }
 }
   `
-  return fs.writeFile(file, code, 'utf8').then(() => {
-    console.warn('wrote %s', file)
-    return iconsComponents
-  })
+  return writeFile(utilsFile, code)
+}
+
+function writeIcons() {
+  return Promise.all(iconsComponents.map(({ name, code }) => {
+    const iconFile = path.join(componentsDir, `${name}.tsx`)
+    return writeFile(iconFile, code)
+  }))
 }
 
 fs
   .mkdirs(srcDir)
-  .then(() => writeIndex(indexFile))
-  .then(() => writeUtils(utilsFile))
-  .then(() => fs.mkdirs(componentsDir))
-  .then(() => writeIcons(iconsFile))
-  .then(() => fs.mkdirs(distDir))
-  .then(() => writeTypes(typesFile))
+  .then(() => writeIndex())
+  .then(() => writeUtils())
+  .catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
+
+fs
+  .mkdirs(componentsDir)
+  .then(() => writeIcons())
   .catch(error => {
     console.error(error)
     process.exit(1)

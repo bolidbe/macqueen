@@ -6,7 +6,7 @@ yarn.lock
 yarn-error.log
 
 # mcqueen-icons
-packages/mcqueen-icons/src/data.json
+packages/mcqueen-icons/src
 packages/mcqueen-icons/dist
 
 # mcqueen-react
