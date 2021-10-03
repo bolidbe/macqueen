@@ -6,8 +6,8 @@ const cheerio = require('cheerio')
 const trimNewlines = require('trim-newlines')
 const merge = require('lodash.merge')
 
-const iconsDir = path.resolve("icons")
 const srcDir = path.resolve("src")
+const iconsDir = path.join(srcDir, 'icons')
 const componentsDir = path.join(srcDir, 'components')
 
 const svgFiles = path.join(iconsDir, "**/*.svg")
