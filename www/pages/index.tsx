@@ -103,7 +103,8 @@ import {
   Pill,
   Autocomplete,
   AutocompleteSuggestionType,
-  Popover
+  Popover,
+  Message
 } from "@bolid/mcqueen-react"
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
@@ -860,6 +861,20 @@ export default function Home() {
             <BannerAlert className="mb-3" theme="info">Banner Info</BannerAlert>
             <BannerAlert className="mb-3" theme="warning">Banner Warning</BannerAlert>
             <BannerAlert theme="caution">Banner Caution</BannerAlert>
+          </Section>
+        </Card>
+        <Card title="Message">
+          <Section title="Themes">
+            <Message className="mb-3" theme="success">Message Success</Message>
+            <Message className="mb-3" theme="info">Message Info</Message>
+            <Message className="mb-3" theme="warning">Message Warning</Message>
+            <Message theme="caution">Message Caution</Message>
+          </Section>
+          <Section title="Positions">
+            <Message className="mb-3" position="top">Message Top</Message>
+            <Message className="mb-3" position="right">Message Right</Message>
+            <Message className="mb-3" position="bottom">Message Bottom</Message>
+            <Message position="left">Message Left</Message>
           </Section>
         </Card>
         <Card title="Chip">

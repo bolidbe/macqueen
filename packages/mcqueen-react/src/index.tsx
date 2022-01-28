@@ -24,6 +24,7 @@ export { default as ShowMore, ShowMorePropsType } from "./components/ShowMore";
 export { default as Pill, PillPropsType } from "./components/Pill";
 export { default as ConditionalPortal, ConditionalPortalPropsType } from "./components/ConditionalPortal";
 export { default as Popover, PopoverPropsType } from "./components/Popover";
+export { default as Message, MessagePropsType } from "./components/Message";
 export * from "./components/Avatar";
 export * from "./components/Chip";
 export * from "./components/Pagination";
