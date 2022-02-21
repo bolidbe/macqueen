@@ -5,18 +5,38 @@
   &Size{
     &Xsmall {
       @apply text-title-8 leading-title-8;
+
+      .square {
+        @apply rounded-small;
+      }
     }
     &Small {
       @apply text-title-5 leading-title-5;
+
+      .square {
+        @apply rounded-small;
+      }
     }
     &Medium {
       @apply text-title-3 leading-title-3;
+
+      .square {
+        @apply rounded;
+      }
     }
     &Large {
       @apply text-title-2 leading-title-2;
+
+      .square {
+        @apply rounded;
+      }
     }
     &Xlarge {
       @apply text-title-1 leading-title-1;
+
+      .square {
+        @apply rounded-large;
+      }
     }
   }
 
@@ -45,8 +65,4 @@
 
 .circle {
   @apply rounded-circle;
-}
-
-.square {
-  @apply rounded-small;
 }

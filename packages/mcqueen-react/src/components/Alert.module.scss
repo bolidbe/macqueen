@@ -1,7 +1,5 @@
 .alert {
-  @apply flex text-body-3 leading-body-3 text-left text-white bg-gray font-600 rounded;
-  // Padding top and bottom of 12px to achieve 44px height of alert
-  padding: 12px theme('spacing.3');
+  @apply flex text-body-3 leading-body-3 text-left text-white bg-gray font-600 rounded p-3;
 
   a {
     @apply underline cursor-pointer text-white;

@@ -1,85 +1,66 @@
-$border-radius: theme('spacing.2');
+$border-width: 8px;
+
+.border{
+  @apply absolute z-1;
+}
 
 .message {
-  @apply bg-white overflow-hidden p-3;
-  border-radius: $border-radius;
+  @apply relative bg-white overflow-hidden p-3 border rounded;
+
+  &State{
+    &Success{
+      .border{
+        @apply bg-green;
+      }
+    }
+    &Caution{
+      .border{
+        @apply bg-red;
+      }
+    }
+    &Warning{
+      .border{
+        @apply bg-orange;
+      }
+    }
+    &Info{
+      .border{
+        @apply bg-blue;
+      }
+    }
+  }
 
   &Position{
     &Top{
-      @apply border-l border-r border-b;
-      border-top: $border-radius solid transparent;
-
-      &.messageState{
-        &Success{
-          border-top-color: theme('colors.green.default');
-        }
-        &Caution{
-          border-top-color: theme('colors.red.default');
-        }
-        &Warning{
-          border-top-color: theme('colors.orange.default');
-        }
-        &Info{
-          border-top-color: theme('colors.blue.default');
-        }
+      .border{
+        @apply top-0 left-0 right-0;
+        height: $border-width;
       }
     }
     &Right{
-      @apply border-l border-t border-b;
-      border-right: $border-radius solid transparent;
-
-      &.messageState{
-        &Success{
-          border-right-color: theme('colors.green.default');
-        }
-        &Caution{
-          border-right-color: theme('colors.red.default');
-        }
-        &Warning{
-          border-right-color: theme('colors.orange.default');
-        }
-        &Info{
-          border-right-color: theme('colors.blue.default');
-        }
+      .border{
+        @apply top-0 right-0 bottom-0;
+        width: $border-width;
       }
     }
     &Bottom{
-      @apply border-l border-r border-t;
-      border-bottom: $border-radius solid transparent;
-
-      &.messageState{
-        &Success{
-          border-bottom-color: theme('colors.green.default');
-        }
-        &Caution{
-          border-bottom-color: theme('colors.red.default');
-        }
-        &Warning{
-          border-bottom-color: theme('colors.orange.default');
-        }
-        &Info{
-          border-bottom-color: theme('colors.blue.default');
-        }
+      .border{
+        @apply right-0 bottom-0 left-0;
+        height: $border-width;
       }
     }
     &Left{
-      @apply border-t border-r border-b;
-      border-left: $border-radius solid transparent;
-
-      &.messageState{
-        &Success{
-          border-left-color: theme('colors.green.default');
-        }
-        &Caution{
-          border-left-color: theme('colors.red.default');
-        }
-        &Warning{
-          border-left-color: theme('colors.orange.default');
-        }
-        &Info{
-          border-left-color: theme('colors.blue.default');
-        }
+      .border{
+        @apply bottom-0 left-0 top-0;
+        width: $border-width;
       }
     }
+  }
+}
+
+
+@media screen and (min-width: theme('screens.small')){
+  .message {
+    @apply p-4;
   }
 }
