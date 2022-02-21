@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -85,7 +85,7 @@
   },
   "peerDependencies": {
     "@bolid/mcqueen-icons": ">= 1.1.2",
-    "@bolid/mcqueen-scss": ">= 1.1.0",
+    "@bolid/mcqueen-scss": ">= 1.1.1",
     "@popperjs/core": ">= 2.5.4 < 3.0.0",
     "classnames": ">= 2.2.6 < 3.0.0",
     "html-react-parser": ">= 0.14.2",
