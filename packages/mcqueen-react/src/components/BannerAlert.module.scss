@@ -1,68 +1,49 @@
 .bannerAlert {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: theme('spacing.3');
-  color: theme('colors.black.default');
-  background-color: theme('colors.gray.200');
-  font-size: theme('fontSize.body-3');
-  line-height: theme('lineHeight.body-3');
+  @apply flex items-center justify-center p-3 text-black bg-gray-200 text-body-3 leading-body-3;
 
   a {
-    font-weight: 600;
-    text-decoration: underline;
-    color: theme('colors.black.default');
+    @apply font-600 underline text-black
   }
 
   &State{
     &Success{
-      background-color: theme('colors.green.200');
-      color: theme('colors.green.500');
+      @apply bg-green-200 text-green-500;
 
       a {
-        color: theme('colors.green.500');
+        @apply text-green-500;
       }
     }
     &Info{
-      background-color: theme('colors.blue.200');
-      color: theme('colors.blue.500');
+      @apply bg-blue-200 text-blue-500;
 
       a {
-        color: theme('colors.blue.500');
+        @apply text-blue-500;
       }
     }
     &Warning{
-      background-color: theme('colors.sorbet.200');
-      color: theme('colors.orange.500');
+      @apply bg-sorbet-200 text-orange-500;
 
       a {
-        color: theme('colors.orange.500');
+        @apply text-orange-500;
       }
     }
     &Caution{
-      background-color: theme('colors.red.200');
-      color: theme('colors.red.500');
+      @apply bg-red-200 text-red-500;
 
       a {
-        color: theme('colors.red.500');
+        @apply text-red-500;
       }
     }
   }
 }
 
 .icon {
+  @apply mr-2;
   flex-shrink: 0;
-  margin-right: theme('spacing.3');
 }
 
 @media screen and (min-width: theme('screens.small')){
   .bannerAlert{
-    padding: theme('spacing.4');
-    font-size: theme('fontSize.body-2');
-    line-height: theme('lineHeight.body-2');
-  }
-
-  .icon{
-    margin-right: theme('spacing.3');
+    @apply p-4 text-body-2 leading-body-2;
   }
 }

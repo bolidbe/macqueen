@@ -4,60 +4,49 @@
 
   &Size{
     &Xsmall {
-      font-size: theme("fontSize.title-8");
+      @apply text-title-8 leading-title-8;
     }
     &Small {
-      font-size: theme("fontSize.title-5");
+      @apply text-title-5 leading-title-5;
     }
     &Medium {
-      font-size: theme("fontSize.title-3");
+      @apply text-title-3 leading-title-3;
     }
     &Large {
-      font-size: theme("fontSize.title-2");
+      @apply text-title-2 leading-title-2;
     }
     &Xlarge {
-      font-size: theme("fontSize.title-1");
+      @apply text-title-1 leading-title-1;
     }
   }
 
   &Theme{
     &1{
-      color: theme("colors.purple.500");
-      background-color: theme("colors.purple.200");
+      @apply text-purple-500 bg-purple-200;
     }
     &2{
-      color: theme("colors.green.500");
-      background-color: theme("colors.green.200");
+      @apply text-green-500 bg-green-200;
     }
     &3{
-      color: theme("colors.yellow.500");
-      background-color: theme("colors.yellow.200");
+      @apply text-yellow-500 bg-yellow-200;
     }
     &4{
-      color: theme("colors.red.500");
-      background-color: theme("colors.red.200");
+      @apply text-red-500 bg-red-200;
     }
     &5{
-      color: theme("colors.blue.500");
-      background-color: theme("colors.blue.200");
+      @apply text-blue-500 bg-blue-200;
     }
   }
 }
 
 .initials {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  line-height: initial;
-  font-weight: 700;
+  @apply h-full w-full flex justify-around items-center font-700;
 }
 
 .circle {
-  border-radius: 50%;
+  @apply rounded-circle;
 }
 
 .square {
-  border-radius: 4px;
+  @apply rounded-small;
 }

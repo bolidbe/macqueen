@@ -1,11 +1,6 @@
 // Interactive rating.
 .inputWrap {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  @apply absolute flex w-full h-full top-0 left-0;
   z-index: 1;
 }
 
@@ -14,9 +9,8 @@
 }
 
 .label {
+  @apply cursor-pointer overflow-hidden;
   flex: 1;
-  cursor: pointer;
   // Pushes label text out of view
   text-indent: 100%;
-  overflow: hidden;
 }

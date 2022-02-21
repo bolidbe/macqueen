@@ -1,12 +1,5 @@
 .curtain{
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
+  @apply fixed top-0 right-0 bottom-0 left-0 flex flex-col overflow-auto;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
@@ -21,23 +14,15 @@
   }
 
   &Inner{
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+    @apply p-0 flex flex-col h-full;
     flex: 1 0 auto;
-    height: 100%;
   }
 }
 
 .modal{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  max-height: 100%;
+  @apply w-full h-full flex max-h-full bg-white overflow-hidden;
   transform: translate(0, 100%);
   transition: transform .25s cubic-bezier(.45,0,.4,1);
-  background: theme('colors.white');
-  overflow: hidden;
 
   &Open {
     transition: transform .3s cubic-bezier(.45,0,.4,1);
@@ -46,42 +31,31 @@
 
   &Width{
     &Narrow, &Medium, &Wide {
-      max-width: 100%;
+      @apply max-w-full;
     }
   }
 }
 
 .container{
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  @apply relative w-full flex flex-col;
 }
 
 .closeButton {
-  display: flex;
-  border-bottom: 1px solid theme('colors.gray.default');
+  @apply flex border-b items-start justify-end;
   min-height: 56px;
-  align-items: flex-start;
-  justify-content: flex-end;
   order: -1;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  @apply flex flex-col overflow-y-auto;
   // Momentum scrolling on iOS.
   -webkit-overflow-scrolling: touch;
   flex: 1 1 auto;
 }
 
 .contentPadding {
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col px-3 py-5;
   flex: 1 0 auto;
-
-  padding: 20px 20px theme('spacing.5');
 }
 
 @media screen and (min-width: theme('screens.small')){
@@ -95,8 +69,7 @@
     }
 
     &Inner{
-      padding: theme('spacing.5');
-      height: auto;
+      @apply p-5 h-auto;
 
       &ShouldScroll {
         max-height: none;
@@ -105,9 +78,7 @@
   }
 
   .modal{
-    @apply rounded-big;
-    height: auto;
-    margin: auto;
+    @apply rounded-large h-auto m-auto;
     transition: none;
     opacity: 0;
 
@@ -145,10 +116,10 @@
   }
 
   .closeButton {
-    border-bottom: none;
+    @apply border-b-none;
   }
 
   .contentPadding {
-    padding: 0 theme('spacing.5') 40px;
+    @apply pt-0 px-5 pb-5
   }
 }

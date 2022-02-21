@@ -109,7 +109,7 @@ import {
 const colors: any = require("@bolid/mcqueen-scss/config/colors.json")
 
 const Card = ({ children, title }: any) => (
-  <div className="max-w-6 rounded-big mx-auto bg-white shadow-1 p-5 mb-5">
+  <div className="max-w-6 rounded-large mx-auto bg-white shadow-1 p-5 mb-5">
     <Title heading={2} size={2} className="mb-5">{ title }</Title>
     { children }
   </div>
@@ -364,7 +364,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
-      <div className="wrap">
+      <div className="container">
         <Title className="text-center mb-6" heading={1}>McQueen Playground</Title>
         <Card title="Icon">
           {[

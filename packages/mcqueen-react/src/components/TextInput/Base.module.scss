@@ -1,10 +1,7 @@
 $border-width: 1px;
-$icon-padding: 16px;
 
 .inputContainer{
-  position: relative;
-  display: inline-flex;
-  width: 100%;
+  @apply relative w-full inline-flex;
   padding: $border-width;
   // Prevents the z-indices used within this component from bubbling up and affecting the rest of
   // the page. https://github.com/thumbtack/thumbprint-archive/issues/954
@@ -12,41 +9,32 @@ $icon-padding: 16px;
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  height: 100%;
+  @apply relative flex items-center h-full cursor-text;
   z-index: 2;
-  position: relative;
-  cursor: text;
 
   &Position {
     &Left {
-      padding-left: $icon-padding;
+      @apply pl-3;
     }
   }
   &Position {
     &Right {
-      padding-right: $icon-padding;
+      @apply pr-3;
     }
   }
 }
 
 .inputStyles {
-  position: absolute;
+  @apply absolute top-0 right-0 bottom-0 left-0 rounded;
   z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  // background-color: ${props => backgroundColor[props.uiState]};
   border: $border-width solid;
-  border-radius: theme('borderRadius.default');
 }
 
 // The '.input.input.input' element is used to increase specificity so that the selector takes
 // precedence over a highly specific selector in Thumbtack's website.
 // https://github.com/thumbtack/thumbprint-archive/issues/244
 .input {
+  @apply h-auto bg-transparent rounded relative w-full;
   border: none;
   flex: 1 0 0%;
   // Input elements, by default, have a 20 character min-width due to the `size` attribute.
@@ -55,25 +43,20 @@ $icon-padding: 16px;
   min-width: 0;
   color: inherit;
   vertical-align: middle;
-  height: auto;
-  background: transparent;
-  border-radius: theme('borderRadius.default');
   z-index: 2;
-  position: relative;
-  width: 100%;
 
   &:focus {
+    @apply text-black;
     // Focus styles are added to another element, not the actual input element.
     border: none;
     box-shadow: none;
-    color: theme('colors.black.default');
     outline: none;
   }
 
   &::-webkit-input-placeholder,
   &::-moz-placeholder,
   &:-ms-input-placeholder {
-    color: theme('colors.black.200');
+    @apply text-black-200;
   }
 
   // Remove browser default "clear" button since it should be added with "InputClearButton".
@@ -81,24 +64,22 @@ $icon-padding: 16px;
   &::-webkit-search-cancel-button,
   &::-webkit-search-results-button,
   &::-webkit-search-results-decoration {
-    display: none;
+    @apply hidden;
   }
 
   // Remove browser default "clear" button for IE 11. This rule needs to be separated as
   // it fails to apply if grouped with the above `::-webkit` selectors.
   &::-ms-clear {
-    display: none;
+    @apply hidden;
   }
 
   &Size {
     &Large {
-      font-size: theme('fontSize.body-2');
-      line-height: theme('lineHeight.body-2');
+      @apply text-body-2 leading-body-2;
       padding: 13px 16px;
     }
     &Small {
-      font-size: theme('fontSize.body-3');
-      line-height: theme('lineHeight.body-3');
+      @apply text-body-3 leading-body-3;
       padding: 9px 16px;
     }
   }
@@ -107,18 +88,17 @@ $icon-padding: 16px;
   // input itself which can happen when the autofill functionality adds a backgroun-color to
   // the input.
   &.inputWithIconLeft {
-    padding-left: 12px;
+    @apply pl-2;
   }
 }
 
 .textInput {
   &State {
     &Default {
-      color: theme('colors.black.default');
+      @apply text-black;
 
       .inputStyles {
-        background-color: theme('colors.white');
-        border-color: theme('colors.gray.default');
+        @apply bg-white border-gray;
       }
     }
 
@@ -126,8 +106,7 @@ $icon-padding: 16px;
       color: #7C98B6;
 
       .inputStyles {
-        background-color: theme('colors.gray.200');
-        border-color: theme('colors.gray.default');
+        @apply bg-gray-200 border-gray;
       }
 
       .input:focus{
@@ -136,26 +115,25 @@ $icon-padding: 16px;
     }
 
     &Error {
-      color: theme('colors.red.default');
+      @apply text-red;
 
       .inputStyles {
-        background-color: theme('colors.white');
-        border-color: theme('colors.red.default');
+        @apply bg-white border-red;
       }
 
       .input{
         // This must be three separate rules, not a comma-separated list, to avoid the different
         // vendor prefixes conflicting.
         &::-webkit-input-placeholder {
-          color: theme('colors.red.default');
+          @apply text-red;
         }
 
         &::-moz-placeholder {
-          color: theme('colors.red.default');
+          @apply text-red;
         }
 
         &:-ms-input-placeholder {
-          color: theme('colors.red.default');
+          @apply text-red;
         }
       }
     }
@@ -163,14 +141,14 @@ $icon-padding: 16px;
     &Default{
       .input:focus {
         & ~ .inputStyles {
-          border-color: theme('colors.blue.default');
+          @apply border-blue;
         }
       }
     }
 
     &ReadOnly, &Disabled {
       .input, .icon{
-        cursor: not-allowed;
+        @apply cursor-not-allowed;
       }
     }
   }

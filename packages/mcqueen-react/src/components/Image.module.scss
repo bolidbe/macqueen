@@ -1,7 +1,6 @@
 .picture {
-  display: block;
-  width: 100%;
-  overflow: hidden;
+  @apply block w-full overflow-hidden;
+
   height: inherit;
 }
 
@@ -9,8 +8,7 @@
   height: inherit;
 
   &Start {
-    display: block;
-    width: 100%;
+    @apply block w-full;
     opacity: 0;
   }
 

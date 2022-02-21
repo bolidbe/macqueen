@@ -1,58 +1,42 @@
 .pill{
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: theme('colors.gray.300');
-  color: theme('colors.black.default');
-  display: inline-block;
-  font-weight: 600;
-  overflow: hidden;
+  @apply rounded-circle bg-gray-300 text-black inline-block font-600 overflow-hidden;
 
   &Size{
     &Small{
-      font-size: theme('fontSize.body-4');
-      line-height: theme('fontSize.body-4');
+      @apply text-body-4 leading-body-4;
       padding: 4px 10px;
     }
     &Medium{
-      font-size: theme('fontSize.body-2');
-      line-height: theme('fontSize.body-2');
+      @apply text-body-2 leading-body-2;
       padding: 6px 12px;
     }
     &Large{
-      font-size: theme('fontSize.body-1');
-      line-height: theme('fontSize.body-1');
+      @apply text-body-1 leading-body-1;
       padding: 8px 14px;
     }
   }
 
   &Color{
     &Blue {
-      background: theme('colors.blue.200');
-      color: theme('colors.blue.500');
+      @apply bg-blue-200 text-blue-500;
     }
     &Purple {
-      background: theme('colors.purple.200');
-      color: theme('colors.purple.500');
+      @apply bg-purple-200 text-purple-500;
     }
     &Green {
-      background: theme('colors.green.200');
-      color: theme('colors.green.500');
+      @apply bg-green-200 text-green-500;
     }
     &Pink {
-      background: theme('colors.pink.200');
-      color: theme('colors.pink.500');
+      @apply bg-pink-200 text-pink-500;
     }
     &Yellow {
-      background: theme('colors.yellow.200');
-      color: theme('colors.yellow.500');
+      @apply bg-yellow-200 text-yellow-500;
     }
     &Red {
-      background: theme('colors.red.200');
-      color: theme('colors.red.500');
+      @apply bg-red-200 text-red-500;
     }
     &Orange {
-      background: theme('colors.red.200');
-      color: theme('colors.red.500');
+      @apply bg-red-200 text-red-500;
     }
   }
 }

@@ -1,22 +1,21 @@
 .radio {
-  position: relative;
-  display: flex;
+  @apply relative flex;
 
   &VerticalAlignTop {
-    align-items: flex-start;
+    @apply items-start;
   }
 
   &VerticalAlignCenter {
-    align-items: center;
+    @apply items-center;
   }
 }
 
 .circleRadio{
-  display: none;
+  @apply hidden;
 }
 
 .input {
-  position: absolute;
+  @apply absolute;
   opacity: 0;
   z-index: -1;
   width: 1px;
@@ -28,9 +27,9 @@
 }
 
 .radioContainer {
+  @apply rounded-circle;
   width: 20px;
   height: 20px;
-  border-radius: theme('borderRadius.full');
 
   // Margin that makes the input appear decently aligned against
   // various Thumbprint <Text> sizes
@@ -44,18 +43,16 @@
 }
 
 .text {
+  @apply text-body-2 leading-body-2 font-400 pl-2;
   // This must take up the remaining available space for content that must be right-aligned.
   flex: 1 0 0%;
   // 'min-width' is needed to allow text within the radio to truncate.
   min-width: 0;
-  font-size: theme('fontSize.body-2');
-  font-weight: 400;
-  padding-left: 8px;
   color: inherit;
 
   &State{
     &Error{
-      color: theme('colors.red.default');
+      @apply text-red;
     }
   }
 }
@@ -102,8 +99,8 @@
         stroke: theme('colors.blue.default');
       }
       &Radio{
+        @apply block;
         fill: theme('colors.blue.default');
-        display: block;
       }
     }
 

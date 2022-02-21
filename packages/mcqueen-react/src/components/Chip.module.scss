@@ -1,24 +1,15 @@
 .chip {
-  display: inline-block;
-  padding: theme('spacing.1') theme('spacing.3');
+  @apply inline-block py-1 px-3 rounded-circle cursor-pointer bg-white text-blue;
   border: 3px solid theme('colors.gray.default');
-  border-radius: 25px;
-  cursor: pointer;
-  background-color: theme('colors.white');
-  color: theme('colors.blue.default');
 
   &ThemeFilter{
     &.chipStateSelected {
-      background-color: theme('colors.blue.200');
-      color: theme('colors.blue.default');
-      border-color: theme('colors.blue.200');
+      @apply bg-blue-200 text-blue border-blue-200;
     }
   }
   &ThemeToggle{
     &.chipStateSelected {
-      background-color: theme('colors.blue.default');
-      color: theme('colors.white');
-      border-color: theme('colors.blue.default');
+      @apply bg-blue text-white border-blue;
     }
   }
 }

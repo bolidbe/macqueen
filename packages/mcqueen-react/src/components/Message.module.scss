@@ -1,10 +1,14 @@
+$border-radius: theme('spacing.2');
+
 .message {
-  @apply bg-white rounded overflow-hidden p-3;
+  @apply bg-white overflow-hidden p-3;
+  border-radius: $border-radius;
 
   &Position{
     &Top{
       @apply border-l border-r border-b;
-      border-top: 6px solid transparent;
+      border-top: $border-radius solid transparent;
+
       &.messageState{
         &Success{
           border-top-color: theme('colors.green.default');
@@ -22,7 +26,8 @@
     }
     &Right{
       @apply border-l border-t border-b;
-      border-right: 6px solid transparent;
+      border-right: $border-radius solid transparent;
+
       &.messageState{
         &Success{
           border-right-color: theme('colors.green.default');
@@ -40,7 +45,8 @@
     }
     &Bottom{
       @apply border-l border-r border-t;
-      border-bottom: 6px solid transparent;
+      border-bottom: $border-radius solid transparent;
+
       &.messageState{
         &Success{
           border-bottom-color: theme('colors.green.default');
@@ -58,7 +64,8 @@
     }
     &Left{
       @apply border-t border-r border-b;
-      border-left: 6px solid transparent;
+      border-left: $border-radius solid transparent;
+
       &.messageState{
         &Success{
           border-left-color: theme('colors.green.default');

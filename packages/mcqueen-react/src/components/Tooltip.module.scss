@@ -9,42 +9,32 @@
 }
 
 .childrenWrapper {
-  display: inline-flex;
+  @apply inline-flex;
 }
 
 .tooltip {
+  @apply text-body-3 leading-body-3 font-400 py-2 px-3 rounded;
   animation: tooltip-animation 150ms cubic-bezier(0, 0, 0.40, 1);
   box-shadow: 0px 1px 3px 0px rgba(#000, 0.5);
-  font-size: theme('fontSize.body-3');
-
-  font-weight: 400;
-  line-height: theme('lineHeight.body-3');
-  padding: theme('spacing.2') theme('spacing.3');
-  border-radius: theme('borderRadius.default');
   max-width: 235px;
-
   z-index: 100;
 
   &Theme{
     &Dark {
-      background: theme('colors.black.default');
-      color: theme('colors.white');
+      @apply bg-black text-white;
     }
 
     &Light {
-      background: theme('colors.white');
-      color: theme('colors.black.300');
+      @apply bg-white text-black-300;
     }
   }
 }
 
-$arrow-position: theme('spacing.2');
 .arrow {
+  @apply absolute;
   width: 6px;
   height: 6px;
-  position: absolute;
   border-style: solid;
-  position: absolute;
   border-width: 0;
   border-left-color: transparent;
   border-right-color: transparent;

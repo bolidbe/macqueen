@@ -165,8 +165,16 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
         <Autosuggest
           theme={{
             ...styles,
-            sectionTitle: size === "small" ? styles.sectionTitleSizeSmall : styles.sectionTitleSizeLarge,
-            suggestion: size === "small" ? styles.suggestionSizeSmall : styles.suggestionSizeLarge,
+            sectionTitle: classNames({
+              [styles.sectionTitle]: true,
+              [styles.sectionTitleSizeSmall]: size === "small",
+              [styles.sectionTitleSizeLarge]: size === "large"
+            }),
+            suggestion: classNames({
+              [styles.suggestion]: true,
+              [styles.suggestionSizeSmall]: size === "small",
+              [styles.suggestionSizeLarge]: size === "large"
+            }),
             theme
           }}
           id={id ? `${id}-autocomplete` : undefined}

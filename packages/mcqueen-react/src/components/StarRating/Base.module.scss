@@ -16,19 +16,15 @@ $large-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iNDg
 
 // This element will have gray stars in the background.
 .starRating {
-  position: relative;
+  @apply relative inline-block;
   background-repeat: repeat-x;
-  display: inline-block;
 
   // This pseudo element will have yellow stars. Because of the source order it will appear over the
   // top of the gray stars. The width is determined by the `data-star` value.
   &:after {
+    @apply absolute top-0 left-0 h-full;
     content: '';
     background-position: bottom left;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
   }
 
   &[data-star='0']:after {

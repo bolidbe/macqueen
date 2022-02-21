@@ -3,48 +3,40 @@ $button-height-small: 40px;
 $button-border-width: 2px;
 
 .loaderContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @apply flex items-center justify-center;
 }
 
 .absoluteCenter {
-  position: absolute;
+  @apply absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
 
 .iconContainer {
-  display: flex;
-  align-items: center;
+  @apply flex items-center overflow-hidden;
   height: 24px;
-  overflow: hidden;
 
   &HasRightChildren {
-    margin-right: 12px;
+    @apply mr-2;
   }
   &HasLeftChildren {
-    margin-left: 12px;
+    @apply ml-2;
   }
 }
 
 .flexWrapper {
   // This wraps the content since `button`s are not able to use `display: flex`.
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @apply flex items-center justify-center;
 
   &Size{
     &Large {
+      @apply text-body-2 leading-body-2;
       min-height: $button-height-large - ($button-border-width * 2);
-      line-height: theme('lineHeight.body-2');
-      font-size: theme('fontSize.body-2');
     }
     &Small {
+      @apply text-body-3 leading-body-3;
       min-height: $button-height-small - ($button-border-width * 2);
-      line-height: theme('lineHeight.body-3');
-      font-size: theme('fontSize.body-3');
     }
   }
 
@@ -59,181 +51,154 @@ $button-border-width: 2px;
 }
 
 .button {
+  @apply relative inline-block font-600 rounded;
   box-sizing: border-box;
-  display: inline-block;
   vertical-align: middle;
   white-space: nowrap;
   font-family: inherit;
   border-width: $button-border-width;
   border-style: solid;
-  font-weight: 600;
   user-select: none;
-  padding: 0 22px;
   position: relative;
   overflow: visible;
-  border-radius: theme('borderRadius.default');
 
   &HasNoRightBorder {
     border-right: none;
   }
 
+  &SizeLarge{
+    padding: 0 22px;
+  }
+
+  &SizeSmall{
+    padding: 0 16px;
+  }
+
   &ThemePrimarySolid {
-    color: theme('colors.white');
-    background-color: theme('colors.orange.default');
-    border-color: theme('colors.orange.default');
+    @apply text-white bg-orange border-orange;
 
     &[disabled] {
-      background-color: theme('colors.orange.300');
-      border-color: theme('colors.orange.300');
+      @apply bg-orange-300 border-orange-300;
     }
 
     &:focus {
-      background-color: theme('colors.orange.500');
-      border-color: theme('colors.orange.500');
+      @apply bg-orange-500 border-orange-500;
     }
   }
 
   &ThemeSecondarySolid {
-    color: theme('colors.white');
-    background-color: theme('colors.blue.default');
-    border-color: theme('colors.blue.default');
+    @apply text-white bg-blue border-blue;
 
     &[disabled] {
-      background-color: theme('colors.blue.300');
-      border-color: theme('colors.blue.300');
+      @apply bg-blue-300 border-blue-300;
     }
 
     &:focus {
-      background-color: theme('colors.blue.500');
-      border-color: theme('colors.blue.500');
+      @apply bg-blue-500 border-blue-500;
     }
   }
 
   &ThemeTertiarySolid {
-    color: theme('colors.white');
-    background-color: theme('colors.black.300');
-    border-color: theme('colors.black.300');
+    @apply text-white bg-black-300 border-black-300;
 
     &[disabled] {
-      background-color: theme('colors.black.200');
-      border-color: theme('colors.black.200');
+      @apply bg-black-200 border-black-200;
     }
 
     &:focus {
-      background-color: theme('colors.black.default');
-      border-color: theme('colors.black.default');
+      @apply bg-black border-black;
     }
   }
 
   &ThemeCautionSolid {
-    color: theme('colors.white');
-    background-color: theme('colors.red.default');
-    border-color: theme('colors.red.default');
+    @apply text-white bg-red border-red;
 
     &[disabled] {
-      background-color: theme('colors.red.300');
-      border-color: theme('colors.red.300');
+      @apply bg-red-300 border-red-300;
     }
 
     &:focus {
-      background-color: theme('colors.red.500');
-      border-color: theme('colors.red.500');
+      @apply bg-red-500 border-red-500;
     }
   }
 
   &ThemePrimaryOutline {
-    color: theme('colors.orange.default');
-    background-color: theme('colors.white');
-    border-color: theme('colors.gray.default');
+    @apply text-orange bg-white border-gray;
 
     &[disabled] {
-      color: theme('colors.orange.300');
+      @apply text-orange-300;
     }
 
     &:focus {
-      border-color: theme('colors.orange.500');
+      @apply border-orange-500;
     }
   }
 
   &ThemeSecondaryOutline {
-    color: theme('colors.blue.default');
-    background-color: theme('colors.white');
-    border-color: theme('colors.gray.default');
+    @apply text-blue bg-white border-gray;
 
     &[disabled] {
-      color: theme('colors.blue.300');
+      @apply text-blue-300;
     }
 
     &:focus {
-      border-color: theme('colors.blue.500');
+      @apply border-blue-500;
     }
   }
 
   &ThemeTertiaryOutline {
-    color: theme('colors.black.300');
-    background-color: theme('colors.white');
-    border-color: theme('colors.gray.default');
+    @apply text-black-300 bg-white border-gray;
 
     &[disabled] {
-      color: theme('colors.black.200');
+      @apply text-black-200;
     }
 
     &:focus {
-      border-color: theme('colors.black.default');
+      @apply border-black;
     }
   }
 
   &ThemeCautionOutline {
-    color: theme('colors.red.default');
-    background-color: theme('colors.white');
-    border-color: theme('colors.gray.default');
+    @apply text-red bg-white border-gray;
 
     &[disabled] {
-      color: theme('colors.red.300');
+      @apply text-red-300;
     }
 
     &:focus {
-      border-color: theme('colors.red.500');
+      @apply border-red-500;
     }
   }
 
   &ThemePrimaryInverse {
-    color: theme('colors.orange.default');
-    background-color: theme('colors.white');
-    border-color: theme('colors.white');
+    @apply text-orange bg-white border-white;
 
     &[disabled] {
-      color: theme('colors.orange.300');
+      @apply text-orange-300;
     }
   }
 
   &ThemeSecondaryInverse {
-    color: theme('colors.blue.default');
-    background-color: theme('colors.white');
-    border-color: theme('colors.white');
+    @apply text-blue bg-white border-white;
 
     &[disabled] {
-      color: theme('colors.blue.300');
+      @apply text-blue-300;
     }
   }
 
   &ThemeTertiaryInverse {
-    color: theme('colors.black.300');
-    background-color: theme('colors.white');
-    border-color: theme('colors.white');
+    @apply text-black-300 bg-white border-white;
 
     &[disabled] {
-      color: theme('colors.black.200');
+      @apply text-black-200;
     }
   }
 
   &ThemeCautionInverse {
-    color: theme('colors.red.default');
-    background-color: theme('colors.white');
-    border-color: transparent;
+    @apply text-red bg-white border-white;
 
     &[disabled] {
-      color: theme('colors.red.300');
+      @apply text-red-300;
     }
   }
 
@@ -242,14 +207,14 @@ $button-border-width: 2px;
   }
 
   &:not([disabled]) {
-    cursor: pointer;
+    @apply cursor-pointer;
 
     &:focus {
-      text-decoration: underline;
+      @apply underline;
     }
   }
 
   &[disabled] {
-    cursor: default;
+    @apply cursor-default;
   }
 }

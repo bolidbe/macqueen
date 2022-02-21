@@ -1,67 +1,46 @@
 @mixin tbody {
   td{
-    font-weight: 400;
-    font-size: theme('fontSize.body-2');
-    color: theme('colors.black.300');
-    text-align: left;
-    padding: 8px 16px;
+    @apply font-400 text-body-2 leading-body-2 text-black-300 text-left py-2 px-3 bg-white;
     vertical-align: top;
-    background: white;
     white-space: normal;
 
     &:not(:first-child){
-      border-left: 1px solid theme('colors.gray.default');
+      @apply border;
     }
   }
 }
 
 @mixin thead {
   th, td{
-    font-weight: 700;
-    font-size: theme('fontSize.body-2');
-    color: theme('colors.black.default');
-    text-align: left;
-    padding: 8px 16px;
+    @apply font-700 text-body-2 leading-body-2 text-black text-left py-2 px-3 bg-purple-200;
     vertical-align: top;
-    background: theme('colors.purple.200');
     white-space: nowrap;
 
     &:not(:first-child){
-      border-left: 1px solid theme('colors.gray.default');
+      @apply border;
     }
   }
 }
 
 .longread{
   h1, h2, h3{
-    color: theme('colors.black.default');
+    @apply text-black;
   }
 
   h1 {
-    font-size: theme('fontSize.title-3m');
-    line-height: theme('lineHeight.title-3m');
-    font-weight: 700;
+    @apply text-title-3m leading-title-3m font-700;
   }
 
   h2 {
-    font-size: theme('fontSize.title-4');
-    line-height: theme('lineHeight.title-4');
-    font-weight: 700;
-    margin-top: 40px;
+    @apply text-title-4 leading-title-4 font-700 mt-6;
   }
 
   h3 {
-    font-size: theme('fontSize.title-5');
-    line-height: theme('lineHeight.title-5');
-    font-weight: 700;
-    margin-top: theme('spacing.5');
+    @apply text-title-5 leading-title-5 font-700 mt-4;
   }
 
   table{
-    min-width: 100%;
-    padding: 0;
-    overflow-x: scroll;
-    border: 1px solid theme('colors.gray.default');
+    @apply min-w-full p-0 overflow-x-auto border;
 
     // The first rows are theads
     tr:first-child {
@@ -74,42 +53,37 @@
     }
 
     thead tr{
-      border-bottom: 1px solid theme('colors.gray.default');
+      @apply border-b;
     }
 
     tbody tr{
       @include tbody;
 
       &:not(:last-child){
-        border-bottom: 1px solid theme('colors.gray.default');
+        @apply border-b;
       }
     }
   }
 
   ul,
   ol {
-    margin-bottom: 12px;
-    margin-left: theme('spacing.4');
-
-    > li {
-      padding-left: theme('spacing.1');
-    }
+    @apply ml-4;
   }
 
   ul {
-    list-style-type: disc;
+    @apply list-disc;
   }
 
   ol {
-    list-style-type: decimal;
+    @apply list-decimal;
   }
 
   a{
-    color: theme('colors.blue.default');
+    @apply text-blue;
   }
 
   img{
-    border-radius: theme('borderRadius.default');
+    @apply rounded;
   }
 
   p,
@@ -118,8 +92,7 @@
   img,
   ul,
   ol {
-    margin-bottom: 20px;
-    margin-top: 20px;
+    @apply my-3;
   }
 
   *:first-child{
@@ -144,8 +117,7 @@
 @media screen and (min-width: theme('screens.medium')){
   .longread{
     h1 {
-      font-size: theme('fontSize.title-3');
-      line-height: theme('lineHeight.title-3');
+      @apply text-title-3 leading-title-3;
     }
   }
 }

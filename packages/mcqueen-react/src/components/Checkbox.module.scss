@@ -1,22 +1,21 @@
 .checkbox {
-  position: relative;
-  display: flex;
+  @apply relative flex;
 
   &VerticalAlignTop {
-    align-items: flex-start;
+    @apply items-start;
   }
 
   &VerticalAlignCenter {
-    align-items: center;
+    @apply items-center;
   }
 }
 
 .checkboxCheckedIcon, .checkboxIndeterminateIcon{
-  display: none;
+  @apply hidden;
 }
 
 .input {
-  position: absolute;
+  @apply absolute;
   opacity: 0;
   z-index: -1;
   width: 1px;
@@ -28,15 +27,11 @@
 }
 
 .checkboxContainer {
+  @apply rounded-small flex items-center justify-center flex-none;
   width: 20px;
   height: 20px;
-  border-radius: theme("borderRadius.default");
   border-width: 2px;
   border-style: solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
 
   // Margin that makes the input appear decently aligned against
   // various Thumbprint <Text> sizes
@@ -46,41 +41,34 @@
 }
 
 .text {
+  @apply text-body-2 leading-body-2 font-400 pl-2;
   // This must take up the remaining available space for content that must be right-aligned.
   flex: 1 0 0%;
   // 'min-width' is needed to allow text within the checkbox to truncate.
   min-width: 0;
-  font-size: theme("fontSize.body-2");
-  font-weight: 400;
-  padding-left: 8px;
 
   &State{
     &Error{
-      color: theme('colors.red.default');
+      @apply text-red;
     }
   }
 }
 
 .input:not(:checked) {
   & ~ .checkboxContainer{
+    @apply border-gray bg-white;
     color: inherit;
-    border-color: theme('colors.gray.default');
-    background-color: theme('colors.white');
 
     &State{
       &Error{
-        color: theme('colors.red.default');
-        border-color: theme('colors.red.default');
-        background-color: theme('colors.white');
+        @apply text-red border-red bg-white;
       }
 
       &Indeterminate{
-        color: theme('colors.white');
-        border-color: theme('colors.blue.default');
-        background-color: theme('colors.blue.default');
+        @apply text-white border-blue bg-blue;
 
         & > .checkboxIndeterminateIcon{
-          display: block;
+          @apply block;
         }
       }
     }
@@ -89,19 +77,15 @@
 
 .input:checked {
   & ~ .checkboxContainer{
-    color: theme('colors.white');
-    border-color: theme('colors.blue.default');
-    background-color: theme('colors.blue.default');
+    @apply text-white border-blue bg-blue;
 
     .checkboxCheckedIcon{
-      display: block;
+      @apply block;
     }
 
     &State{
       &Error{
-        color: theme('colors.white');
-        border-color: theme('colors.red.default');
-        background-color: theme('colors.red.default');
+        @apply text-white border-red bg-red;
       }
     }
   }

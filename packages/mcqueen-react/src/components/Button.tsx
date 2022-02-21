@@ -106,6 +106,8 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       disabled: isLoading || isDisabled,
       className: classNames({
         [styles.button]: true,
+        [styles.buttonSizeLarge]: size === 'large',
+        [styles.buttonSizeSmall]: size === 'small',
         [styles.buttonThemePrimarySolid]: theme === 'primary' && variant === 'solid',
         [styles.buttonThemeSecondarySolid]: theme === 'secondary' && variant === 'solid',
         [styles.buttonThemeTertiarySolid]: theme === 'tertiary' && variant === 'solid',

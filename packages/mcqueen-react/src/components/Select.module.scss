@@ -1,4 +1,5 @@
 .select {
+  @apply rounded border;
   // Vendor prefixes are needed to work around a bug in Gatsby, the framework that powers our
   // documentation site, so that the component doesn't appear broken on our documentation.
   // https://github.com/thumbtack/thumbprint-archive/issues/899
@@ -7,8 +8,6 @@
   -moz-appearance: none;
   appearance: none;
 
-  border: 1px solid;
-  border-radius: theme('borderRadius.default');
   outline: none;
   vertical-align: middle;
   background-repeat: no-repeat;
@@ -18,62 +17,53 @@
   width: 100%;
 
   &:focus {
-    border-color: theme('colors.blue.default');
+    @apply border-blue;
   }
 
   &::-ms-expand {
-    display: none;
+    @apply hidden;
   }
 
   &:-moz-focusring {
-    color: transparent;
+    @apply text-transparent;
     text-shadow: 0 0 0 theme('colors.black.default');
   }
 
   &State {
     &Disabled {
-      background-color: theme('colors.gray.200');
-      border-color: theme('colors.gray.default');
+      @apply bg-gray-200 border-gray;
       color: #7C98B6;
     }
 
     &Error {
-      background-color: theme('colors.white');
-      border-color: theme('colors.red.default');
-      color: theme('colors.red.default');
+      @apply bg-white border-red text-red;
 
       &:focus {
-        border-color: theme('colors.red.default');
+        @apply border-red;
       }
     }
 
     &Default {
-      background-color: theme('colors.white');
-      border-color: theme('colors.gray.default');
-      color: theme('colors.black.default');
+      @apply bg-white border-gray text-black;
     }
   }
 
   &Size {
     &Large {
+      @apply text-body-2 leading-body-2;
       height: 52px;
-      font-size: theme("fontSize.body-2");
     }
 
     &Small {
+      @apply text-body-3 leading-body-3;
       height: 40px;
-      font-size: theme("fontSize.body-3");
     }
   }
 }
 
 .caret {
-  position: absolute;
-  top: 0;
+  @apply absolute top-0 bottom-0 mt-auto mb-auto;
   right: 16px;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
   pointer-events: none;
 
   &State{

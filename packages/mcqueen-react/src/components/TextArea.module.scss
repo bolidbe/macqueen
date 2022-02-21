@@ -1,55 +1,44 @@
 .textArea {
-  font-size: theme('fontSize.body-2');
-  line-height: theme('lineHeight.body-2');
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: theme('borderRadius.default');
-  padding: 10px 14px;
+  @apply text-body-2 leading-body-2 w-full border rounded;
+  padding: 13px 16px;
   vertical-align: middle;
   resize: vertical;
 
   ::-webkit-input-placeholder,
   ::-moz-placeholder,
   :-ms-input-placeholder {
-    color: theme('colors.black.200');
+    @apply text-black-200;
   }
 
   &State{
     &Default {
-      border-color: theme('colors.gray.default');
-      color: theme('colors.black.default');
-      background-color: theme('colors.white');
+      @apply border-gray text-black bg-white;
 
       &:focus {
-        color: theme('colors.black.default');
-        border-color: theme('colors.blue.default');
+        @apply text-black border-blue;
       }
     }
 
     &Disabled {
-      border-color: theme('colors.gray.default');
+      @apply border-gray bg-gray-200;
       color: #7C98B6;
-      background-color: theme('colors.gray.200');
     }
 
     &Error {
-      border-color: theme('colors.red.default');
-      color: theme('colors.red.default');
-      background-color: theme('colors.white');
+      @apply border-red text-red bg-white;;
 
       // This must be three separate rules, not a comma-separated list, to avoid the different
       // vendor prefixes conflicting.
       &::-webkit-input-placeholder {
-          color: theme('colors.red.default');
+        @apply text-red;
       }
 
       &::-moz-placeholder {
-          color: theme('colors.red.default');
+        @apply text-red;
       }
 
       &:-ms-input-placeholder {
-          color: theme('colors.red.default');
+        @apply text-red;
       }
     }
   }

@@ -1,60 +1,44 @@
 .alert {
-  display: flex;
-  font-size: theme('fontSize.body-3');
-  line-height: theme('lineHeight.body-3');
-  text-align: left;
+  @apply flex text-body-3 leading-body-3 text-left text-white bg-gray font-600 rounded;
   // Padding top and bottom of 12px to achieve 44px height of alert
   padding: 12px theme('spacing.3');
-  color: theme('colors.white');
-  background: theme('colors.gray.default');
-  font-weight: 600;
-  border-radius: theme('borderRadius.default');
 
   a {
-    text-decoration: underline;
-    cursor: pointer;
-    color: theme('colors.white');
-    fill: theme('colors.white');
+    @apply underline cursor-pointer text-white;
 
     &:hover {
-      color: theme('colors.white');
+      @apply text-white;
       opacity: 0.7;
     }
   }
 
   &State{
     &Success{
-      background: theme('colors.green.default');
+      @apply bg-green;
     }
     &Caution{
-      background: theme('colors.red.default');
+      @apply bg-red;
     }
     &Warning{
-      background: theme('colors.yellow.300');
-      color: theme('colors.orange.500');
+      @apply bg-yellow-300 text-orange-500;
 
       a,
       a:hover {
-        color: theme('colors.orange.500');
-        fill: theme('colors.orange.500');
+        @apply text-orange-500;
       }
     }
     &Info{
-      background: theme('colors.blue.default');
+      @apply bg-blue;
     }
   }
 }
 
 .text {
-  align-self: center;
+  @apply self-center;
 }
 
 .icon {
+  @apply relative flex-none mr-2;
   fill: currentColor;
-  flex: none;
-  // Margin right of 12px to align with the padding top and bottom
-  margin-right: 12px;
-  position: relative;
-  // aligns the icons optically
   top: -1px;
 }

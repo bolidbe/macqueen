@@ -1,22 +1,21 @@
 .switch {
-  position: relative;
-  display: flex;
+  @apply relative flex;
 
   &VerticalAlignTop {
-    align-items: flex-start;
+    @apply items-start;
   }
 
   &VerticalAlignCenter {
-    align-items: center;
+    @apply items-center;
   }
 }
 
 .switchCheckedIcon{
-  display: none;
+  @apply hidden;
 }
 
 .input {
-  position: absolute;
+  @apply absolute;
   opacity: 0;
   z-index: -1;
   width: 1px;
@@ -30,15 +29,9 @@
 $switchHeight: 22px;
 
 .switchContainer {
+  @apply rounded-circle flex items-center justify-start flex-none border-2;
   width: 40px;
   height: $switchHeight;
-  border-radius: 99px;
-  border-width: 2px;
-  border-style: solid;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex: none;
   box-sizing: content-box;
 
   // Margin that makes the input appear decently aligned against
@@ -49,57 +42,46 @@ $switchHeight: 22px;
 
   &State{
     &Error{
-      background-color: theme('colors.red.default');
-      border-color: theme('colors.red.default');
+      @apply bg-red border-red;
     }
   }
 }
 
 .switchCircle {
+  @apply rounded-circle flex items-center justify-center flex-none;
   width: $switchHeight;
   height: $switchHeight;
-  border-radius: 99px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
 }
 
 .text {
+  @apply text-body-2 leading-body-2 font-400 pl-2;
   // This must take up the remaining available space for content that must be right-aligned.
   flex: 1 0 0%;
   // 'min-width' is needed to allow text within the toggle to truncate.
   min-width: 0;
-  font-size: theme("fontSize.body-2");
-  font-weight: 400;
-  padding-left: 8px;
   color: inherit;
 
   &State{
     &Error{
-      color: theme('colors.red.default');
+      @apply text-red;
     }
   }
 }
 
 .input:not(:checked){
   & ~ .switchContainer{
-    background-color: theme('colors.gray.default');
-    border-color: theme('colors.gray.default');
+    @apply bg-gray border-gray;
 
     .switchCircle{
-      color: theme('colors.gray.default');
-      background-color: theme('colors.white');
+      @apply text-gray bg-white;
     }
 
     &State{
       &Error{
-        border-color: theme('colors.red.default');
-        background-color: theme('colors.red.default');
+        @apply bg-red border-red;
 
         .switchCircle{
-          color: theme('colors.red.default');
-          background-color: theme('colors.white');
+          @apply text-red bg-white;
         }
       }
     }
@@ -108,27 +90,22 @@ $switchHeight: 22px;
 
 .input:checked{
   & ~ .switchContainer{
-    justify-content: flex-end;
-    background-color: theme('colors.blue.default');
-    border-color: theme('colors.blue.default');
+    @apply justify-end bg-blue border-blue;
 
     .switchCircle{
-      color: theme('colors.blue.default');
-      background-color: theme('colors.white');
+      @apply text-blue bg-white;
 
       .switchCheckedIcon{
-        display: block;
+        @apply block;
       }
     }
 
     &State{
       &Error{
-        border-color: theme('colors.red.default');
-        background-color: theme('colors.red.default');
+        @apply border-red bg-red;
 
         .switchCircle{
-          color: theme('colors.red.default');
-          background-color: theme('colors.white');
+          @apply text-red bg-white;
         }
       }
     }

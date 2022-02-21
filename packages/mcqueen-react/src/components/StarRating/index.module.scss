@@ -1,26 +1,21 @@
 .text{
   &Position{
     &Left{
-      margin-right: 4px;
-      color: theme("colors.yellow.default");
-      font-weight: 700;
+      @apply mr-1 text-yellow font-700;
     }
     &Right{
-      margin-left: 4px;
-      color: theme("colors.black.300");
-      font-weight: 600;
+      @apply ml-1 text-black-300 font-600;
     }
   }
   &Size{
     &Small {
-      font-size: theme('fontSize.body-4');
+      @apply text-body-4 leading-body-4;
     }
     &Medium {
-      font-size: theme('fontSize.body-2');
+      @apply text-body-2 leading-body-2;
     }
     &Large {
-      font-size: theme('fontSize.body-1');
-      line-height: theme('fontSize.body-1');
+      @apply text-body-1 leading-body-1;
     }
   }
 }

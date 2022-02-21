@@ -111,9 +111,10 @@ module.exports = {
     }),
     borderRadius: {
       none: '0',
-      default: '6px',
-      big: '16px',
-      full: '50%',
+      small: '6px',
+      default: '12px',
+      large: '24px',
+      circle: '999px',
     },
     borderWidth: {
       none: '0',

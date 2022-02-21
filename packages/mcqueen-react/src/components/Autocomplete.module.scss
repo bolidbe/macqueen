@@ -1,58 +1,40 @@
 .container{
-  position: relative;
+  @apply relative;
 }
 
 .suggestionsContainerOpen{
-  display: block;
-  position: absolute;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 16px;
+  @apply block absolute w-full bg-white rounded p-3 text-body-2 leading-body-2 overflow-y-auto;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px !important;
-  font-size: theme('fontSize.body-2');
-  // padding: 16px;
   z-index: 30;
   max-height: 272px;
-  overflow-y: auto;
-
-  ul{
-    padding-left: 0;
-  }
 }
 
 .sectionContainer:not(:first-child){
-  margin-top: 8px;
+  @apply mt-2;
 }
 
 .sectionTitle{
+  @apply mb-2;
+
   &SizeSmall{
-    margin-bottom: 8px;
-    font-size: theme('fontSize.body-3');
-    line-height: theme('lineHeight.body-3');
+    @apply text-body-3 leading-body-3;
   }
   &SizeLarge{
-    margin-bottom: 8px;
-    font-size: theme('fontSize.body-2');
-    line-height: theme('lineHeight.body-2');
+    @apply text-body-2 leading-body-2;
   }
 }
 
 .suggestion{
+  @apply p-2 cursor-pointer rounded-small;
+
   &SizeSmall{
-    padding: 8px;
-    cursor: pointer;
-    font-size: theme('fontSize.body-3');
-    line-height: theme('lineHeight.body-3');
+    @apply text-body-3 leading-body-3;
   }
   &SizeLarge{
-    padding: 12px;
-    cursor: pointer;
-    font-size: theme('fontSize.body-2');
-    line-height: theme('lineHeight.body-2');
+    @apply text-body-2 leading-body-2;
   }
 }
 
 .suggestionHighlighted{
-  background-color: theme('colors.gray.200');
+  @apply bg-gray-200;
 }
