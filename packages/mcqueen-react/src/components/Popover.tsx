@@ -100,10 +100,8 @@ export default function Popover({
       {...attributes.popper}
     >
       <div className={styles.content}>
-        <div className={styles.border}></div>
-
+        <div className={styles.popoverBorder}></div>
         { content }
-        
         <div className={styles.closeButton}>
           <button onClick={onClose}>
             <svg

@@ -1,6 +1,6 @@
 $border-width: 8px;
 
-.border{
+.messageBorder{
   @apply absolute z-1;
 }
 
@@ -9,22 +9,22 @@ $border-width: 8px;
 
   &State{
     &Success{
-      .border{
+      .messageBorder{
         @apply bg-green;
       }
     }
     &Caution{
-      .border{
+      .messageBorder{
         @apply bg-red;
       }
     }
     &Warning{
-      .border{
+      .messageBorder{
         @apply bg-orange;
       }
     }
     &Info{
-      .border{
+      .messageBorder{
         @apply bg-blue;
       }
     }
@@ -32,32 +32,31 @@ $border-width: 8px;
 
   &Position{
     &Top{
-      .border{
+      .messageBorder{
         @apply top-0 left-0 right-0;
         height: $border-width;
       }
     }
     &Right{
-      .border{
+      .messageBorder{
         @apply top-0 right-0 bottom-0;
         width: $border-width;
       }
     }
     &Bottom{
-      .border{
+      .messageBorder{
         @apply right-0 bottom-0 left-0;
         height: $border-width;
       }
     }
     &Left{
-      .border{
+      .messageBorder{
         @apply bottom-0 left-0 top-0;
         width: $border-width;
       }
     }
   }
 }
-
 
 @media screen and (min-width: theme('screens.small')){
   .message {

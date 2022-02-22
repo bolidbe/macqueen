@@ -72,7 +72,7 @@ export default function Modal({
               [styles.modalHeightLarge]: height === 'large',
               [styles.modalShouldScroll]: shouldModalScroll
             })}>
-              <div className={classNames(styles.container, className)}>
+              <div className={classNames(styles.modalContainer, className)}>
                 {!closeButtonIsHidden && (
                   <div className={styles.closeButton}>
                     <div className="m-3">

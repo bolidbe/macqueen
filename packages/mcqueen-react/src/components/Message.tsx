@@ -30,7 +30,7 @@ export default function Message({
         [styles.messagePositionLeft]: position === 'left'
       }, className)}
     >
-      <div className={styles.border}></div>
+      <div className={styles.messageBorder}></div>
       { children }
     </div>
   );

@@ -25,6 +25,11 @@
   @apply relative bg-white p-3 rounded overflow-hidden;
 }
 
+.popoverBorder{
+  @apply absolute top-0 left-0 right-0 bg-blue;
+  height: 8px;
+}
+
 .closeButton {
   @apply absolute right-0;
   top: 8px;
@@ -32,11 +37,6 @@
   &Icon {
     @apply m-2;
   }
-}
-
-.border{
-  @apply absolute top-0 left-0 right-0 bg-blue;
-  height: 8px;
 }
 
 .arrow {
