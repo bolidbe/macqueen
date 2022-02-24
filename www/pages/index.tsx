@@ -608,20 +608,27 @@ export default function Home() {
 
 
         <Card title="Text Input">
-          <Section title="With or without icon">
+          <Section title="Normal / With icon / With inner">
             <div className="flex">
               <TextInput
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
-                iconLeft="search"
                 className="w-full"
               />
               <TextInput
                 value={textInput}
                 onChange={setTextInput}
                 placeholder="example@example.com"
+                iconLeft="search"
                 className="ml-3 w-full"
+              />
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3 w-full"
+                innerRight={<div className="h-full px-3 flex items-center font-600 bg-gray-200 border-l">%</div>}
               />
             </div>
           </Section>
@@ -641,6 +648,14 @@ export default function Home() {
                 placeholder="example@example.com"
                 className="ml-3 w-full"
                 iconLeft="search"
+                size="small"
+              />
+              <TextInput
+                value={textInput}
+                onChange={setTextInput}
+                placeholder="example@example.com"
+                className="ml-3 w-full"
+                innerRight={<div className="h-full px-2 flex items-center font-600 bg-gray-200 border-l">%</div>}
                 size="small"
               />
             </div>

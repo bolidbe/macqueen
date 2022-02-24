@@ -60,6 +60,9 @@ export interface TextInputBasePropsType {
   name?: string;
   value?: string;
   iconLeft?: string;
+  iconRight?: string;
+  innerLeft?: ReactNode;
+  innerRight?: ReactNode;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -88,6 +91,9 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
       name,
       value,
       iconLeft,
+      iconRight,
+      innerLeft,
+      innerRight,
       onClick = noop,
       onChange = noop,
       onFocus = noop,
@@ -122,16 +128,14 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
           <Label {...{ hasError, isDisabled, isReadOnly }} className="mb-1">{ label }</Label>
         )}
         <div className={styles.inputContainer}>
-          {iconLeft && (
-            <div>
-              <div
-                className={classNames({
-                  [styles.icon]: true,
-                  [styles.iconPositionLeft]: true
-                })}
-              >
-                <Icon name={iconLeft} size={iconSize}/>
-              </div>
+          {(!!innerLeft || !!iconLeft) && (
+            <div className={styles.innerLeft}>
+              { innerLeft }
+              {!!iconLeft && (
+                <div className={classNames(styles.icon, styles.iconPositionLeft)}>
+                  <Icon name={iconLeft} size={iconSize}/>
+                </div>
+              )}
             </div>
           )}
 
@@ -196,6 +200,17 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
                   </path>
                 </svg>
               </div>
+            </div>
+          )}
+
+          {(!!innerRight || !!iconRight) && (
+            <div className={styles.innerRight}>
+              {!!iconRight && (
+                <div className={classNames(styles.icon, styles.iconPositionRight)}>
+                  <Icon name={iconRight} size={iconSize}/>
+                </div>
+              )}
+              { innerRight }
             </div>
           )}
         </div>

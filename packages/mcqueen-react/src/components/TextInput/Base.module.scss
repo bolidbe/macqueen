@@ -1,4 +1,5 @@
 $border-width: 1px;
+$inner-radius: calc(theme('borderRadius.default') - #{$border-width});
 
 .inputContainer{
   @apply relative w-full inline-flex;
@@ -8,9 +9,22 @@ $border-width: 1px;
   z-index: 0;
 }
 
-.icon {
-  @apply relative flex items-center h-full cursor-text;
+.innerLeft, .innerRight{
+  @apply relative overflow-hidden flex;
   z-index: 2;
+}
+
+.innerLeft{
+  border-top-left-radius: $inner-radius;
+  border-bottom-left-radius: $inner-radius;
+}
+.innerRight{
+  border-top-right-radius: $inner-radius;
+  border-bottom-right-radius: $inner-radius;
+}
+
+.icon {
+  @apply flex items-center h-full cursor-text;
 
   &Position {
     &Left {
