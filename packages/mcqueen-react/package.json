@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -47,9 +47,7 @@
     "@babel/core": "7.12.7",
     "@babel/preset-env": "7.12.7",
     "@babel/preset-react": "7.12.7",
-    "@bolid/mcqueen-icons": "^1.1.4",
     "@bolid/mcqueen-scss": "^1.1.1",
-    "@popperjs/core": "2.5.4",
     "@rollup/plugin-babel": "5.2.1",
     "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-json": "4.1.0",
@@ -61,17 +59,8 @@
     "@types/react-dom": "16.9.0",
     "@types/warning": "3.0.0",
     "autoprefixer": "9.8.6",
-    "classnames": "2.2.6",
     "cssnano": "4.1.10",
-    "html-react-parser": "0.14.2",
-    "lodash": "4.17.20",
-    "node-sass": "5.0.0",
     "postcss-import": "12.0.0",
-    "query-string": "6.13.5",
-    "react": "16.12.0",
-    "react-autosuggest": "10.1.0",
-    "react-dom": "16.12.0",
-    "react-popper": "2.2.4",
     "replace-in-files-cli": "1.0.0",
     "rollup": "2.33.3",
     "rollup-plugin-copy": "3.4.0",
@@ -80,8 +69,7 @@
     "rollup-plugin-typescript2": "0.29.0",
     "sass": "1.26.11",
     "tailwindcss": "1.9.6",
-    "typescript": "3.8.3",
-    "warning": "4.0.3"
+    "typescript": "3.8.3"
   },
   "peerDependencies": {
     "@bolid/mcqueen-icons": ">= 1.1.4",
@@ -98,6 +86,6 @@
     "warning": ">= 4.0.3 < 5.0.0"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=16"
   }
 }

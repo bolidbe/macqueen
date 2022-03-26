@@ -18,6 +18,7 @@ export interface PopoverPropsType {
   onClose: () => void;
   container?: 'inline' | 'body';
   className?: string;
+  closeButtonIsHidden?: boolean;
   shouldCloseOnClickOutside?: boolean;
 }
 
@@ -30,6 +31,7 @@ export default function Popover({
     position = 'top',
     container = 'body',
     className,
+    closeButtonIsHidden = false,
     shouldCloseOnClickOutside = false
 }: PopoverPropsType): JSX.Element {
   const [elementRef, setElementRef] = useState<any | null>(null);
@@ -99,29 +101,32 @@ export default function Popover({
       style={popperStyles.popper}
       {...attributes.popper}
     >
-      <div className={styles.content}>
+      <div className={styles.popoverContainer}>
         <div className={styles.popoverBorder}></div>
-        { content }
-        <div className={styles.closeButton}>
-          <button onClick={onClose}>
-            <svg
-                viewBox="0 0 24 24"
-                width="14"
-                height="14"
-                stroke="currentColor"
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className={styles.closeButtonIcon}
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
+        <div className={styles.popoverContent}>
+          { content }
+          {!closeButtonIsHidden && (
+            <div className={styles.closeButton}>
+              <button onClick={onClose}>
+                <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={styles.closeButtonIcon}
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </div>
-
       <div
         ref={setArrowRef}
         className={classNames({

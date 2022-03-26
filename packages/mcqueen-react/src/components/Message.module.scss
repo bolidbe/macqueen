@@ -4,8 +4,12 @@ $border-width: 8px;
   @apply absolute z-1;
 }
 
+.messageContent{
+  @apply p-3;
+}
+
 .message {
-  @apply relative bg-white overflow-hidden p-3 border rounded;
+  @apply relative bg-white overflow-hidden border rounded;
 
   &State{
     &Success{
@@ -32,24 +36,32 @@ $border-width: 8px;
 
   &Position{
     &Top{
+      padding-top: $border-width;
+
       .messageBorder{
         @apply top-0 left-0 right-0;
         height: $border-width;
       }
     }
     &Right{
+      padding-right: $border-width;
+
       .messageBorder{
         @apply top-0 right-0 bottom-0;
         width: $border-width;
       }
     }
     &Bottom{
+      padding-bottom: $border-width;
+
       .messageBorder{
         @apply right-0 bottom-0 left-0;
         height: $border-width;
       }
     }
     &Left{
+      padding-left: $border-width;
+
       .messageBorder{
         @apply bottom-0 left-0 top-0;
         width: $border-width;
@@ -59,7 +71,7 @@ $border-width: 8px;
 }
 
 @media screen and (min-width: theme('screens.small')){
-  .message {
+  .messageContent {
     @apply p-4;
   }
 }

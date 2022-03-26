@@ -18,7 +18,7 @@ export default function Text({
 }: TextPropsType): JSX.Element {
   const props = {
     className: classNames(
-      `text-body-${size} heading-body-${size}`,
+      `text-body-${size} leading-body-${size}`,
       {
         "font-600": isBold
       },
