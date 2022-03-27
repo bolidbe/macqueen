@@ -23,9 +23,9 @@ $border-width: 8px;
   }
 }
 
-.popoverContainer{
-  @apply relative bg-white rounded overflow-hidden;
-  padding-top: $border-width;
+.content{
+  @apply relative bg-white rounded px-3 pb-3 overflow-hidden;
+  padding-top: calc(theme('spacing.3') + #{$border-width});
 }
 
 .popoverBorder{
@@ -33,12 +33,9 @@ $border-width: 8px;
   height: $border-width;
 }
 
-.popoverContent{
-  @apply relative p-3;
-}
-
 .closeButton {
   @apply absolute top-0 right-0;
+  top: $border-width;
 
   &Icon {
     @apply m-2;
@@ -85,7 +82,8 @@ $border-width: 8px;
 }
 
 @media screen and (min-width: theme('screens.small')){
-  .popoverContent {
-    @apply p-4;
+  .content {
+    @apply px-4 pb-4;
+    padding-top: calc(theme('spacing.4') + #{$border-width});
   }
 }

@@ -1,6 +1,8 @@
 import { createElement, ReactNode, ReactHTML } from 'react';
 import classNames from 'classnames';
 
+import styles from './Text.module.scss';
+
 export interface TextPropsType {
   children?: ReactNode | string;
   size?: 1 | 2 | 3 | 4;
@@ -18,7 +20,7 @@ export default function Text({
 }: TextPropsType): JSX.Element {
   const props = {
     className: classNames(
-      `text-body-${size} leading-body-${size}`,
+      styles[`text${size}`],
       {
         "font-600": isBold
       },

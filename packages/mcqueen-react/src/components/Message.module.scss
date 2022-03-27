@@ -1,11 +1,9 @@
 $border-width: 8px;
+$border-padding: calc(theme('spacing.3') + #{$border-width});
+$border-padding-small: calc(theme('spacing.4') + #{$border-width});
 
 .messageBorder{
   @apply absolute z-1;
-}
-
-.messageContent{
-  @apply p-3;
 }
 
 .message {
@@ -36,7 +34,8 @@ $border-width: 8px;
 
   &Position{
     &Top{
-      padding-top: $border-width;
+      @apply px-3 pb-3;
+      padding-top: $border-padding;
 
       .messageBorder{
         @apply top-0 left-0 right-0;
@@ -44,7 +43,8 @@ $border-width: 8px;
       }
     }
     &Right{
-      padding-right: $border-width;
+      @apply py-3 pl-3;
+      padding-right: $border-padding;
 
       .messageBorder{
         @apply top-0 right-0 bottom-0;
@@ -52,7 +52,8 @@ $border-width: 8px;
       }
     }
     &Bottom{
-      padding-bottom: $border-width;
+      @apply px-3 pt-3;
+      padding-bottom: $border-padding;
 
       .messageBorder{
         @apply right-0 bottom-0 left-0;
@@ -60,7 +61,8 @@ $border-width: 8px;
       }
     }
     &Left{
-      padding-left: $border-width;
+      @apply py-3 pr-3;
+      padding-left: $border-padding;
 
       .messageBorder{
         @apply bottom-0 left-0 top-0;
@@ -71,7 +73,24 @@ $border-width: 8px;
 }
 
 @media screen and (min-width: theme('screens.small')){
-  .messageContent {
-    @apply p-4;
+  .message {
+    &Position{
+      &Top{
+        @apply px-4 pb-4;
+        padding-top: $border-padding-small;
+      }
+      &Right{
+        @apply py-4 pl-4;
+        padding-right: $border-padding-small;
+      }
+      &Bottom{
+        @apply px-4 pt-4;
+        padding-bottom: $border-padding-small;
+      }
+      &Left{
+        @apply py-4 pr-4;
+        padding-left: $border-padding-small;
+      }
+    }
   }
 }

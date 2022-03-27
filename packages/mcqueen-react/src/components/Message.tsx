@@ -31,9 +31,7 @@ export default function Message({
       }, className)}
     >
       <div className={styles.messageBorder}></div>
-      <div className={styles.messageContent}>
       { children }
-      </div>
     </div>
   );
 }
