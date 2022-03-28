@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { usePopper } from 'react-popper';
 import canUseDOM from "../utils/canUseDOM"
 import useCloseOnEscape from "../utils/useCloseOnEscape"
-import useFocusTrap from '../utils/useFocusTrap';
+// import useFocusTrap from '../utils/useFocusTrap';
 
 import ConditionalPortal from './ConditionalPortal';
 
@@ -61,11 +61,11 @@ export default function Popover({
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
-  const shouldTrapFocus: boolean = canUseDOM && !!elementRef;
+  // const shouldTrapFocus: boolean = canUseDOM && !!elementRef;
   const shouldBindEscListener: boolean = canUseDOM && isOpen;
 
   useCloseOnEscape(onClose, shouldBindEscListener);
-  useFocusTrap(elementRef, shouldTrapFocus, elementRef);
+  // useFocusTrap(elementRef, shouldTrapFocus, elementRef);
 
   const handleClickOutside = (e: any) => {
     if (!!popperRef && !popperRef.contains(e.target)){
