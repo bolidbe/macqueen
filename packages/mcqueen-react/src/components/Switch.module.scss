@@ -114,11 +114,11 @@ $switchHeight: 22px;
 
 .input:disabled{
   & ~ .switchContainer{
-    background-color: theme('colors.gray.default')!important;
-    border-color: theme('colors.gray.default')!important;
+    background-color: theme('colors.gray.DEFAULT')!important;
+    border-color: theme('colors.gray.DEFAULT')!important;
 
     .switchCircle{
-      color: theme('colors.gray.default')!important;
+      color: theme('colors.gray.DEFAULT')!important;
       background-color: #99ACC2!important;
     }
   }

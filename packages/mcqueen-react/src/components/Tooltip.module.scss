@@ -67,19 +67,19 @@
     &Dark {
       &.arrowPosition{
         &Top {
-          border-top-color: theme('colors.black.default');
+          border-top-color: theme('colors.black.DEFAULT');
         }
 
         &Bottom {
-          border-bottom-color: theme('colors.black.default');
+          border-bottom-color: theme('colors.black.DEFAULT');
         }
 
         &Left {
-          border-left-color: theme('colors.black.default');
+          border-left-color: theme('colors.black.DEFAULT');
         }
 
         &Right {
-          border-right-color: theme('colors.black.default');
+          border-right-color: theme('colors.black.DEFAULT');
         }
       }
     }

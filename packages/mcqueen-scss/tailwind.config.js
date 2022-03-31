@@ -1,11 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  purge: false,
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  safelist: [{ pattern: /.*/ }],
   theme: {
     screens: require(path.join(__dirname, './config/screens.json')),
+    colors: require(path.join(__dirname, './config/colors.json')),
     fontFamily: {
-      default: [
+      DEFAULT: [
         "Avenir",
         "-apple-system",
         "BlinkMacSystemFont",
@@ -16,7 +18,6 @@ module.exports = {
         "sans-serif"
       ]
     },
-    colors: require(path.join(__dirname, './config/colors.json')),
     spacing: {
       '0': '0',
       '1': '4px',
@@ -62,9 +63,8 @@ module.exports = {
       "body-3": '20px',
       "body-4": '18px'
     },
-    maxWidth: theme => ({
-      none: 'none',
-      ...theme('width'),
+    width: {
+      auto: 'auto',
       '1': '18rem',
       '2': '24rem',
       '3': '28rem',
@@ -75,164 +75,6 @@ module.exports = {
       '8': '56rem',
       '9': '64rem',
       '10': '72rem',
-      full: '100%'
-    }),
-    minHeight: {
-      none: '0',
-      full: '100%',
-      screen: '100vh',
-    },
-    boxShadow: {
-      none: 'none',
-      '1': '0px 1px 3px rgba(0, 0, 0, 0.1)',
-      '2': '0px 2px 4px rgba(0, 0, 0, 0.15)',
-      '3': '0px 2px 7px rgba(0, 0, 0, 0.15)',
-      '4': '0px 2px 10px rgba(0, 0, 0, 0.2)',
-    },
-    backgroundPosition: {
-      bottom: 'bottom',
-      center: 'center',
-      left: 'left',
-      'left-bottom': 'left bottom',
-      'left-top': 'left top',
-      right: 'right',
-      'right-bottom': 'right bottom',
-      'right-top': 'right top',
-      top: 'top',
-    },
-    backgroundSize: {
-      auto: 'auto',
-      cover: 'cover',
-      contain: 'contain',
-    },
-    borderColor: theme => ({
-      ...theme('colors'),
-      default: theme('colors.gray.default', 'currentColor'),
-    }),
-    borderRadius: {
-      none: '0',
-      small: '6px',
-      default: '12px',
-      large: '24px',
-      circle: '999px',
-    },
-    borderWidth: {
-      none: '0',
-      default: '1px',
-      '2': '2px',
-      '4': '4px'
-    },
-    container: {},
-    cursor: {
-      auto: 'auto',
-      default: 'default',
-      pointer: 'pointer',
-      wait: 'wait',
-      text: 'text',
-      move: 'move',
-      'not-allowed': 'not-allowed',
-    },
-    fill: {
-      current: 'currentColor',
-    },
-    flex: {
-      '1': '1 1 0%',
-      auto: '1 1 auto',
-      initial: '0 1 auto',
-      none: 'none',
-    },
-    flexGrow: {
-      '0': '0',
-      default: '1',
-    },
-    flexShrink: {
-      '0': '0',
-      default: '1',
-    },
-    fontWeight: {
-      "400": '400',
-      "600": '600',
-      "700": '700'
-    },
-    height: theme => ({
-      auto: 'auto',
-      ...theme('spacing'),
-      full: '100%',
-      screen: '100vh',
-    }),
-    inset: {
-      '0': '0',
-      auto: 'auto',
-    },
-    letterSpacing: {
-      tighter: '-0.05em',
-      tight: '-0.025em',
-      normal: '0',
-      wide: '0.025em',
-      wider: '0.05em',
-      widest: '0.1em',
-    },
-    listStyleType: {
-      none: 'none',
-      disc: 'disc',
-      decimal: 'decimal',
-    },
-    margin: (theme, { negative }) => ({
-      auto: 'auto',
-      ...theme('spacing'),
-      ...negative(theme('spacing')),
-    }),
-    maxHeight: {
-      full: '100%',
-      screen: '100vh',
-    },
-    minWidth: theme => ({
-      '0': '0',
-      ...theme('width'),
-    }),
-    objectPosition: {
-      bottom: 'bottom',
-      center: 'center',
-      left: 'left',
-      'left-bottom': 'left bottom',
-      'left-top': 'left top',
-      right: 'right',
-      'right-bottom': 'right bottom',
-      'right-top': 'right top',
-      top: 'top',
-    },
-    opacity: {
-      '0': '0',
-      '25': '0.25',
-      '50': '0.5',
-      '75': '0.75',
-      '100': '1',
-    },
-    order: {
-      first: '-9999',
-      last: '9999',
-      none: '0',
-      '1': '1',
-      '2': '2',
-      '3': '3',
-      '4': '4',
-      '5': '5',
-      '6': '6',
-      '7': '7',
-      '8': '8',
-      '9': '9',
-      '10': '10',
-      '11': '11',
-      '12': '12',
-    },
-    placeholderColor: theme => theme('colors'),
-    stroke: {
-      current: 'currentColor',
-    },
-    textColor: theme => theme('colors'),
-    width: theme => ({
-      auto: 'auto',
-      ...theme('spacing'),
       '1/2': '50%',
       '1/3': '33.333333%',
       '2/3': '66.666667%',
@@ -246,7 +88,44 @@ module.exports = {
       '5/6': '83.333333%',
       full: '100%',
       screen: '100vw',
+    },
+    maxWidth: theme => ({
+      none: 'none',
+      ...theme('width')
     }),
+    minWidth: theme => ({
+      '0': '0',
+      ...theme('width'),
+    }),
+    boxShadow: {
+      none: 'none',
+      '1': '0px 1px 3px rgba(0, 0, 0, 0.1)',
+      '2': '0px 2px 4px rgba(0, 0, 0, 0.15)',
+      '3': '0px 2px 7px rgba(0, 0, 0, 0.15)',
+      '4': '0px 2px 10px rgba(0, 0, 0, 0.2)',
+    },
+    borderColor: theme => ({
+      ...theme('colors'),
+      DEFAULT: theme('colors.gray.DEFAULT'),
+    }),
+    borderRadius: {
+      none: '0',
+      small: '6px',
+      DEFAULT: '12px',
+      large: '24px',
+      circle: '999px',
+    },
+    borderWidth: {
+      none: '0',
+      DEFAULT: '1px',
+      '2': '2px',
+      '4': '4px'
+    },
+    fontWeight: {
+      "400": '400',
+      "600": '600',
+      "700": '700'
+    },
     zIndex: {
       auto: 'auto',
       '0': '0',
@@ -256,7 +135,5 @@ module.exports = {
       '4': '40',
       '5': '50',
     },
-  },
-  variants: {},
-  plugins: []
+  }
 }

@@ -1,5 +1,5 @@
 $border-width: 1px;
-$inner-radius: calc(theme('borderRadius.default') - #{$border-width});
+$inner-radius: calc(theme('borderRadius.DEFAULT') - #{$border-width});
 
 .inputContainer{
   @apply relative w-full inline-flex;

@@ -64,7 +64,7 @@
         fill: theme('colors.white');
       }
       &Border{
-        stroke: theme('colors.gray.default');
+        stroke: theme('colors.gray.DEFAULT');
       }
       &Radio{
         fill: transparent;
@@ -78,7 +78,7 @@
             fill: theme('colors.white');
           }
           &Border{
-            stroke: theme('colors.red.default');
+            stroke: theme('colors.red.DEFAULT');
           }
           &Radio{
             fill: transparent;
@@ -96,11 +96,11 @@
         fill: theme('colors.white');
       }
       &Border{
-        stroke: theme('colors.blue.default');
+        stroke: theme('colors.blue.DEFAULT');
       }
       &Radio{
         @apply block;
-        fill: theme('colors.blue.default');
+        fill: theme('colors.blue.DEFAULT');
       }
     }
 
@@ -111,10 +111,10 @@
             fill: theme('colors.white');
           }
           &Border{
-            stroke: theme('colors.red.default');
+            stroke: theme('colors.red.DEFAULT');
           }
           &Radio{
-            fill: theme('colors.red.default');
+            fill: theme('colors.red.DEFAULT');
           }
         }
       }
@@ -129,7 +129,7 @@
         fill: theme('colors.gray.300')!important;
       }
       &Border{
-        stroke: theme('colors.gray.default')!important;
+        stroke: theme('colors.gray.DEFAULT')!important;
       }
       &Radio{
         fill: #99ACC2!important;

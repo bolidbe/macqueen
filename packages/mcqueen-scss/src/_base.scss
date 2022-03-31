@@ -8,7 +8,7 @@
 
 html, body, code{
   @apply font-400 text-black-300 text-body-2 leading-body-2;
-  font-family: theme('fontFamily.default');
+  font-family: theme('fontFamily.DEFAULT');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

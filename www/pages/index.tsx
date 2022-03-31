@@ -470,7 +470,7 @@ export default function Home() {
 
         <Card title="Color">
         {
-          Object.keys(colors).filter((c: string) => c !== "transparent" && c !== "white").map((color: string, i) => (
+          Object.keys(colors).filter((c: string) => c !== "transparent" && c !== "white" && c !== "current" && c !== "inherit").map((color: string, i) => (
             <div key={i} className="mb-5">
               <Title className="mb-3" size={3}>{ color.charAt(0).toUpperCase() + color.slice(1) }</Title>
               <div className="flex">

@@ -26,7 +26,7 @@
 
   &:-moz-focusring {
     @apply text-transparent;
-    text-shadow: 0 0 0 theme('colors.black.default');
+    text-shadow: 0 0 0 theme('colors.black.DEFAULT');
   }
 
   &State {
@@ -68,13 +68,13 @@
 
   &State{
     &Default{
-      stroke: theme("colors.black.default");
+      stroke: theme("colors.black.DEFAULT");
     }
     &Disabled{
       stroke: #7C98B6;
     }
     &Error{
-      stroke: theme("colors.red.default");
+      stroke: theme("colors.red.DEFAULT");
     }
   }
 }

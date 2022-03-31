@@ -1,5 +1,5 @@
 {
-  "xsmall": 0,
+  "xsmall": "0px",
   "small": "480px",
   "medium": "700px",
   "large": "1010px"

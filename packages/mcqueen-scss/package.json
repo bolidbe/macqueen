@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-scss",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "description": "SCSS files for building bolid UI.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-scss",
   "repository": {
@@ -33,17 +33,18 @@
   "scripts": {
     "clear": "rm -rf dist",
     "init": "mkdir -p dist",
-    "build:css": "node-sass -q src/index.scss dist/styles.css && postcss dist/styles.css --map --replace",
+    "build:css": "sass -q src/index.scss dist/styles.css && postcss dist/styles.css --map --replace",
     "build": "npm run clear && npm run init && npm run build:css",
     "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\""
   },
   "devDependencies": {
-    "autoprefixer": "9.8.6",
-    "cssnano": "4.1.10",
-    "node-sass": "6.0.0",
-    "postcss-cli": "8.3.0",
-    "tailwindcss": "1.9.6"
+    "autoprefixer": "10.4.4",
+    "cssnano": "5.1.5",
+    "postcss": "8.4.12",
+    "postcss-cli": "9.1.0",
+    "sass": "1.49.10",
+    "tailwindcss": "3.0.23"
   },
   "engines": {
     "node": ">=16"
