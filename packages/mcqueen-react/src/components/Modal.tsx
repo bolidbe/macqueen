@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import classNames from "classnames"
 import noScroll from 'no-scroll'
 
-import { CrossIcon } from "@bolid/mcqueen-icons"
+import { CrossIcon } from "@bolid/mcqueen-icons/dist/es"
 import ConditionalPortal from "./ConditionalPortal"
 
 import styles from "./Modal.module.scss"

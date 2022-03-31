@@ -2,7 +2,7 @@ import React, { ReactNode } from "react"
 import classNames from "classnames"
 import queryString from 'query-string'
 import range from "lodash/range"
-import { ArrowLeftIcon, ArrowRightIcon } from "@bolid/mcqueen-icons"
+import { ArrowLeftIcon, ArrowRightIcon } from "@bolid/mcqueen-icons/dist/es"
 let useRouter: any;
 let Link: any;
 try{

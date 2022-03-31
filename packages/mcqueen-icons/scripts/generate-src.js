@@ -167,7 +167,7 @@ ${Object.entries(iconsByName).map(([key, icon]) => (
 
 export interface IconPropsType extends React.SVGProps<SVGSVGElement> {
   ${iconPropsType}
-  name: string;
+  name: ${Object.entries(iconsByName).map(([key, icon]) => `"${key}"`).join(" | ")};
 }
 
 export default function Icon({

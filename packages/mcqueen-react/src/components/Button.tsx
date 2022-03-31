@@ -2,7 +2,7 @@ import React, { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import LoaderDots from './LoaderDots';
 import isString from 'lodash/isString';
-import { Icon } from "@bolid/mcqueen-icons"
+import { Icon, IconPropsType } from "@bolid/mcqueen-icons/dist/es"
 
 import styles from './Button.module.scss';
 
@@ -53,8 +53,8 @@ const getAnchorProps = ({
 
 export interface ButtonPropsType {
   children?: ReactNode;
-  iconLeft?: string;
-  iconRight?: string;
+  iconLeft?: IconPropsType['name'];
+  iconRight?: IconPropsType['name'];
   isDisabled?: boolean;
   isLoading?: boolean;
   onClick?: () => void;

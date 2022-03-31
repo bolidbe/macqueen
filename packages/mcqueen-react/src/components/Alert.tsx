@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import { CheckIcon, WarningOutlineIcon, InfoOutlineIcon } from '@bolid/mcqueen-icons';
+import { CheckIcon, WarningOutlineIcon, InfoOutlineIcon } from '@bolid/mcqueen-icons/dist/es';
 
 import styles from './Alert.module.scss';
 

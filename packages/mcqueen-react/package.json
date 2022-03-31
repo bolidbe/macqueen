@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-react",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "description": "React components for building UIs with McQueen.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-react",
   "repository": {
@@ -32,7 +32,7 @@
   "scripts": {
     "clear": "rm -rf dist",
     "dev": "npm run clear && rollup -cw",
-    "build": "npm run clear && rollup -c && replace-in-files --string='@bolid/mcqueen-icons' --replacement='@bolid/mcqueen-icons/dist/es' 'dist/es/components/**/*' && replace-in-files --regex='../src/components/' --replacement='./' 'dist/es/components/**/*'",
+    "build": "npm run clear && rollup -c && replace-in-files --string='@bolid/mcqueen-icons/dist/es' --replacement='@bolid/mcqueen-icons' 'dist/cjs/components/**/*' && replace-in-files --regex='../src/components/' --replacement='./' 'dist/es/components/**/*'",
     "prepublishOnly": "npm run build",
     "test": "echo \"No test specified\"",
     "typecheck": "tsc -w"
@@ -72,7 +72,7 @@
     "typescript": "3.8.3"
   },
   "peerDependencies": {
-    "@bolid/mcqueen-icons": ">= 1.1.4",
+    "@bolid/mcqueen-icons": ">= 1.1.5",
     "@bolid/mcqueen-scss": ">= 1.1.1",
     "@popperjs/core": ">= 2.5.4 < 3.0.0",
     "classnames": ">= 2.2.6 < 3.0.0",

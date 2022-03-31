@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react"
 import Text from "./Text"
-import { Icon } from "@bolid/mcqueen-icons"
+import { ChevronUpIcon, ChevronDownIcon } from "@bolid/mcqueen-icons/dist/es"
 
 type IconSize = 'tiny' | 'small' | 'medium'
 
@@ -36,7 +36,13 @@ export default function ShowMore({
             { isExpanded ? "Voir moins" : "Voir plus" }
             </span>
             {!hideChevron && (
-              <Icon size={iconSize} name={ isExpanded ? "chevron-up" : "chevron-down" } className="ml-1"/>
+              <>
+              {isExpanded ? (
+                <ChevronUpIcon size={iconSize} className="ml-1"/>
+              ) : (
+                <ChevronDownIcon size={iconSize} className="ml-1"/>
+              )}
+              </>
             )}
           </Text>
         </div>

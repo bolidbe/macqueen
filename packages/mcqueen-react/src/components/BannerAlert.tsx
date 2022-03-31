@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import styles from './BannerAlert.module.scss';
-import { WarningFillIcon, InfoFillIcon, StopFillIcon, CheckFillIcon } from '@bolid/mcqueen-icons';
+import { WarningFillIcon, InfoFillIcon, StopFillIcon, CheckFillIcon } from '@bolid/mcqueen-icons/dist/es';
 
 const ALERT_ICONS = {
   caution: <StopFillIcon size="medium" className={styles.icon} />,

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import Label from "../Label"
 import InputNote from "../InputNote"
-import { Icon } from "@bolid/mcqueen-icons"
+import { Icon, IconPropsType } from "@bolid/mcqueen-icons/dist/es"
 import noop from 'lodash/noop';
 
 import styles from './Base.module.scss';
@@ -59,8 +59,8 @@ export interface TextInputBasePropsType {
   inputMode?: 'numeric';
   name?: string;
   value?: string;
-  iconLeft?: string;
-  iconRight?: string;
+  iconLeft?: IconPropsType['name'];
+  iconRight?: IconPropsType['name'];
   innerLeft?: ReactNode;
   innerRight?: ReactNode;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
