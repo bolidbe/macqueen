@@ -1,6 +1,7 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import classNames from "classnames"
 import noScroll from 'no-scroll'
+import canUseDOM from '../utils/canUseDOM';
 
 import { CrossIcon } from "@bolid/mcqueen-icons/dist/es"
 import ConditionalPortal from "./ConditionalPortal"
@@ -30,15 +31,12 @@ export default function Modal({
   shouldCloseOnCurtainClick = true,
   onClose
 }: ModalPropsType): JSX.Element | null {
-  const [isLoaded, setIsLoaded] = useState(false)
-
   useEffect(() => {
     if(isOpen) noScroll.on()
     else noScroll.off()
   }, [isOpen])
 
   useEffect(() => {
-    setIsLoaded(true)
     return () => {
       noScroll.off()
     }
@@ -50,7 +48,7 @@ export default function Modal({
     }
   }
 
-  if(!isLoaded){
+  if(!canUseDOM){
     return null
   }
 

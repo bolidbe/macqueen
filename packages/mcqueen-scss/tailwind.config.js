@@ -1,11 +1,20 @@
 const path = require('path');
+const screens = require(path.join(__dirname, './config/screens.json'));
 
 module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
-  safelist: [{ pattern: /.*/ }],
+  safelist: [{
+    pattern: /.*/,
+    variants: [
+      "hover",
+      "focus",
+      ...Object.keys(screens)
+    ]
+  }],
   theme: {
-    screens: require(path.join(__dirname, './config/screens.json')),
+    screens: screens,
     colors: require(path.join(__dirname, './config/colors.json')),
+    container: {},
     fontFamily: {
       DEFAULT: [
         "Avenir",

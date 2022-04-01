@@ -53,7 +53,6 @@ export default function Tooltip({
     }],
     positionFixed: false
   })
-  const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openTimeout, setOpenTimeout] = useState<number | undefined>(undefined);
   const [closeTimeout, setCloseTimeout] = useState<number | undefined>(undefined);
@@ -106,8 +105,6 @@ export default function Tooltip({
       }
     };
 
-    setIsLoaded(true)
-
     document.addEventListener('keyup', handleKeyUp);
     return (): void => {
       document.removeEventListener('keyup', handleKeyUp);
@@ -115,43 +112,6 @@ export default function Tooltip({
   }, []);
 
   const placement = attributes.popper ? attributes.popper['data-popper-placement'] : null
-
-  const popper = isOpen && (
-    <div
-      ref={setPopperRef}
-      role="tooltip"
-      className={classNames({
-        [styles.tooltip]: true,
-        [styles.tooltipThemeDark]: theme === 'dark',
-        [styles.tooltipThemeLight]: theme === 'light',
-      })}
-      style={assign({}, popperStyles.popper, { zIndex })}
-      onMouseEnter={show}
-      onMouseLeave={onMouseLeave}
-      onClick={(event): void => {
-        event.stopPropagation();
-        if (doesWindowSupportTouch()) {
-          hide();
-        }
-      }}
-      {...attributes.popper}
-    >
-      <div>{ text }</div>
-      <div
-        ref={setArrowRef}
-        style={popperStyles.arrow}
-        className={classNames({
-          [styles.arrow]: true,
-          [styles.arrowPositionTop]: placement === 'top',
-          [styles.arrowPositionBottom]: placement === 'bottom',
-          [styles.arrowPositionLeft]: placement === 'left',
-          [styles.arrowPositionRight]: placement === 'right',
-          [styles.arrowThemeDark]: theme === 'dark',
-          [styles.arrowThemeLight]: theme === 'light',
-        })}
-      />
-    </div>
-  )
 
   return (
     <>
@@ -167,9 +127,44 @@ export default function Tooltip({
       >
         { children }
       </div>
-      {isLoaded && (
+      {canUseDOM && (
         <ConditionalPortal>
-          { popper }
+          {isOpen && (
+            <div
+              ref={setPopperRef}
+              role="tooltip"
+              className={classNames({
+                [styles.tooltip]: true,
+                [styles.tooltipThemeDark]: theme === 'dark',
+                [styles.tooltipThemeLight]: theme === 'light',
+              })}
+              style={assign({}, popperStyles.popper, { zIndex })}
+              onMouseEnter={show}
+              onMouseLeave={onMouseLeave}
+              onClick={(event): void => {
+                event.stopPropagation();
+                if (doesWindowSupportTouch()) {
+                  hide();
+                }
+              }}
+              {...attributes.popper}
+            >
+              <div>{ text }</div>
+              <div
+                ref={setArrowRef}
+                style={popperStyles.arrow}
+                className={classNames({
+                  [styles.arrow]: true,
+                  [styles.arrowPositionTop]: placement === 'top',
+                  [styles.arrowPositionBottom]: placement === 'bottom',
+                  [styles.arrowPositionLeft]: placement === 'left',
+                  [styles.arrowPositionRight]: placement === 'right',
+                  [styles.arrowThemeDark]: theme === 'dark',
+                  [styles.arrowThemeLight]: theme === 'light',
+                })}
+              />
+            </div>
+          )}
         </ConditionalPortal>
       )}
     </>

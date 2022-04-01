@@ -10,7 +10,7 @@ export interface ShowMorePropsType {
   isShrinkable?: boolean;
   className?: string;
   size?: 1 | 2 | 3 | 4;
-  hideChevron?: boolean;
+  chevronIsHidden?: boolean;
   onClick(): void;
 }
 
@@ -23,7 +23,7 @@ export default function ShowMore({
   className,
   size = 2,
   isShrinkable = true,
-  hideChevron = false
+  chevronIsHidden = false
 }: ShowMorePropsType){
   const iconSize = iconSizes[size - 1]
   return (
@@ -35,7 +35,7 @@ export default function ShowMore({
             <span>
             { isExpanded ? "Voir moins" : "Voir plus" }
             </span>
-            {!hideChevron && (
+            {!chevronIsHidden && (
               <>
               {isExpanded ? (
                 <ChevronUpIcon size={iconSize} className="ml-1"/>

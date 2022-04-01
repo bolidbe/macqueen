@@ -321,7 +321,6 @@ export default forwardRef<HTMLElement, ImagePropsType>(
     // --------------------------------------------------------------------------------------------
     // Image load and error states
     // --------------------------------------------------------------------------------------------
-
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
 

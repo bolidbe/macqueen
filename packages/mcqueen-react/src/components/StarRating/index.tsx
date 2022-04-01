@@ -6,21 +6,21 @@ import styles from './index.module.scss';
 import StarRatingBase, { StarRatingBasePropsType } from "./Base"
 
 export interface StarRatingPropsType extends StarRatingBasePropsType {
-  showRating?: boolean;
+  ratingIsHidden?: boolean;
   reviewsCount?: number;
 }
 
 export default function StarRating({
   reviewsCount,
   size = 'small',
-  showRating = false,
+  ratingIsHidden = false,
   className,
   rating,
   ...props
 }: StarRatingPropsType): JSX.Element {
   return (
     <div className={classNames("flex items-center", className)}>
-      {showRating && (
+      {!ratingIsHidden && (
         <div className={classNames({
           [styles.textPositionLeft]: true,
           [styles.textSizeSmall]: size === 'small',

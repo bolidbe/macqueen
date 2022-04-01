@@ -455,7 +455,7 @@ export default function Home() {
             <div className="w-1/2">
             {
               textSizes.map(i => (
-                <Text key={i} size={i} isBold={true}>Bold body {i}</Text>
+                <Text key={i} size={i} isBold>Bold body {i}</Text>
               ))
             }
             {
@@ -824,9 +824,9 @@ export default function Home() {
             <SearchAutocomplete hasSections/>
           </Section>
           <Section title="States">
-            <SearchAutocomplete className="mb-3" isLoading={true} />
-            <SearchAutocomplete className="mb-3" hasError={true} />
-            <SearchAutocomplete className="mb-3" isDisabled={true} />
+            <SearchAutocomplete className="mb-3" isLoading />
+            <SearchAutocomplete className="mb-3" hasError />
+            <SearchAutocomplete className="mb-3" isDisabled />
           </Section>
         </Card>
         <Card title="Complete form example">
@@ -856,9 +856,9 @@ export default function Home() {
         <Card title="Star Rating">
           <Section title="Sizes">
             <div className="flex items-end">
-              <StarRating rating={0} reviewsCount={5} showRating/>
-              <StarRating className="ml-3" size="medium" rating={2.5} reviewsCount={5} showRating/>
-              <StarRating className="ml-3" size="large" rating={5} reviewsCount={5} showRating/>
+              <StarRating rating={0} reviewsCount={5}/>
+              <StarRating className="ml-3" size="medium" rating={2.5} reviewsCount={5}/>
+              <StarRating className="ml-3" size="large" rating={5} reviewsCount={5}/>
             </div>
           </Section>
         </Card>
@@ -896,15 +896,15 @@ export default function Home() {
           <Section title="Themes">
             <div className="mb-3">
               <FilterChip isSelected={false} className="mr-3">Filter Chip</FilterChip>
-              <FilterChip isSelected={true}>Filter Chip</FilterChip>
+              <FilterChip isSelected>Filter Chip</FilterChip>
             </div>
             <div>
               <ToggleChip isSelected={false} className="mr-3">Toggle Chip</ToggleChip>
-              <ToggleChip isSelected={true}>Toggle Chip</ToggleChip>
+              <ToggleChip isSelected>Toggle Chip</ToggleChip>
             </div>
           </Section>
           <Section title="With Icon">
-            <ToggleChip isSelected={true} iconRight="plus">Toggle Chip</ToggleChip>
+            <ToggleChip isSelected iconRight="plus">Toggle Chip</ToggleChip>
           </Section>
         </Card>
         <Card title="Pill">
@@ -1120,7 +1120,7 @@ export default function Home() {
             </ShowMore>
             <ShowMore
               isShrinkable={false}
-              hideChevron={true}
+              chevronIsHidden
               isExpanded={showMoreIsExpanded}
               onClick={() => setShowMoreIsExpanded(!showMoreIsExpanded)}
               size={3}
@@ -1162,6 +1162,7 @@ export default function Home() {
               setPopoverIsOpen(false);
             }}
             position="top"
+            shouldCloseOnClickOutside
           >
             <Button
               onClick={() => setPopoverIsOpen(!popoverIsOpen)}
