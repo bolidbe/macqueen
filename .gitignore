@@ -4,6 +4,7 @@ node_modules
 package-lock.json
 yarn.lock
 yarn-error.log
+tsconfig.tsbuildinfo
 
 # mcqueen-icons
 packages/mcqueen-icons/src

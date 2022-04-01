@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-icons",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "A scalable set of icons handcrafted with <3 by bolid.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-icons",
   "repository": {
@@ -42,6 +42,7 @@
     "@babel/preset-react": "7.16.7",
     "@rollup/plugin-babel": "5.3.1",
     "@rollup/plugin-commonjs": "21.0.3",
+    "@types/node": "16.11.26",
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
     "cheerio": "1.0.0-rc.10",

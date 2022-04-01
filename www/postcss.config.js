@@ -1,8 +1,8 @@
 module.exports = {
-  plugins: [
-    'tailwindcss',
-    'postcss-flexbugs-fixes',
-    ['postcss-preset-env', {
+  plugins: {
+    tailwindcss: {},
+    'postcss-flexbugs-fixes': {},
+    'postcss-preset-env': {
       autoprefixer: {
         flexbox: 'no-2009',
       },
@@ -10,9 +10,10 @@ module.exports = {
       features: {
         'custom-properties': false,
       },
-    }],
-    ['cssnano', {
+    },
+    autoprefixer: {},
+    cssnano: {
       preset: 'default',
-    }]
-  ]
+    }
+  }
 }
