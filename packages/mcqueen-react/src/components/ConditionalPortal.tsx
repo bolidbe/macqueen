@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import canUseDOM from '../utils/canUseDOM';
 
@@ -11,6 +11,12 @@ export default function ConditionalPortal({
   shouldDisplace = true,
   children,
 }: ConditionalPortalPropsType): JSX.Element | null {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+
   if (!children) {
     return null;
   }
@@ -18,7 +24,7 @@ export default function ConditionalPortal({
   return (
     <>
       {
-        (canUseDOM && shouldDisplace)
+        (isLoaded && canUseDOM && shouldDisplace)
         ? createPortal(children, document.body)
         : children
       }

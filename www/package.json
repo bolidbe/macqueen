@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@bolid/mcqueen-icons": "1.1.8",
-    "@bolid/mcqueen-react": "1.4.14",
-    "@bolid/mcqueen-scss": "1.1.4",
+    "@bolid/mcqueen-react": "1.4.15",
+    "@bolid/mcqueen-scss": "1.1.5",
     "@popperjs/core": "2.11.4",
     "classnames": "2.3.1",
     "html-react-parser": "1.4.10",

@@ -32,11 +32,15 @@
   }
 
   h2 {
-    @apply text-title-4 leading-title-4 font-700 mt-6;
+    @apply text-title-4 leading-title-4 font-700 mt-5;
   }
 
   h3 {
-    @apply text-title-5 leading-title-5 font-700 mt-4;
+    @apply text-title-5 leading-title-5 font-600 underline mt-4;
+  }
+
+  h4, h5, h6 {
+    @apply font-600 underline;
   }
 
   table{
@@ -86,19 +90,20 @@
     @apply rounded;
   }
 
-  p,
-  div,
-  table,
-  img,
-  ul,
-  ol {
+  & > p,
+  & > div,
+  & > table,
+  & > img,
+  & > ul,
+  & > ol,
+  & > figure {
     @apply my-3;
   }
 
-  *:first-child{
+  & > *:first-child{
     margin-top: 0;
   }
-  *:last-child{
+  & > *:last-child{
     margin-bottom: 0;
   }
 }

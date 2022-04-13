@@ -1,7 +1,6 @@
 import React, { ReactNode, useEffect } from 'react'
 import classNames from "classnames"
 import noScroll from 'no-scroll'
-import canUseDOM from '../utils/canUseDOM';
 
 import { CrossIcon } from "@bolid/mcqueen-icons/dist/es"
 import ConditionalPortal from "./ConditionalPortal"
@@ -46,10 +45,6 @@ export default function Modal({
     if (shouldCloseOnCurtainClick && event.target === event.currentTarget) {
       onClose();
     }
-  }
-
-  if(!canUseDOM){
-    return null
   }
 
   return (
