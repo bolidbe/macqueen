@@ -7,26 +7,32 @@ import styles from "./Chip.module.scss"
 export interface ChipPropsType {
   children: ReactNode;
   isSelected: boolean;
-  onClick?(): void;
   className?: string;
   iconLeft?: IconPropsType['name'];
   iconRight?: IconPropsType['name'];
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export function FilterChip({
   children,
   className,
-  onClick,
   iconLeft,
   iconRight,
-  isSelected
+  isSelected,
+  onClick,
+  style
 }: ChipPropsType): JSX.Element {
   return (
-    <div onClick={onClick} className={classNames({
-      [styles.chip]: true,
-      [styles.chipThemeFilter]: true,
-      [styles.chipStateSelected]: isSelected
-    }, className)}>
+    <div
+      className={classNames({
+        [styles.chip]: true,
+        [styles.chipThemeFilter]: true,
+        [styles.chipStateSelected]: isSelected
+      }, className)}
+      onClick={onClick}
+      style={style}
+    >
       <div className="flex items-center">
         {iconLeft && (
           <div className="flex mr-2">
@@ -52,14 +58,19 @@ export function ToggleChip({
   className,
   iconLeft,
   iconRight,
-  isSelected
+  isSelected,
+  style
 }: ChipPropsType): JSX.Element {
   return (
-    <div onClick={onClick} className={classNames({
-      [styles.chip]: true,
-      [styles.chipThemeToggle]: true,
-      [styles.chipStateSelected]: isSelected
-    }, className)}>
+    <div
+      className={classNames({
+        [styles.chip]: true,
+        [styles.chipThemeToggle]: true,
+        [styles.chipStateSelected]: isSelected
+      }, className)}
+      onClick={onClick}
+      style={style}
+    >
       <div className="flex items-center">
         {iconLeft && (
           <div className="flex mr-2">

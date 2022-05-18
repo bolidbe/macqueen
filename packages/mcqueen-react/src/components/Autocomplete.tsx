@@ -71,6 +71,8 @@ export interface AutocompletePropsType extends Omit<TextInputBasePropsType, "onC
   renderSectionTitle?: (section: AutocompleteSuggestionsSectionType) => ReactNode;
   shouldAlwaysRenderSuggestions?: boolean;
   theme?: AutocompleteThemeType;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 const defaultRenderSuggestion = ({ label }: AutocompleteSuggestionType) => (
@@ -116,6 +118,8 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
       isDisabled,
       isReadOnly,
       note,
+      onClick,
+      style,
       ...props
     }: AutocompletePropsType,
     outerRef
@@ -151,7 +155,11 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
     // const valuePropObject = defaultSuggestion ? { value: defaultSuggestion.value } : {};
 
     return (
-      <div className={classNames("relative", className)}>
+      <div
+        className={classNames("relative", className)}
+        onClick={onClick}
+        style={style}
+      >
         <input
           ref={outerRef}
           id={id}

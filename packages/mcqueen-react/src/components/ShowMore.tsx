@@ -11,7 +11,8 @@ export interface ShowMorePropsType {
   className?: string;
   size?: 1 | 2 | 3 | 4;
   chevronIsHidden?: boolean;
-  onClick(): void;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 const iconSizes: IconSize[]  = ["medium", "small", "tiny", "tiny"]
@@ -23,11 +24,12 @@ export default function ShowMore({
   className,
   size = 2,
   isShrinkable = true,
-  chevronIsHidden = false
+  chevronIsHidden = false,
+  style
 }: ShowMorePropsType){
   const iconSize = iconSizes[size - 1]
   return (
-    <div className={className}>
+    <div className={className} style={style}>
       { children }
       {(!isExpanded || isShrinkable) && (
         <div className="cursor-pointer" onClick={onClick}>

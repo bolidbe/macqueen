@@ -8,6 +8,8 @@ export interface AlertPropsType {
   children?: ReactNode;
   theme?: 'success' | 'caution' | 'warning' | 'info';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 const ALERT_ICONS = {
@@ -21,6 +23,8 @@ export default function Alert({
   children,
   theme = 'info',
   className,
+  onClick,
+  style
 }: AlertPropsType): JSX.Element {
   return (
     <div
@@ -31,6 +35,8 @@ export default function Alert({
         [styles.alertStateWarning]: theme === 'warning',
         [styles.alertStateInfo]: theme === 'info',
       }, className)}
+      style={style}
+      onClick={onClick}
     >
       { ALERT_ICONS[theme] }
       <div className={styles.text}>{ children }</div>

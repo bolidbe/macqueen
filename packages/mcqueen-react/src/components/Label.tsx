@@ -9,6 +9,8 @@ export interface LabelPropsType {
   isDisabled?: boolean;
   isReadOnly?: boolean;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Label({
@@ -16,14 +18,22 @@ export default function Label({
   hasError,
   isDisabled,
   isReadOnly,
-  className
+  className,
+  onClick,
+  style
 }: LabelPropsType): JSX.Element {
   return (
-    <div className={classNames({
-      [styles.label]: true,
-      [styles.labelStateError]: !!hasError,
-      [styles.labelStateDisabled]: !!isDisabled,
-      [styles.labelStateReadOnly]: !!isReadOnly
-    }, className)}>{ children }</div>
+    <div
+      className={classNames({
+        [styles.label]: true,
+        [styles.labelStateError]: !!hasError,
+        [styles.labelStateDisabled]: !!isDisabled,
+        [styles.labelStateReadOnly]: !!isReadOnly
+      }, className)}
+      style={style}
+      onClick={onClick}
+    >
+      { children }
+    </div>
   )
 }

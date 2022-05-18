@@ -102,11 +102,15 @@ const QueryPage = ({
 export interface QueryPaginationPropsType {
   pagesCount: number;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export function QueryPagination({
   pagesCount,
-  className
+  className,
+  onClick,
+  style
 }: QueryPaginationPropsType): JSX.Element | null {
   const router = useRouter()
   const { query } = queryString.parseUrl(router ? router.asPath : getPath())
@@ -115,7 +119,11 @@ export function QueryPagination({
   if(pagesCount < 2) return null
 
   return (
-    <div className={classNames("flex justify-center items-center", className)}>
+    <div
+      className={classNames("flex justify-center items-center", className)}
+      style={style}
+      onClick={onClick}
+    >
       <QueryPage isDisabled={page === 1} page={page - 1} query={query}>
         <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
       </QueryPage>
@@ -175,11 +183,15 @@ const PathPage = ({
 export interface PathPaginationPropsType {
   pagesCount: number;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export function PathPagination({
   pagesCount,
-  className
+  className,
+  onClick,
+  style
 }: PathPaginationPropsType): JSX.Element | null {
   const router = useRouter()
   const { url } = queryString.parseUrl(router ? router.asPath : getPath())
@@ -200,7 +212,11 @@ export function PathPagination({
   if(pagesCount < 2) return null
 
   return (
-    <div className={classNames("flex justify-center items-center", className)}>
+    <div
+      className={classNames("flex justify-center items-center", className)}
+      style={style}
+      onClick={onClick}
+    >
       <PathPage isDisabled={page === 1} page={page - 1} path={path}>
         <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
       </PathPage>
@@ -247,18 +263,23 @@ export interface StatePaginationPropsType {
   page: number;
   className?: string;
   onClick(page: number): void;
+  style?: React.CSSProperties;
 }
 
 export function StatePagination({
   pagesCount,
   page,
   onClick,
-  className
+  className,
+  style
 }: StatePaginationPropsType): JSX.Element | null {
   if(pagesCount < 2) return null
 
   return (
-    <div className={classNames("flex justify-center items-center", className)}>
+    <div
+      className={classNames("flex justify-center items-center", className)}
+      style={style}
+    >
       <StatePage isDisabled={page === 1} page={page - 1} onClick={onClick}>
         <small><ArrowLeftIcon/></small> <span className="hidden large:block ml-2">Précédent</span>
       </StatePage>

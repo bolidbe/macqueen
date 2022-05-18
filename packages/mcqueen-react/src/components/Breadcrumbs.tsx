@@ -17,14 +17,22 @@ export interface BreadcrumbType {
 export interface BreadcrumbsPropsType {
   breadcrumbs: BreadcrumbType[];
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLUListElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Breadcrumbs({
   breadcrumbs,
-  className
+  className,
+  onClick,
+  style
 }: BreadcrumbsPropsType): JSX.Element {
   return (
-    <ul className={classNames("flex flex-wrap text-body-3 leading-body-3", styles.breadcrumbs, className)}>
+    <ul
+      className={classNames("flex flex-wrap text-body-3 leading-body-3", styles.breadcrumbs, className)}
+      style={style}
+      onClick={onClick}
+    >
       {breadcrumbs.map((breadcrumb, i) => i < breadcrumbs.length - 1 ? (
         <li key={i}>
         {Link ? (

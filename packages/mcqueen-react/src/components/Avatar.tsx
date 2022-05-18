@@ -31,6 +31,8 @@ export interface EntityAvatarPropsType extends Pick<ImagePropsType, 'forceEarlyR
   fullName?: string;
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
@@ -41,7 +43,9 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
       initial,
       fullName,
       className,
-      forceEarlyRender
+      forceEarlyRender,
+      onClick,
+      style = {}
     }: EntityAvatarPropsType,
     outerRef
   ): JSX.Element => {
@@ -55,7 +59,8 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={{ width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
+        style={{ ...style, width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
+        onClick={onClick}
       >
         {imageUrl ? (
           <Image
@@ -88,6 +93,8 @@ export interface UserAvatarPropsType extends Pick<ImagePropsType, 'forceEarlyRen
   fullName?: string;
   size?: 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
@@ -98,7 +105,9 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
       initials,
       fullName,
       className,
-      forceEarlyRender
+      forceEarlyRender,
+      onClick,
+      style = {}
     }: UserAvatarPropsType,
     outerRef
   ): JSX.Element => {
@@ -112,7 +121,8 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           [styles.avatarSizeLarge]: size === 'large',
           [styles.avatarSizeXlarge]: size === 'xlarge',
         }, className)}
-        style={{ width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
+        style={{ ...style, width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
+        onClick={onClick}
       >
         {imageUrl ? (
           <Image

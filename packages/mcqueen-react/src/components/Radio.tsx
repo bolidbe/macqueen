@@ -16,6 +16,8 @@ export interface RadioPropsType {
   onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
   radioVerticalAlign?: 'top' | 'center';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLLabelElement>;
+  style?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLInputElement, RadioPropsType>(
@@ -31,7 +33,9 @@ export default React.forwardRef<HTMLInputElement, RadioPropsType>(
       value,
       onChange = noop,
       radioVerticalAlign = 'center',
-      className
+      className,
+      onClick,
+      style = {}
     }: RadioPropsType,
     outerRef
   ): JSX.Element {
@@ -42,7 +46,8 @@ export default React.forwardRef<HTMLInputElement, RadioPropsType>(
           [styles.radioVerticalAlignTop]: radioVerticalAlign === 'top',
           [styles.radioVerticalAlignCenter]: radioVerticalAlign === 'center',
         }, className)}
-        style={{ cursor: !!isDisabled ? "default" : "pointer" }}
+        style={{ ...style, cursor: !!isDisabled ? "default" : "pointer" }}
+        onClick={onClick}
       >
         <input
           className={styles.input}

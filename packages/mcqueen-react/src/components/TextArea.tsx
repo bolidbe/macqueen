@@ -32,12 +32,14 @@ export interface TextAreaPropsType {
   value?: string;
   maxLength?: number;
   onChange?: (value: string, event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onFocus?: () => void;
-  onBlur?: () => void;
   className?: string;
   label?: ReactNode;
   note?: ReactNode;
   rows?: number;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onFocus?: React.FocusEventHandler<HTMLTextAreaElement>;
+  onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
+  style?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
@@ -49,23 +51,25 @@ export default React.forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
       isReadOnly,
       isRequired,
       maxLength,
-      onBlur = noop,
+      onBlur,
       onChange = noop,
-      onFocus = noop,
+      onFocus,
       placeholder,
       value,
       name,
       className,
       label,
       note,
-      rows = 4
+      rows = 4,
+      onClick,
+      style
     }: TextAreaPropsType,
     outerRef
   ): JSX.Element {
     const uiState = getUIState({ hasError, isDisabled });
 
     return (
-      <div className={className}>
+      <div className={className} style={style} onClick={onClick}>
         {label && (
           <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
         )}

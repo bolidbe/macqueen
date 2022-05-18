@@ -28,7 +28,7 @@ const getRel = (href?: string, shouldOpenInNewTab = false): string | undefined =
 };
 
 interface AnchorPropsType {
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  onClick?: React.MouseEventHandler<any>;
   target: string;
   rel?: string;
   href?: string;
@@ -42,7 +42,7 @@ const getAnchorProps = ({
 }: {
   isDisabled?: boolean,
   shouldOpenInNewTab?: boolean,
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void,
+  onClick?: React.MouseEventHandler<HTMLButtonElement>,
   href?: string
 }): AnchorPropsType => ({
   onClick: isDisabled ? undefined : onClick,
@@ -57,7 +57,7 @@ export interface ButtonPropsType {
   iconRight?: IconPropsType['name'];
   isDisabled?: boolean;
   isLoading?: boolean;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   href?: string;
   shouldOpenInNewTab?: boolean;
   theme?: 'primary' | 'secondary' | 'tertiary' | 'caution';
@@ -65,6 +65,7 @@ export interface ButtonPropsType {
   size?: 'small' | 'large';
   type?: 'button' | 'submit';
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const FlexWrapper = ({
@@ -98,7 +99,8 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
       variant = 'solid',
       size = 'large',
       type = 'button',
-      className
+      className,
+      style
     }: ButtonPropsType,
     outerRef
   ): JSX.Element {
@@ -120,7 +122,8 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
         [styles.buttonThemeSecondaryInverse]: theme === 'secondary' && variant === 'inverse',
         [styles.buttonThemeTertiaryInverse]: theme === 'tertiary' && variant === 'inverse',
         [styles.buttonThemeCautionInverse]: theme === 'caution' && variant === 'inverse'
-      }, className)
+      }, className),
+      style
     }
 
     const iconSize = size === 'large' ? 'medium' : 'small'

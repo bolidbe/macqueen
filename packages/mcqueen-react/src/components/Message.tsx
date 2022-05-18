@@ -8,6 +8,8 @@ export interface MessagePropsType {
   theme?: 'success' | 'caution' | 'warning' | 'info';
   position?: 'top' | 'right' | 'bottom' | 'left';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Message({
@@ -15,6 +17,8 @@ export default function Message({
   theme = 'info',
   position = 'top',
   className,
+  onClick,
+  style
 }: MessagePropsType): JSX.Element {
   return (
     <div
@@ -29,6 +33,8 @@ export default function Message({
         [styles.messagePositionBottom]: position === 'bottom',
         [styles.messagePositionLeft]: position === 'left'
       }, className)}
+      style={style}
+      onClick={onClick}
     >
       <div className={styles.messageBorder}></div>
       { children }

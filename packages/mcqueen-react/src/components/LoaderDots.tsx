@@ -8,13 +8,17 @@ export interface LoaderDotsPropsType {
   size?: 'small' | 'medium';
   theme?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'inverse';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLUListElement>;
+  style?: React.CSSProperties;
 }
 
 export default function LoaderDots({
   assistiveText = 'Loading',
   size = 'medium',
   theme = 'primary',
-  className
+  className,
+  onClick,
+  style
 }: LoaderDotsPropsType): JSX.Element {
   const dotClassName = classNames({
     [styles.dot]: true,
@@ -28,7 +32,12 @@ export default function LoaderDots({
   });
 
   return (
-    <ul className={classNames(styles.loader, className)} role="status">
+    <ul
+      className={classNames(styles.loader, className)}
+      role="status"
+      style={style}
+      onClick={onClick}
+    >
       <li className={dotClassName} />
       <li className={dotClassName} />
       <li className={dotClassName} />

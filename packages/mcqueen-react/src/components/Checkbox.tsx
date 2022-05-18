@@ -17,6 +17,8 @@ export interface CheckboxPropsType {
   checkboxVerticalAlign?: 'top' | 'center';
   value?: string | string[] | number;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLLabelElement>;
+  style?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
@@ -33,7 +35,9 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
       name,
       onChange = noop,
       value,
-      className
+      className,
+      onClick,
+      style = {}
     }: CheckboxPropsType,
     outerRef
   ): JSX.Element {
@@ -51,7 +55,8 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
           [styles.checkboxVerticalAlignTop]: checkboxVerticalAlign === 'top',
           [styles.checkboxVerticalAlignCenter]: checkboxVerticalAlign === 'center',
         }, className)}
-        style={{ cursor: !!isDisabled ? "default" : "pointer" }}
+        style={{ ...style, cursor: !!isDisabled ? "default" : "pointer" }}
+        onClick={onClick}
       >
         <input
           ref={outerRef}

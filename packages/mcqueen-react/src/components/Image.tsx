@@ -149,9 +149,8 @@ export interface ImagePropsType {
   objectFit?: 'cover' | 'contain';
   objectPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right';
   className?: string;
-  style?: {
-    [key: string]: any;
-  };
+  onClick?: React.MouseEventHandler<HTMLPictureElement>;
+  style?: React.CSSProperties;
 }
 
 type ObjectFitPropsType = {
@@ -187,6 +186,7 @@ export default forwardRef<HTMLElement, ImagePropsType>(
       alt = '',
       className,
       forceEarlyRender = null,
+      onClick,
       style
     } = props;
 
@@ -346,7 +346,12 @@ export default forwardRef<HTMLElement, ImagePropsType>(
 
     return (
       <>
-        <picture className={classNames(styles.picture, className)} ref={setRefs} style={style}>
+        <picture
+          className={classNames(styles.picture, className)}
+          ref={setRefs}
+          onClick={onClick}
+          style={style}
+        >
           {webpSource && (
             <source
               type={webpSource.type}

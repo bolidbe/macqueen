@@ -9,6 +9,8 @@ export interface TextPropsType {
   className?: string;
   elementName?: keyof ReactHTML;
   isBold?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Text({
@@ -16,7 +18,9 @@ export default function Text({
   size = 2,
   className='',
   elementName = 'p',
-  isBold = false
+  isBold = false,
+  onClick,
+  style
 }: TextPropsType): JSX.Element {
   const props = {
     className: classNames(
@@ -25,7 +29,9 @@ export default function Text({
         "font-600": isBold
       },
       className
-    )
+    ),
+    onClick,
+    style
   };
 
   return createElement(elementName, props, children);

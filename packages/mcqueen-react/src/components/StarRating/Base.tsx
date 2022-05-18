@@ -15,8 +15,10 @@ export interface StarRatingBasePropsType {
   rating: number | string;
   size?: 'small' | 'medium' | 'large';
   children?: ReactNode;
-  onMouseLeave?: () => void;
+  onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function StarRatingBase({
@@ -24,7 +26,9 @@ export default function StarRatingBase({
   size = 'small',
   children,
   onMouseLeave = noop,
-  className
+  className,
+  onClick,
+  style
 }: StarRatingBasePropsType): JSX.Element {
   // Limit rating to between 0 and MAX_NUM_STARS
   // @ts-ignore
@@ -43,6 +47,8 @@ export default function StarRatingBase({
       }, className)}
       data-star={ratingValue}
       onMouseLeave={onMouseLeave}
+      onClick={onClick}
+      style={style}
     >
       { children }
     </div>

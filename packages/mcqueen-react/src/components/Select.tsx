@@ -29,14 +29,15 @@ export interface SelectPropsType {
   hasError?: boolean;
   size?: 'small' | 'large';
   value?: string;
-  onClick?: () => void;
   onChange?: (value: string, event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onFocus?: () => void;
-  onBlur?: () => void;
   name?: string;
   className?: string;
   label?: ReactNode;
   note?: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLSelectElement>;
+  onFocus?: React.FocusEventHandler<HTMLSelectElement>;
+  onBlur?: React.FocusEventHandler<HTMLSelectElement>;
+  style?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLSelectElement, SelectPropsType>(
@@ -49,21 +50,22 @@ export default React.forwardRef<HTMLSelectElement, SelectPropsType>(
       isRequired,
       name,
       onChange = noop,
-      onFocus = noop,
-      onBlur = noop,
-      onClick = noop,
+      onFocus,
+      onBlur,
+      onClick,
       size = 'large',
       value,
       className,
       label,
-      note
+      note,
+      style
     }: SelectPropsType,
     outerRef
   ): JSX.Element {
     const uiState = getUIState({ isDisabled, hasError });
 
     return (
-      <div className={className}>
+      <div className={className} style={style}>
         {label && (
           <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
         )}

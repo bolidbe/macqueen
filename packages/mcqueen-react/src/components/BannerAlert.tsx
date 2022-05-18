@@ -14,12 +14,16 @@ export interface BannerAlertPropsType {
   children: ReactNode;
   theme: 'info' | 'warning' | 'caution' | 'success';
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function BannerAlert({
   children,
   theme,
-  className
+  className,
+  onClick,
+  style
 }: BannerAlertPropsType): JSX.Element {
   return (
     <div
@@ -30,6 +34,8 @@ export default function BannerAlert({
         [styles.bannerAlertStateWarning]: theme === 'warning',
         [styles.bannerAlertStateSuccess]: theme === 'success',
       }, className)}
+      style={style}
+      onClick={onClick}
     >
       { ALERT_ICONS[theme] }
       <div>{ children }</div>

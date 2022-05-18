@@ -7,17 +7,27 @@ export interface InputNotePropsType {
   children: ReactNode | string;
   hasError?: boolean;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function InputNote({
   children,
   hasError,
-  className
+  className,
+  onClick,
+  style
 }: InputNotePropsType): JSX.Element {
   return (
-    <div className={classNames({
-      [styles.inputNote]: true,
-      [styles.inputNoteStateError]: !!hasError
-    }, className)}>{ children }</div>
+    <div
+      className={classNames({
+        [styles.inputNote]: true,
+        [styles.inputNoteStateError]: !!hasError
+      }, className)}
+      style={style}
+      onClick={onClick}
+    >
+      { children }
+    </div>
   )
 }

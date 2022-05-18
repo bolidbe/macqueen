@@ -20,6 +20,8 @@ export interface PopoverPropsType {
   className?: string;
   closeButtonIsHidden?: boolean;
   shouldCloseOnClickOutside?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Popover({
@@ -32,7 +34,9 @@ export default function Popover({
     container = 'body',
     className,
     closeButtonIsHidden = false,
-    shouldCloseOnClickOutside = false
+    shouldCloseOnClickOutside = false,
+    onClick,
+    style
 }: PopoverPropsType): JSX.Element {
   const [elementRef, setElementRef] = useState<any | null>(null);
   const [popperRef, setPopperRef] = useState<any | null>(null);
@@ -86,6 +90,8 @@ export default function Popover({
       <div
         className={classNames("inline-block", className)}
         ref={setElementRef}
+        style={style}
+        onClick={onClick}
       >
         { children }
       </div>

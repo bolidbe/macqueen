@@ -16,6 +16,8 @@ export interface SwitchPropsType {
   switchVerticalAlign?: 'top' | 'center';
   value?: string | string[] | number;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLLabelElement>;
+  style?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
@@ -31,7 +33,9 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
       name,
       onChange = noop,
       value,
-      className
+      className,
+      onClick,
+      style = {}
     }: SwitchPropsType,
     outerRef
   ): JSX.Element {
@@ -49,7 +53,8 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
           [styles.switchVerticalAlignTop]: switchVerticalAlign === 'top',
           [styles.switchVerticalAlignCenter]: switchVerticalAlign === 'center',
         }, className)}
-        style={{ cursor: isDisabled ? "default" : "pointer" }}
+        style={{ ...style, cursor: isDisabled ? "default" : "pointer" }}
+        onClick={onClick}
       >
         <input
           ref={outerRef}

@@ -19,6 +19,8 @@ export interface PillPropsType {
   color?: 'green' | 'red' | 'orange' | 'blue' | 'yellow' | 'purple' | 'pink';
   className?: string;
   size?: 'large' | 'medium' | 'small';
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Pill({
@@ -26,7 +28,9 @@ export default function Pill({
   icon,
   children,
   className,
-  size = 'medium'
+  size = 'medium',
+  onClick,
+  style
 }: PillPropsType): JSX.Element {
   return (
     <div
@@ -43,6 +47,8 @@ export default function Pill({
         [styles.pillSizeMedium]: size === 'medium',
         [styles.pillSizeLarge]: size === 'large',
       }, className)}
+      style={style}
+      onClick={onClick}
     >
       <div className="flex items-center">
         {icon && (

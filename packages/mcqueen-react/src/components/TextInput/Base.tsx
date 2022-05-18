@@ -74,6 +74,7 @@ export interface TextInputBasePropsType {
   className?: string;
   label?: ReactNode;
   note?: ReactNode;
+  style?: React.CSSProperties;
 }
 
 export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
@@ -107,7 +108,8 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
       autoComplete,
       className,
       label,
-      note
+      note,
+      style
     }: TextInputBasePropsType,
     outerRef,
   ): JSX.Element {
@@ -123,6 +125,7 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
           [styles.textInputStateDisabled]: uiState === 'disabled',
           [styles.textInputStateError]: uiState === 'error',
         }, className)}
+        style={style}
       >
         {label && (
           <Label {...{ hasError, isDisabled, isReadOnly }} className="mb-1">{ label }</Label>

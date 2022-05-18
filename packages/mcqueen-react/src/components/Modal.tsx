@@ -16,7 +16,9 @@ export interface ModalPropsType {
   shouldCloseOnCurtainClick?: boolean;
   width?: 'small' | 'medium' | 'large';
   height?: 'auto' | 'medium' | 'large';
-  onClose(): void;
+  onClose: () => void;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React.CSSProperties;
 }
 
 export default function Modal({
@@ -28,7 +30,9 @@ export default function Modal({
   closeButtonIsHidden = false,
   shouldModalScroll = true,
   shouldCloseOnCurtainClick = true,
-  onClose
+  onClose,
+  onClick,
+  style
 }: ModalPropsType): JSX.Element | null {
   useEffect(() => {
     if(isOpen) noScroll.on()
@@ -49,7 +53,7 @@ export default function Modal({
 
   return (
     <ConditionalPortal>
-      <div role="dialog" aria-label="Modal" tabIndex={-1}>
+      <div role="dialog" aria-label="Modal" tabIndex={-1} style={style} onClick={onClick}>
         <div className={classNames({
           [styles.curtain]: true,
           [styles.curtainOpen]: isOpen

@@ -1,5 +1,6 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import assign from 'lodash/assign';
+import noop from 'lodash/noop';
 import classNames from 'classnames';
 import { usePopper } from 'react-popper';
 import canUseDOM from "../utils/canUseDOM"
@@ -19,6 +20,8 @@ export interface TooltipPropsType {
   closeDelayLength?: 0 | 200;
   zIndex?: number;
   className?: string;
+  onClick?: () => void;
+  style?: React.CSSProperties;
 }
 
 export default function Tooltip({
@@ -28,7 +31,9 @@ export default function Tooltip({
   text,
   children,
   closeDelayLength = 200,
-  className
+  className,
+  onClick = noop,
+  style
 }: TooltipPropsType): JSX.Element {
   const [elementRef, setElementRef] = useState<any | null>(null);
   const [popperRef, setPopperRef] = useState<any | null>(null);
@@ -68,26 +73,27 @@ export default function Tooltip({
     setIsOpen(false);
   };
 
-  const onFocus = (): void => {
+  const handleFocus = (): void => {
     if(!doesWindowSupportTouch()){
       show();
     }
   };
 
-  const onMouseEnter = (): void => {
+  const handleMouseEnter = (): void => {
     if(!doesWindowSupportTouch()){
       setOpenTimeout(window.setTimeout(show, 100));
     }
   };
 
-  const onMouseLeave = (): void => {
+  const handleMouseLeave = (): void => {
     setCloseTimeout(window.setTimeout(hide, closeDelayLength));
     if (openTimeout) {
       clearTimeout(openTimeout);
     }
   };
 
-  const onClick = (): void => {
+  const handleClick = (): void => {
+    onClick()
     if(doesWindowSupportTouch()){
       if(isOpen){
         hide();
@@ -118,12 +124,13 @@ export default function Tooltip({
       <div
         className={classNames("inline-block", className)}
         ref={setElementRef}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onClick={onClick}
-        onFocus={onFocus}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
+        onFocus={handleFocus}
         onBlur={hide}
         aria-label={text}
+        style={style}
       >
         { children }
       </div>
@@ -139,7 +146,7 @@ export default function Tooltip({
             })}
             style={assign({}, popperStyles.popper, { zIndex })}
             onMouseEnter={show}
-            onMouseLeave={onMouseLeave}
+            onMouseLeave={handleMouseLeave}
             onClick={(event): void => {
               event.stopPropagation();
               if (doesWindowSupportTouch()) {
