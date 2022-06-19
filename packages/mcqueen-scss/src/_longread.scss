@@ -74,8 +74,17 @@
     @apply ml-4;
   }
 
+  ul ul,
+  ol ol {
+    margin-left: 36px;
+  }
+
   ul {
     @apply list-disc;
+  }
+
+  ul ul {
+    list-style-type: circle;
   }
 
   ol {
