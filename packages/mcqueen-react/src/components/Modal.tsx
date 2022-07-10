@@ -80,9 +80,7 @@ export default function Modal({
                   </div>
                 )}
                 <div className={styles.content}>
-                  <div className={styles.contentPadding}>
-                    { children }
-                  </div>
+                  { children }
                 </div>
               </div>
             </div>

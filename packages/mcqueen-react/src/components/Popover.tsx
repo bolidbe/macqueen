@@ -83,7 +83,7 @@ export default function Popover({
     }
   }, [popperRef, isOpen, shouldCloseOnClickOutside]);
 
-  const placement = attributes.popper ? attributes.popper['data-popper-placement'] : null
+  const placement = !!attributes.popper ? attributes.popper['data-popper-placement'] : null
 
   return (
     <>

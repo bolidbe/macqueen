@@ -117,7 +117,7 @@ export default function Tooltip({
     };
   }, []);
 
-  const placement = attributes.popper ? attributes.popper['data-popper-placement'] : null
+  const placement = !!attributes.popper ? attributes.popper['data-popper-placement'] : null
 
   return (
     <>

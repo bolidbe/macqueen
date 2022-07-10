@@ -8,7 +8,7 @@ export interface LoaderDotsPropsType {
   size?: 'small' | 'medium';
   theme?: 'primary' | 'secondary' | 'tertiary' | 'caution' | 'inverse';
   className?: string;
-  onClick?: React.MouseEventHandler<HTMLUListElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
 }
 
@@ -32,16 +32,16 @@ export default function LoaderDots({
   });
 
   return (
-    <ul
+    <div
       className={classNames(styles.loader, className)}
       role="status"
       style={style}
       onClick={onClick}
     >
-      <li className={dotClassName} />
-      <li className={dotClassName} />
-      <li className={dotClassName} />
-      <li className={styles.hiddenText}>{assistiveText}</li>
-    </ul>
+      <div className={dotClassName} />
+      <div className={dotClassName} />
+      <div className={dotClassName} />
+      <div className={styles.hiddenText}>{assistiveText}</div>
+    </div>
   );
 }

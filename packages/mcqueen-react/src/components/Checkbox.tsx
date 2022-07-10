@@ -46,7 +46,7 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
     // `value` attribute is omitted. We can work around the React behavior and avoid adding
     // `value=""` to the DOM by conditionally creating an object that we then spread onto the
     // element. More context: https://github.com/thumbtack/thumbprint/issues/589
-    const valuePropObject = value ? { value } : {};
+    const valuePropObject = !!value ? { value } : {};
 
     return (
       // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
@@ -55,13 +55,13 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
           [styles.checkboxVerticalAlignTop]: checkboxVerticalAlign === 'top',
           [styles.checkboxVerticalAlignCenter]: checkboxVerticalAlign === 'center',
         }, className)}
-        style={{ ...style, cursor: !!isDisabled ? "default" : "pointer" }}
+        style={{ ...style, cursor: isDisabled ? "default" : "pointer" }}
         onClick={onClick}
       >
         <input
           ref={outerRef}
           className={styles.input}
-          aria-checked={!!isIndeterminate ? 'mixed' : isChecked}
+          aria-checked={isIndeterminate ? 'mixed' : isChecked}
           type="checkbox"
           id={id}
           name={name}
@@ -117,13 +117,13 @@ export default React.forwardRef<HTMLInputElement, CheckboxPropsType>(
           </svg>
         </div>
 
-        {children && (
-          <span className={classNames({
+        {!!children && (
+          <div className={classNames({
             [styles.text]: true,
             [styles.textStateError]: !!hasError
           })}>
             {children}
-          </span>
+          </div>
         )}
       </label>
     );

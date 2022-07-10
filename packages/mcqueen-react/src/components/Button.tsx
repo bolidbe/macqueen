@@ -75,13 +75,13 @@ const FlexWrapper = ({
   children: ReactNode | string,
   size: 'small' | 'large'
 }) => (
-  <span className={classNames({
+  <div className={classNames({
     [styles.flexWrapper]: true,
     [styles.flexWrapperSizeSmall]: size === 'small',
     [styles.flexWrapperSizeLarge]: size === 'large'
   })}>
     { children }
-  </span>
+  </div>
 )
 
 export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType>(
@@ -131,35 +131,35 @@ export default forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPropsType
     const newChildren = isLoading
     ? (
       <FlexWrapper size={size}>
-        <span className={styles.loaderContainer}>
-          <span className={styles.absoluteCenter}>
+        <div className={styles.loaderContainer}>
+          <div className={styles.absoluteCenter}>
             <LoaderDots theme={variant === "solid" ? "inverse" : theme} size="small" />
-          </span>
-          <span className="invisible">{children}</span>
-        </span>
+          </div>
+          <div className="invisible">{children}</div>
+        </div>
       </FlexWrapper>
     ) : (
       <FlexWrapper size={size}>
-        {iconLeft && (
-          <span
+        {!!iconLeft && (
+          <div
             className={classNames({
               [styles.iconContainer]: true,
-              [styles.iconContainerHasRightChildren]: children,
+              [styles.iconContainerHasRightChildren]: !!children,
             })}
           >
             <Icon name={iconLeft} size={iconSize}/>
-          </span>
+          </div>
         )}
         { children }
-        {iconRight && (
-          <span
+        {!!iconRight && (
+          <div
             className={classNames({
               [styles.iconContainer]: true,
-              [styles.iconContainerHasLeftChildren]: children,
+              [styles.iconContainerHasLeftChildren]: !!children,
             })}
           >
             <Icon name={iconRight} size={iconSize}/>
-          </span>
+          </div>
         )}
       </FlexWrapper>
     )

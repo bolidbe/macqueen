@@ -44,7 +44,7 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
     // `value` attribute is omitted. We can work around the React behavior and avoid adding
     // `value=""` to the DOM by conditionally creating an object that we then spread onto the
     // element. More context: https://github.com/thumbtack/thumbprint/issues/589
-    const valuePropObject = value ? { value } : {};
+    const valuePropObject = !!value ? { value } : {};
 
     return (
       // eslint-disable-next-line jsx-a11y/label-has-associated-control, jsx-a11y/label-has-for
@@ -105,13 +105,13 @@ export default React.forwardRef<HTMLInputElement, SwitchPropsType>(
             </svg>
           </div>
         </div>
-        {children && (
-          <span className={classNames({
+        {!!children && (
+          <div className={classNames({
             [styles.text]: true,
             [styles.textStateError]: !!hasError
           })}>
             {children}
-          </span>
+          </div>
         )}
       </label>
     )

@@ -152,8 +152,6 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
       onSelect(suggestion.value, suggestion)
     }
 
-    // const valuePropObject = defaultSuggestion ? { value: defaultSuggestion.value } : {};
-
     return (
       <div
         className={classNames("relative", className)}
@@ -167,7 +165,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
           type="hidden"
           value={value}
         />
-        {label && (
+        {!!label && (
           <Label {...{ hasError, isDisabled, isReadOnly }} className="mb-1">{ label }</Label>
         )}
         <Autosuggest
@@ -185,7 +183,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
             }),
             theme
           }}
-          id={id ? `${id}-autocomplete` : undefined}
+          id={!!id ? `${id}-autocomplete` : undefined}
           suggestions={suggestions}
           onSuggestionsFetchRequested={handleFetchRequested}
           onSuggestionsClearRequested={noop}
@@ -205,12 +203,12 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
             isReadOnly,
             value: search,
             onChange: handleChange,
-            name: name ? `${name}-autocomplete` : "autocomplete"
+            name: !!name ? `${name}-autocomplete` : "autocomplete"
           }}
           renderInputComponent={(inputProps: any) => <TextInputBase {...inputProps}/>}
         />
 
-        {note && (
+        {!!note && (
           <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
         )}
       </div>

@@ -34,7 +34,7 @@ export default function StarRating({
         rating={rating}
         {...props}
       />
-      {reviewsCount && (
+      {!!reviewsCount && (
         <div className={classNames({
           [styles.textPositionRight]: true,
           [styles.textSizeSmall]: size === 'small',

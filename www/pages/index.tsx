@@ -914,6 +914,10 @@ export default function Home() {
               <Pill key={i} className="mr-2" color={color}>Pill { color }</Pill>
             ))}
           </Section>
+          <Section title="Variants">
+            <Pill className="mr-2" variant="inverse" color="blue">Pill inverse</Pill>
+            <Pill className="mr-2" variant="solid" color="blue">Pill solid</Pill>
+          </Section>
           <Section title="Sizes">
           {(["large", "medium", "small"]).map((size, i) => (
             // @ts-ignore

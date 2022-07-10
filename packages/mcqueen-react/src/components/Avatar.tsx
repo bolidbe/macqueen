@@ -62,22 +62,22 @@ const EntityAvatar = forwardRef<HTMLElement, EntityAvatarPropsType>(
         style={{ ...style, width: `${sizeInPixels}px`, height: `${sizeInPixels}px` }}
         onClick={onClick}
       >
-        {imageUrl ? (
+        {!!imageUrl ? (
           <Image
             className={styles.square}
             src={imageUrl}
-            alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
+            alt={!!fullName ? `Avatar for ${fullName}` : 'Avatar'}
             height={sizeInPixels}
             ref={outerRef}
             forceEarlyRender={forceEarlyRender}
           />
         ) : (
-          <span
+          <div
             className={`${styles.initials} ${styles.square} ${getClassName(initial)}`}
-            title={fullName && `Avatar for ${fullName}`}
+            title={!!fullName ? `Avatar for ${fullName}` : undefined}
           >
             {initial}
-          </span>
+          </div>
         )}
       </div>
     )
@@ -128,18 +128,18 @@ const UserAvatar = forwardRef<HTMLElement, UserAvatarPropsType>(
           <Image
             className={styles.circle}
             src={imageUrl}
-            alt={fullName ? `Avatar for ${fullName}` : 'Avatar'}
+            alt={!!fullName ? `Avatar for ${fullName}` : 'Avatar'}
             height={sizeInPixels}
             ref={outerRef}
             forceEarlyRender={forceEarlyRender}
           />
         ) : (
-          <span
+          <div
             className={`${styles.initials} ${styles.circle} ${getClassName(initials)}`}
-            title={fullName && `Avatar for ${fullName}`}
+            title={!!fullName ? `Avatar for ${fullName}` : undefined}
           >
             {initials}
-          </span>
+          </div>
         )}
       </div>
     )

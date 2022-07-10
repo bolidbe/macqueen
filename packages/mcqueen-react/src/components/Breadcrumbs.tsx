@@ -35,7 +35,7 @@ export default function Breadcrumbs({
     >
       {breadcrumbs.map((breadcrumb, i) => i < breadcrumbs.length - 1 ? (
         <li key={i}>
-        {Link ? (
+        {!!Link ? (
           <Link href={breadcrumb.path}>
             <a className="text-blue">{ breadcrumb.name }</a>
           </Link>
@@ -45,7 +45,7 @@ export default function Breadcrumbs({
         </li>
       ) : (
         <li key={i}>
-          <span>{ breadcrumb.name }</span>
+          { breadcrumb.name }
         </li>
       ))}
     </ul>

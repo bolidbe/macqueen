@@ -17,6 +17,7 @@ export interface PillPropsType {
   children: string;
   icon?: IconPropsType['name'];
   color?: 'green' | 'red' | 'orange' | 'blue' | 'yellow' | 'purple' | 'pink';
+  variant?: 'solid' | 'inverse';
   className?: string;
   size?: 'large' | 'medium' | 'small';
   onClick?: React.MouseEventHandler<HTMLDivElement>;
@@ -29,6 +30,7 @@ export default function Pill({
   children,
   className,
   size = 'medium',
+  variant = 'inverse',
   onClick,
   style
 }: PillPropsType): JSX.Element {
@@ -36,6 +38,8 @@ export default function Pill({
     <div
       className={classNames({
         [styles.pill]: true,
+        [styles.pillVariantSolid]: variant === 'solid',
+        [styles.pillVariantInverse]: variant === 'inverse',
         [styles.pillColorGreen]: color === 'green',
         [styles.pillColorRed]: color === 'red',
         [styles.pillColorPurple]: color === 'purple',
@@ -51,7 +55,7 @@ export default function Pill({
       onClick={onClick}
     >
       <div className="flex items-center">
-        {icon && (
+        {!!icon && (
           <Icon className="mr-1" size={iconSizes[size]} name={icon}/>
         )}
         <div>

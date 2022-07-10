@@ -46,7 +46,7 @@ export default React.forwardRef<HTMLInputElement, RadioPropsType>(
           [styles.radioVerticalAlignTop]: radioVerticalAlign === 'top',
           [styles.radioVerticalAlignCenter]: radioVerticalAlign === 'center',
         }, className)}
-        style={{ ...style, cursor: !!isDisabled ? "default" : "pointer" }}
+        style={{ ...style, cursor: isDisabled ? "default" : "pointer" }}
         onClick={onClick}
       >
         <input
@@ -78,13 +78,13 @@ export default React.forwardRef<HTMLInputElement, RadioPropsType>(
           </g>
         </svg>
 
-        {children && (
-          <span className={classNames({
+        {!!children && (
+          <div className={classNames({
             [styles.text]: true,
             [styles.textStateError]: !!hasError
           })}>
             {children}
-          </span>
+          </div>
         )}
       </label>
     )

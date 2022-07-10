@@ -1,5 +1,5 @@
 .pill{
-  @apply rounded-circle bg-gray-300 text-black inline-block font-600 overflow-hidden;
+  @apply rounded-circle inline-block font-600 overflow-hidden;
 
   &Size{
     &Small{
@@ -16,27 +16,61 @@
     }
   }
 
-  &Color{
-    &Blue {
-      @apply bg-blue-200 text-blue-500;
+  &Variant{
+    &Solid{
+      @apply bg-black text-white;
+
+      &.pillColor{
+        &Blue {
+          @apply bg-blue text-white;
+        }
+        &Purple {
+          @apply bg-purple text-white;
+        }
+        &Green {
+          @apply bg-green text-white;
+        }
+        &Pink {
+          @apply bg-pink text-white;
+        }
+        &Yellow {
+          @apply bg-yellow text-white;
+        }
+        &Red {
+          @apply bg-red text-white;
+        }
+        &Orange {
+          @apply bg-orange text-white;
+        }
+      }
     }
-    &Purple {
-      @apply bg-purple-200 text-purple-500;
-    }
-    &Green {
-      @apply bg-green-200 text-green-500;
-    }
-    &Pink {
-      @apply bg-pink-200 text-pink-500;
-    }
-    &Yellow {
-      @apply bg-yellow-200 text-yellow-500;
-    }
-    &Red {
-      @apply bg-red-200 text-red-500;
-    }
-    &Orange {
-      @apply bg-red-200 text-red-500;
+
+    &Inverse{
+      @apply bg-gray-300 text-black;
+
+      &.pillColor{
+        &Blue {
+          @apply bg-blue-200 text-blue-500;
+        }
+        &Purple {
+          @apply bg-purple-200 text-purple-500;
+        }
+        &Green {
+          @apply bg-green-200 text-green-500;
+        }
+        &Pink {
+          @apply bg-pink-200 text-pink-500;
+        }
+        &Yellow {
+          @apply bg-yellow-200 text-yellow-500;
+        }
+        &Red {
+          @apply bg-red-200 text-red-500;
+        }
+        &Orange {
+          @apply bg-red-200 text-red-500;
+        }
+      }
     }
   }
 }

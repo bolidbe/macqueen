@@ -22,7 +22,7 @@ export default function Title({
   onClick,
   style
 }: TitlePropsType): JSX.Element {
-  const elementName = heading ? `h${heading}` : 'div';
+  const elementName = !!heading ? `h${heading}` : 'div';
 
   const props = {
     className: classNames(styles[`title${size}`], "font-700", className),

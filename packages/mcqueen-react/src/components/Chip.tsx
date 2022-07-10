@@ -34,7 +34,7 @@ export function FilterChip({
       style={style}
     >
       <div className="flex items-center">
-        {iconLeft && (
+        {!!iconLeft && (
           <div className="flex mr-2">
             <Icon name={iconLeft}/>
           </div>
@@ -42,7 +42,7 @@ export function FilterChip({
         <div className="text-body-2 font-600">
         { children }
         </div>
-        {iconRight && (
+        {!!iconRight && (
           <div className="flex ml-2">
             <Icon name={iconRight}/>
           </div>
@@ -72,7 +72,7 @@ export function ToggleChip({
       style={style}
     >
       <div className="flex items-center">
-        {iconLeft && (
+        {!!iconLeft && (
           <div className="flex mr-2">
             <Icon name={iconLeft}/>
           </div>
@@ -80,7 +80,7 @@ export function ToggleChip({
         <div className="text-body-2 font-600">
         { children }
         </div>
-        {iconRight && (
+        {!!iconRight && (
           <div className="flex ml-2">
             <Icon name={iconRight}/>
           </div>

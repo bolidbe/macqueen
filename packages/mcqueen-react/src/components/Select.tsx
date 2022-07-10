@@ -66,7 +66,7 @@ export default React.forwardRef<HTMLSelectElement, SelectPropsType>(
 
     return (
       <div className={className} style={style}>
-        {label && (
+        {!!label && (
           <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
         )}
         <div className="relative">
@@ -111,7 +111,7 @@ export default React.forwardRef<HTMLSelectElement, SelectPropsType>(
             </svg>
           }
         </div>
-        {note && (
+        {!!note && (
           <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
         )}
       </div>

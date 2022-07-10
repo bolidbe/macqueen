@@ -43,21 +43,16 @@ $closeButtonHeight: 56px;
 }
 
 .closeButton {
-  @apply flex border-b items-start justify-end;
+  @apply flex border-b items-start justify-end bg-white;
   min-height: 56px;
   order: -1;
 }
 
 .content {
-  @apply flex flex-col overflow-y-auto;
+  @apply flex flex-col overflow-y-auto px-3 py-5;
   // Momentum scrolling on iOS.
   -webkit-overflow-scrolling: touch;
   flex: 1 1 auto;
-}
-
-.contentPadding {
-  @apply flex flex-col px-3 py-5;
-  flex: 1 0 auto;
 }
 
 @media screen and (min-width: theme('screens.small')){
@@ -118,14 +113,14 @@ $closeButtonHeight: 56px;
   }
 
   .closeButton {
-    @apply border-b-none;
+    @apply border-b-none bg-transparent;
   }
 
-  .contentPadding {
+  .content {
     @apply py-6 px-5;
   }
 
-  .closeButton + .content .contentPadding {
+  .closeButton + .content {
     padding-top: 0px;
     padding-bottom: $closeButtonHeight;
   }

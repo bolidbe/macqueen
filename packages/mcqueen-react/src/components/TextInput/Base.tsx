@@ -127,7 +127,7 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
         }, className)}
         style={style}
       >
-        {label && (
+        {!!label && (
           <Label {...{ hasError, isDisabled, isReadOnly }} className="mb-1">{ label }</Label>
         )}
         <div className={styles.inputContainer}>
@@ -218,7 +218,7 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
           )}
         </div>
 
-        {note && (
+        {!!note && (
           <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
         )}
       </div>

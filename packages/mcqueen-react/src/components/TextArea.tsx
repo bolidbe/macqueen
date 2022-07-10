@@ -70,7 +70,7 @@ export default React.forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
 
     return (
       <div className={className} style={style} onClick={onClick}>
-        {label && (
+        {!!label && (
           <Label {...{ hasError, isDisabled }} className="mb-1">{ label }</Label>
         )}
         <textarea
@@ -94,7 +94,7 @@ export default React.forwardRef<HTMLTextAreaElement, TextAreaPropsType>(
           name={name}
           rows={rows}
         />
-        {note && (
+        {!!note && (
           <InputNote className="mt-1" hasError={hasError}>{ note }</InputNote>
         )}
       </div>
