@@ -25,13 +25,14 @@ const formats = [{
   ],
   external: id =>
     // Don't attempt to bundle peerDependencies.
-    peerDependencies[id] ||
-    id === "next" ||
-    id === "next/router" ||
-    id === "next/link" ||
-    includes(id, "lodash") ||
+    peerDependencies[id]
+    || id === "next"
+    || id === "next/router"
+    || id === "next/link"
+    || id === "@bolid/mcqueen-icons/dist/es"
+    || includes(id, "lodash")
     // Don't attempt to parse CSS modules.
-    /module\.s?css$/.test(id)
+    || /module\.s?css$/.test(id)
 }, {
   name: 'cjs',
   preserveModules: false,
@@ -44,11 +45,12 @@ const formats = [{
   ],
   external: id =>
     // Don't attempt to bundle peerDependencies.
-    peerDependencies[id] ||
-    id === "next" ||
-    id === "next/router" ||
-    id === "next/link" ||
-    includes(id, "lodash")
+    peerDependencies[id]
+    || id === "next"
+    || id === "next/router"
+    || id === "next/link"
+    || id === "@bolid/mcqueen-icons/dist/es"
+    || includes(id, "lodash")
 }]
 
 module.exports = formats.map(format => ({

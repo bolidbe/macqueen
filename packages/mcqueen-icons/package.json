@@ -1,6 +1,6 @@
 {
   "name": "@bolid/mcqueen-icons",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "description": "A scalable set of icons handcrafted with <3 by bolid.",
   "homepage": "https://github.com/bolidbe/mcqueen/tree/master/packages/mcqueen-icons",
   "repository": {
@@ -66,8 +66,5 @@
   "resolutions": {
     "@types/react": "<18.0.0",
     "@types/react-dom": "<18.0.0"
-  },
-  "dependencies": {
-
   }
 }
