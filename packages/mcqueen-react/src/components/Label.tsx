@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './Label.module.scss';
 
 export interface LabelPropsType {
-  children: ReactNode | string;
+  children: ReactNode;
   hasError?: boolean;
   isDisabled?: boolean;
   isReadOnly?: boolean;

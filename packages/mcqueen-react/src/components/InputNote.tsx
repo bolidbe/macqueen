@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './InputNote.module.scss';
 
 export interface InputNotePropsType {
-  children: ReactNode | string;
+  children: ReactNode;
   hasError?: boolean;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;

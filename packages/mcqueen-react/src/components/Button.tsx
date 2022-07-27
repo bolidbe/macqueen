@@ -72,7 +72,7 @@ const FlexWrapper = ({
   children,
   size
 }: {
-  children: ReactNode | string,
+  children: ReactNode,
   size: 'small' | 'large'
 }) => (
   <div className={classNames({

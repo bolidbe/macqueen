@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import classNames from 'classnames';
 
 import { Icon, IconPropsType } from "@bolid/mcqueen-icons/dist/es";
@@ -14,7 +14,7 @@ const iconSizes: {
 }
 
 export interface PillPropsType {
-  children: string;
+  children: ReactNode;
   icon?: IconPropsType['name'];
   color?: 'green' | 'red' | 'orange' | 'blue' | 'yellow' | 'purple' | 'pink';
   variant?: 'solid' | 'inverse';
