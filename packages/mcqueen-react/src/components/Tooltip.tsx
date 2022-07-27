@@ -14,7 +14,7 @@ const doesWindowSupportTouch = (): boolean =>
 
 export interface TooltipPropsType {
   children: ReactNode;
-  text: string;
+  text: ReactNode;
   theme?: 'light' | 'dark';
   position?: 'top' | 'bottom' | 'left' | 'right';
   closeDelayLength?: 0 | 200;
@@ -129,7 +129,6 @@ export default function Tooltip({
         onClick={handleClick}
         onFocus={handleFocus}
         onBlur={hide}
-        aria-label={text}
         style={style}
       >
         { children }
