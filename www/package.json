@@ -10,7 +10,7 @@
     "analyze": "ANALYZE=true yarn build"
   },
   "dependencies": {
-    "@bolid/mcqueen-icons": "1.1.10",
+    "@bolid/mcqueen-icons": "1.1.11",
     "@bolid/mcqueen-react": "1.4.22",
     "@bolid/mcqueen-scss": "1.1.6",
     "@popperjs/core": "2.11.4",
