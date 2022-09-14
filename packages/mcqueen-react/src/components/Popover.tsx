@@ -15,7 +15,7 @@ export interface PopoverPropsType {
   borderColor?: 'blue' | 'white';
   position?: 'top' | 'bottom' | 'left' | 'right';
   isOpen: boolean;
-  size?: 'small' | 'large' | 'auto';
+  width?: 'small' | 'large' | 'auto';
   onClose: () => void;
   shouldDisplace?: boolean;
   className?: string;
@@ -33,7 +33,7 @@ export default function Popover({
     isOpen,
     className,
     borderColor = 'blue',
-    size = 'small',
+    width = 'small',
     position = 'top',
     shouldDisplace = true,
     arrowIsHidden = false,
@@ -51,7 +51,7 @@ export default function Popover({
     modifiers: [{
       name: 'offset',
       options: {
-        offset: [0, arrowIsHidden ? 0 : 8],
+        offset: [0, 8],
       }
     }, {
       name: 'preventOverflow',
@@ -108,8 +108,8 @@ export default function Popover({
           className={classNames({
             [styles.popover]: true,
             [styles.popoverStateIsOpen]: isOpen,
-            [styles.popoverSizeSmall]: size === 'small',
-            [styles.popoverSizeLarge]: size === 'large'
+            [styles.popoverWidthSmall]: width === 'small',
+            [styles.popoverWidthLarge]: width === 'large'
           })}
           style={popperStyles.popper}
           {...attributes.popper}
