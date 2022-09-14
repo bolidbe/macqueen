@@ -360,7 +360,8 @@ export default function Home() {
   const [mediumHeightModalIsOpen, setMediumHeightModalIsOpen] = useState(false)
   const [largeHeightModalIsOpen, setLargeHeightModalIsOpen] = useState(false)
   const [showMoreIsExpanded, setShowMoreIsExpanded] = useState(false)
-  const [popoverIsOpen, setPopoverIsOpen] = useState(false)
+  const [classicPopoverIsOpen, setClassicPopoverIsOpen] = useState(false)
+  const [borderedPopoverIsOpen, setBorderedPopoverIsOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-gray-200 pb-5 pt-6">
@@ -1146,34 +1147,70 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Popover">
-          <Popover
-            content={(
-              <>
-                <Title className="mb-1" size={6}>This is my Popover title</Title>
-                <Text size={3}>This is my Popover content and it should wrap if the content is too long.</Text>
-                <Button
-                  onClick={() => setPopoverIsOpen(false)}
-                  size="small"
-                  theme="secondary"
-                  className="mt-2"
-                >
-                  Close
-                </Button>
-              </>
-            )}
-            isOpen={popoverIsOpen}
-            onClose={() => {
-              setPopoverIsOpen(false);
-            }}
-            position="top"
-            shouldCloseOnClickOutside
-          >
-            <Button
-              onClick={() => setPopoverIsOpen(!popoverIsOpen)}
+          <Section title="Classic">
+            <Popover
+              content={(
+                <>
+                  <Title className="mb-1" size={6}>This is my Popover title</Title>
+                  <Text size={3}>This is my Popover content and it should wrap if the content is too long.</Text>
+                  <Button
+                    onClick={() => setClassicPopoverIsOpen(false)}
+                    size="small"
+                    theme="secondary"
+                    className="mt-2"
+                  >
+                    Close
+                  </Button>
+                </>
+              )}
+              isOpen={classicPopoverIsOpen}
+              onClose={() => {
+                setClassicPopoverIsOpen(false);
+              }}
+              position="top"
+              shouldCloseOnClickOutside
+              arrowIsHidden
+              borderColor="white"
+              size="auto"
+              closeButtonIsHidden
             >
-              Open Popover
-            </Button>
-          </Popover>
+              <Button
+                onClick={() => setClassicPopoverIsOpen(!classicPopoverIsOpen)}
+              >
+                Open Popover
+              </Button>
+            </Popover>
+          </Section>
+          <Section title="With border">
+            <Popover
+              content={(
+                <>
+                  <Title className="mb-1" size={6}>This is my Popover title</Title>
+                  <Text size={3}>This is my Popover content and it should wrap if the content is too long.</Text>
+                  <Button
+                    onClick={() => setBorderedPopoverIsOpen(false)}
+                    size="small"
+                    theme="secondary"
+                    className="mt-2"
+                  >
+                    Close
+                  </Button>
+                </>
+              )}
+              isOpen={borderedPopoverIsOpen}
+              onClose={() => {
+                setBorderedPopoverIsOpen(false);
+              }}
+              position="top"
+              shouldCloseOnClickOutside
+            >
+              <Button
+                onClick={() => setBorderedPopoverIsOpen(!borderedPopoverIsOpen)}
+              >
+                Open Popover
+              </Button>
+            </Popover>
+          </Section>
         </Card>
       </div>
     </div>

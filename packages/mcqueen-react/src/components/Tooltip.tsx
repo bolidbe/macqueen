@@ -134,42 +134,41 @@ export default function Tooltip({
         { children }
       </div>
       <ConditionalPortal>
-        {isOpen && (
+        <div
+          ref={setPopperRef}
+          role="tooltip"
+          className={classNames({
+            [styles.tooltip]: true,
+            [styles.tooltipStateIsOpen]: isOpen,
+            [styles.tooltipThemeDark]: theme === 'dark',
+            [styles.tooltipThemeLight]: theme === 'light',
+          })}
+          style={assign({}, popperStyles.popper, { zIndex })}
+          onMouseEnter={show}
+          onMouseLeave={handleMouseLeave}
+          onClick={(event): void => {
+            event.stopPropagation();
+            if (doesWindowSupportTouch()) {
+              hide();
+            }
+          }}
+          {...attributes.popper}
+        >
+          <div>{ text }</div>
           <div
-            ref={setPopperRef}
-            role="tooltip"
+            ref={setArrowRef}
+            style={popperStyles.arrow}
             className={classNames({
-              [styles.tooltip]: true,
-              [styles.tooltipThemeDark]: theme === 'dark',
-              [styles.tooltipThemeLight]: theme === 'light',
+              [styles.arrow]: true,
+              [styles.arrowPositionTop]: placement === 'top',
+              [styles.arrowPositionBottom]: placement === 'bottom',
+              [styles.arrowPositionLeft]: placement === 'left',
+              [styles.arrowPositionRight]: placement === 'right',
+              [styles.arrowThemeDark]: theme === 'dark',
+              [styles.arrowThemeLight]: theme === 'light',
             })}
-            style={assign({}, popperStyles.popper, { zIndex })}
-            onMouseEnter={show}
-            onMouseLeave={handleMouseLeave}
-            onClick={(event): void => {
-              event.stopPropagation();
-              if (doesWindowSupportTouch()) {
-                hide();
-              }
-            }}
-            {...attributes.popper}
-          >
-            <div>{ text }</div>
-            <div
-              ref={setArrowRef}
-              style={popperStyles.arrow}
-              className={classNames({
-                [styles.arrow]: true,
-                [styles.arrowPositionTop]: placement === 'top',
-                [styles.arrowPositionBottom]: placement === 'bottom',
-                [styles.arrowPositionLeft]: placement === 'left',
-                [styles.arrowPositionRight]: placement === 'right',
-                [styles.arrowThemeDark]: theme === 'dark',
-                [styles.arrowThemeLight]: theme === 'light',
-              })}
-            />
-          </div>
-        )}
+          />
+        </div>
       </ConditionalPortal>
     </>
   )

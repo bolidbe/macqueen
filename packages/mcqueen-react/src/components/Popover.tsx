@@ -12,14 +12,16 @@ import styles from './Popover.module.scss';
 export interface PopoverPropsType {
   children: ReactNode;
   content: ReactNode;
+  borderColor?: 'blue' | 'white';
   position?: 'top' | 'bottom' | 'left' | 'right';
   isOpen: boolean;
-  size?: 'small' | 'large';
+  size?: 'small' | 'large' | 'auto';
   onClose: () => void;
-  container?: 'inline' | 'body';
+  shouldDisplace?: boolean;
   className?: string;
   closeButtonIsHidden?: boolean;
   shouldCloseOnClickOutside?: boolean;
+  arrowIsHidden?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
 }
@@ -29,10 +31,12 @@ export default function Popover({
     content,
     onClose,
     isOpen,
+    className,
+    borderColor = 'blue',
     size = 'small',
     position = 'top',
-    container = 'body',
-    className,
+    shouldDisplace = true,
+    arrowIsHidden = false,
     closeButtonIsHidden = false,
     shouldCloseOnClickOutside = false,
     onClick,
@@ -47,7 +51,7 @@ export default function Popover({
     modifiers: [{
       name: 'offset',
       options: {
-        offset: [0, 8],
+        offset: [0, arrowIsHidden ? 0 : 8],
       }
     }, {
       name: 'preventOverflow',
@@ -72,9 +76,11 @@ export default function Popover({
   useEffect(() => {
     if(isOpen && !!popperRef && shouldCloseOnClickOutside){
       const handleClickOutside = (e: any) => {
-        if (!!popperRef && !popperRef.contains(e.target)){
-          onClose()
-        }
+        setTimeout(() => {
+          if (!!popperRef && !popperRef.contains(e.target)){
+            onClose()
+          }
+        }, 10)
       }
       document.addEventListener("click", handleClickOutside, true);
       return () => {
@@ -95,44 +101,48 @@ export default function Popover({
       >
         { children }
       </div>
-      <ConditionalPortal shouldDisplace={container === 'body'}>
-        {isOpen && (
-          <div
-            ref={setPopperRef}
-            role="dialog"
-            className={classNames({
-              [styles.popover]: true,
-              [styles.popoverStateIsOpen]: isOpen,
-              [styles.popoverSizeSmall]: size === 'small',
-              [styles.popoverSizeLarge]: size === 'large'
-            })}
-            style={popperStyles.popper}
-            {...attributes.popper}
-          >
-            <div className={styles.content}>
-              <div className={styles.popoverBorder}></div>
-              { content }
-              {!closeButtonIsHidden && (
-                <div className={styles.closeButton}>
-                  <button onClick={onClose}>
-                    <svg
-                        viewBox="0 0 24 24"
-                        width="14"
-                        height="14"
-                        stroke="currentColor"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className={styles.closeButtonIcon}
-                    >
-                      <line x1="18" y1="6" x2="6" y2="18" />
-                      <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                  </button>
-                </div>
-              )}
-            </div>
+      <ConditionalPortal shouldDisplace={shouldDisplace}>
+        <div
+          ref={setPopperRef}
+          role="dialog"
+          className={classNames({
+            [styles.popover]: true,
+            [styles.popoverStateIsOpen]: isOpen,
+            [styles.popoverSizeSmall]: size === 'small',
+            [styles.popoverSizeLarge]: size === 'large'
+          })}
+          style={popperStyles.popper}
+          {...attributes.popper}
+        >
+          <div className={styles.content}>
+            <div className={classNames({
+              [styles.popoverBorder]: true,
+              [styles.popoverBorderColorBlue]: borderColor === 'blue',
+              [styles.popoverBorderColorWhite]: borderColor === 'white',
+            })}></div>
+            { content }
+            {!closeButtonIsHidden && (
+              <div className={styles.closeButton}>
+                <button onClick={onClose}>
+                  <svg
+                      viewBox="0 0 24 24"
+                      width="14"
+                      height="14"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={styles.closeButtonIcon}
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+            )}
+          </div>
+          {!arrowIsHidden && (
             <div
               ref={setArrowRef}
               className={classNames({
@@ -141,11 +151,13 @@ export default function Popover({
                 [styles.arrowPositionBottom]: placement === 'bottom',
                 [styles.arrowPositionLeft]: placement === 'left',
                 [styles.arrowPositionRight]: placement === 'right',
+                [styles.arrowColorBlue]: borderColor === 'blue',
+                [styles.arrowColorWhite]: borderColor === 'white'
               })}
               style={popperStyles.arrow}
             />
-          </div>
-        )}
+          )}
+        </div>
       </ConditionalPortal>
     </>
   );

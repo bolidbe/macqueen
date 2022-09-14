@@ -18,6 +18,13 @@
   box-shadow: 0px 1px 3px 0px rgba(#000, 0.5);
   max-width: 235px;
   z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+
+  &StateIsOpen{
+    visibility: visible;
+    opacity: 1;
+  }
 
   &Theme{
     &Dark {
