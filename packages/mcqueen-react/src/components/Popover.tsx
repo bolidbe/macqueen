@@ -59,7 +59,7 @@ export default function Popover({
   const [popperRef, setPopperRef] = useState<any | null>(null);
   const [arrowRef, setArrowRef] = useState<any | null>(null);
 
-  const { attributes, styles: popperStyles } = usePopper(elementRef, popperRef, {
+  const { attributes, styles: popperStyles, update } = usePopper(elementRef, popperRef, {
     placement: position,
     modifiers: [{
       name: 'offset',
@@ -88,6 +88,8 @@ export default function Popover({
 
   useEffect(() => {
     if(isOpen && !!popperRef && shouldCloseOnClickOutside){
+      update()
+
       const handleClickOutside = (e: any) => {
         setTimeout(() => {
           if (!!popperRef && !popperRef.contains(e.target)){
