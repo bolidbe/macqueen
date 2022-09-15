@@ -12,18 +12,31 @@ import styles from './Popover.module.scss';
 export interface PopoverPropsType {
   children: ReactNode;
   content: ReactNode;
-  borderColor?: 'blue' | 'white';
-  position?: 'top' | 'bottom' | 'left' | 'right';
   isOpen: boolean;
-  width?: 'small' | 'large' | 'auto';
   onClose: () => void;
+  width?: 'small' | 'large' | 'auto';
+  borderColor?: 'blue' | 'transparent';
+  position?: (
+    'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end'
+  );
   shouldDisplace?: boolean;
-  className?: string;
   closeButtonIsHidden?: boolean;
   shouldCloseOnClickOutside?: boolean;
   arrowIsHidden?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
+  className?: string;
 }
 
 export default function Popover({
@@ -32,8 +45,8 @@ export default function Popover({
     onClose,
     isOpen,
     className,
+    width = 'auto',
     borderColor = 'blue',
-    width = 'small',
     position = 'top',
     shouldDisplace = true,
     arrowIsHidden = false,
@@ -114,15 +127,20 @@ export default function Popover({
           style={popperStyles.popper}
           {...attributes.popper}
         >
-          <div className={styles.content}>
+          <div className={classNames({
+            [styles.content]: true,
+            [styles.contentHasBorder]: borderColor !== 'transparent'
+          })}>
             <div className={classNames({
               [styles.popoverBorder]: true,
-              [styles.popoverBorderColorBlue]: borderColor === 'blue',
-              [styles.popoverBorderColorWhite]: borderColor === 'white',
+              [styles.popoverBorderColorBlue]: borderColor === 'blue'
             })}></div>
             { content }
             {!closeButtonIsHidden && (
-              <div className={styles.closeButton}>
+              <div className={classNames({
+                [styles.closeButton]: true,
+                [styles.closeButtonHasBorder]: borderColor !== 'transparent'
+              })}>
                 <button onClick={onClose}>
                   <svg
                       viewBox="0 0 24 24"
@@ -147,12 +165,27 @@ export default function Popover({
               ref={setArrowRef}
               className={classNames({
                 [styles.arrow]: true,
-                [styles.arrowPositionTop]: placement === 'top',
-                [styles.arrowPositionBottom]: placement === 'bottom',
-                [styles.arrowPositionLeft]: placement === 'left',
-                [styles.arrowPositionRight]: placement === 'right',
-                [styles.arrowColorBlue]: borderColor === 'blue',
-                [styles.arrowColorWhite]: borderColor === 'white'
+                [styles.arrowPositionTop]: (
+                  placement === 'top'
+                  || placement === 'top-start'
+                  || placement === 'top-end'
+                ),
+                [styles.arrowPositionBottom]: (
+                  placement === 'bottom'
+                  || placement === 'bottom-start'
+                  || placement === 'bottom-end'
+                ),
+                [styles.arrowPositionLeft]: (
+                  placement === 'left'
+                  || placement === 'left-start'
+                  || placement === 'left-end'
+                ),
+                [styles.arrowPositionRight]: (
+                  placement === 'right'
+                  || placement === 'right-start'
+                  || placement === 'right-end'
+                ),
+                [styles.arrowColorBlue]: borderColor === 'blue'
               })}
               style={popperStyles.arrow}
             />

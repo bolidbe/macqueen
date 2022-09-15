@@ -360,7 +360,7 @@ export default function Home() {
   const [mediumHeightModalIsOpen, setMediumHeightModalIsOpen] = useState(false)
   const [largeHeightModalIsOpen, setLargeHeightModalIsOpen] = useState(false)
   const [showMoreIsExpanded, setShowMoreIsExpanded] = useState(false)
-  const [classicPopoverIsOpen, setClassicPopoverIsOpen] = useState(false)
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false)
   const [borderedPopoverIsOpen, setBorderedPopoverIsOpen] = useState(false)
 
   return (
@@ -1147,14 +1147,22 @@ export default function Home() {
           </Section>
         </Card>
         <Card title="Popover">
-          <Section title="Classic">
+          <Section title="Default">
             <Popover
+              isOpen={popoverIsOpen}
+              onClose={() => setPopoverIsOpen(false)}
+              position="top"
+              shouldCloseOnClickOutside
+              arrowIsHidden
+              closeButtonIsHidden
+              width="small"
+              borderColor="transparent"
               content={(
                 <>
                   <Title className="mb-1" size={6}>This is my Popover title</Title>
                   <Text size={3}>This is my Popover content and it should wrap if the content is too long.</Text>
                   <Button
-                    onClick={() => setClassicPopoverIsOpen(false)}
+                    onClick={() => setPopoverIsOpen(false)}
                     size="small"
                     theme="secondary"
                     className="mt-2"
@@ -1163,19 +1171,9 @@ export default function Home() {
                   </Button>
                 </>
               )}
-              isOpen={classicPopoverIsOpen}
-              onClose={() => {
-                setClassicPopoverIsOpen(false);
-              }}
-              position="top"
-              shouldCloseOnClickOutside
-              arrowIsHidden
-              borderColor="white"
-              size="auto"
-              closeButtonIsHidden
             >
               <Button
-                onClick={() => setClassicPopoverIsOpen(!classicPopoverIsOpen)}
+                onClick={() => setPopoverIsOpen(!popoverIsOpen)}
               >
                 Open Popover
               </Button>
@@ -1183,6 +1181,12 @@ export default function Home() {
           </Section>
           <Section title="With border">
             <Popover
+              isOpen={borderedPopoverIsOpen}
+              onClose={() => setBorderedPopoverIsOpen(false)}
+              position="top"
+              shouldCloseOnClickOutside
+              width="large"
+              position="top"
               content={(
                 <>
                   <Title className="mb-1" size={6}>This is my Popover title</Title>
@@ -1197,12 +1201,6 @@ export default function Home() {
                   </Button>
                 </>
               )}
-              isOpen={borderedPopoverIsOpen}
-              onClose={() => {
-                setBorderedPopoverIsOpen(false);
-              }}
-              position="top"
-              shouldCloseOnClickOutside
             >
               <Button
                 onClick={() => setBorderedPopoverIsOpen(!borderedPopoverIsOpen)}
