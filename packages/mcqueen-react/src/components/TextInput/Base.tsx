@@ -164,12 +164,14 @@ export default React.forwardRef<HTMLInputElement, TextInputBasePropsType>(
             onKeyDown={(e): void => onKeyDown(e)}
             onKeyUp={(e): void => onKeyUp(e)}
             onKeyPress={(e): void => onKeyPress(e)}
+            onWheel={type === "number" ? (e: React.WheelEvent<HTMLInputElement>): void => e.currentTarget.blur() : undefined}
             id={id}
             ref={outerRef}
             inputMode={inputMode}
             pattern={pattern}
             maxLength={maxLength}
             autoComplete={autoComplete}
+            step=".01"
           />
 
           <div className={styles.inputStyles}/>

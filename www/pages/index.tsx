@@ -247,6 +247,7 @@ const Form = () => {
   const { register, handleSubmit, errors } = useForm({
     defaultValues: {
       textinput: "Lala",
+      numberInput: 3,
       textarea: "Lala",
       select: "",
       checkbox1: false,
@@ -266,6 +267,12 @@ const Form = () => {
         ref={register({ required: true })}
         label="Text Input"
         name="textinput"
+      />
+      <TextInput
+        ref={register({ required: true })}
+        label="Number Input"
+        name="numberInput"
+        type="number"
       />
       <TextArea
         ref={register({ required: true })}
