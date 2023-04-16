@@ -8,7 +8,6 @@ export interface TextPropsType {
   size?: 1 | 2 | 3 | 4;
   className?: string;
   elementName?: keyof ReactHTML;
-  isBold?: boolean;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
 }
@@ -18,16 +17,12 @@ export default function Text({
   size = 2,
   className='',
   elementName = 'p',
-  isBold = false,
   onClick,
   style
 }: TextPropsType): JSX.Element {
   const props = {
     className: classNames(
       styles[`text${size}`],
-      {
-        "font-600": isBold
-      },
       className
     ),
     onClick,

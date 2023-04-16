@@ -1,5 +1,6 @@
-import React, { useEffect } from "react"
-import parse from 'html-react-parser'
+import React, { createElement, useEffect } from "react"
+import parse, { Element, domToReact } from 'html-react-parser'
+import omit from "lodash/omit"
 
 export interface HtmlContentPropsType {
   children: string;
@@ -53,14 +54,14 @@ export default function HtmlContent({
               }
           });
           if(lazyloadImages.length == 0) {
-            document.removeEventListener("scroll", lazyload);
+            window.removeEventListener("scroll", lazyload);
             window.removeEventListener("resize", lazyload);
             window.removeEventListener("orientationChange", lazyload);
           }
         }, 20);
       }
 
-      document.addEventListener("scroll", lazyload);
+      window.addEventListener("scroll", lazyload);
       window.addEventListener("resize", lazyload);
       window.addEventListener("orientationChange", lazyload);
     }
@@ -80,8 +81,29 @@ export default function HtmlContent({
       children
       .replace(/src=/g, "data-src=")
       .replace(/srcset=/g, "data-srcset=")
-      .replace(/<table/, "<div class=\"overflow-x-auto pb-2\"><table")
-      .replace(/<\/table>/, "</table></div>")
+      .replace(/<table/g, "<div class=\"overflow-x-auto pb-2\"><table")
+      .replace(/<\/table>/g, "</table></div>"),
+      {
+        replace: (domNode: any) => {
+          if (
+            domNode instanceof Element
+            && !!domNode.attribs
+            && !!domNode.attribs.onclick
+          ) {
+            return (
+              createElement(
+                domNode.name,
+                {
+                  ...omit(domNode.attribs, 'onclick'),
+                  onClick: new Function(domNode.attribs.onclick)
+                },
+                domToReact(domNode.children)
+              )
+            )
+          }
+          return domNode
+        }
+      }
     )}
     </>
   )

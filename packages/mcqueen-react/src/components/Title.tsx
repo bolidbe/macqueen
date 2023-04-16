@@ -25,7 +25,7 @@ export default function Title({
   const elementName = !!heading ? `h${heading}` : 'div';
 
   const props = {
-    className: classNames(styles[`title${size}`], "font-700", className),
+    className: classNames(styles[`title${size}`], className),
     id,
     style,
     onClick

@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from "classnames"
+import Text, { TextPropsType } from "./Text"
 let Link: any;
 try{
   Link = require('next/link').default
@@ -11,43 +12,69 @@ import styles from "./Breadcrumbs.module.scss"
 
 export interface BreadcrumbType {
   name: string;
-  path: string;
+  path?: string;
+  onClick?: () => void;
 }
 
 export interface BreadcrumbsPropsType {
   breadcrumbs: BreadcrumbType[];
+  size?: TextPropsType['size'];
   className?: string;
-  onClick?: React.MouseEventHandler<HTMLUListElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   style?: React.CSSProperties;
 }
 
 export default function Breadcrumbs({
   breadcrumbs,
   className,
+  size = 3,
   onClick,
   style
 }: BreadcrumbsPropsType): JSX.Element {
   return (
-    <ul
-      className={classNames("flex flex-wrap text-body-3 leading-body-3", styles.breadcrumbs, className)}
+    <Text
+      size={size}
+      elementName="ul"
+      className={classNames("flex flex-wrap", styles.breadcrumbs, className)}
       style={style}
       onClick={onClick}
     >
-      {breadcrumbs.map((breadcrumb, i) => i < breadcrumbs.length - 1 ? (
-        <li key={i}>
-        {!!Link ? (
-          <Link href={breadcrumb.path}>
-            <a className="text-blue">{ breadcrumb.name }</a>
-          </Link>
-        ) : (
-          <a href={breadcrumb.path} className="text-blue">{ breadcrumb.name }</a>
-        )}
-        </li>
-      ) : (
-        <li key={i}>
-          { breadcrumb.name }
-        </li>
-      ))}
-    </ul>
+      {breadcrumbs.map((breadcrumb, i) => {
+        if(i < breadcrumbs.length - 1){
+          if(!!breadcrumb.path) {
+            if(!!Link){
+              return (
+                <li key={i}>
+                  <Link href={breadcrumb.path}>
+                    <a className={styles.link} onClick={breadcrumb.onClick}>
+                      { breadcrumb.name }
+                    </a>
+                  </Link>
+                </li>
+              )
+            } else {
+              return (
+                <li key={i}>
+                  <a href={breadcrumb.path} className={styles.link} onClick={breadcrumb.onClick}>
+                    { breadcrumb.name }
+                  </a>
+                </li>
+              )
+            }
+          } else if(!!breadcrumb.onClick) {
+            return (
+              <li key={i} className={styles.link} onClick={breadcrumb.onClick}>
+                { breadcrumb.name }
+              </li>
+            )
+          }
+        }
+        return (
+          <li key={i}>
+            { breadcrumb.name }
+          </li>
+        )
+      })}
+    </Text>
   )
 }
