@@ -144,7 +144,7 @@ export default React.forwardRef<HTMLInputElement, AutocompletePropsType>(
     }
 
     const handleFetchRequested = ({ value }: HandleFetchRequestedType) => {
-      onFetchRequestedDebounce.current(value)
+      onFetchRequestedDebounce(value)
     }
 
     const handleSelectSuggestion = (_: any, { suggestion }: HandleSelectType) => {
